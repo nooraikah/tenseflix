@@ -838,6 +838,119 @@ body {
     font-size: 1rem;
 }
 
+.pronunciation-block {
+    background: linear-gradient(180deg, #fffdf7 0%, #ffffff 42%);
+    border-color: #f8dfb0;
+    box-shadow: 0 8px 22px rgba(226, 183, 20, 0.14);
+}
+
+.pronunciation-label {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+}
+
+.pronunciation-title {
+    border-bottom-color: #fde7c7;
+}
+
+.pronunciation-intro {
+    margin-bottom: 18px;
+}
+
+.pronunciation-section {
+    background: #fffaf0;
+    border: 1px solid #f6dfb7;
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 16px;
+}
+
+.pronunciation-section-title {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #9a3412;
+    line-height: 1.5;
+}
+
+.pronunciation-section-text {
+    margin: 0 0 12px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.pronunciation-audio-wrap {
+    background: #ffffff;
+    border: 1px solid #f4d39a;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin: 12px 0 16px;
+}
+
+.pronunciation-audio {
+    width: 100%;
+}
+
+.pronunciation-sound-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 12px;
+}
+
+.pronunciation-sound-card {
+    background: #ffffff;
+    border: 1px solid #f3dfb8;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.pronunciation-sound {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #b45309;
+    margin-bottom: 10px;
+}
+
+.pronunciation-sentences {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pronunciation-sentence {
+    background: #fffaf0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #2d3436;
+    line-height: 1.5;
+}
+
+.pronunciation-word-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.pronunciation-word-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pronunciation-word {
+    background: #ffffff;
+    border: 1px solid #f4d39a;
+    border-radius: 999px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #7c2d12;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.08);
+}
+
 /* ── Lesson Tab Content panels ── */
 .lesson-tab-content {
     display: none;

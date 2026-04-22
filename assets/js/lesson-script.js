@@ -6812,6 +6812,9 @@ function renderGrammarBank4(containerId, data) {
     if (!el || !data) return;
 
     var blocksHtml = data.blocks.map(function(block) {
+        if (block.type === 'pronunciation') {
+            return renderPronunciationBlock(block);
+        }
         var rows = (block.table || []).map(function(row) {
             return '<tr><td style="padding:4px 14px 4px 0;font-weight:600;color:#e2b714;white-space:nowrap;">' + row[0] + '</td>' +
                    '<td style="padding:4px 0;">' + row[1] + '</td></tr>';
@@ -6832,6 +6835,55 @@ function renderGrammarBank4(containerId, data) {
     }).join('');
 
     el.innerHTML = blocksHtml;
+}
+
+function renderPronunciationBlock(block) {
+    var sectionsHtml = (block.sections || []).map(function(section) {
+        var audioHtml = section.audio ?
+            '<div class="pronunciation-audio-wrap">' +
+                '<audio class="pronunciation-audio" controls preload="none">' +
+                    '<source src="' + section.audio + '" type="audio/mpeg">' +
+                    'Your browser does not support the audio element.' +
+                '</audio>' +
+            '</div>' : '';
+
+        var soundGroupsHtml = (section.groups || []).map(function(group) {
+            var sentencesHtml = (group.sentences || []).map(function(sentence) {
+                return '<li class="pronunciation-sentence">' + sentence + '</li>';
+            }).join('');
+
+            return '<div class="pronunciation-sound-card">' +
+                '<div class="pronunciation-sound">' + group.sound + '</div>' +
+                '<ul class="pronunciation-sentences">' + sentencesHtml + '</ul>' +
+            '</div>';
+        }).join('');
+
+        var wordGridHtml = (section.wordGroups || []).map(function(words) {
+            var wordsHtml = words.map(function(word) {
+                return '<div class="pronunciation-word">' + word + '</div>';
+            }).join('');
+
+            return '<div class="pronunciation-word-column">' + wordsHtml + '</div>';
+        }).join('');
+
+        return '<section class="pronunciation-section">' +
+            '<h4 class="pronunciation-section-title">' + section.heading + '</h4>' +
+            (section.description ? '<p class="pronunciation-section-text">' + section.description + '</p>' : '') +
+            audioHtml +
+            (soundGroupsHtml ? '<div class="pronunciation-sound-grid">' + soundGroupsHtml + '</div>' : '') +
+            (wordGridHtml ? '<div class="pronunciation-word-grid">' + wordGridHtml + '</div>' : '') +
+        '</section>';
+    }).join('');
+
+    return '<div class="grammar-bank-block pronunciation-block" style="margin-bottom:14px;">' +
+        '<div class="grammar-bank-header pronunciation-header">' +
+            '<span class="grammar-bank-icon">🔊</span>' +
+            '<span class="grammar-bank-label pronunciation-label">' + (block.label || 'Pronunciation') + '</span>' +
+        '</div>' +
+        '<h3 class="grammar-bank-title pronunciation-title">' + block.title + '</h3>' +
+        '<p class="grammar-bank-intro pronunciation-intro">' + block.intro + '</p>' +
+        sectionsHtml +
+    '</div>';
 }
 
 function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {

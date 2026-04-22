@@ -722,6 +722,64 @@
           "<strong>Was</strong> he a pilot?",
           "<strong>Were</strong> they friends?"
         ]
+      },
+      {
+        "type": "pronunciation",
+        "label": "Pronunciation",
+        "title": "Past Simple -ed Endings",
+        "intro": "The <strong>-ed</strong> ending is usually pronounced <strong>/t/</strong> or <strong>/d/</strong>, for example <strong>booked</strong>, <strong>arrived</strong>.<br><br>We only pronounce the <strong>e</strong> in <strong>-ed</strong> when there is a <strong>t</strong> or a <strong>d</strong> before it, for example <strong>wanted</strong>, <strong>ended</strong>. In this case, <strong>-ed = /id/</strong>.",
+        "sections": [
+          {
+            "heading": "1. Listen and repeat the sounds and sentences.",
+            "audio": "past simple audio.mp3",
+            "groups": [
+              {
+                "sound": "/t/",
+                "sentences": [
+                  "I booked a hotel.",
+                  "We missed our flight."
+                ]
+              },
+              {
+                "sound": "/d/",
+                "sentences": [
+                  "I arrived at the airport.",
+                  "We phoned our friends."
+                ]
+              },
+              {
+                "sound": "/id/",
+                "sentences": [
+                  "She invited us to stay.",
+                  "I needed a new passport."
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "2. Say the past simple of these verbs. In which ones is -ed pronounced /id/?",
+            "audio": "past simple audio 2.mp3",
+            "wordGroups": [
+              [
+                "ask",
+                "live",
+                "rent",
+                "thank"
+              ],
+              [
+                "call",
+                "start",
+                "stop",
+                "want"
+              ],
+              [
+                "check",
+                "decide",
+                "happen"
+              ]
+            ]
+          }
+        ]
       }
     ]
   },
