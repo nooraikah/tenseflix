@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TENSEFLIX - Master English Tenses Through Movies</title>
+    <link rel="stylesheet" href="assets/css/home-styles.css">
+    <style>
+         .emoji-large {
+            animation: waddle 2s infinite;
+        }
+        @keyframes waddle {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-5deg); }
+            75% { transform: translateX(5px) rotate(5deg); }
+        }
+        .superb-animation {
+            animation: superb 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes superb {
+            0%, 100% { transform: scale(1) rotate(0deg); color: #ff6b6b; }
+            25% { transform: scale(1.1) rotate(5deg); color: #ff8787; }
+            50% { transform: scale(1.15) rotate(0deg); color: #ffa5a5; }
+            75% { transform: scale(1.1) rotate(-5deg); color: #ff8787; }
+        }
+        .marquee-67 {
+            animation: marquee 8s linear infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        /* ===== FAQ WIDGET ===== */
+        #faq-widget {
+            position: fixed;
+            bottom: 32px;
+            right: 28px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* Mascot trigger button */
+        #faq-mascot-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            outline: none;
+        }
+        #faq-mascot-btn:focus-visible .faq-mascot-img {
+            outline: 2px solid #4aa3e0;
+        }
+        .faq-mascot-img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: #162040;
+            padding: 5px;
+            box-shadow: 0 4px 20px rgba(40,100,200,0.45), 0 0 0 3px #2a6db5;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        #faq-mascot-btn:hover .faq-mascot-img {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(40,100,200,0.6), 0 0 0 4px #4aa3e0;
+        }
+        #faq-mascot-btn.active .faq-mascot-img {
+            box-shadow: 0 6px 28px rgba(40,100,200,0.7), 0 0 0 4px #7ec8f7;
+        }
+        .faq-mascot-label {
+            color: #7ec8f7;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+            user-select: none;
+        }
+
+        /* FAQ popup panel */
+        #faq-panel {
+            position: absolute;
+            bottom: calc(100% + 14px);
+            right: 0;
+            width: 330px;
+            max-height: 70vh;
+            background: linear-gradient(160deg, #0d1b3e 0%, #132a5e 100%);
+            border: 2px solid #2a6db5;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(20,60,160,0.55);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            /* Hidden by default */
+            opacity: 0;
+            transform: translateY(16px) scale(0.97);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #faq-panel.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .faq-panel-header {
+            padding: 14px 18px 12px;
+            border-bottom: 1px solid rgba(74,163,224,0.3);
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .faq-panel-title {
+            color: #7ec8f7;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin: 0;
+        }
+        .faq-panel-sub {
+            color: rgba(126,200,247,0.55);
+            font-size: 11px;
+            margin: 3px 0 0;
+        }
+
+        .faq-list {
+            overflow-y: auto;
+            flex: 1;
+            padding: 6px 0;
+        }
+        .faq-list::-webkit-scrollbar { width: 5px; }
+        .faq-list::-webkit-scrollbar-track { background: #0d1b3e; }
+        .faq-list::-webkit-scrollbar-thumb { background: #2a6db5; border-radius: 4px; }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(74,163,224,0.1);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #c9e8ff;
+            text-align: left;
+            padding: 10px 16px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            transition: background 0.2s;
+            line-height: 1.45;
+        }
+        .faq-question:hover { background: rgba(74,163,224,0.1); }
+        .faq-question.active { color: #7ec8f7; background: rgba(74,163,224,0.12); }
+        .faq-arrow {
+            font-size: 10px;
+            transition: transform 0.25s;
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: #4aa3e0;
+        }
+        .faq-question.active .faq-arrow { transform: rotate(180deg); color: #7ec8f7; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.32s ease, padding 0.32s ease;
+            padding: 0 16px;
+            color: #93bfdc;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+        .faq-answer.open {
+            max-height: 200px;
+            padding: 4px 16px 12px;
+        }
+
+        @media (max-width: 600px) {
+            #faq-panel { width: 280px; }
+            #faq-widget { right: 14px; bottom: 20px; }
+        }
+
+        /* ===== HERO MASCOT ANIMATION ===== */
+        .hero-mascot-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-mascot-anim {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            box-shadow: 0 0 40px rgba(100,160,255,0.3), 0 0 0 6px rgba(100,160,255,0.15);
+            animation: mascotFloat 3s ease-in-out infinite, mascotWiggle 6s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .hero-mascot-anim:hover {
+            animation: mascotBounce 0.5s ease infinite alternate;
+            box-shadow: 0 0 60px rgba(120,180,255,0.5), 0 0 0 8px rgba(120,180,255,0.2);
+        }
+        @keyframes mascotFloat {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50%       { transform: translateY(-18px) rotate(2deg); }
+        }
+        @keyframes mascotWiggle {
+            0%, 100%  { transform: translateY(0px) rotate(-2deg) scaleX(1); }
+            25%       { transform: translateY(-10px) rotate(3deg) scaleX(1.04); }
+            50%       { transform: translateY(-18px) rotate(-1deg) scaleX(0.97); }
+            75%       { transform: translateY(-8px) rotate(2deg) scaleX(1.03); }
+        }
+        @keyframes mascotBounce {
+            0%   { transform: translateY(0) scale(1.05) rotate(-3deg); }
+            100% { transform: translateY(-22px) scale(1.1) rotate(3deg); }
+        }
+        @media (max-width: 768px) {
+            .hero-mascot-anim { width: 150px; height: 150px; }
+        }
+        .hint {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .hint img {
+      width: 40px;
+      height: 40px;
+    }
+    .team-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .team-member {
+      width: 180px;
+      position: relative;
+    }
+    .circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+      position: relative;
+      cursor: pointer;
+      background: pink;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(255, 105, 180, 0.8);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      padding: 10px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .circle:hover {
+      transform: scale(1.05);
+    }
+    .circle:hover img { opacity: 0.2; }
+    .circle:hover .overlay { opacity: 1; }
+    .info-box {
+      visibility: hidden;
+      opacity: 0;
+      margin-top: 15px;
+      padding: 10px;
+      background: #ffe4ec;
+      border-radius: 8px;
+      font-size: 0.9em;
+      color: #333;
+      transition: opacity 0.3s ease;
+    }
+    .info-box.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+    </style>
+</head>
+<body>
+     <marquee class="marquee-67"><h1>67 67 67 67 67 67 67 67 67 67 67 67 67 67 67 </h1></marquee>
+    <h1 class="superb-animation">67 NURAYYYYYYYYYYYY 67</h1>
+    <!-- Language Switcher Top Bar -->
+    <div class="lang-bar">
+        <div class="container">
+            <div class="lang-bar-content">
+                <span class="lang-label" data-i18n="lang-select">Language:</span>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="en" onclick="setLanguage('ru')" title="Русский">РУ</button>
+                    <button class="lang-btn" data-lang="kk" onclick="setLanguage('kk')" title="Қазақ">KZ</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" title="English">EN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="logo-link"><h1 class="logo">🎬 TENSEFLIX</h1></a>
+                <nav class="nav-links">
+                    <a href="#features" data-i18n="nav-features">Features</a>
+                    <a href="#tenses" data-i18n="nav-tenses">12 Tenses</a>
+                </nav>
+                <div class="navbar-right" id="navbar-right">
+                    <a href="login.html" class="login-link" data-i18n="nav-login">Sign In</a>
+                    <a href="login.html" class="btn-start" data-i18n="nav-start">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-image">
+                <div class="hero-mascot-wrap">
+                    <img src="assets/images/duopinguo.jpg" alt="Tenseflix Mascot" class="hero-mascot-anim">
+                </div>
+            </div>
+            <div class="hero-content">
+                <h2 data-i18n="hero-title">Learn English Tenses<br>Through Movies</h2>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">12 tenses, 24+ examples from popular movies and series, 40+ interactive exercises</p>
+                <div class="hero-buttons">
+                    <a href="login.html" class="btn btn-primary" data-i18n="hero-btn">Start Learning</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>🎯 How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🎬</div>
+                    <h3>Watch Videos</h3>
+                    <p>Each lesson starts with a video clip from popular movies and series featuring the tense being studied</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📚</div>
+                    <h3>Learn the Rules</h3>
+                    <p>We break down tense structure, usage rules, and formation patterns in a clear and simple way</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">✍️</div>
+                    <h3>Do Exercises</h3>
+                    <p>Practice with interactive tasks and reinforce what you have learned</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🏆</div>
+                    <h3>Level Up</h3>
+                    <p>Complete all 12 tenses in sequence, from the simplest to the most advanced</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 data-i18n="features-title">Why TENSEFLIX?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3 data-i18n="feature-1-title">Complete Learning System</h3>
+                    <p data-i18n="feature-1-desc">Theory, movie examples and interactive exercises for every tense</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3 data-i18n="feature-2-title">Authentic Examples</h3>
+                    <p data-i18n="feature-2-desc">Dialogues from popular movies and series for better retention</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✏️</div>
+                    <h3 data-i18n="feature-3-title">Interactive Exercises</h3>
+                    <p data-i18n="feature-3-desc">40+ tasks with instant feedback and error explanations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3 data-i18n="feature-4-title">Personal Account</h3>
+                    <p data-i18n="feature-4-desc">Login system to track your personal progress</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 data-i18n="feature-5-title">Responsive Design</h3>
+                    <p data-i18n="feature-5-desc">Works on all devices — desktop, tablet, and smartphone</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 data-i18n="feature-6-title">Completely Free</h3>
+                    <p data-i18n="feature-6-desc">100% free learning with no hidden subscriptions or ads</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="hint">
+                <span>Hover to see name & description. Click inside the circle to reveal experience. Info hides when you stop hovering.</span>
+            </div>
+
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="circle" onclick="toggleInfo(this)" onmouseleave="hideInfo(this)">
+                        <img src="assets/images/duopinguo.jpg" alt="Member 1">
+                        <div class="overlay">
+                            <div class="name">Матай Нурай</div>
+                            <div class="description">Grammar Specialist</div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Experience:</strong> Advanced grammar and vocabulary teaching. Specializes in English tense structures and linguistic patterns.
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="circle" onclick="toggleInfo(this)" onmouseleave="hideInfo(this)">
+                        <img src="assets/images/duopinguo.jpg" alt="Member 2">
+                        <div class="overlay">
+                            <div class="name">Майлыбай Анеля</div>
+                            <div class="description">Speaking Coach</div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Experience:</strong> Excellent speaking and presentation skills. Leads interactive video sessions and pronunciation training.
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="circle" onclick="toggleInfo(this)" onmouseleave="hideInfo(this)">
+                        <img src="assets/images/duopinguo.jpg" alt="Member 3">
+                        <div class="overlay">
+                            <div class="name">Дюсенова Ельнура</div>
+                            <div class="description">Content Writer</div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Experience:</strong> Strong writing and creative storytelling. Creates engaging lesson content and exercise examples.
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="circle" onclick="toggleInfo(this)" onmouseleave="hideInfo(this)">
+                        <img src="assets/images/duopinguo.jpg" alt="Member 4">
+                        <div class="overlay">
+                            <div class="name">Беркинбаева Аида</div>
+                            <div class="description">Listening Specialist</div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Experience:</strong> Skilled in listening comprehension training. Develops audio materials and lesson exercises.
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="circle" onclick="toggleInfo(this)" onmouseleave="hideInfo(this)">
+                        <img src="assets/images/duopinguo.jpg" alt="Member 5">
+                        <div class="overlay">
+                            <div class="name">Тулешова Аружан</div>
+                            <div class="description">Exam Coach</div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Experience:</strong> Focused on exam preparation strategies. Designs comprehensive assessments and progress tracking.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tenses" class="tenses">
+        <div class="container">
+            <h2 data-i18n="tenses-title">12 English Tenses</h2>
+            <div class="tenses-overview">
+                <div class="tense-group">
+                    <h3 data-i18n="tenses-present">Present</h3>
+                    <ul>
+                        <li data-i18n="tense-present-simple">Present Simple</li>
+                        <li data-i18n="tense-present-continuous">Present Continuous</li>
+                        <li data-i18n="tense-present-perfect">Present Perfect</li>
+                        <li data-i18n="tense-present-perfect-continuous">Present Perfect Continuous</li>
+                    </ul>
+                </div>
+                <div class="tense-group">
+                    <h3 data-i18n="tenses-past">Past</h3>
+                    <ul>
+                        <li data-i18n="tense-past-simple">Past Simple</li>
+                        <li data-i18n="tense-past-continuous">Past Continuous</li>
+                        <li data-i18n="tense-past-perfect">Past Perfect</li>
+                        <li data-i18n="tense-past-perfect-continuous">Past Perfect Continuous</li>
+                    </ul>
+                </div>
+                <div class="tense-group">
+                    <h3 data-i18n="tenses-future">Future</h3>
+                    <ul>
+                        <li data-i18n="tense-future-simple">Future Simple</li>
+                        <li data-i18n="tense-future-continuous">Future Continuous</li>
+                        <li data-i18n="tense-future-perfect">Future Perfect</li>
+                        <li data-i18n="tense-future-perfect-continuous">Future Perfect Continuous</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>TENSEFLIX</h4>
+                    <p data-i18n="footer-desc">Learn English tenses through movies</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer-links">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="footer-home">Home</a></li>
+                        <li><a href="login.html" data-i18n="footer-start">Get Started</a></li>
+                        <li><a href="dashboard.html" data-i18n="footer-course">My Course</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-creators">
+                <p><strong data-i18n="footer-creators">Website creators:</strong> Матай Нурай, Майлыбай Анеля, Дюсенова Ельнура, Беркинбаева Аида, Тулешова Аружан</p>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer-copyright">&copy; 2026 TENSEFLIX. All rights reserved. | Master English Tenses Through Movies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAQ WIDGET -->
+    <div id="faq-widget" onmouseleave="closeFaq()" onmouseenter="keepFaqOpen()">
+
+        <!-- FAQ panel (hidden by default) -->
+        <div id="faq-panel">
+            <div class="faq-panel-header">
+                <p class="faq-panel-title">FAQ</p>
+                <p class="faq-panel-sub">Frequently Asked Questions</p>
+            </div>
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">What is Tenseflix? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Tenseflix is an interactive platform to learn English tenses through videos, explanations, and practice tasks.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">How do I open a lesson? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Go to the dashboard and click the "Start" button on any tense.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Do I need to follow the order of videos? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">No, you can open any video and study in any order.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Why do some answers show instantly? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Multiple choice questions are checked immediately after you select an answer.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Why do some tasks have a "Check" button? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">These are writing tasks where you need to complete all answers before checking.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">What happens if I don't answer all questions? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">You won't be able to check your answers until all fields are filled.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">What does "Answer is required" mean? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">It means you need to complete all questions before checking.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Where can I see explanations? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Explanations appear below questions or after checking incorrect answers.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Why don't I see explanation for correct answers? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">In some tests, explanations are shown only for incorrect answers.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">What is Grammar Bank? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Grammar Bank is a section with simple rules and examples for each tense.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Can I skip Grammar Bank? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Yes, but it is recommended to read it for better understanding.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Are my answers saved after refresh? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Yes, your answers are saved automatically and restored after reload.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">How can I reset my progress? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Use the reset/clear progress button to remove all saved answers.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Why are some tasks interactive (click or drag)? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">These tasks are designed to make learning more engaging and easier to understand.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">How do reorder tasks work? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Click on words to build a correct sentence in the right order.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">What does "Get Results" show? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">It shows your total score as a percentage.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Can I redo tasks? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Yes, you can change your answers anytime unless you reset progress.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Why do some sections look different? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Each tense may have slightly different task structures depending on the lesson.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">Can I study different tenses at the same time? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Yes, all tenses are available and independent.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer(this)">What should I do if something looks wrong? <span class="faq-arrow">▼</span></button>
+                    <div class="faq-answer">Refresh the page or reset progress. If the problem continues, check the instructions again.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mascot trigger -->
+        <button id="faq-mascot-btn" onclick="toggleFaq()" title="FAQ">
+            <img src="assets/images/duopinguo.jpg" alt="FAQ Mascot" class="faq-mascot-img">
+            <span class="faq-mascot-label">FAQ</span>
+        </button>
+
+    </div>
+
+    <script src="assets/js/ai18n.js"></script>
+    <script src="assets/js/profiles.js"></script>
+    <script src="assets/js/home-script.js"></script>
+    <script>
+        let faqCloseTimer;
+        function toggleFaq() {
+            clearTimeout(faqCloseTimer);
+            const panel = document.getElementById('faq-panel');
+            const btn = document.getElementById('faq-mascot-btn');
+            panel.classList.toggle('open');
+            btn.classList.toggle('active');
+        }
+        function closeFaq() {
+            faqCloseTimer = setTimeout(() => {
+                const panel = document.getElementById('faq-panel');
+                const btn = document.getElementById('faq-mascot-btn');
+                panel.classList.remove('open');
+                btn.classList.remove('active');
+            }, 50);
+        }
+        function keepFaqOpen() {
+            clearTimeout(faqCloseTimer);
+        }
+        function toggleAnswer(btn) {
+            const answer = btn.nextElementSibling;
+            const isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-question.active').forEach(b => b.classList.remove('active'));
+            if (!isOpen) {
+                answer.classList.add('open');
+                btn.classList.add('active');
+            }
+        }
+    </script>
+    <script>
+    function toggleInfo(circle) {
+      const member = circle.parentElement;
+      const box = member.querySelector('.info-box');
+      box.classList.toggle('visible');
+    }
+    function hideInfo(circle) {
+      const member = circle.parentElement;
+      const box = member.querySelector('.info-box');
+      box.classList.remove('visible');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenseflix - Lesson</title>
+    <link rel="stylesheet" href="assets/css/lesson-styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="home-btn" title="Home">🏠</a>
+                <a href="index.html" class="logo-link"><a href="index.html" class="logo-link"><h1 class="logo">🎬 TENSEFLIX</h1></a></a>
+                <div class="header-buttons">
+                    <a href="profile.html" class="user-name-link"><span class="user-name" id="user-name">User</span></a>
+                    <a href="dashboard.html" class="back-link">← Back</a>
+                    <button class="logout-btn" onclick="logout()">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Tab Navigation -->
+    <nav class="lesson-tabs-nav">
+        <button class="lesson-tab-btn active" id="tab-btn-video" onclick="switchLessonTab('video')">
+            <span class="tab-icon">🎬</span>
+            <span class="tab-label">Video 1</span>
+        </button>
+        <div class="tab-arrow" id="arrow-0">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-video2" onclick="switchLessonTab('video2')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Video 2</span>
+        </button>
+        <div class="tab-arrow" id="arrow-01">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-video3" onclick="switchLessonTab('video3')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Video 3</span>
+        </button>
+        <div class="tab-arrow" id="arrow-02">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-video4" onclick="switchLessonTab('video4')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Video 4</span>
+        </button>
+        <div class="tab-arrow" id="arrow-1">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-check" onclick="switchLessonTab('check')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Practice Tasks</span>
+        </button>
+    </nav>
+
+    <div class="lesson-container">
+        <div class="container">
+            <div class="lesson-header">
+                <h2 id="tense-title">Present Simple</h2>
+                <p id="tense-russian">Simple Present</p>
+            </div>
+
+            <!-- TAB 1: VIDEO -->
+            <div id="lesson-tab-video" class="lesson-tab-content active">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="assets/video/present simple 1 video.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="assets/video/present simple 1 video.mp4">Download the video</a>.
+                    </video>
+                </div>
+                <!-- VIDEO 1 QUIZ -->
+                <div class="video-quiz" id="video1-quiz">
+                    <h3 class="quiz-heading">🎯 AFFIRMATIVE</h3>
+                    <div id="video1-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 1 QUIZ -->
+
+                <!-- GRAMMAR BANK (rendered dynamically per tense) -->
+                <div id="video1-grammar-bank"></div>
+
+                <!-- PRACTICE TEST (10 questions, rendered dynamically after grammar bank) -->
+                <div id="video1-practice-questions"></div>
+
+                <!-- VIDEO 1 BLOCK 2: QUESTIONS (negative & interrogative) -->
+                <div class="video-quiz" id="video1-quiz2">
+                    <h3 class="quiz-heading">🎯 NEGATIVE AND INTERROGATIVE</h3>
+                    <div id="video1-quiz-questions2">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 1 BLOCK 2 QUESTIONS -->
+
+                <!-- GRAMMAR BANK 1B (rendered dynamically per tense) -->
+                <div id="video1-grammar-bank2"></div>
+
+                <!-- PRACTICE TEST 1B (rendered dynamically after grammar bank) -->
+                <div id="video1-practice-questions2"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz1-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz1-label">Video 1 Progress</span>
+                        <span class="quiz-progress-count" id="quiz1-count">0 / —</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz1-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz1-hint">Answer all questions to unlock Video 2 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video1">
+                    <p class="video-hint" id="quiz1-done-hint">🔒 Answer all questions to unlock the next section</p>
+                    <button class="btn-next-tab" id="btn-go-video2" onclick="triggerSave('Video 1'); unlockAndGo('video2', 'tab-btn-video2')" disabled>Next Video →</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: VIDEO 2 -->
+            <div id="lesson-tab-video2" class="lesson-tab-content">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player-2"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="assets/video/Present simple video 2.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="assets/video/Present simple video 2.mp4">Download the video here</a>.
+                    </video>
+                </div>
+
+                <!-- VIDEO 2 QUIZ -->
+                <div class="video-quiz" id="video2-quiz">
+                    <h3 class="quiz-heading">🎯 Questions about Video 2</h3>
+                    <div id="video2-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 2 QUIZ (dynamic placeholder) -->
+
+                <!-- GRAMMAR BANK 2 (rendered dynamically per tense) -->
+                <div id="video2-grammar-bank"></div>
+
+                <!-- PRACTICE TEST 2 (rendered dynamically after grammar bank) -->
+                <div id="video2-practice-questions"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz2-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz2-label">Video 2 Progress</span>
+                        <span class="quiz-progress-count" id="quiz2-count">0 / —</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz2-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz2-hint">Answer all questions to unlock Video 3 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video2">
+                    <p class="video-hint" id="quiz2-done-hint">🔒 Answer all questions to unlock the next section</p>
+                    <button class="btn-next-tab" id="btn-go-video3" onclick="triggerSave('Video 2'); unlockAndGo('video3', 'tab-btn-video3')" disabled>Next Video →</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: VIDEO 3 -->
+            <div id="lesson-tab-video3" class="lesson-tab-content">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player-3"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="assets/video/Present simple 3 video.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="assets/video/Present simple 3 video.mp4">Download the video</a>.
+                    </video>
+                </div>
+
+                <!-- VIDEO 3 QUIZ -->
+                <div class="video-quiz" id="video3-quiz">
+                    <h3 class="quiz-heading">🎯 Questions about Video 3</h3>
+                    <div id="video3-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 3 QUIZ -->
+
+                <!-- VIDEO 3 GRAMMAR BANK (rendered dynamically) -->
+                <div id="video3-grammar-bank"></div>
+
+                <!-- VIDEO 3 PRACTICE TEST (rendered dynamically after quiz) -->
+                <div id="video3-practice-questions"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz3-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz3-label">Video 3 Progress</span>
+                        <span class="quiz-progress-count" id="quiz3-count">0 / 5</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz3-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz3-hint">Answer all questions to unlock Video 4 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video3">
+                    <p class="video-hint" id="quiz3-done-hint">🔒 Answer all questions to unlock Video 4</p>
+                    <button class="btn-next-tab" id="btn-go-video4" onclick="triggerSave('Video 3'); unlockAndGo('video4', 'tab-btn-video4')" disabled>Next Video →</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: VIDEO 4 -->
+            <div id="lesson-tab-video4" class="lesson-tab-content">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player-4"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="assets/video/present simple video 4.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="assets/video/present simple video 4.mp4">Download the video</a>.
+                    </video>
+                </div>
+
+                <!-- VIDEO 4 QUIZ -->
+                <div class="video-quiz" id="video4-quiz">
+                    <h3 class="quiz-heading">🎯 Questions about Video 4</h3>
+                    <div id="video4-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 4 QUIZ -->
+
+                <!-- GRAMMAR BANK 4 (rendered dynamically) -->
+                <div id="video4-grammar-bank"></div>
+
+                <!-- VIDEO 4 PRACTICE TEST (rendered dynamically) -->
+                <div id="video4-practice-questions"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz4-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz4-label">Video 4 Progress</span>
+                        <span class="quiz-progress-count" id="quiz4-count">0 / 5</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz4-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz4-hint">Answer all questions to unlock Practice Tasks 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video4">
+                    <p class="video-hint" id="quiz4-done-hint">🔒 Answer all questions to unlock Practice Tasks</p>
+                    <button class="btn-next-tab" id="btn-go-check-from-v4" onclick="triggerSave('Video 4'); unlockAndGo('check', 'tab-btn-check')" disabled>Practice Tasks →</button>
+                </div>
+            </div>
+            <div id="lesson-tab-check" class="lesson-tab-content">
+                <div class="check-intro">
+                    <h3>✅ Check — Reinforce Your Knowledge</h3>
+                    <p>Grammar exercises — not video-related, testing your general tense knowledge.</p>
+                </div>
+
+                <!-- Dynamic exercises for non-PS tenses -->
+                <div id="tense-dynamic-exercises" style="display:none;"></div>
+
+                <!-- Practice Tasks (Present Simple — static hardcoded) -->
+                <div id="ps-practice-static" class="practice-tasks-container">
+
+                    <!-- PRACTICE 1 LABEL -->
+                    <div class="practice-section-label">
+                        <span class="practice-section-badge">Practice 1</span>
+                        <span class="practice-section-title">Multiple Choice</span>
+                    </div>
+
+                    <!-- ✅ Affirmative -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-affirmative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag aff-tag">Affirmative</span>
+                            </div>
+                            <h4>Choose the correct positive sentence.</h4>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-options" id="aff-opts-0">
+                                <div class="option" onclick="selectPracticeOption(event,'aff',0,0,1)">A) She go to school every day.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',0,1,1)">B) She goes to school every day.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',0,2,1)">C) She going to school every day.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',0,3,1)">D) She gone to school every day.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-options" id="aff-opts-1">
+                                <div class="option" onclick="selectPracticeOption(event,'aff',1,0,3)">A) He play football on weekends.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',1,1,3)">B) He played football on weekends.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',1,2,3)">C) He playing football on weekends.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',1,3,3)">D) He plays football on weekends.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-options" id="aff-opts-2">
+                                <div class="option" onclick="selectPracticeOption(event,'aff',2,0,0)">A) They watch TV every evening.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',2,1,0)">B) They watches TV every evening.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',2,2,0)">C) They watching TV every evening.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',2,3,0)">D) They watched TV every evening.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-options" id="aff-opts-3">
+                                <div class="option" onclick="selectPracticeOption(event,'aff',3,0,2)">A) I is a student.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',3,1,2)">B) I are a student.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',3,2,2)">C) I am a student.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',3,3,2)">D) I be a student.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">5</div>
+                            <div class="exercise-options" id="aff-opts-4">
+                                <div class="option" onclick="selectPracticeOption(event,'aff',4,0,1)">A) They is very happy today.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',4,1,1)">B) They are very happy today.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',4,2,1)">C) They am very happy today.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',4,3,1)">D) They be very happy today.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">6</div>
+                            <div class="exercise-options" id="aff-opts-5">
+                                <div class="option" onclick="selectPracticeOption(event,'aff',5,0,3)">A) He are a great doctor.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',5,1,3)">B) He am a great doctor.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',5,2,3)">C) He be a great doctor.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'aff',5,3,3)">D) He is a great doctor.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ❌ Negative -->
+                    <div id="block-negative" class="practice-form-block">
+                        <div class="practice-form-header practice-negative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag neg-tag">Negative</span>
+                            </div>
+                            <h4>Choose the correct negative sentence.</h4>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-options" id="neg-opts-0">
+                                <div class="option" onclick="selectPracticeOption(event,'neg',0,0,1)">A) We doesn't study every day.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',0,1,1)">B) We don't study every day.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',0,2,1)">C) We not study every day.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',0,3,1)">D) We don't studies every day.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-options" id="neg-opts-1">
+                                <div class="option" onclick="selectPracticeOption(event,'neg',1,0,3)">A) She don't eat vegetables.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',1,1,3)">B) She doesn't eats vegetables.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',1,2,3)">C) She not eats vegetables.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',1,3,3)">D) She doesn't eat vegetables.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-options" id="neg-opts-2">
+                                <div class="option" onclick="selectPracticeOption(event,'neg',2,0,2)">A) You doesn't live here.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',2,1,2)">B) You not live here.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',2,2,2)">C) You don't live here.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',2,3,2)">D) You don't lives here.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-options" id="neg-opts-3">
+                                <div class="option" onclick="selectPracticeOption(event,'neg',3,0,2)">A) I not am a student.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',3,1,2)">B) I don't am a student.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',3,2,2)">C) I am not a student.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',3,3,2)">D) I amn't a student.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">5</div>
+                            <div class="exercise-options" id="neg-opts-4">
+                                <div class="option" onclick="selectPracticeOption(event,'neg',4,0,1)">A) She doesn't is my friend.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',4,1,1)">B) She is not my friend.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',4,2,1)">C) She not is my friend.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',4,3,1)">D) She isn't be my friend.</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">6</div>
+                            <div class="exercise-options" id="neg-opts-5">
+                                <div class="option" onclick="selectPracticeOption(event,'neg',5,0,1)">A) They aren't be at home.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',5,1,1)">B) They are not at home.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',5,2,1)">C) They don't are at home.</div>
+                                <div class="option" onclick="selectPracticeOption(event,'neg',5,3,1)">D) They not are at home.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ❓ Interrogative -->
+                    <div id="block-interrogative" class="practice-form-block">
+                        <div class="practice-form-header practice-interrogative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag int-tag">Interrogative</span>
+                            </div>
+                            <h4>Choose the correct question form.</h4>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">1</div>
+                            <div class="exercise-options" id="int-opts-0">
+                                <div class="option" onclick="selectPracticeOption(event,'int',0,0,3)">A) Do they lives here?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',0,1,3)">B) Are they live here?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',0,2,3)">C) Does they live here?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',0,3,3)">D) Do they live here?</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">2</div>
+                            <div class="exercise-options" id="int-opts-1">
+                                <div class="option" onclick="selectPracticeOption(event,'int',1,0,2)">A) Does you play football?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',1,1,2)">B) Do you plays football?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',1,2,2)">C) Do you play football?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',1,3,2)">D) Are you play football?</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">3</div>
+                            <div class="exercise-options" id="int-opts-2">
+                                <div class="option" onclick="selectPracticeOption(event,'int',2,0,0)">A) Does she drive a car?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',2,1,0)">B) Does she drives a car?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',2,2,0)">C) Do she drive a car?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',2,3,0)">D) Is she drive a car?</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">4</div>
+                            <div class="exercise-options" id="int-opts-3">
+                                <div class="option" onclick="selectPracticeOption(event,'int',3,0,2)">A) I am ready for the lesson?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',3,1,2)">B) Do I am ready for the lesson?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',3,2,2)">C) Am I ready for the lesson?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',3,3,2)">D) Am I is ready for the lesson?</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">5</div>
+                            <div class="exercise-options" id="int-opts-4">
+                                <div class="option" onclick="selectPracticeOption(event,'int',4,0,3)">A) Does she is happy today?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',4,1,3)">B) She is happy today?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',4,2,3)">C) She is happy today?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',4,3,3)">D) Is she happy today?</div>
+                            </div>
+                        </div>
+
+                        <div class="exercise">
+                            <div class="exercise-number">6</div>
+                            <div class="exercise-options" id="int-opts-5">
+                                <div class="option" onclick="selectPracticeOption(event,'int',5,0,2)">A) Are they is at home now?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',5,1,2)">B) Do they are at home now?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',5,2,2)">C) Are they at home now?</div>
+                                <div class="option" onclick="selectPracticeOption(event,'int',5,3,2)">D) They are at home now?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRACTICE 2 LABEL -->
+                    <div class="practice-section-label" style="margin-top:12px;">
+                        <span class="practice-section-badge">Practice 2</span>
+                        <span class="practice-section-title">Find Errors</span>
+                    </div>
+
+                    <div id="block-fill" class="practice-form-block">
+                        <div class="practice-form-header practice-affirmative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag aff-tag">Error Correction</span>
+                            </div>
+                            <h4>Find the error (shown in bold) and type the correct word.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">He <strong style="color:#e04040;text-decoration:underline;">go</strong> to the gym every morning to stay healthy and strong.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e1" placeholder="type correction..." data-answer="goes" onkeydown="if(event.key==='Enter')checkFill('p2e1')">
+                                    <span class="fill-result" id="p2e1-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">She <strong style="color:#e04040;text-decoration:underline;">enjoy</strong> reading novels before going to bed every night.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e2" placeholder="type correction..." data-answer="enjoys" onkeydown="if(event.key==='Enter')checkFill('p2e2')">
+                                    <span class="fill-result" id="p2e2-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">I <strong style="color:#e04040;text-decoration:underline;">is</strong> a teacher at a local school.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e3" placeholder="type correction..." data-answer="am" onkeydown="if(event.key==='Enter')checkFill('p2e3')">
+                                    <span class="fill-result" id="p2e3-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">She <strong style="color:#e04040;text-decoration:underline;">are</strong> very good at playing the piano.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e4" placeholder="type correction..." data-answer="is" onkeydown="if(event.key==='Enter')checkFill('p2e4')">
+                                    <span class="fill-result" id="p2e4-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">5</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">He <strong style="color:#e04040;text-decoration:underline;">don't</strong> eat breakfast at home because he is always late for school.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e5" placeholder="type correction..." data-answer="doesn't" onkeydown="if(event.key==='Enter')checkFill('p2e5')">
+                                    <span class="fill-result" id="p2e5-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">6</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">She <strong style="color:#e04040;text-decoration:underline;">not</strong> like spicy food, so she avoids it in every meal.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e6" placeholder="type correction..." data-answer="doesn't" onkeydown="if(event.key==='Enter')checkFill('p2e6')">
+                                    <span class="fill-result" id="p2e6-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">7</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">They <strong style="color:#e04040;text-decoration:underline;">doesn't</strong> go to the park on weekends because it often rains.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e7" placeholder="type correction..." data-answer="don't" onkeydown="if(event.key==='Enter')checkFill('p2e7')">
+                                    <span class="fill-result" id="p2e7-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">8</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line">I <strong style="color:#e04040;text-decoration:underline;">isn't</strong> a student anymore, I work for a company now.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e8" placeholder="type correction..." data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('p2e8')">
+                                    <span class="fill-result" id="p2e8-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">9</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Do</strong> she go to the gym every morning to stay fit?</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e9" placeholder="type correction..." data-answer="Does" onkeydown="if(event.key==='Enter')checkFill('p2e9')">
+                                    <span class="fill-result" id="p2e9-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">10</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Does</strong> they play football after school on Fridays?</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e10" placeholder="type correction..." data-answer="Do" onkeydown="if(event.key==='Enter')checkFill('p2e10')">
+                                    <span class="fill-result" id="p2e10-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">11</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Am</strong> she a teacher at a local school?</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e11" placeholder="type correction..." data-answer="Is" onkeydown="if(event.key==='Enter')checkFill('p2e11')">
+                                    <span class="fill-result" id="p2e11-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">12</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Is</strong> they from Italy?</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <span class="speaker-label">Correct:</span>
+                                    <input class="fill-input" id="p2e12" placeholder="type correction..." data-answer="Are" onkeydown="if(event.key==='Enter')checkFill('p2e12')">
+                                    <span class="fill-result" id="p2e12-res"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 2 block -->
+
+                    <!-- PRACTICE 3 LABEL -->
+                    <div id="block-wordorder" class="practice-section-label" style="margin-top:12px;">
+                        <span class="practice-section-badge">Practice 3</span>
+                        <span class="practice-section-title">Fill in the Blanks</span>
+                    </div>
+
+                    <!-- 3a Affirmative -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-affirmative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag aff-tag">a) Affirmative</span>
+                            </div>
+                            <h4>Fill in the gaps using Present Simple affirmative forms.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>I </span><input class="fill-input" id="p3a-1a" placeholder="read" data-answer="read" onkeydown="if(event.key==='Enter')checkFill('p3a-1a')"><span> a book every evening.</span>
+                                    <span class="fill-result" id="p3a-1a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>That's great! I </span><input class="fill-input" id="p3a-1b" placeholder="listen" data-answer="listen" onkeydown="if(event.key==='Enter')checkFill('p3a-1b')"><span> to music while reading.</span>
+                                    <span class="fill-result" id="p3a-1b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>She </span><input class="fill-input" id="p3a-2a" placeholder="teach" data-answer="teaches" onkeydown="if(event.key==='Enter')checkFill('p3a-2a')"><span> French at school.</span>
+                                    <span class="fill-result" id="p3a-2a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>Wow! She </span><input class="fill-input" id="p3a-2b" placeholder="help" data-answer="helps" onkeydown="if(event.key==='Enter')checkFill('p3a-2b')"><span> many students learn the language.</span>
+                                    <span class="fill-result" id="p3a-2b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>They </span><input class="fill-input" id="p3a-3a" placeholder="walk" data-answer="walk" onkeydown="if(event.key==='Enter')checkFill('p3a-3a')"><span> to school together.</span>
+                                    <span class="fill-result" id="p3a-3a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>Yes, they </span><input class="fill-input" id="p3a-3b" placeholder="talk" data-answer="talk" onkeydown="if(event.key==='Enter')checkFill('p3a-3b')"><span> and </span><input class="fill-input" id="p3a-3c" placeholder="laugh" data-answer="laugh" onkeydown="if(event.key==='Enter')checkFill('p3a-3c')"><span> on the way.</span>
+                                    <span class="fill-result" id="p3a-3b-res"></span>
+                                    <span class="fill-result" id="p3a-3c-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>He </span><input class="fill-input" id="p3a-4a" placeholder="play" data-answer="plays" onkeydown="if(event.key==='Enter')checkFill('p3a-4a')"><span> the guitar in a band.</span>
+                                    <span class="fill-result" id="p3a-4a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>Cool! He </span><input class="fill-input" id="p3a-4b" placeholder="practice" data-answer="practices" onkeydown="if(event.key==='Enter')checkFill('p3a-4b')"><span> every afternoon.</span>
+                                    <span class="fill-result" id="p3a-4b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 3a block -->
+
+                    <!-- 3b Negative -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-negative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag neg-tag">b) Negative</span>
+                            </div>
+                            <h4>Fill in the gaps using Present Simple negative forms.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>I </span><input class="fill-input" id="p3b-1a" placeholder="drink" data-answer="don't drink" onkeydown="if(event.key==='Enter')checkFill('p3b-1a')"><span> anything in the morning.</span>
+                                    <span class="fill-result" id="p3b-1a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>My brother too! He </span><input class="fill-input" id="p3b-1b" placeholder="eat" data-answer="doesn't eat" onkeydown="if(event.key==='Enter')checkFill('p3b-1b')"><span> breakfast in the mornings.</span>
+                                    <span class="fill-result" id="p3b-1b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>My parents </span><input class="fill-input" id="p3b-2a" placeholder="work" data-answer="don't work" onkeydown="if(event.key==='Enter')checkFill('p3b-2a')"><span> in an office.</span>
+                                    <span class="fill-result" id="p3b-2a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>Mine neither, and they </span><input class="fill-input" id="p3b-2b" placeholder="leave" data-answer="don't leave" onkeydown="if(event.key==='Enter')checkFill('p3b-2b')"><span> early in the mornings.</span>
+                                    <span class="fill-result" id="p3b-2b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>I </span><input class="fill-input" id="p3b-3a" placeholder="be" data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('p3b-3a')"><span> a student, I am a teacher at a local school.</span>
+                                    <span class="fill-result" id="p3b-3a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>That's interesting! I </span><input class="fill-input" id="p3b-3b" placeholder="be" data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('p3b-3b')"><span> a student either. I work for a big company.</span>
+                                    <span class="fill-result" id="p3b-3b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <span>She </span><input class="fill-input" id="p3b-4a" placeholder="be" data-answer="isn't" onkeydown="if(event.key==='Enter')checkFill('p3b-4a')"><span> good at playing the piano.</span>
+                                    <span class="fill-result" id="p3b-4a-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>You are right! She </span><input class="fill-input" id="p3b-4b" placeholder="be" data-answer="isn't" onkeydown="if(event.key==='Enter')checkFill('p3b-4b')"><span> a good player.</span>
+                                    <span class="fill-result" id="p3b-4b-res"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 3b block -->
+
+                    <!-- 3c Questions -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-interrogative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag int-tag">c) Questions</span>
+                            </div>
+                            <h4>Fill in the gaps to form questions in Present Simple.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <input class="fill-input" id="p3c-1a" placeholder="Do/Does" data-answer="do" onkeydown="if(event.key==='Enter')checkFill('p3c-1a')"><span> you </span><input class="fill-input" id="p3c-1b" placeholder="like" data-answer="like" onkeydown="if(event.key==='Enter')checkFill('p3c-1b')"><span> reading novels?</span>
+                                    <span class="fill-result" id="p3c-1a-res"></span>
+                                    <span class="fill-result" id="p3c-1b-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>Yes, I do.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <input class="fill-input" id="p3c-2a" placeholder="Do/Does" data-answer="does" onkeydown="if(event.key==='Enter')checkFill('p3c-2a')"><span> he </span><input class="fill-input" id="p3c-2b" placeholder="play" data-answer="play" onkeydown="if(event.key==='Enter')checkFill('p3c-2b')"><span> football on weekends?</span>
+                                    <span class="fill-result" id="p3c-2a-res"></span>
+                                    <span class="fill-result" id="p3c-2b-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>No, he doesn't.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <input class="fill-input" id="p3c-3a" placeholder="Do/Does" data-answer="do" onkeydown="if(event.key==='Enter')checkFill('p3c-3a')"><span> they </span><input class="fill-input" id="p3c-3b" placeholder="go" data-answer="go" onkeydown="if(event.key==='Enter')checkFill('p3c-3b')"><span> to school by bus?</span>
+                                    <span class="fill-result" id="p3c-3a-res"></span>
+                                    <span class="fill-result" id="p3c-3b-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>Yes, they do.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line speaker-a">
+                                    <span class="speaker-label">A:</span>
+                                    <input class="fill-input" id="p3c-4a" placeholder="Do/Does" data-answer="does" onkeydown="if(event.key==='Enter')checkFill('p3c-4a')"><span> she </span><input class="fill-input" id="p3c-4b" placeholder="work" data-answer="work" onkeydown="if(event.key==='Enter')checkFill('p3c-4b')"><span> in a restaurant?</span>
+                                    <span class="fill-result" id="p3c-4a-res"></span>
+                                    <span class="fill-result" id="p3c-4b-res"></span>
+                                </div>
+                                <div class="fill-line speaker-b">
+                                    <span class="speaker-label">B:</span>
+                                    <span>No, she doesn't.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 3c block -->
+
+                    <!-- PRACTICE 4 LABEL -->
+                    <div class="practice-section-label" style="margin-top:12px;">
+                        <span class="practice-section-badge">Practice 4</span>
+                        <span class="practice-section-title">Rewrite the Sentences</span>
+                    </div>
+
+                    <!-- 4a Affirmative -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-affirmative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag aff-tag">a) Affirmative</span>
+                            </div>
+                            <h4>Rewrite the sentence in affirmative form.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">She doesn't eat breakfast in the morning because she wakes up early.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4a-1" placeholder="rewrite..." data-answer="she eats breakfast in the morning because she wakes up early." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4a-1')">
+                                    <span class="fill-result" id="p4a-1-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">They don't play football on weekends because it is often sunny.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4a-2" placeholder="rewrite..." data-answer="they play football on weekends because it is often sunny." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4a-2')">
+                                    <span class="fill-result" id="p4a-2-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">He doesn't watch TV after school; he doesn't like reading books.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4a-3" placeholder="rewrite..." data-answer="he watches tv after school; he likes reading books." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4a-3')">
+                                    <span class="fill-result" id="p4a-3-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">She isn't happy today.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4a-4" placeholder="rewrite..." data-answer="she is happy today." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4a-4')">
+                                    <span class="fill-result" id="p4a-4-res"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 4a block -->
+
+                    <!-- 4b Negative -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-negative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag neg-tag">b) Negative</span>
+                            </div>
+                            <h4>Rewrite the sentence in negative form.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">She drinks coffee every morning before school.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4b-1" placeholder="rewrite..." data-answer="she doesn't drink coffee every morning before school." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4b-1')">
+                                    <span class="fill-result" id="p4b-1-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">They play football on Saturdays in the park.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4b-2" placeholder="rewrite..." data-answer="they don't play football on saturdays in the park." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4b-2')">
+                                    <span class="fill-result" id="p4b-2-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">He watches TV after finishing his homework.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4b-3" placeholder="rewrite..." data-answer="he doesn't watch tv after finishing his homework." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4b-3')">
+                                    <span class="fill-result" id="p4b-3-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">I am ready for the lesson.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4b-4" placeholder="rewrite..." data-answer="i am not ready for the lesson." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4b-4')">
+                                    <span class="fill-result" id="p4b-4-res"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 4b block -->
+
+                    <!-- 4c Questions -->
+                    <div class="practice-form-block">
+                        <div class="practice-form-header practice-interrogative">
+                            <div class="practice-header-top">
+                                <span class="practice-form-tag int-tag">c) Questions</span>
+                            </div>
+                            <h4>Rewrite the sentence in question form.</h4>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">1</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">She studies English at school every day.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4c-1" placeholder="rewrite..." data-answer="does she study english at school every day?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4c-1')">
+                                    <span class="fill-result" id="p4c-1-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">2</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">He walks to work in the morning.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4c-2" placeholder="rewrite..." data-answer="does he walk to work in the morning?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4c-2')">
+                                    <span class="fill-result" id="p4c-2-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">3</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">We clean our classroom after the lessons finish.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4c-3" placeholder="rewrite..." data-answer="do we clean our classroom after the lessons finish?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4c-3')">
+                                    <span class="fill-result" id="p4c-3-res"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fill-exercise">
+                            <div class="fill-q-num">4</div>
+                            <div class="fill-dialogue">
+                                <div class="fill-line" style="color:#888;font-style:italic;">They are in the park now.</div>
+                                <div class="fill-line" style="margin-top:6px;">
+                                    <input class="fill-input" id="p4c-4" placeholder="rewrite..." data-answer="are they in the park now?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('p4c-4')">
+                                    <span class="fill-result" id="p4c-4-res"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                            <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                        </div>
+                    </div><!-- end practice 4c block -->
+
+                    <!-- ✅ GET RESULT BUTTON -->
+                    <div class="get-result-bar">
+                        <button class="get-result-btn" onclick="getResult()">
+                            📊 Get Result
+                        </button>
+                    </div>
+
+                </div><!-- end #ps-practice-static -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 TENSEFLIX - Master English Tenses | <a href="index.html">← Home</a> | <a href="dashboard.html">← Dashboard</a></p>
+    </div>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/progress-data.js"></script>
+    <script src="assets/js/profiles.js"></script>
+    <script src="assets/js/lesson-script.js"></script>
+    <script src="assets/js/lesson-complete.js"></script>
+</body>
+</html>
