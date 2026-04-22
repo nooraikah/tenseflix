@@ -195,6 +195,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 16px;
         }
         .hero-mascot-anim {
             width: 220px;
@@ -206,6 +207,9 @@
             animation: mascotFloat 3s ease-in-out infinite, mascotWiggle 6s ease-in-out infinite;
             cursor: pointer;
             transition: transform 0.2s;
+        }
+        .hero-mascot-anim.second {
+            animation-delay: 0.35s;
         }
         .hero-mascot-anim:hover {
             animation: mascotBounce 0.5s ease infinite alternate;
@@ -347,6 +351,7 @@
             <div class="hero-image">
                 <div class="hero-mascot-wrap">
                     <img src="assets/images/duopinguo.jpg" alt="Tenseflix Mascot" class="hero-mascot-anim">
+                    <img src="assets/images/duopinguo.jpg" alt="Tenseflix Mascot" class="hero-mascot-anim second">
                 </div>
             </div>
             <div class="hero-content">
