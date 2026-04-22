@@ -731,7 +731,7 @@
         "sections": [
           {
             "heading": "1. Listen and repeat the sounds and sentences.",
-            "audio": "past simple audio.mp3",
+            "audio": "assets/video/past simple audio.mp3",
             "groups": [
               {
                 "sound": "/t/",
@@ -758,7 +758,7 @@
           },
           {
             "heading": "2. Say the past simple of these verbs. In which ones is -ed pronounced /id/?",
-            "audio": "past simple audio 2.mp3",
+            "audio": "assets/video/past simple audio 2.mp3",
             "wordGroups": [
               [
                 "ask",
