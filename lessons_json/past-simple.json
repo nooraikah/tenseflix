@@ -1,0 +1,1171 @@
+{
+  "title": "Past Simple",
+  "russian": "\u041f\u0440\u043e\u0448\u0435\u0434\u0448\u0435\u0435 \u043f\u0440\u043e\u0441\u0442\u043e\u0435",
+  "videoFile": "assets/video/past simple video 1.mp4",
+  "videoFile2": "assets/video/past simple video 2.mp4",
+  "videoFile3": "assets/video/past simple 3.mp4",
+  "videoQuiz1": [
+    {
+      "text": "Is Joey proposing to Rachel right now?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "No \u2014 the proposal is not happening <em>right now</em>. The conversation is about something that <strong>already happened</strong> in the past."
+    },
+    {
+      "text": "Are Ross and Rachel talking about something that happened earlier?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 0,
+      "explanation": "Yes \u2014 they are discussing a <strong>past event</strong>. Past Simple is used for actions that were completed at a specific moment in the past."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the sentence: <em>&ldquo;You were down on one knee.&rdquo;</em>"
+    },
+    {
+      "text": "Is Joey still on one knee right now, or is that action finished?",
+      "options": [
+        "It's finished",
+        "He is still on one knee"
+      ],
+      "correct": 0,
+      "explanation": "The action is <strong>finished</strong>. Past Simple describes completed actions \u2014 they started and ended in the past."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the dialogue:<br><br><em>Ross: &ldquo;Did you propose to her?&rdquo;<br>Joey: &ldquo;No.&rdquo;<br>Rachel: &ldquo;Yes, you did.&rdquo;<br>Joey: &ldquo;Actually, technically, I didn&rsquo;t.&rdquo;<br>Rachel: &ldquo;Well, then, why did you give me a ring?&rdquo;</em>"
+    },
+    {
+      "text": "Are they talking about a general habit<br>(Joey proposes to Rachel and gives her a ring every day)<br>or one specific moment in the past?",
+      "options": [
+        "Joey proposes every day",
+        "One specific moment in the past"
+      ],
+      "correct": 1,
+      "explanation": "Past Simple refers to a <strong>specific moment</strong> in the past \u2014 not a habit or routine."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the verb <strong>proposed</strong> in the sentence: <em>&ldquo;He got down on one knee and he proposed.&rdquo;</em>"
+    },
+    {
+      "text": "What letters do we add to the end?",
+      "options": [
+        "sed",
+        "ed",
+        "d"
+      ],
+      "correct": 1,
+      "explanation": "When we make a positive statement in the past, <strong>regular verbs</strong> change to the past form by adding <strong>\u201c-ed\u201d</strong> to the end."
+    },
+    {
+      "text": "Look at the verbs <strong>gave</strong> and <strong>got</strong> in:<br><em>&ldquo;He gave her a ring. He got down on one knee.&rdquo;</em><br>Do these verbs end in \u201c-ed\u201d?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "<strong>Irregular verbs</strong> do not follow the \u201c-ed\u201d rule. \u201cGive\u201d and \u201cget\u201d change their form completely: give \u2192 <strong>gave</strong>, get \u2192 <strong>got</strong>."
+    },
+    {
+      "text": "Look at the verbs <strong>fell</strong>, <strong>went</strong>, <strong>thought</strong>, <strong>said</strong> in the dialogue:<br><em>&ldquo;The ring fell on the floor. And I went down to pick it up and you thought I was proposing.&rdquo;</em><br><em>&ldquo;But you said \u2018Will you marry me?\u2019&rdquo;</em><br>Do these verbs end in \u201c-ed\u201d?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "When we make a positive statement in the past, <strong>irregular verbs</strong> change completely: fall \u2192 <strong>fell</strong>, go \u2192 <strong>went</strong>, think \u2192 <strong>thought</strong>, say \u2192 <strong>said</strong>."
+    }
+  ],
+  "grammarBank1": {
+    "title": "Past Simple \u2014 Positive",
+    "intro": "We use the past simple for <strong>finished actions</strong> that happened in the past.<br><br>Word order: <strong>SV2</strong> = Subject + verb in past form<br><br><strong>Regular verbs</strong> end in <strong>\u2011ed</strong>: work<strong>ed</strong>, live<strong>d</strong>, propos<strong>ed</strong>, travel<strong>led</strong><br><br><strong>Irregular verbs</strong> change form completely: give \u2192 <strong>gave</strong> &nbsp; fall \u2192 <strong>fell</strong> &nbsp; get \u2192 <strong>got</strong> &nbsp; say \u2192 <strong>said</strong>",
+    "structure": "Past Simple is the <strong>same for all persons</strong>",
+    "examples": [
+      "I / You <strong>proposed</strong>",
+      "He / She / It <strong>proposed</strong>",
+      "We / They <strong>proposed</strong>"
+    ]
+  },
+  "videoQuiz1b": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice \u2014 Affirmative:</strong> Choose the correct past simple form."
+    },
+    {
+      "text": "The ring ______ on the floor during the scene.",
+      "options": [
+        "fall",
+        "falled",
+        "fell"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<em>Fall</em> is irregular: fall \u2192 <strong>fell</strong>. It does not take -ed."
+    },
+    {
+      "text": "The man ______ down to pick it up.",
+      "options": [
+        "go",
+        "went",
+        "goed"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<em>Go</em> is irregular: go \u2192 <strong>went</strong>. It does not take -ed."
+    },
+    {
+      "text": "The woman ______ that he wanted to marry her.",
+      "options": [
+        "think",
+        "thought",
+        "thinks"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<em>Think</em> is irregular: think \u2192 <strong>thought</strong>. It does not take -ed."
+    },
+    {
+      "text": "He ______ her the ring by accident.",
+      "options": [
+        "give",
+        "gived",
+        "gave"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<em>Give</em> is irregular: give \u2192 <strong>gave</strong>. It does not take -ed."
+    },
+    {
+      "text": "The other man ______ if he proposed to her.",
+      "options": [
+        "ask",
+        "asked",
+        "asks"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<em>Ask</em> is regular: ask \u2192 <strong>asked</strong> (+ ed)."
+    },
+    {
+      "text": "The guy ______ down on one knee.",
+      "options": [
+        "get",
+        "got",
+        "getted"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<em>Get</em> is irregular: get \u2192 <strong>got</strong>. It does not take -ed."
+    },
+    {
+      "text": "She ______ that he said \u201cWill you marry me?\u201d.",
+      "options": [
+        "say",
+        "sayed",
+        "said"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<em>Say</em> is irregular: say \u2192 <strong>said</strong>. It does not take -ed."
+    },
+    {
+      "text": "The situation ______ very complicated.",
+      "options": [
+        "look",
+        "looked",
+        "looks"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<em>Look</em> is regular: look \u2192 <strong>looked</strong> (+ ed)."
+    },
+    {
+      "text": "The friend ______ surprised by the news.",
+      "options": [
+        "be",
+        "is",
+        "was"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<em>Be</em> is irregular: be \u2192 <strong>was</strong> (singular). It does not take -ed."
+    },
+    {
+      "text": "Everything ______ so fast in that room.",
+      "options": [
+        "happen",
+        "happens",
+        "happened"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<em>Happen</em> is regular: happen \u2192 <strong>happened</strong> (+ ed)."
+    }
+  ],
+  "videoQuiz1c": [
+    {
+      "text": "When Joey wants to say &ldquo;he did not propose,&rdquo; what word does he add to &ldquo;did&rdquo;?",
+      "options": [
+        "not",
+        "no"
+      ],
+      "correct": 0,
+      "explanation": "In negative Past Simple we use <strong>did + not</strong> (= didn't) before the infinitive."
+    },
+    {
+      "type": "intro",
+      "text": "Compare two sentences: <em>&ldquo;He proposed to me&rdquo;</em> vs <em>&ldquo;No, I didn't propose to her&rdquo;</em>."
+    },
+    {
+      "text": "Do we add &ldquo;-ed&rdquo; to the verb in negative past simple sentences?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "No! In the negative form we use <strong>didn't + infinitive</strong> (base form). No &ldquo;-ed&rdquo; is added to the main verb."
+    },
+    {
+      "type": "intro",
+      "text": "Focus on the lines:<br><em>Ross: Did you propose to her?<br>Joey: I didn't propose. I did not ask her.</em>"
+    },
+    {
+      "text": "To ask a question about the past, what word did Ross use at the beginning of the sentence?",
+      "options": [
+        "Does",
+        "Did"
+      ],
+      "correct": 1,
+      "explanation": "In Past Simple questions we use <strong>Did</strong> as the auxiliary verb at the start of the sentence."
+    },
+    {
+      "text": "When we use &ldquo;did&rdquo; or &ldquo;didn't,&rdquo;<br>does the main verb change into the past form,<br>or does it stay in the base/present form?",
+      "options": [
+        "It stays in the infinitives form.",
+        "It changes into the past form"
+      ],
+      "correct": 0,
+      "explanation": "The main verb stays in the <strong>infinitive (base) form</strong>. The auxiliary &ldquo;did/didn't&rdquo; already shows the past tense."
+    },
+    {
+      "type": "intro",
+      "text": "Focus on the lines:<br><em>&ldquo;Ross: Did you propose to her?<br>Joey: No<br>Rachel: Yes, you did.<br>Joey: No, I didn't.&rdquo;</em>"
+    },
+    {
+      "text": "To agree, what shorter version does Rachel use?",
+      "options": [
+        "Yes, you did.",
+        "No, I didn't."
+      ],
+      "correct": 0,
+      "explanation": "<strong>Yes, you did.</strong> \u2014 a short affirmative answer using the auxiliary &ldquo;did&rdquo;."
+    },
+    {
+      "text": "To disagree, what shorter version does Joey use?",
+      "options": [
+        "Yes, you did.",
+        "No, I didn't."
+      ],
+      "correct": 1,
+      "explanation": "<strong>No, I didn't.</strong> \u2014 a short negative answer using the contraction &ldquo;didn't&rdquo;."
+    }
+  ],
+  "grammarBank1b": {
+    "blocks": [
+      {
+        "intro": "We only use the past forms of verbs in <strong>positive</strong> sentences.<br>In <strong>negative</strong> sentences we use <strong>didn't + infinitive</strong>.<br>The word order in negative past simple sentences is <strong>SAI</strong> (Subject + auxiliary verb + infinitive)<br>Contraction: <strong>did not = didn't</strong>",
+        "examples": [
+          "I didn't say anything.",
+          "He didn't propose.",
+          "They didn't come."
+        ]
+      },
+      {
+        "intro": "The word order in <strong>interrogative</strong> past simple sentences is <strong>ASI</strong> (Auxiliary verb + subject + infinitive?)",
+        "examples": [
+          "Did I say something?",
+          "Did he propose?",
+          "Did they come?"
+        ]
+      }
+    ]
+  },
+  "videoQuiz1d": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice \u2014 Negative:</strong> Choose the correct negative past simple form."
+    },
+    {
+      "text": "The man insisted that he ___ to marry her.",
+      "options": [
+        "didn't ask",
+        "didn't asked",
+        "not asked"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Negative Past Simple: <strong>didn't + infinitive</strong>. &ldquo;ask&rdquo; stays in base form."
+    },
+    {
+      "text": "Actually, he ___ to propose at all.",
+      "options": [
+        "didn't mean",
+        "didn't meant",
+        "not mean"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>didn't + infinitive</strong>. &ldquo;mean&rdquo; stays in base form."
+    },
+    {
+      "text": "They ___ why he was on one knee at first.",
+      "options": [
+        "didn't understood",
+        "didn't understand",
+        "wasn't understand"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>didn't + infinitive</strong>. &ldquo;understand&rdquo; stays in base form \u2014 never &ldquo;understood&rdquo; after didn't."
+    },
+    {
+      "text": "The woman ___ that it was just an accident.",
+      "options": [
+        "didn't knew",
+        "didn't know",
+        "not knew"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>didn't + infinitive</strong>. &ldquo;know&rdquo; stays in base form."
+    },
+    {
+      "text": "The man ___ the ring on purpose.",
+      "options": [
+        "didn't drop",
+        "didn't dropped",
+        "wasn't drop"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>didn't + infinitive</strong>. &ldquo;drop&rdquo; stays in base form."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Practice \u2014 Interrogative:</strong> Choose the correct interrogative past simple form."
+    },
+    {
+      "text": "&ldquo;___ he ___ to her?&rdquo; the friend asked.",
+      "options": [
+        "Does / propose",
+        "Did / proposed",
+        "Did / propose"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "Past Simple question: <strong>Did + subject + infinitive</strong>. The verb stays in base form."
+    },
+    {
+      "text": "&ldquo;___ you ___ me a ring?&rdquo; she asked.",
+      "options": [
+        "Did / give",
+        "Did / gave",
+        "Gived / you"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>Did + subject + infinitive</strong>. &ldquo;give&rdquo; stays in base form."
+    },
+    {
+      "text": "&ldquo;___ the ring ___ on the floor?&rdquo; he explained.",
+      "options": [
+        "Did / fell",
+        "Did / fall",
+        "Was / fall"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>Did + subject + infinitive</strong>. &ldquo;fall&rdquo; stays in base form."
+    },
+    {
+      "text": "___ the man ___ angry during the talk?",
+      "options": [
+        "Did / look",
+        "Did / looked",
+        "Looked / he"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>Did + subject + infinitive</strong>. &ldquo;look&rdquo; stays in base form."
+    },
+    {
+      "text": "___ the woman ___ shocked in the end?",
+      "options": [
+        "Did / looks",
+        "Was / looked",
+        "Did / look"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>Did + subject + infinitive</strong>. &ldquo;look&rdquo; stays in base form."
+    }
+  ],
+  "videoQuiz2": [
+    {
+      "text": "Did all these events (delivering vegetables, finding the baby, giving a bath) happen at the same time, or one after another?",
+      "options": [
+        "one after another",
+        "happen at the same time"
+      ],
+      "correct": 0,
+      "explanation": "Past Simple is used to describe a <strong>series of actions or events occurring one after another</strong> in the past. Each action was completed before the next one began."
+    },
+    {
+      "text": "What happened first: finding the panda or giving the bath?",
+      "options": [
+        "Giving the bath",
+        "Finding the panda"
+      ],
+      "correct": 1,
+      "explanation": "We use Past Simple for the <strong>series of actions and events occurring one after another</strong>."
+    },
+    {
+      "text": "Is Mr. Ping still giving the baby a bath, or is that part of the finished story?",
+      "options": [
+        "Finished to give the baby the bath",
+        "still giving the baby a bath"
+      ],
+      "correct": 0,
+      "explanation": "That part of the story is <strong>finished</strong>. Past Simple always describes <em>completed</em> actions \u2014 the action started and ended in the past."
+    }
+  ],
+  "grammarBank2": {
+    "title": "Past Simple \u2014 Sequence of Actions",
+    "intro": "We use the past simple for <strong>finished actions that happened more than once in the past</strong> (sequence of actions).",
+    "structure": "",
+    "examples": [
+      "First I washed the vegetables and peeled them.",
+      "Then I chopped the carrots, sliced the cucumbers, and minced the garlic."
+    ]
+  },
+  "videoQuiz2b": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice Video 2:</strong> Choose the correct answer."
+    },
+    {
+      "text": "Mr. Ping says:<br>&ldquo;I went out... there were no radishes... I waited.&rdquo;<br>Did these things happen at the same time?",
+      "options": [
+        "Yes, they all happened simultaneously.",
+        "No, they happened one after another.",
+        "No, he is doing all this right now."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "Past Simple describes actions that happened <strong>one after another</strong> \u2014 not simultaneously."
+    },
+    {
+      "text": "When the man says &ldquo;I brought you inside, fed you, gave you a bath&rdquo;, which action happened first?",
+      "options": [
+        "Bringing the panda inside.",
+        "Feeding the panda.",
+        "Giving a bath."
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>Bringing the panda inside</strong> came first \u2014 the actions are listed in sequence."
+    },
+    {
+      "text": "&ldquo;I brought you inside&rdquo;<br>\u2192 &ldquo;Fed you&rdquo;<br>\u2192 &ldquo;Gave you a bath&rdquo;<br>Why is Past Simple used for all these actions?",
+      "options": [
+        "Because the actions are still continuing now.",
+        "Because it is a completed sequence of events in the past.",
+        "Because the order of actions doesn't matter."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "Past Simple is used because it is a <strong>completed sequence of events in the past</strong>."
+    },
+    {
+      "text": "When he says &ldquo;I waited for someone... but no one did [come]&rdquo;,<br>does he mean he is still waiting?",
+      "options": [
+        "Yes, he is waiting for the parents to show up now.",
+        "No, the period started and finished in the past.",
+        "He plans to wait again tomorrow."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "No \u2014 the period <strong>started and finished in the past</strong>. Past Simple is always completed."
+    }
+  ],
+  "videoQuiz3": [
+    {
+      "type": "intro",
+      "num": 1,
+      "text": "Look at the sentences:<br><em>&ldquo;I was a baby.&rdquo;</em><br><em>&ldquo;In the olden days you were a baby, too, Peppa.&rdquo;</em>"
+    },
+    {
+      "subLetter": "a",
+      "text": "Do they describe an action or a quality?",
+      "options": [
+        "An action",
+        "A quality"
+      ],
+      "correct": 1,
+      "explanation": "We use <strong>&ldquo;to be&rdquo;</strong> verbs (was, were) in past form to describe <strong>qualities and characteristics</strong> like age, colour, place, identity, or a state that were true in the past."
+    },
+    {
+      "subLetter": "b",
+      "text": "Do these characteristics refer to past, present or future?",
+      "options": [
+        "to present",
+        "to past",
+        "to future"
+      ],
+      "correct": 1
+    },
+    {
+      "subLetter": "c",
+      "text": "Do the &ldquo;to be&rdquo; verbs in past change their form according to the subjects?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 0,
+      "explanation": "In Past Simple <strong>&ldquo;to be&rdquo;</strong> verbs change according to the subject:<br><br><table style=\"border-collapse:collapse;font-size:0.93rem;\"><tr><td style=\"padding:2px 16px 2px 0;font-weight:600;color:#e2b714;\">I</td><td><strong>was</strong></td></tr><tr><td style=\"padding:2px 16px 2px 0;font-weight:600;color:#e2b714;\">You</td><td><strong>were</strong></td></tr><tr><td style=\"padding:2px 16px 2px 0;font-weight:600;color:#e2b714;\">He / She / It</td><td><strong>was</strong></td></tr><tr><td style=\"padding:2px 16px 2px 0;font-weight:600;color:#e2b714;\">We / They</td><td><strong>were</strong></td></tr></table>"
+    },
+    {
+      "type": "intro",
+      "num": 2,
+      "text": "Reorder the words to make sentences:"
+    },
+    {
+      "type": "drag",
+      "subLetter": "a",
+      "text": "Put the words in correct order:",
+      "words": [
+        "was",
+        "I",
+        "a baby."
+      ],
+      "correct": "I was a baby."
+    },
+    {
+      "type": "drag",
+      "subLetter": "b",
+      "text": "Put the words in correct order:",
+      "words": [
+        "a baby,",
+        "too.",
+        "You",
+        "were"
+      ],
+      "correct": "You were a baby, too."
+    },
+    {
+      "text": "Do we use verbs after &ldquo;was/were&rdquo; in Past Simple to describe qualities and states?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "We do <strong>not</strong> use verbs after <strong>was, were</strong> in Past Simple. We use other words that describe qualities and characteristics like age, colour, place, identity, or a state."
+    },
+    {
+      "text": "Choose the correct sentence:",
+      "options": [
+        "I was a baby.",
+        "I was cry."
+      ],
+      "correct": 0
+    },
+    {
+      "type": "intro",
+      "num": 5,
+      "text": "Now look at negative sentences:<br><em>&ldquo;No, I was not a baby.&rdquo; &nbsp; &ldquo;And you were not a baby, too.&rdquo;</em>"
+    },
+    {
+      "subLetter": "a",
+      "text": "Where do we put &ldquo;not&rdquo; in the sentence to make negative sentences?",
+      "options": [
+        "before the to be verb (not was, not were)",
+        "after the to be verb (was not, were not)"
+      ],
+      "correct": 1,
+      "explanation": "We put <strong>&ldquo;not&rdquo;</strong> <strong>after</strong> the verb &ldquo;to be&rdquo; to make negatives: <em>was not, were not</em>."
+    },
+    {
+      "type": "drag",
+      "subLetter": "b",
+      "text": "Put the words in correct order:",
+      "words": [
+        "not",
+        "I",
+        "a baby.",
+        "was"
+      ],
+      "correct": "I was not a baby."
+    },
+    {
+      "type": "drag",
+      "subLetter": "c",
+      "text": "Put the words in correct order:",
+      "words": [
+        "You",
+        "not",
+        "were",
+        "a baby."
+      ],
+      "correct": "You were not a baby."
+    },
+    {
+      "type": "intro",
+      "num": 7,
+      "text": "Look at the dialogue:<br><em>&ldquo;Were you a baby in the olden days?&rdquo;</em><br><em>&ldquo;No, I was not a baby in the olden days.&rdquo;</em>"
+    },
+    {
+      "subLetter": "a",
+      "text": "What word starts the question?",
+      "options": [
+        "was / were",
+        "am / is / are"
+      ],
+      "correct": 0,
+      "explanation": "To make interrogative sentences with <strong>to be</strong> verbs we start the question with <strong>Was / Were</strong>.<br>Example: <em>Were we babies? &nbsp; Was she a baby, too?</em>"
+    },
+    {
+      "subLetter": "b",
+      "text": "Where is the subject in the question?",
+      "options": [
+        "before auxiliary verb",
+        "after auxiliary verb"
+      ],
+      "correct": 1
+    },
+    {
+      "type": "intro",
+      "num": 8,
+      "text": "Put the words in correct order:"
+    },
+    {
+      "type": "drag",
+      "subLetter": "a",
+      "text": "Put the words in correct order:",
+      "words": [
+        "you",
+        "Were",
+        "a baby",
+        "in the olden days?"
+      ],
+      "correct": "Were you a baby in the olden days?"
+    },
+    {
+      "type": "drag",
+      "subLetter": "b",
+      "text": "Put the words in correct order:",
+      "words": [
+        "Was",
+        "in the olden days?",
+        "a baby",
+        "she"
+      ],
+      "correct": "Was she a baby in the olden days?",
+      "explanation": "The word order for interrogatives with <strong>to be</strong> verbs in Past Simple is <strong>ASI</strong> = Auxiliary verb + Subject + quality words?"
+    }
+  ],
+  "grammarBank3": {
+    "blocks": [
+      {
+        "intro": "<strong>AFFIRMATIVE</strong><br>In English, the verbs <strong>was</strong> and <strong>were</strong> are used to talk about a <strong>past state or quality</strong>. Verbs to be change according to subjects.<br><br><strong>was</strong> &mdash; &ldquo;I&rdquo; and 3rd person singular<br><strong>were</strong> &mdash; two or more people and &ldquo;you&rdquo;",
+        "table": [
+          [
+            "I",
+            "was"
+          ],
+          [
+            "You",
+            "were"
+          ],
+          [
+            "He / She / It",
+            "was"
+          ],
+          [
+            "We / They",
+            "were"
+          ]
+        ],
+        "examples": [
+          "I <strong>was</strong> a baby.",
+          "He <strong>was</strong> a pilot.",
+          "They <strong>were</strong> friends."
+        ]
+      },
+      {
+        "intro": "<strong>NEGATIVE</strong><br>We make negative sentences by adding <strong>not</strong> to &ldquo;was, were&rdquo;.<br>Contractions: <strong>was not = wasn&rsquo;t</strong> &nbsp; <strong>were not = weren&rsquo;t</strong>",
+        "examples": [
+          "I <strong>wasn&rsquo;t</strong> a student.",
+          "He <strong>wasn&rsquo;t</strong> a pilot.",
+          "They <strong>weren&rsquo;t</strong> friends."
+        ]
+      },
+      {
+        "intro": "<strong>INTERROGATIVE</strong><br>Questions start with <strong>Was / Were</strong>.<br><br><em>&ldquo;was, were&rdquo;</em> are the past form of <em>&ldquo;am, is, are&rdquo;</em>",
+        "examples": [
+          "<strong>Was</strong> I a student?",
+          "<strong>Was</strong> he a pilot?",
+          "<strong>Were</strong> they friends?"
+        ]
+      }
+    ]
+  },
+  "videoQuiz3b": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice \u2014 Affirmative:</strong> Choose the correct form."
+    },
+    {
+      "text": "Susie ___ a baby in the old photo.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Susie = she (3rd person singular) &rarr; <strong>was</strong>."
+    },
+    {
+      "text": "The photo ___ very cute.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "The photo = it (3rd person singular) &rarr; <strong>was</strong>."
+    },
+    {
+      "text": "Peppa and Susie ___ friends many years ago too.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "Peppa and Susie = they (plural) &rarr; <strong>were</strong>."
+    },
+    {
+      "text": "&ldquo;It ___ me!&rdquo; said Susie about the baby in the picture.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "It (3rd person singular) &rarr; <strong>was</strong>."
+    },
+    {
+      "text": "The grass in the photo ___ green.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "The grass = it (3rd person singular) &rarr; <strong>was</strong>."
+    },
+    {
+      "text": "Peppa&rsquo;s dress ___ red in the olden days.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Peppa&rsquo;s dress = it (3rd person singular) &rarr; <strong>was</strong>."
+    },
+    {
+      "text": "You ___ a baby too, Peppa!",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "You &rarr; <strong>were</strong>."
+    },
+    {
+      "text": "The characters ___ smaller in the past.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "The characters = they (plural) &rarr; <strong>were</strong>."
+    },
+    {
+      "text": "Mommy Pig ___ at the computer.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Mommy Pig = she (3rd person singular) &rarr; <strong>was</strong>."
+    },
+    {
+      "text": "The flowers in the garden ___ yellow.",
+      "options": [
+        "was",
+        "were"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "The flowers = they (plural) &rarr; <strong>were</strong>."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Practice \u2014 Negative:</strong> Choose the correct form."
+    },
+    {
+      "text": "Peppa said: &ldquo;No, I ___ a baby!&rdquo;",
+      "options": [
+        "wasn't",
+        "weren't"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "I &rarr; <strong>wasn't</strong>."
+    },
+    {
+      "text": "The baby in the photo ___ Peppa.",
+      "options": [
+        "wasn't",
+        "weren't"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "The baby = it (3rd person singular) &rarr; <strong>wasn't</strong>."
+    },
+    {
+      "text": "Susie and Peppa ___ angry; they were just talking.",
+      "options": [
+        "wasn't",
+        "weren't"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "Susie and Peppa = they (plural) &rarr; <strong>weren't</strong>."
+    },
+    {
+      "text": "It ___ a new photo; it was an old one.",
+      "options": [
+        "wasn't",
+        "weren't"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "It (3rd person singular) &rarr; <strong>wasn't</strong>."
+    },
+    {
+      "text": "The parents ___ in the room at that moment.",
+      "options": [
+        "wasn't",
+        "weren't"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "The parents = they (plural) &rarr; <strong>weren't</strong>."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Practice \u2014 Interrogative:</strong> Choose the correct form."
+    },
+    {
+      "text": "&ldquo;___ I really a baby?&rdquo; Peppa asked her mommy.",
+      "options": [
+        "Was",
+        "Were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "I &rarr; <strong>Was</strong>."
+    },
+    {
+      "text": "___ Susie a baby sheep in the picture?",
+      "options": [
+        "Was",
+        "Were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Susie = she (3rd person singular) &rarr; <strong>Was</strong>."
+    },
+    {
+      "text": "___ they happy to look at old photos?",
+      "options": [
+        "Was",
+        "Were"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "They (plural) &rarr; <strong>Were</strong>."
+    },
+    {
+      "text": "___ the photo in Susie&rsquo;s hands?",
+      "options": [
+        "Was",
+        "Were"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "The photo = it (3rd person singular) &rarr; <strong>Was</strong>."
+    },
+    {
+      "text": "___ you surprised by the old photo, Peppa?",
+      "options": [
+        "Was",
+        "Were"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "You &rarr; <strong>Were</strong>."
+    }
+  ],
+  "structure": "V2 (\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0435 \u0438 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0435 \u0433\u043b\u0430\u0433\u043e\u043b\u044b)",
+  "usage": [
+    "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u043e \u0438 \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u043e\u0441\u044c \u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u043c",
+    "\u041f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f \u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u043c",
+    "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u044f"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0435",
+      "example": "I worked yesterday."
+    },
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0435",
+      "example": "I went yesterday."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "She didn't call me."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "Did you see him?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "Back to the Future",
+      "dialogue": "\"I came back in time.\"",
+      "translation": "\u042f \u0432\u0435\u0440\u043d\u0443\u043b\u0441\u044f \u0432\u043e \u0432\u0440\u0435\u043c\u0435\u043d\u0438."
+    }
+  ],
+  "exercises": [
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u0443\u044e \u0444\u043e\u0440\u043c\u0443 Past Simple:",
+      "options": [
+        "I goed to the store.",
+        "I went to the store.",
+        "I goes to the store.",
+        "I am going to the store."
+      ],
+      "correct": 1,
+      "explanation": "\"Go\" - \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0433\u043b\u0430\u0433\u043e\u043b. Past Simple: went.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"She __ breakfast this morning.\"",
+      "options": [
+        "eat",
+        "eaten",
+        "ate",
+        "eats"
+      ],
+      "correct": 2,
+      "explanation": "\u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0433\u043b\u0430\u0433\u043e\u043b \u0432 Past Simple: eat \u2192 ate.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "They play football yesterday.",
+        "They played football yesterday.",
+        "They are playing football yesterday.",
+        "They have played football yesterday."
+      ],
+      "correct": 1,
+      "explanation": "Past Simple \u0434\u043b\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u043e\u0435 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u043e \u0432\u0447\u0435\u0440\u0430: played.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Past Simple:",
+      "options": [
+        "He not worked yesterday.",
+        "He didn't work yesterday.",
+        "He doesn't work yesterday.",
+        "He wasn't working yesterday."
+      ],
+      "correct": 1,
+      "explanation": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Past Simple: did + not + \u0431\u0430\u0437\u043e\u0432\u0430\u044f \u0444\u043e\u0440\u043c\u0430 \u0433\u043b\u0430\u0433\u043e\u043b\u0430.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"I __ see him at the party.\"",
+      "options": [
+        "did not",
+        "did",
+        "was not",
+        "were not"
+      ],
+      "correct": 0,
+      "explanation": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: did not see.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "Did you went to the cinema?",
+        "Did you go to the cinema?",
+        "You went to the cinema?",
+        "Did you going to the cinema?"
+      ],
+      "correct": 1,
+      "explanation": "\u0412\u043e\u043f\u0440\u043e\u0441 \u0432 Past Simple: Did + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + \u0431\u0430\u0437\u043e\u0432\u0430\u044f \u0444\u043e\u0440\u043c\u0430 \u0433\u043b\u0430\u0433\u043e\u043b\u0430?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"What __ she __ last weekend?\"",
+      "options": [
+        "did, do",
+        "does, do",
+        "did, did",
+        "does, did"
+      ],
+      "correct": 0,
+      "explanation": "Past Simple \u0432\u043e\u043f\u0440\u043e\u0441: Did she do...?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0445 \u0433\u043b\u0430\u0433\u043e\u043b\u043e\u0432:",
+      "options": [
+        "He writed the letter.",
+        "He wrote the letter.",
+        "He writes the letter.",
+        "He was writing the letter."
+      ],
+      "correct": 1,
+      "explanation": "\"Write\" - \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0433\u043b\u0430\u0433\u043e\u043b. Past form: wrote.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443 \u0432 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0438:",
+      "options": [
+        "We visited Paris last summer.",
+        "They spent all day at the beach.",
+        "She did not came to the meeting.",
+        "I saw him yesterday."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"did not came\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"did not come\".",
+      "difficulty": "medium",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "How much money did they spent?",
+        "How much money did they spend?",
+        "How much money they spent?",
+        "How much money did spend they?"
+      ],
+      "correct": 1,
+      "explanation": "Past Simple \u0432\u043e\u043f\u0440\u043e\u0441: did + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + \u0431\u0430\u0437\u043e\u0432\u0430\u044f \u0444\u043e\u0440\u043c\u0430 (spend).",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043e\u0448\u0438\u0431\u043a\u0443?",
+      "options": [
+        "They did not understand the problem.",
+        "He didn't remember his name.",
+        "We didn't returned home on time.",
+        "I didn't know the answer."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"didn't returned\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"didn't return\".",
+      "difficulty": "hard",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0432\u044b\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043f\u0440\u043e\u0448\u0435\u0434\u0448\u0435\u0433\u043e \u0432\u0440\u0435\u043c\u0435\u043d\u0438:",
+      "options": [
+        "They finished the project and left.",
+        "They have finished the project and left.",
+        "They finish the project and left.",
+        "They are finishing the project and leaving."
+      ],
+      "correct": 0,
+      "explanation": "Past Simple \u0434\u043b\u044f \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439: finished...left.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"No, I didn't\"?",
+      "options": [
+        "Do you like pizza?",
+        "Does he work here?",
+        "Did you call me yesterday?",
+        "Are you learning English?"
+      ],
+      "correct": 2,
+      "explanation": "\"Did you call...?\" \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"No, I did not (didn't).\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"She __ __ to Paris twice in her life.\"",
+      "options": [
+        "went, was",
+        "did, go",
+        "has, been",
+        "was, going"
+      ],
+      "correct": 2,
+      "explanation": "\u042d\u0442\u043e Present Perfect, \u043d\u0435 Past Simple - \u043e\u0431\u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442 \u0436\u0438\u0437\u043d\u0435\u043d\u043d\u044b\u0439 \u043e\u043f\u044b\u0442.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0441\u043b\u043e\u0432 \u0432 Past Simple \u0432\u043e\u043f\u0440\u043e\u0441\u0435:",
+      "options": [
+        "When did you arrive at the station?",
+        "When you did arrive at the station?",
+        "You did arrive when at the station?",
+        "When arrive did you at the station?"
+      ],
+      "correct": 0,
+      "explanation": "Past Simple \u0432\u043e\u043f\u0440\u043e\u0441: \u0412\u043e\u043f\u0440\u043e\u0441\u043d\u043e\u0435 \u0441\u043b\u043e\u0432\u043e + did + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + \u0433\u043b\u0430\u0433\u043e\u043b?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 3
+}

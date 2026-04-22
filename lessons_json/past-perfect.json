@@ -1,0 +1,761 @@
+{
+  "title": "Past Perfect",
+  "russian": "\u041f\u0440\u043e\u0448\u0435\u0434\u0448\u0435\u0435 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e\u0435",
+  "videoFile": "assets/video/past perfect 1.mp4",
+  "videoFile2": "assets/video/past perfect 2.mp4",
+  "structure": "had + V3 (Past Participle)",
+  "usage": [
+    "\u041e\u0434\u043d\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u043e \u0440\u0430\u043d\u044c\u0448\u0435 \u0434\u0440\u0443\u0433\u043e\u0433\u043e \u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u043c",
+    "\u041f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u0435\u0434\u0448\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0433\u043e \u0441\u043e\u0431\u044b\u0442\u0438\u044f",
+    "\u041a\u043e\u0441\u0432\u0435\u043d\u043d\u0430\u044f \u0440\u0435\u0447\u044c \u043e \u043f\u0440\u043e\u0448\u0435\u0434\u0448\u0438\u0445 \u0441\u043e\u0431\u044b\u0442\u0438\u044f\u0445"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435",
+      "example": "I had eaten before he arrived."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "She hadn't seen the movie."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "Had you finished?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "The Sixth Sense",
+      "dialogue": "\"I had never told anyone about them before.\"",
+      "translation": "\u042f \u043d\u0438\u043a\u043e\u0433\u0434\u0430 \u043d\u0438\u043a\u043e\u043c\u0443 \u043e\u0431 \u044d\u0442\u043e\u043c \u043d\u0435 \u0440\u0430\u0441\u0441\u043a\u0430\u0437\u044b\u0432\u0430\u043b."
+    }
+  ],
+  "videoQuiz1": [
+    {
+      "text": "&ldquo;It was a Thursday afternoon. We had made a pact.&rdquo;<br>Did they make the pact on that Thursday afternoon, or before that afternoon arrived?",
+      "options": [
+        "On Thursday",
+        "Before Thursday"
+      ],
+      "correct": 1,
+      "explanation": "When the speaker says, &ldquo;It was a Thursday (Past Simple)&hellip; we had made a pact (Past Perfect),&rdquo; he is looking back from that Thursday to an even earlier time. The Past Perfect acts like a &ldquo;super past,&rdquo; indicating the agreement was already in place before the story began.<br><em>She <strong>had already eaten</strong> lunch before he arrived.</em>"
+    },
+    {
+      "text": "The speaker is talking about&hellip;",
+      "options": [
+        "The present",
+        "A story in the past"
+      ],
+      "correct": 1,
+      "explanation": "The speaker is using past tenses.<br><em>&ldquo;It was Thursday afternoon. We had made a pact. Your mother had just received her first Harper Avery nomination. She was so excited.&rdquo;</em>"
+    },
+    {
+      "text": "&ldquo;Your mother had just received her nomination. She was so excited. And I was jealous.&rdquo;<br>Did the nomination happen first, or did the speaker&rsquo;s jealousy happen first?",
+      "options": [
+        "The nomination",
+        "The jealousy"
+      ],
+      "correct": 0,
+      "explanation": "We use the Past Perfect to show which of two past actions happened first.<br><strong>FIRST</strong> Your mother had just received her nomination and <strong>THEN</strong> I was jealous."
+    },
+    {
+      "type": "intro",
+      "text": "Compare these two sentences:<br><em>A: She received a nomination.</em><br><em>B: She had received a nomination.</em>"
+    },
+    {
+      "text": "Which sentence simply states a past fact without connecting it to another past event?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 0,
+      "explanation": "The Past Simple is a straightforward &ldquo;point&rdquo; on a timeline. It tells us what happened, but it doesn&rsquo;t necessarily link it to the timing of other events."
+    },
+    {
+      "text": "Which sentence shows that the action was already finished by the time the other action started?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 1,
+      "explanation": "The Past Perfect creates a &ldquo;background&rdquo; effect and shows that the action was even before another action."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the sentences:<br><em>We <strong>had made</strong> a pact.</em><br><em>Your mother <strong>had just received</strong> her nomination.</em><br><em>I <strong>hadn&rsquo;t yet accomplished</strong>.</em>"
+    },
+    {
+      "type": "fill",
+      "text": "What auxiliary (helping) verb is used in every sentence?",
+      "answer": "had",
+      "placeholder": "type...",
+      "explanation": "The auxiliary verb in Past Perfect is always <strong>had</strong>, regardless of the subject.<br><em>I <strong>had</strong> prepared dinner when my mom came from work.</em><br><em>She <strong>had</strong> received a nomination.</em>"
+    },
+    {
+      "text": "Does the auxiliary verb &ldquo;had&rdquo; change if the subject is &ldquo;I&rdquo;, &ldquo;We&rdquo;, or &ldquo;She&rdquo;?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "Unlike the Present Perfect (have/has), the Past Perfect always uses <strong>had</strong> regardless of the subject.<br><em>I <strong>had</strong> prepared dinner when my mom came from work.</em><br><em>She <strong>had</strong> received a nomination.</em>"
+    },
+    {
+      "text": "What form is the main verb (<em>made, received, accomplished</em>) in?",
+      "options": [
+        "Present (Base form)",
+        "Past Participle (3rd form)"
+      ],
+      "correct": 1,
+      "explanation": "All &ldquo;Perfect&rdquo; tenses need verbs in the Past Participle. We add <em>-ed/-d</em> to regular verbs (<em>receive &rarr; received</em>), irregular verbs change their form (<em>make &rarr; made &rarr; made</em>)."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the sentence: <em>&ldquo;Everything I <strong>hadn&rsquo;t</strong> yet accomplished.&rdquo;</em>"
+    },
+    {
+      "type": "fill",
+      "text": "a) What word is added to &ldquo;had&rdquo; to make the sentence negative?",
+      "answer": "not",
+      "altAnswers": [
+        "n't",
+        "not"
+      ],
+      "placeholder": "type...",
+      "explanation": "To negate the Past Perfect, we attach <strong>not</strong> to the auxiliary verb: <em>had not</em> or the contraction <em>hadn&rsquo;t</em>.<br><em>I <strong>had not</strong> finished my meal.</em><br><em>He <strong>hadn&rsquo;t</strong> completed the form.</em>"
+    },
+    {
+      "text": "In the sentence &ldquo;Your mother had <strong>just</strong> received her nomination,&rdquo; what does the word &ldquo;just&rdquo; imply?",
+      "options": [
+        "It happened a long time before Thursday.",
+        "It happened a very short time before the Thursday."
+      ],
+      "correct": 1,
+      "explanation": "&ldquo;Just&rdquo; is used to emphasize that the past action occurred very recently before the second past action.<br><em>I <strong>had just finished</strong> cleaning when she came into the room.</em>"
+    },
+    {
+      "type": "drag",
+      "text": "a) Put the words in the correct order:",
+      "words": [
+        "the pact",
+        "they",
+        "made",
+        "had",
+        "before",
+        "that day."
+      ],
+      "correct": "They had made the pact before that day."
+    },
+    {
+      "type": "drag",
+      "text": "b) Put the words in the correct order:",
+      "words": [
+        "not",
+        "he",
+        "anything",
+        "had",
+        "accomplished",
+        "yet."
+      ],
+      "correct": "He had not accomplished anything yet."
+    }
+  ],
+  "grammarBank1": {
+    "blocks": [
+      {
+        "intro": "We use Past Perfect for:<br><ul style=\"margin:8px 0 0 0;padding-left:18px;\"><li>completed action <strong>before another action</strong> in the past;</li><li>completed action before a <strong>specific time</strong>;</li><li>states continuing up to a past moment.</li></ul>We often use Past Perfect adverbs <strong>just</strong>, <strong>already</strong> to emphasise how long ago the first event had happened.<br><br>The word order for positive Past Perfect sentences is <strong>SAV3</strong><br>(<strong>S</strong>ubject + <strong>had</strong> + <strong>Past Participle</strong>).<br>The auxiliary verb is the same for all subjects.<br><table style=\"border-collapse:collapse;margin:10px 0;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Subject</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Auxiliary Verb</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Main Verb (V3/past participle)</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">I</td><td style=\"padding:3px 14px 3px 0;\">had</td><td>asked</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">You</td><td style=\"padding:3px 14px 3px 0;\">had</td><td>asked</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">He / She / It</td><td style=\"padding:3px 14px 3px 0;\">had</td><td>asked</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">We</td><td style=\"padding:3px 14px 3px 0;\">had</td><td>asked</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">They</td><td style=\"padding:3px 14px 3px 0;\">had</td><td>asked</td></tr></table>",
+        "table": [],
+        "examples": [
+          "They <strong>had made</strong> a pact before that day.",
+          "She <strong>had just received</strong> a nomination when I saw her.",
+          "I <strong>had finished</strong> my work by 5 PM yesterday.",
+          "He <strong>had felt</strong> tired until he saw his daughter."
+        ]
+      },
+      {
+        "intro": "<strong>Negative Sentences</strong><br>The word order for negative Past Perfect sentences is <strong>SAV3</strong><br><strong>Subject + hadn&rsquo;t + V3 (past participle)</strong>.<br>We also can use <strong>&ldquo;never&rdquo;</strong> in negative sentences to say that something happened zero times in the past.<br>Contraction: <strong>hadn&rsquo;t</strong> = had not.<br><br>We use <strong>&ldquo;yet&rdquo;</strong> to emphasise that the action was expected to happen before a specific time but not completed.",
+        "table": [],
+        "examples": [
+          "I <strong>hadn&rsquo;t yet accomplished</strong> my goals.",
+          "They <strong>had never seen</strong> that movie before last night.",
+          "He <strong>had not finished</strong> the report when the meeting started.",
+          "I <strong>hadn&rsquo;t completed</strong> my homework yet."
+        ]
+      },
+      {
+        "intro": "<strong>V3 Reference (Irregular Verbs)</strong><br>For regular verbs, add <em>-ed</em>. For irregular verbs, use the 3rd form (Past Participle).<br><table style=\"border-collapse:collapse;margin:10px 0;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Base (V1)</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Past Simple (V2)</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Past Participle (V3)</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">Make</td><td style=\"padding:3px 14px 3px 0;\">made</td><td>made</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Go</td><td style=\"padding:3px 14px 3px 0;\">went</td><td>gone</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">See</td><td style=\"padding:3px 14px 3px 0;\">saw</td><td>seen</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Do</td><td style=\"padding:3px 14px 3px 0;\">did</td><td>done</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Have</td><td style=\"padding:3px 14px 3px 0;\">had</td><td>had</td></tr></table><div id=\"v3-extra\" style=\"display:none;\"><table style=\"border-collapse:collapse;margin:4px 0 10px;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Base (V1)</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Past Simple (V2)</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Past Participle (V3)</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">Give</td><td style=\"padding:3px 14px 3px 0;\">gave</td><td>given</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Eat</td><td style=\"padding:3px 14px 3px 0;\">ate</td><td>eaten</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Come</td><td style=\"padding:3px 14px 3px 0;\">came</td><td>come</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Take</td><td style=\"padding:3px 14px 3px 0;\">took</td><td>taken</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Write</td><td style=\"padding:3px 14px 3px 0;\">wrote</td><td>written</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Know</td><td style=\"padding:3px 14px 3px 0;\">knew</td><td>known</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Think</td><td style=\"padding:3px 14px 3px 0;\">thought</td><td>thought</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Speak</td><td style=\"padding:3px 14px 3px 0;\">spoke</td><td>spoken</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Find</td><td style=\"padding:3px 14px 3px 0;\">found</td><td>found</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Run</td><td style=\"padding:3px 14px 3px 0;\">ran</td><td>run</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Become</td><td style=\"padding:3px 14px 3px 0;\">became</td><td>become</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Begin</td><td style=\"padding:3px 14px 3px 0;\">began</td><td>begun</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Break</td><td style=\"padding:3px 14px 3px 0;\">broke</td><td>broken</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Bring</td><td style=\"padding:3px 14px 3px 0;\">brought</td><td>brought</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Buy</td><td style=\"padding:3px 14px 3px 0;\">bought</td><td>bought</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Choose</td><td style=\"padding:3px 14px 3px 0;\">chose</td><td>chosen</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Drive</td><td style=\"padding:3px 14px 3px 0;\">drove</td><td>driven</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Fall</td><td style=\"padding:3px 14px 3px 0;\">fell</td><td>fallen</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Feel</td><td style=\"padding:3px 14px 3px 0;\">felt</td><td>felt</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Forget</td><td style=\"padding:3px 14px 3px 0;\">forgot</td><td>forgotten</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Get</td><td style=\"padding:3px 14px 3px 0;\">got</td><td>gotten / got</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Grow</td><td style=\"padding:3px 14px 3px 0;\">grew</td><td>grown</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Hear</td><td style=\"padding:3px 14px 3px 0;\">heard</td><td>heard</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Hold</td><td style=\"padding:3px 14px 3px 0;\">held</td><td>held</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Keep</td><td style=\"padding:3px 14px 3px 0;\">kept</td><td>kept</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Leave</td><td style=\"padding:3px 14px 3px 0;\">left</td><td>left</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Lose</td><td style=\"padding:3px 14px 3px 0;\">lost</td><td>lost</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Meet</td><td style=\"padding:3px 14px 3px 0;\">met</td><td>met</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Pay</td><td style=\"padding:3px 14px 3px 0;\">paid</td><td>paid</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Put</td><td style=\"padding:3px 14px 3px 0;\">put</td><td>put</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Read</td><td style=\"padding:3px 14px 3px 0;\">read</td><td>read</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Rise</td><td style=\"padding:3px 14px 3px 0;\">rose</td><td>risen</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Say</td><td style=\"padding:3px 14px 3px 0;\">said</td><td>said</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Send</td><td style=\"padding:3px 14px 3px 0;\">sent</td><td>sent</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Show</td><td style=\"padding:3px 14px 3px 0;\">showed</td><td>shown</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Sit</td><td style=\"padding:3px 14px 3px 0;\">sat</td><td>sat</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Sleep</td><td style=\"padding:3px 14px 3px 0;\">slept</td><td>slept</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Stand</td><td style=\"padding:3px 14px 3px 0;\">stood</td><td>stood</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Teach</td><td style=\"padding:3px 14px 3px 0;\">taught</td><td>taught</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Tell</td><td style=\"padding:3px 14px 3px 0;\">told</td><td>told</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">Win</td><td style=\"padding:3px 14px 3px 0;\">won</td><td>won</td></tr></table></div><button onclick=\"(function(b){var d=document.getElementById('v3-extra');if(d.style.display==='none'){d.style.display='block';b.textContent='Show less \u25b2';}else{d.style.display='none';b.textContent='Show more \u25bc';}})(this)\" style=\"margin:4px 0 2px;padding:6px 18px;background:#2a2a3e;color:#e2b714;border:1.5px solid #e2b714;border-radius:8px;cursor:pointer;font-size:0.92rem;font-weight:600;\">Show more \u25bc</button>",
+        "table": [],
+        "examples": []
+      }
+    ]
+  },
+  "videoQuiz1b": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice Affirmative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "Richard and Meredith's mother ______ a pact before things changed.",
+      "options": [
+        "had made",
+        "had make",
+        "have made"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>had made</strong> &mdash; Past Perfect: had + Past Participle. <em>make &rarr; made</em>"
+    },
+    {
+      "text": "By that Thursday afternoon, Meredith's mother ______ her first Harper Avery nomination.",
+      "options": [
+        "had receive",
+        "had received",
+        "has received"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>had received</strong> &mdash; Past Perfect: had + Past Participle. <em>receive &rarr; received</em>"
+    },
+    {
+      "text": "Richard realized that she ______ far ahead of him in her career.",
+      "options": [
+        "had gone",
+        "had went",
+        "has gone"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>had gone</strong> &mdash; irregular verb: <em>go &rarr; went &rarr; gone</em>"
+    },
+    {
+      "text": "Before he felt jealous, they ______ to leave their partners for each other.",
+      "options": [
+        "had decide",
+        "have decided",
+        "had decided"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>had decided</strong> &mdash; Past Perfect: had + Past Participle. <em>decide &rarr; decided</em>"
+    },
+    {
+      "text": "Her success illuminated everything that Richard ______ yet.",
+      "options": [
+        "hadn't accomplish",
+        "had accomplished",
+        "had accomplishing"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>had accomplished</strong> &mdash; Past Perfect: had + Past Participle. <em>accomplish &rarr; accomplished</em>"
+    },
+    {
+      "text": "By the time they talked, she ______ very excited about her nomination.",
+      "options": [
+        "had been",
+        "had was",
+        "have been"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>had been</strong> &mdash; irregular verb: <em>be &rarr; was/were &rarr; been</em>"
+    },
+    {
+      "text": "Richard felt that she ______ too far ahead to catch up to.",
+      "options": [
+        "had stepped",
+        "had step",
+        "has stepped"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>had stepped</strong> &mdash; Past Perfect: had + Past Participle. <em>step &rarr; stepped</em>"
+    },
+    {
+      "text": "Before that day, Richard ______ a strong connection with her.",
+      "options": [
+        "have felt",
+        "had feel",
+        "had felt"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>had felt</strong> &mdash; irregular verb: <em>feel &rarr; felt &rarr; felt</em>"
+    },
+    {
+      "text": "He admitted that his jealousy ______ from a hateful place.",
+      "options": [
+        "had came",
+        "had come",
+        "has come"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>had come</strong> &mdash; irregular verb: <em>come &rarr; came &rarr; come</em>"
+    },
+    {
+      "text": "The situation ______ clear to him only after her success.",
+      "options": [
+        "had became",
+        "had become",
+        "has become"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>had become</strong> &mdash; irregular verb: <em>become &rarr; became &rarr; become</em>"
+    }
+  ],
+  "videoQuiz2": [
+    {
+      "type": "intro",
+      "text": "Focus on Elle Woods&rsquo; lines: <em>&ldquo;What had you done earlier that day?&rdquo;</em> and <em>&ldquo;Had you ever gotten a perm before?&rdquo;</em>"
+    },
+    {
+      "text": "a) When Elle asks <em>&ldquo;What had you done earlier that day?&rdquo;</em>, she is asking about:",
+      "options": [
+        "What the witness is doing right now",
+        "What the witness was doing or did when the crime happened",
+        "What the witness had done the day before the crime happened"
+      ],
+      "correct": 2,
+      "noNum": true,
+      "explanation": "Past Perfect looks back from a past moment to an even earlier time &mdash; the action happened <em>before</em> another past event."
+    },
+    {
+      "text": "b) In the question <em>&ldquo;Had you ever gotten a perm before?&rdquo;</em> Elle is asking about:",
+      "options": [
+        "If the witness got a perm before the crime happened",
+        "If the witness got a perm in her life overall"
+      ],
+      "correct": 0,
+      "noNum": true,
+      "explanation": "She isn&rsquo;t asking if the witness has ever had a perm in her entire life up until now (Present Perfect); she is asking if the witness had experience with perms before the day the crime happened."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the sentence: <em>&ldquo;Had you ever gotten a perm before?&rdquo;</em>"
+    },
+    {
+      "type": "fill",
+      "text": "a) What is the first word of the question?",
+      "answer": "Had",
+      "placeholder": "type...",
+      "noNum": true,
+      "explanation": "In English, we create questions by moving the auxiliary verb to the front. For Past Perfect, that word is always <strong>had</strong>."
+    },
+    {
+      "text": "b) The subject (&ldquo;you&rdquo;) in interrogative sentences stays?",
+      "options": [
+        "Before the auxiliary verb <em>(He had eaten?)</em>",
+        "After the auxiliary verb <em>(Had he eaten?)</em>"
+      ],
+      "correct": 1,
+      "noNum": true,
+      "explanation": "In questions, auxiliary verbs and subjects change their places.<br><em>Had you gotten a perm before the crime?</em><br><em>Had she entered the house before she heard the gunshot?</em>"
+    },
+    {
+      "type": "intro",
+      "text": "Look at the sentence: <em>&ldquo;What had you done earlier that day?&rdquo;</em>"
+    },
+    {
+      "text": "a) When we use a question word (What, Where, Why) in interrogative sentences, it stays&hellip;",
+      "options": [
+        "At the beginning of the sentence",
+        "After auxiliary verbs"
+      ],
+      "correct": 0,
+      "noNum": true,
+      "explanation": "Question words (WH- words) always take the &ldquo;priority position&rdquo; at the start of a sentence, even before the auxiliary verb.<br><em>Example: <strong>What</strong> had you done earlier that day?</em>"
+    },
+    {
+      "type": "intro",
+      "text": "In the sentence <em>&ldquo;Had you ever gotten a perm before?&rdquo;</em>"
+    },
+    {
+      "text": "a) What does &ldquo;ever&rdquo; mean?",
+      "options": [
+        "At any time before the crime.",
+        "At any time in the witness&rsquo;s life."
+      ],
+      "correct": 0,
+      "noNum": true,
+      "explanation": "We use &ldquo;ever&rdquo; to talk about the &ldquo;experience&rdquo; within a time frame. In Past Perfect, that time frame is &ldquo;any time in your life up until a specific past event.&rdquo;<br><em>Had you ever tried alcohol before your 21st birthday party?</em>"
+    },
+    {
+      "text": "b) &ldquo;Ever&rdquo; is used in&hellip;",
+      "options": [
+        "Positive statements.",
+        "Questions about experiences."
+      ],
+      "correct": 1,
+      "noNum": true,
+      "explanation": "We use &ldquo;never&rdquo; for negative statements; &ldquo;ever&rdquo; is the standard way to ask if an experience existed at any point in time."
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order:",
+      "words": [
+        "she",
+        "had",
+        "finished",
+        "her",
+        "coffee",
+        "?"
+      ],
+      "correct": "Had she finished her coffee?",
+      "noNum": true
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order for a WH- question:",
+      "words": [
+        "they",
+        "where",
+        "gone",
+        "had",
+        "?"
+      ],
+      "correct": "Where had they gone?",
+      "noNum": true
+    }
+  ],
+  "grammarBank2": {
+    "blocks": [
+      {
+        "intro": "<strong>1. Yes/No Questions</strong><br>The word order for yes/no interrogative Past Perfect sentences is <strong>ASV3?</strong><br><strong>Had + Subject + V3?</strong><br><br>We use <strong>had</strong> or <strong>hadn&rsquo;t</strong> for short answers.",
+        "table": [],
+        "examples": [
+          "&ldquo;Had you gotten a perm before the crime?&rdquo;",
+          "&ldquo;Had they eaten before the movie?&rdquo;",
+          "&ldquo;Had you seen him before that day?&rdquo; &mdash; &ldquo;Yes, I <strong>had</strong>.&rdquo; / &ldquo;No, I <strong>hadn&rsquo;t</strong>.&rdquo;"
+        ]
+      },
+      {
+        "intro": "<strong>2. WH- Questions</strong><br>The word order for specific questions in Past Perfect is <strong>ASV3?</strong><br><strong>WH- word + had + Subject + V3?</strong>",
+        "table": [],
+        "examples": [
+          "&ldquo;What had you done before the crime?&rdquo;",
+          "&ldquo;Where had she hidden the letter?&rdquo;"
+        ]
+      }
+    ]
+  },
+  "videoQuiz2b": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice Negative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "Richard was jealous because he ______ as much success as Meredith&rsquo;s mother by that time.",
+      "options": [
+        "hadn't have",
+        "hadn't had",
+        "hasn't"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>hadn't had</strong> &mdash; negative Past Perfect: hadn't + Past Participle. <em>have &rarr; had</em>"
+    },
+    {
+      "text": "At that point in his life, Richard ______ any Harper Avery nominations yet.",
+      "options": [
+        "hadn't received",
+        "hadn't receive",
+        "hasn't received"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>hadn't received</strong> &mdash; negative Past Perfect: hadn't + Past Participle. <em>receive &rarr; received</em>"
+    },
+    {
+      "text": "Richard realized that he ______ as much in his career as Meredith&rsquo;s mother.",
+      "options": [
+        "hadn't accomplish",
+        "hadn't accomplished",
+        "hasn't accomplished"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>hadn't accomplished</strong> &mdash; negative Past Perfect: hadn't + Past Participle. <em>accomplish &rarr; accomplished</em>"
+    },
+    {
+      "text": "Before that Thursday, Richard ______ how far ahead Meredith&rsquo;s mother had moved.",
+      "options": [
+        "hadn't notice",
+        "hasn't noticed",
+        "hadn't noticed"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>hadn't noticed</strong> &mdash; negative Past Perfect: hadn't + Past Participle. <em>notice &rarr; noticed</em>"
+    },
+    {
+      "text": "By the time of the nomination, Richard ______ how to deal with his jealousy.",
+      "options": [
+        "hadn't learned",
+        "hadn't learn",
+        "hasn't learned"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>hadn't learned</strong> &mdash; negative Past Perfect: hadn't + Past Participle. <em>learn &rarr; learned</em>"
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Practice Interrogative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "What ______ Chutney Wyndham ______ earlier that day before coming home?",
+      "options": [
+        "Did / do",
+        "Has / done",
+        "Had / done"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>Had / done</strong> &mdash; Past Perfect question: Had + subject + V3. <em>do &rarr; did &rarr; done</em>"
+    },
+    {
+      "text": "______ she ______ a latte before she went to the gym?",
+      "options": [
+        "Had / gotten",
+        "Has / got",
+        "Had / get"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>Had / gotten</strong> &mdash; Past Perfect question: Had + subject + V3. <em>get &rarr; got &rarr; gotten</em>"
+    },
+    {
+      "text": "Before Chutney came home, ______ she ______ a perm?",
+      "options": [
+        "had / getted",
+        "had / gotten",
+        "has / gotten"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>had / gotten</strong> &mdash; Past Perfect question: had + subject + V3. <em>getted</em> is not a real word."
+    },
+    {
+      "text": "Why did Elle Woods ask: &ldquo;______ you ever ______ a perm before?&rdquo;",
+      "options": [
+        "Had / have",
+        "Have / had",
+        "Had / had"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>Had / had</strong> &mdash; Past Perfect question: Had + subject + V3. <em>have &rarr; had &rarr; had</em>"
+    },
+    {
+      "text": "______ the witness ______ in the shower before the incident happened?",
+      "options": [
+        "had / was",
+        "Had / been",
+        "had / be"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>Had / been</strong> &mdash; Past Perfect question: Had + subject + V3. <em>be &rarr; was/were &rarr; been</em>"
+    }
+  ],
+  "exercises": [
+    {
+      "question": "\u041e\u043d \u043f\u0440\u0438\u0448\u0435\u043b \u043f\u043e\u0441\u043b\u0435 \u0442\u043e\u0433\u043e, \u043a\u0430\u043a \u044f \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b \u0440\u0430\u0431\u043e\u0442\u0443. \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u043d\u043e:",
+      "options": [
+        "He came after I finished work.",
+        "He came after I had finished work.",
+        "He comes after I had finished work.",
+        "He had come after I finished work."
+      ],
+      "correct": 1,
+      "explanation": "\u0411\u043e\u043b\u0435\u0435 \u0440\u0430\u043d\u043d\u0435\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435: Past Perfect (had finished), \u043f\u043e\u0437\u0436\u0435: Past Simple (came).",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"She __ already left when we arrived.\"",
+      "options": [
+        "was",
+        "had",
+        "has",
+        "have"
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect: had + Past Participle.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "They had gone home before I called.",
+        "They go home before I called.",
+        "They were going home before I called.",
+        "They have gone home before I called."
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect \u0434\u043b\u044f \u0431\u043e\u043b\u0435\u0435 \u0440\u0430\u043d\u043d\u0435\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f: had gone.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Past Perfect:",
+      "options": [
+        "I not had finished my homework.",
+        "I hadn't finished my homework.",
+        "I didn't had finished my homework.",
+        "I have not finished my homework."
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: had + not + Past Participle.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"He __ not __ the message before noon.\"",
+      "options": [
+        "has, received",
+        "did, receive",
+        "had, received",
+        "was, receiving"
+      ],
+      "correct": 2,
+      "explanation": "Past Perfect \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: had not received.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "Had you ever seen a ghost?",
+        "Have you ever seen a ghost?",
+        "Did you ever see a ghost?",
+        "Had you seen a ghost before?"
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect \u0432\u043e\u043f\u0440\u043e\u0441: Had + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + Past Participle?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"__ they __ the agreement before the meeting?\"",
+      "options": [
+        "Did, sign",
+        "Had, signed",
+        "Have, signed",
+        "Were, signing"
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect \u0432\u043e\u043f\u0440\u043e\u0441: Had they signed?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0434\u0432\u0443\u0445 \u043f\u0440\u043e\u0448\u0435\u0434\u0448\u0438\u0445 \u0432\u0440\u0435\u043c\u0435\u043d:",
+      "options": [
+        "By the time he arrived, I finish eating.",
+        "By the time he arrived, I had finished eating.",
+        "By the time he arrives, I finish eating.",
+        "By the time he arrives, I had finished eating."
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect \u043e\u0431\u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435, \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e\u0435 \u0434\u043e \u0434\u0440\u0443\u0433\u043e\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443:",
+      "options": [
+        "They had already arrived when we got there.",
+        "I hadn't met her before that day.",
+        "She had finish her work before 5 PM.",
+        "We had never been to Paris before."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"had finish\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"had finished\".",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442:",
+      "options": [
+        "After he had left, she started crying.",
+        "After he left, she had started crying.",
+        "After he has left, she started crying.",
+        "After he leaves, she starts crying."
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect (had left) \u2192 Past Simple (started).",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043e\u0448\u0438\u0431\u043a\u0443?",
+      "options": [
+        "She had never seen snow before.",
+        "They hadn't finished the project.",
+        "I had go away before you arrived.",
+        "We had already eaten dinner."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"had go\" \u0434\u043e\u043b\u0436\u043d\u043ebee \"had gone\".",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0432\u044b\u0440\u0430\u0436\u0430\u0435\u0442 \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c?",
+      "options": [
+        "He left the room and then I saw the document.",
+        "He had left the room and then I saw the document.",
+        "He had left the room before I saw the document.",
+        "He leaves the room before I see the document."
+      ],
+      "correct": 2,
+      "explanation": "Past Perfect \u043f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u0435\u0442, \u0447\u0442\u043e \u043f\u0435\u0440\u0432\u043e\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u043e \u0414\u041e \u0432\u0442\u043e\u0440\u043e\u0433\u043e.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"Yes, I had\"?",
+      "options": [
+        "Have you ever traveled abroad?",
+        "Did you ever travel abroad?",
+        "Had you already finished by midnight?",
+        "Are you finished with your work?"
+      ],
+      "correct": 2,
+      "explanation": "\"Had you...?\" = \"Yes, I had.\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"By the time she called, I __ __ the email.\"",
+      "options": [
+        "sent",
+        "had sent",
+        "have sent",
+        "was sending"
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect \u0434\u043b\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f, \u0437\u0430\u0432\u0435\u0440\u0448\u0438\u0432\u0448\u0435\u0433\u043e\u0441\u044f \u0434\u043e \u0434\u0440\u0443\u0433\u043e\u0433\u043e: had sent.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0441\u043b\u043e\u0432 \u0432 Past Perfect \u0432\u043e\u043f\u0440\u043e\u0441\u0435:",
+      "options": [
+        "What had they done before that?",
+        "What they had done before that?",
+        "Had they what done before that?",
+        "They had done what before that?"
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect \u0432\u043e\u043f\u0440\u043e\u0441: Question word + Had + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + Past Participle?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 8
+}

@@ -1,0 +1,1102 @@
+{
+  "title": "Present Continuous",
+  "russian": "\u041d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435",
+  "videoFile": "assets/video/present cont video 1.mp4",
+  "videoFile2": "assets/video/present cont new 2.mp4",
+  "videoFile3": "assets/video/present cont video 2.mp4",
+  "videoFile4": "assets/video/present cont video 3.mp4",
+  "videoQuiz1": [
+    {
+      "text": "Does Victor go for the front door every day or is he doing it at this exact moment?",
+      "options": [
+        "Every day",
+        "At this moment"
+      ],
+      "correct": 1,
+      "explanation": "Victor is currently in the process of going to the front door, not something he does regularly.<br>Example: <em>I am studying English right now.</em>"
+    },
+    {
+      "text": "Is the action complete, or is it in progress?",
+      "options": [
+        "Yes, he reached the front door",
+        "No, he is still walking"
+      ],
+      "correct": 1,
+      "explanation": "The action is still in progress because Present Continuous shows something happening right now, so Victor has not reached the front door yet."
+    },
+    {
+      "text": "Is this a permanent state (like his job) or a temporary action happening right now?",
+      "options": [
+        "Temporary action",
+        "Permanent state"
+      ],
+      "correct": 0,
+      "explanation": "Present Continuous describes something happening right now and not permanent, so it is a temporary action, not a fixed state like a job or habit."
+    },
+    {
+      "text": "Look at the word &ldquo;is&rdquo; in the example: <em>Victor is going home.</em> Is it a main verb or a &ldquo;helping&rdquo; (auxiliary) verb?",
+      "options": [
+        "Main verb",
+        "Auxiliary verb"
+      ],
+      "correct": 1,
+      "explanation": "&ldquo;is&rdquo; is an auxiliary verb because it helps form the Present Continuous tense with the main verb &ldquo;going&rdquo;."
+    },
+    {
+      "text": "If the subject is &ldquo;I&rdquo;, what auxiliary verb do we use?",
+      "options": [
+        "am",
+        "is",
+        "are"
+      ],
+      "correct": 0,
+      "explanation": "Example: <em>I am doing my homework at the moment.</em>"
+    },
+    {
+      "text": "If the subject is &ldquo;They&rdquo;, what auxiliary verb do we use?",
+      "options": [
+        "am",
+        "is",
+        "are"
+      ],
+      "correct": 2,
+      "explanation": "Example: <em>They are playing football right now.</em><br>In the Present Continuous the auxiliary verbs change according to the subject.<br><table style=\"border-collapse:collapse;margin:6px 0;font-size:0.93rem;\"><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">I</td><td>am</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">You</td><td>are</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">He</td><td>is</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">She</td><td>is</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">It</td><td>is</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">They</td><td>are</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">We</td><td>are</td></tr></table>"
+    },
+    {
+      "type": "fill",
+      "text": "Look at the end of the verbs &ldquo;leaving&rdquo; and &ldquo;going&rdquo;. What is the ending of these verbs? (3 letters)",
+      "answer": "ing",
+      "placeholder": "type...",
+      "explanation": "We add &ldquo;-ing&rdquo; to the verbs in the Present Continuous.<br><em>I am leav<strong>ING</strong> for India.</em> <em>He is stay<strong>ING</strong> in the US.</em>"
+    },
+    {
+      "type": "drag",
+      "text": "Based on the examples, what is the sentence structure for Present Continuous?<br><em>I am listening. &nbsp; Victor is leaving. &nbsp; They are running after Victor.</em><br>Put in correct order:",
+      "words": [
+        "verb+ing",
+        "Subject",
+        "am/is/are"
+      ],
+      "correct": "Subject am/is/are verb+ing",
+      "explanation": "The word order in Present Continuous is <strong>SAV</strong> (Subject + Auxiliary verb + Verb+ing)"
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in correct order:",
+      "words": [
+        "is",
+        "Victor",
+        "going",
+        "for the front door."
+      ],
+      "correct": "Victor is going for the front door."
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in correct order:",
+      "words": [
+        "People",
+        "running",
+        "after Victor.",
+        "are"
+      ],
+      "correct": "People are running after Victor."
+    }
+  ],
+  "grammarBank1": {
+    "title": "Present Continuous",
+    "intro": "We use the present continuous for things that are <strong>happening now / at the moment</strong>.<br><br>It is <strong>raining</strong> outside.<br><br>&ldquo;At the moment&rdquo; can mean <em>around now</em>. Ex: I am reading a good book. (not exactly right now)",
+    "structure": "The word order in Present Continuous is <strong>SAV</strong> = Subject&nbsp;+&nbsp;Auxiliary verb&nbsp;+&nbsp;Verb+ing",
+    "examples": [
+      "I <strong>am reading</strong> a book.",
+      "You <strong>are drawing</strong> a picture.",
+      "He <strong>is playing</strong> football.",
+      "<table style=\"border-collapse:collapse;margin:6px 0;font-size:0.93rem;\"><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">I</td><td>am dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">You</td><td>are dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">He</td><td>is dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">She</td><td>is dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">It</td><td>is dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">They</td><td>are dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">We</td><td>are dancing</td></tr></table>"
+    ]
+  },
+  "videoQuiz1b": [
+    {
+      "type": "intro",
+      "text": "<strong>Choose the correct option:</strong>"
+    },
+    {
+      "text": "In the video, the three people ______ in a store.",
+      "options": [
+        "are standing",
+        "is standing",
+        "are stand"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The three people\" = they (plural) &rarr; <strong>are standing</strong>. Use <em>are</em> with plural subjects; <em>is</em> is for he/she/it only; the verb must have <em>-ing</em>."
+    },
+    {
+      "text": "The man in the mask ______ a sleep mask on.",
+      "options": [
+        "is putting",
+        "are putting",
+        "is put"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The man\" = he (3rd person singular) &rarr; <strong>is putting</strong>. The auxiliary must be <em>is</em>, and the verb needs <em>-ing</em>."
+    },
+    {
+      "text": "The man and the woman ______ standing.",
+      "options": [
+        "is",
+        "are",
+        "am"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The man and the woman\" = they (plural) &rarr; <strong>are</strong>. <em>Is</em> is for he/she/it; <em>am</em> is only for I."
+    },
+    {
+      "text": "The man in the mask ______ a brown jacket.",
+      "options": [
+        "is wearing",
+        "are wearing",
+        "am wearing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The man\" = he (3rd person singular) &rarr; <strong>is wearing</strong>. Use <em>is</em> with he/she/it."
+    },
+    {
+      "text": "Monica ______ her hands to explain something.",
+      "options": [
+        "is using",
+        "are using",
+        "is use"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Monica\" = she (3rd person singular) &rarr; <strong>is using</strong>. The verb must have <em>-ing</em>; <em>is use</em> is not a valid form."
+    },
+    {
+      "text": "Look at the other people in the store. They ______ around.",
+      "options": [
+        "is walking",
+        "are walking",
+        "are walk"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"They\" (plural) &rarr; <strong>are walking</strong>. <em>Is</em> is incorrect with <em>they</em>; the verb always needs <em>-ing</em> in Present Continuous."
+    },
+    {
+      "text": "The bald man ______ a small black device in his hand.",
+      "options": [
+        "is hold",
+        "is holding",
+        "are holding"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The bald man\" = he (3rd person singular) &rarr; <strong>is holding</strong>. <em>Is hold</em> is missing <em>-ing</em>; <em>are</em> is incorrect for a singular subject."
+    },
+    {
+      "text": "Monica and the bald man ______ at the man in the mask.",
+      "options": [
+        "is looking",
+        "are looking",
+        "am looking"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Monica and the bald man\" = they (plural) &rarr; <strong>are looking</strong>. <em>Is</em> and <em>am</em> are for singular subjects only."
+    },
+    {
+      "text": "The man with the mask ______ his hands behind his head.",
+      "options": [
+        "is put",
+        "are putting",
+        "is putting"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"The man\" = he (3rd person singular) &rarr; <strong>is putting</strong>. <em>Is put</em> is missing <em>-ing</em>; <em>are</em> is incorrect for a singular subject."
+    },
+    {
+      "text": "What is happening in the store? People ______ in it.",
+      "options": [
+        "is shopping",
+        "are shop",
+        "are shopping"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"People\" = they (plural) &rarr; <strong>are shopping</strong>. <em>Is</em> is for singular; the verb must always end in <em>-ing</em> in Present Continuous."
+    }
+  ],
+  "videoQuiz2": [
+    {
+      "type": "intro",
+      "num": 1,
+      "text": "Look at the examples: &ldquo;She is not calling.&rdquo; &ldquo;Ross&rsquo;s phone is not working.&rdquo;"
+    },
+    {
+      "subLetter": "a",
+      "text": "Are these sentences negative or positive?",
+      "options": [
+        "negative",
+        "positive"
+      ],
+      "correct": 0
+    },
+    {
+      "type": "fill",
+      "subLetter": "b",
+      "text": "What extra word do we add to make the sentence negative?",
+      "answer": "not",
+      "placeholder": "type..."
+    },
+    {
+      "subLetter": "c",
+      "text": "Where do we put &ldquo;not&rdquo; in the sentence to make negative sentences?",
+      "options": [
+        "before the auxiliary verb (not am, not is, not are)",
+        "after the auxiliary verb (am not, is not, are not)"
+      ],
+      "correct": 1
+    },
+    {
+      "type": "intro",
+      "num": 2,
+      "text": "Put the words in correct order:"
+    },
+    {
+      "type": "drag",
+      "subLetter": "a",
+      "text": "Put the words in correct order:",
+      "words": [
+        "isn't",
+        "sleeping.",
+        "Rachel"
+      ],
+      "correct": "Rachel isn't sleeping."
+    },
+    {
+      "type": "drag",
+      "subLetter": "b",
+      "text": "Put the words in correct order:",
+      "words": [
+        "Ross",
+        "calling",
+        "isn't",
+        "her."
+      ],
+      "correct": "Ross isn't calling her."
+    },
+    {
+      "type": "intro",
+      "num": 3,
+      "text": "Look at the examples: &ldquo;Why aren&rsquo;t you calling?&rdquo; &ldquo;Is the phone working?&rdquo; &ldquo;Am I waiting for her call?&rdquo;"
+    },
+    {
+      "subLetter": "a",
+      "text": "What words start the question?",
+      "options": [
+        "Am, Is, Are",
+        "Do, Does"
+      ],
+      "correct": 0
+    },
+    {
+      "subLetter": "b",
+      "text": "Where is the subject in the question?",
+      "options": [
+        "before auxiliary verbs (am, is, are)",
+        "after auxiliary verbs (am, is, are)"
+      ],
+      "correct": 1
+    },
+    {
+      "type": "intro",
+      "num": 4,
+      "text": "Put the words in correct order:"
+    },
+    {
+      "type": "drag",
+      "subLetter": "a",
+      "text": "Put the words in correct order:",
+      "words": [
+        "they",
+        "Are",
+        "taking",
+        "a picture?"
+      ],
+      "correct": "Are they taking a picture?"
+    },
+    {
+      "type": "drag",
+      "subLetter": "b",
+      "text": "Put the words in correct order:",
+      "words": [
+        "Why",
+        "she",
+        "calling?",
+        "isn't"
+      ],
+      "correct": "Why isn't she calling?"
+    }
+  ],
+  "grammarBank2": {
+    "blocks": [
+      {
+        "intro": "<strong>NEGATIVE</strong><br>Word order: <strong>S + am not / isn&rsquo;t / aren&rsquo;t + V+ing</strong>",
+        "table": [
+          [
+            "I",
+            "am not"
+          ],
+          [
+            "He / She / It",
+            "isn&rsquo;t &nbsp;<em>(= is not)</em>"
+          ],
+          [
+            "You / We / They",
+            "aren&rsquo;t &nbsp;<em>(= are not)</em>"
+          ]
+        ],
+        "examples": [
+          "I <strong>am not</strong> reading a classic book.",
+          "You <strong>aren&rsquo;t</strong> studying biology.",
+          "She <strong>isn&rsquo;t</strong> drawing a picture."
+        ]
+      },
+      {
+        "intro": "<strong>INTERROGATIVE</strong><br>Word order: <strong>Am / Is / Are + S + V+ing?</strong>",
+        "table": [
+          [
+            "I",
+            "Am I"
+          ],
+          [
+            "He / She / It",
+            "Is he / she / it"
+          ],
+          [
+            "You / We / They",
+            "Are you / we / they"
+          ]
+        ],
+        "examples": [
+          "<strong>Am</strong> I reading a classic book?",
+          "<strong>Are</strong> you studying biology?",
+          "<strong>Is</strong> she drawing a picture?"
+        ]
+      }
+    ]
+  },
+  "videoQuiz2b": [
+    {
+      "type": "intro",
+      "text": "<strong>Negative sentences</strong> \u2014 Choose the correct option:"
+    },
+    {
+      "text": "Chandler ______ his boss right now; he is waiting for a girl to call.",
+      "options": [
+        "is not calling",
+        "am not calling",
+        "are not calling"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Chandler = he (3rd person singular) &rarr; <strong>is not calling</strong>."
+    },
+    {
+      "text": "The girl ______ Chandler&rsquo;s phone calls yet.",
+      "options": [
+        "are not returning",
+        "is not returning",
+        "not returning"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The girl\" = she (3rd person singular) &rarr; <strong>is not returning</strong>. \"not returning\" alone is missing the auxiliary verb."
+    },
+    {
+      "text": "The friends ______ dinner in this scene; they are just hanging out.",
+      "options": [
+        "are not eating",
+        "is not eating",
+        "am not eating"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The friends\" = they (plural) &rarr; <strong>are not eating</strong>."
+    },
+    {
+      "text": "Monica ______ the board game with the others; she has a magazine.",
+      "options": [
+        "are not playing",
+        "am not playing",
+        "is not playing"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"Monica\" = she (3rd person singular) &rarr; <strong>is not playing</strong>."
+    },
+    {
+      "text": "Joey ______ a jacket inside the apartment; he has a white sweater on.",
+      "options": [
+        "is not wearing",
+        "are not wearing",
+        "not wearing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Joey\" = he (3rd person singular) &rarr; <strong>is not wearing</strong>. \"not wearing\" is missing the auxiliary verb."
+    },
+    {
+      "text": "Phoebe ______ at Chandler; she is speaking calmly to him.",
+      "options": [
+        "are not shouting",
+        "is not shouting",
+        "am not shouting"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Phoebe\" = she (3rd person singular) &rarr; <strong>is not shouting</strong>."
+    },
+    {
+      "text": "They ______ television in the background.",
+      "options": [
+        "is not watching",
+        "am not watching",
+        "are not watching"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"They\" (plural) &rarr; <strong>are not watching</strong>."
+    },
+    {
+      "text": "Chandler ______ because he is anxious about the phone call.",
+      "options": [
+        "are not smiling",
+        "is not smiling",
+        "am not smiling"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Chandler\" = he (3rd person singular) &rarr; <strong>is not smiling</strong>."
+    },
+    {
+      "text": "Ross ______ in this specific clip; he is just listening.",
+      "options": [
+        "are not talking",
+        "is not talking",
+        "am not talking"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Ross\" = he (3rd person singular) &rarr; <strong>is not talking</strong>."
+    },
+    {
+      "text": "The phone ______ with a call from the girl.",
+      "options": [
+        "is not ringing",
+        "are not ringing",
+        "am not ringing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The phone\" = it (3rd person singular) &rarr; <strong>is not ringing</strong>."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Interrogative sentences</strong> \u2014 Choose the correct option:"
+    },
+    {
+      "text": "______ Chandler ______ a very large cell phone?",
+      "options": [
+        "Are / holding",
+        "Is / holding",
+        "Is / hold"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Chandler\" = he (3rd person singular) &rarr; <strong>Is</strong> + holding (-ing form)."
+    },
+    {
+      "text": "______ the friends ______ a board game?",
+      "options": [
+        "Is / playing",
+        "Are / playing",
+        "Are / play"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The friends\" = they (plural) &rarr; <strong>Are</strong> + playing (-ing form)."
+    },
+    {
+      "text": "______ Monica ______ Chandler advice about the phone?",
+      "options": [
+        "Is / giving",
+        "Are / giving",
+        "Is / give"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Monica\" = she (3rd person singular) &rarr; <strong>Is</strong> + giving (-ing form)."
+    },
+    {
+      "text": "______ they ______ in the living room?",
+      "options": [
+        "Is / sitting",
+        "Are / sitting",
+        "Are / sit"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"They\" (plural) &rarr; <strong>Are</strong> + sitting (-ing form)."
+    },
+    {
+      "text": "______ Chandler ______ about his date?",
+      "options": [
+        "Are / worrying",
+        "Is / worrying",
+        "Am / worrying"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Chandler\" = he (3rd person singular) &rarr; <strong>Is</strong> + worrying (-ing form)."
+    },
+    {
+      "text": "______ Phoebe ______ her finger while she speaks?",
+      "options": [
+        "Is / pointing",
+        "Are / pointing",
+        "Is / point"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Phoebe\" = she (3rd person singular) &rarr; <strong>Is</strong> + pointing (-ing form)."
+    },
+    {
+      "text": "______ Joey and Ross ______ to Chandler&rsquo;s problem?",
+      "options": [
+        "Is / listening",
+        "Are / listening",
+        "Are / listen"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Joey and Ross\" = they (plural) &rarr; <strong>Are</strong> + listening (-ing form)."
+    },
+    {
+      "text": "______ the phone ______ correctly?",
+      "options": [
+        "Are / working",
+        "Is / working",
+        "Is / work"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The phone\" = it (3rd person singular) &rarr; <strong>Is</strong> + working (-ing form)."
+    },
+    {
+      "text": "______ Chandler ______ back and forth in the kitchen?",
+      "options": [
+        "Is / pacing",
+        "Are / pacing",
+        "Am / pacing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Chandler\" = he (3rd person singular) &rarr; <strong>Is</strong> + pacing (-ing form)."
+    },
+    {
+      "text": "______ they ______ a conversation about answering machines?",
+      "options": [
+        "Is / having",
+        "Are / having",
+        "Are / have"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"They\" (plural) &rarr; <strong>Are</strong> + having (-ing form)."
+    }
+  ],
+  "videoQuiz3": [
+    {
+      "text": "Are her parents taking her brother to see his new college right now?",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "correct": 1,
+      "explanation": "The parents are not heading there at this exact moment \u2014 this is a <strong>future arrangement</strong>: a fixed plan already organized for this weekend."
+    },
+    {
+      "text": "Is this happening in the past, the present, or the future?",
+      "options": [
+        "past",
+        "present",
+        "future"
+      ],
+      "correct": 2,
+      "explanation": "This sentence uses Present Continuous to describe a <strong>future arrangement</strong> \u2014 a fixed plan that has already been organized and confirmed."
+    },
+    {
+      "text": "Are the parents going to the college randomly or is it a fixed arrangement?",
+      "options": [
+        "random",
+        "a fixed arrangement"
+      ],
+      "correct": 1,
+      "explanation": "It is a <strong>fixed arrangement</strong>. Present Continuous used for the future always refers to plans that are already <em>organized and confirmed</em> \u2014 never spontaneous."
+    }
+  ],
+  "grammarBank3": {
+    "blocks": [
+      {
+        "intro": "<strong>FUTURE ARRANGEMENTS</strong><br>We also use Present Continuous to talk about fixed plans that are already organized, scheduled, or confirmed with at least one other person.",
+        "table": [],
+        "examples": [
+          "I&rsquo;m flying to New York tomorrow. <em>(I have the ticket.)</em>",
+          "You are seeing the dentist at 6:00. <em>(the appointment is made.)</em>",
+          "We&rsquo;re having a party on Saturday. <em>(we invited the guests.)</em>"
+        ]
+      }
+    ]
+  },
+  "videoQuiz3b": [
+    {
+      "type": "intro",
+      "text": "<strong>Choose the correct option:</strong>"
+    },
+    {
+      "text": "What are your parents doing this weekend? The girl wants to know&hellip;",
+      "options": [
+        "What they do every weekend.",
+        "Their specific, ready plan for this Saturday and Sunday.",
+        "What they are doing right now in this video."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "The question asks about a <strong>specific future plan</strong> \u2014 what is organized for this weekend."
+    },
+    {
+      "text": "When the man says &ldquo;They are taking my brother to a college station&rdquo;, he means:",
+      "options": [
+        "They are driving to the station right now.",
+        "They go there to see him every week.",
+        "This trip is already a fixed plan for this weekend."
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "Present Continuous here describes a <strong>fixed future arrangement</strong> \u2014 not an action happening at this moment."
+    },
+    {
+      "text": "&ldquo;They are visiting the school&rdquo; is a FUTURE PLAN if:",
+      "options": [
+        "It is an organized part of their trip this weekend.",
+        "They are inside the school building now.",
+        "They like to visit different schools."
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "A future arrangement means the event is <strong>already organized</strong> \u2014 it is a confirmed part of their plan."
+    },
+    {
+      "text": "According to the video, when the man says &ldquo;We are looking at dorms&rdquo;, he means:",
+      "options": [
+        "They are looking at pictures of dorms now.",
+        "They have a planned time to look at dorms during this trip.",
+        "He wants to look at dorms sometime in the future."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "The phrase describes a <strong>planned activity within the trip</strong> \u2014 a fixed arrangement, not a vague wish."
+    },
+    {
+      "text": "How is &ldquo;They are getting him acquainted with the school&rdquo; used?",
+      "options": [
+        "As a long activity that happens all year.",
+        "As a specific, planned activity for this weekend.",
+        "As a general fact about parents."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "This is a <strong>specific, organized activity</strong> \u2014 part of the fixed plan for this weekend visit."
+    },
+    {
+      "text": "Which sentence below shows a fixed FUTURE plan?",
+      "options": [
+        "&ldquo;Everything is decided. They are going to the college station this weekend.&rdquo;",
+        "&ldquo;They are going to the college station to meet friends now.&rdquo;",
+        "&ldquo;They may go to the college station.&rdquo;"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "Only the first sentence describes an event that is <strong>already decided and organized</strong> \u2014 the hallmark of a future arrangement in Present Continuous."
+    }
+  ],
+  "videoQuiz4": [
+    {
+      "text": "In the video, does a young man usually live there?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "No \u2014 he does <strong>not</strong> usually live there. He is only staying there temporarily for a short period."
+    },
+    {
+      "text": "Does the man live at the house for a short time period?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 0,
+      "explanation": "We use Present Continuous to talk about actions or situations that last for a <strong>certain time period</strong>. The man is staying there temporarily \u2014 not living there permanently."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Compare these two sentences:</strong><br><br>&nbsp;&nbsp;\ud83d\udd35 <strong>A:</strong> I live here.&nbsp;&nbsp;&nbsp;&nbsp;\ud83d\udfe1 <strong>B:</strong> I am staying here for a few days."
+    },
+    {
+      "text": "In which sentence is the place a permanent home?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 0,
+      "explanation": "<strong>A: &ldquo;I live here&rdquo;</strong> uses Present Simple \u2014 this describes a <em>permanent</em> fact or state."
+    },
+    {
+      "text": "In which sentence is the place a temporary place for a vacation or a short time period?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 1,
+      "explanation": "<strong>B: &ldquo;I am staying here for a few days&rdquo;</strong> uses Present Continuous \u2014 a <em>temporary</em> situation with a defined short duration."
+    }
+  ],
+  "grammarBank4": {
+    "blocks": [
+      {
+        "intro": "<strong>TEMPORARY SITUATIONS</strong><br>We also use Present Continuous with longer periods of time for temporary situations. It emphasizes that the action is temporary \u2014 not a routine or habit.",
+        "table": [],
+        "examples": [
+          "I am not driving her car this month, because I broke my leg.",
+          "He is staying at this house for a few days."
+        ]
+      }
+    ]
+  },
+  "videoQuiz4b": [
+    {
+      "type": "intro",
+      "text": "<strong>Choose the correct option:</strong>"
+    },
+    {
+      "text": "Is the blond man living in the house forever?",
+      "options": [
+        "Yes, he is living there forever.",
+        "No, he is only staying there for a few days.",
+        "No, he is moving out today.",
+        "Yes, he just bought the house."
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "The blond man is there <strong>temporarily</strong> \u2014 Present Continuous signals a short-term stay, not a permanent home."
+    },
+    {
+      "text": "What is the man in the cap asking about?",
+      "options": [
+        "He is asking if the man is working here.",
+        "He is asking if the man is playing the piano.",
+        "He is asking if the man is living here.",
+        "He is asking if the man is selling the house."
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "The man in the cap is asking whether the blond man <strong>lives there</strong> \u2014 he is curious about his temporary presence."
+    },
+    {
+      "text": "Choose the correct sentence based on the blond man&rsquo;s response:",
+      "options": [
+        "He isn&rsquo;t staying there for long.",
+        "He isn&rsquo;t visiting his parents.",
+        "He isn&rsquo;t playing the piano.",
+        "He isn&rsquo;t wearing a hat."
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "The blond man confirms he is only there temporarily \u2014 <strong>he isn&rsquo;t staying for long</strong>."
+    },
+    {
+      "text": "Why is the man in the cap hitting the piano?",
+      "options": [
+        "He is practicing a song.",
+        "He is trying to wake someone up.",
+        "He is testing the sound.",
+        "He is showing off his skills."
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "He hits the piano to <strong>test the sound</strong> \u2014 he is checking whether it works properly."
+    },
+    {
+      "text": "Is the man in the cap being polite while he is speaking?",
+      "options": [
+        "Yes, he is being very respectful.",
+        "No, he is shouting at the blond man.",
+        "Yes, he is offering the other man a drink.",
+        "No, he is acting a bit suspicious."
+      ],
+      "correct": 3,
+      "wrongOnly": true,
+      "explanation": "The man in the cap behaves in a <strong>suspicious</strong> way \u2014 he is not being straightforwardly polite."
+    }
+  ],
+  "structure": "am/is/are + V+ing",
+  "usage": [
+    "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442 \u0432 \u0434\u0430\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442",
+    "\u0412\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435 \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u0438",
+    "\u0420\u0430\u0437\u0434\u0440\u0430\u0436\u0430\u044e\u0449\u0438\u0435 \u043f\u0440\u0438\u0432\u044b\u0447\u043a\u0438 \u0441 \"always\"",
+    "\u041f\u043b\u0430\u043d \u043d\u0430 \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0431\u0443\u0434\u0443\u0449\u0435\u0435"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435",
+      "example": "She is reading a book right now."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "They are not watching TV."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "Are you studying?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "Friends",
+      "dialogue": "\"I'm getting married!\"",
+      "translation": "\u042f \u0432\u044b\u0445\u043e\u0436\u0443 \u0437\u0430\u043c\u0443\u0436!"
+    },
+    {
+      "source": "Inception",
+      "dialogue": "\"He's coming back to me.\"",
+      "translation": "\u041e\u043d \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f \u043a\u043e \u043c\u043d\u0435."
+    }
+  ],
+  "exercises": [
+    {
+      "question": "\u0427\u0442\u043e \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442 \u043f\u0440\u044f\u043c\u043e \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "options": [
+        "I watch television.",
+        "I'm watching television.",
+        "I watches television.",
+        "I am watch television."
+      ],
+      "correct": 1,
+      "explanation": "Present Continuous \u043e\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u0442 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0432 \u0434\u0430\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442: am/is/are + \u0433\u043b\u0430\u0433\u043e\u043b + ing",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435:",
+      "options": [
+        "She not is working.",
+        "She is not working.",
+        "She don't working.",
+        "She isn't work."
+      ],
+      "correct": 1,
+      "explanation": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Present Continuous: am/is/are + not + \u0433\u043b\u0430\u0433\u043e\u043b + ing",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0432 Present Continuous:",
+      "options": [
+        "He is studying French.",
+        "He studying French.",
+        "He study French.",
+        "He are studying French."
+      ],
+      "correct": 0,
+      "explanation": "\u0421 \"he\" (\u0442\u0440\u0435\u0442\u044c\u0435 \u043b\u0438\u0446\u043e \u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435) \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \"is\": is + studying.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0443\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "They are not playing football.",
+        "We're cooking dinner right now.",
+        "I'm not reading the book.",
+        "She isn't drinking coffee."
+      ],
+      "correct": 1,
+      "explanation": "\u042d\u0442\u043e \u0443\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435: We're cooking. \u041e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u0435 - \u043e\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0435.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"The children __ playing in the yard.\"",
+      "options": [
+        "is",
+        "are",
+        "am",
+        "be"
+      ],
+      "correct": 1,
+      "explanation": "\"Children\" (\u043c\u043d\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435 \u0447\u0438\u0441\u043b\u043e) \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \"are\".",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "Are you listening?",
+        "You are listening?",
+        "Do you are listening?",
+        "Is you listening?"
+      ],
+      "correct": 0,
+      "explanation": "\u0412\u043e\u043f\u0440\u043e\u0441 \u0432 Present Continuous: Are + you + listening?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "He is buying a new car.",
+        "They are not staying at home.",
+        "I'm writing a letter.",
+        "She is working now."
+      ],
+      "correct": 1,
+      "explanation": "\u042d\u0442\u043e \u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435: are not staying.",
+      "difficulty": "medium",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"I __ wearing glasses.\"",
+      "options": [
+        "am not",
+        "is not",
+        "are not",
+        "not am"
+      ],
+      "correct": 0,
+      "explanation": "\u0421 \"I\" \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \"am not\" \u0432 Present Continuous.",
+      "difficulty": "medium",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443 \u0432 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u043a\u0435:",
+      "options": [
+        "She is reading a novel.",
+        "They are watching a film.",
+        "He are playing tennis.",
+        "I'm eating breakfast."
+      ],
+      "correct": 2,
+      "explanation": "\"He\" \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \"is\", \u043d\u0435 \"are\": He is playing.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"What __ you __? Are you busy?\"",
+      "options": [
+        "are, doing",
+        "is, doing",
+        "do, do",
+        "are, do"
+      ],
+      "correct": 0,
+      "explanation": "\u0421 \"you\": What are you doing?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0432\u0435\u0440\u043d\u043e \u0432\u044b\u0440\u0430\u0436\u0430\u0435\u0442 \u0442\u0435\u043a\u0443\u0449\u0438\u0439 \u043f\u0440\u043e\u0446\u0435\u0441\u0441?",
+      "options": [
+        "Right now, she is studying mathematics.",
+        "Right now, she studies mathematics.",
+        "Right now, she will study mathematics.",
+        "Right now, she studied mathematics."
+      ],
+      "correct": 0,
+      "explanation": "Present Continuous \u0432\u044b\u0440\u0430\u0436\u0430\u0435\u0442 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0432 \u0442\u0435\u043a\u0443\u0449\u0438\u0439 \u043c\u043e\u043c\u0435\u043d\u0442: is studying.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432\u044b\u0440\u0430\u0436\u0435\u043d\u043e \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e?",
+      "options": [
+        "They are not coming to the party.",
+        "She isn't sleeping.",
+        "I'm not listening to you.",
+        "We no are waiting for him."
+      ],
+      "correct": 3,
+      "explanation": "\u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e: We are not waiting. \u041d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e: We no are waiting.",
+      "difficulty": "hard",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0432\u043e\u043f\u0440\u043e\u0441:",
+      "options": [
+        "Is they going to the cinema?",
+        "Are they going to the cinema?",
+        "Do they going to the cinema?",
+        "They are going to the cinema?"
+      ],
+      "correct": 1,
+      "explanation": "\u0421 \"they\": Are they going...?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"__ he __ his homework right now?\"",
+      "options": [
+        "Do, do",
+        "Does, do",
+        "Is, doing",
+        "Are, doing"
+      ],
+      "correct": 2,
+      "explanation": "\u0412 Present Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Is + he + doing?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0441 \u043e\u0448\u0438\u0431\u043a\u043e\u0439:",
+      "options": [
+        "The students are building a project.",
+        "She is not feeling well today.",
+        "We are watching the movie and enjoying them.",
+        "I'm staying at my friend's place this week."
+      ],
+      "correct": 2,
+      "explanation": "\"Movie\" (\u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435 \u0447\u0438\u0441\u043b\u043e) \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \"it\", \u043d\u0435 \"them\".",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"Yes, I am\"?",
+      "options": [
+        "Were you sleeping?",
+        "Are you reading a book?",
+        "Did you go to the store?",
+        "Do you like pizza?"
+      ],
+      "correct": 1,
+      "explanation": "Present Continuous \u0432\u043e\u043f\u0440\u043e\u0441 \"Are you reading?\" = \"Yes, I am reading.\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 2
+}

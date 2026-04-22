@@ -1,0 +1,229 @@
+{
+  "title": "Past Perfect Continuous",
+  "russian": "\u041f\u0440\u043e\u0448\u0435\u0434\u0448\u0435\u0435 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435",
+  "structure": "had + been + V+ing",
+  "usage": [
+    "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0434\u043b\u0438\u043b\u043e\u0441\u044c \u0434\u043e \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u043c\u043e\u043c\u0435\u043d\u0442\u0430 \u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u043c",
+    "\u041f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u043d\u0438\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u0435\u0434\u0448\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f",
+    "\u041f\u0440\u0438\u0447\u0438\u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435",
+      "example": "I had been working for 5 hours when he arrived."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "They hadn't been waiting long."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "How long had you been studying?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "The Pursuit of Happyness",
+      "dialogue": "\"I had been trying for so long to make it.\"",
+      "translation": "\u042f \u0442\u0430\u043a \u0434\u043e\u043b\u0433\u043e \u043f\u044b\u0442\u0430\u043b\u0441\u044f \u0434\u043e\u0431\u0438\u0442\u044c\u0441\u044f \u0443\u0441\u043f\u0435\u0445\u0430."
+    }
+  ],
+  "exercises": [
+    {
+      "question": "\u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "She had been working there for 10 years when she quit.",
+        "She has been working there for 10 years when she quit.",
+        "She was working there for 10 years when she quit.",
+        "She had worked there for 10 years when she quit."
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect Continuous \u0434\u043b\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u043e\u0435 \u0434\u043b\u0438\u043b\u043e\u0441\u044c \u0438 \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u043e\u0441\u044c \u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u043c.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"He __ __ __ French before moving to Paris.\"",
+      "options": [
+        "had studying",
+        "had been studying",
+        "was studying",
+        "has been studying"
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect Continuous: had been + V+ing.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "By the time we arrived, they play here for hours.",
+        "By the time we arrived, they had been playing here for hours.",
+        "By the time we arrived, they were playing here for hours.",
+        "By the time we arrived, they have been playing for hours."
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect Continuous: had been playing.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Past Perfect Continuous:",
+      "options": [
+        "I had not been waiting.",
+        "I hadn't been waiting.",
+        "\u041e\u0431\u0430 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u0430 \u0432\u0435\u0440\u043d\u044b.",
+        "\u041d\u0438 \u043e\u0434\u0438\u043d \u043d\u0435 \u0432\u0435\u0440\u0435\u043d."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0431\u0430 - \"had not been\" \u0438 \"hadn't been\" - \u0432\u0435\u0440\u043d\u044b.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"They __ not __ __ the project before the deadline.\"",
+      "options": [
+        "had, been, working on",
+        "had been, working",
+        "were not, working",
+        "had not, worked"
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect Continuous \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: had not been working on.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "Had you been studying long?",
+        "You had been studying long?",
+        "Had been you studying long?",
+        "Been you had studying?"
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Had + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + been + V+ing?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"How long __ she __ __ at the hospital?\"",
+      "options": [
+        "had, working",
+        "had been, worked",
+        "had been, working",
+        "was, working"
+      ],
+      "correct": 2,
+      "explanation": "Past Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: How long had she been working?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 Past Perfect Continuous:",
+      "options": [
+        "The students studied for 3 hours before the exam started.",
+        "The students had been studying for 3 hours before the exam started.",
+        "The students are studying for 3 hours before the exam starts.",
+        "The students have been studying for 3 hours before the exam starts."
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect Continuous \u0434\u043b\u044f \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f, \u0437\u0430\u0432\u0435\u0440\u0448\u0438\u0432\u0448\u0435\u0433\u043e\u0441\u044f \u0434\u043e \u0434\u0440\u0443\u0433\u043e\u0433\u043e \u0441\u043e\u0431\u044b\u0442\u0438\u044f: had been studying.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443:",
+      "options": [
+        "By the time I arrived, they had been waiting for hours.",
+        "She hadn't been feeling well all week.",
+        "We had been worked on the project when the power went out.",
+        "They had been traveling for weeks before settling down."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"had been worked\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"had been working\".",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442:",
+      "options": [
+        "When she called, I was writing for hours.",
+        "When she called, I had been writing for hours.",
+        "When she called, I written for hours.",
+        "When she called, I been writing for hours."
+      ],
+      "correct": 1,
+      "explanation": "Past Perfect Continuous: had been writing.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043e\u0448\u0438\u0431\u043a\u0443?",
+      "options": [
+        "They had been training hard for the competition.",
+        "Before the accident, he hadn't been feeling right.",
+        "She had been searching for the job during weeks.",
+        "We had been living there for 5 years before moving."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"during weeks\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"for weeks\".",
+      "difficulty": "hard",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 Past Perfect Continuous?",
+      "options": [
+        "He worked as a teacher for 20 years when he retired.",
+        "He had worked as a teacher for 20 years when he retired.",
+        "He had been working as a teacher for 20 years when he retired.",
+        "He was working as a teacher for 20 years when he retired."
+      ],
+      "correct": 2,
+      "explanation": "Past Perfect Continuous \u043f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u0435\u0442 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c: had been working.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"Yes, I had been\"?",
+      "options": [
+        "Did you study hard?",
+        "Have you been working long?",
+        "Had you been working there before that?",
+        "Were you working yesterday?"
+      ],
+      "correct": 2,
+      "explanation": "\"Had you been working...?\" = \"Yes, I had (been).\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"How long __ they __ __ __ their business?\"",
+      "options": [
+        "had, been, running",
+        "had, running",
+        "were, running",
+        "had been run"
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: How long had they been running?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0441\u043b\u043e\u0432 \u0432 Past Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441\u0435:",
+      "options": [
+        "How long had you been playing before I arrived?",
+        "How long you had been playing before I arrived?",
+        "You had been playing how long before I arrived?",
+        "Had you been playing how long before I arrived?"
+      ],
+      "correct": 0,
+      "explanation": "Past Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Question word + Had + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + been + V+ing?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 11
+}

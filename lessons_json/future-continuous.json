@@ -1,0 +1,818 @@
+{
+  "title": "Future Continuous",
+  "russian": "\u0411\u0443\u0434\u0443\u0449\u0435\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435",
+  "videoFile": "assets/video/future cont 1.mp4",
+  "videoFile2": "assets/video/future cont 2.mp4",
+  "videoFile3": "assets/video/future cont 3.mp4",
+  "structure": "will + be + V+ing",
+  "usage": [
+    "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442\u044c \u0432 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442 \u0432 \u0431\u0443\u0434\u0443\u0449\u0435\u043c",
+    "\u041d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0435 \u0431\u0443\u0434\u0443\u0449\u0435\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435",
+    "\u0422\u043e, \u0447\u0442\u043e \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442\u044c \u043a\u043e\u0433\u0434\u0430 \u043f\u0440\u043e\u0438\u0437\u043e\u0439\u0434\u0435\u0442 \u0434\u0440\u0443\u0433\u043e\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435",
+      "example": "I will be studying this time tomorrow."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "They won't be sleeping."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "Will you be working then?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "Top Gun",
+      "dialogue": "\"I will be flying tomorrow.\"",
+      "translation": "\u042f \u0431\u0443\u0434\u0443 \u043b\u0435\u0442\u0430\u0442\u044c \u0437\u0430\u0432\u0442\u0440\u0430."
+    }
+  ],
+  "videoQuiz1": [
+    {
+      "text": "&ldquo;I guess I&rsquo;ll be practicing for another half hour.&rdquo; William means&hellip;",
+      "options": [
+        "He will spend another half hour practicing.",
+        "He will start practicing in 30 minutes."
+      ],
+      "correct": 0,
+      "explanation": "When he says &ldquo;I&rsquo;ll be practicing,&rdquo; he is describing an activity that will be <strong>in progress</strong> in the future."
+    },
+    {
+      "text": "Is the speaker talking about a completed action or a continuous action?",
+      "options": [
+        "A completed action",
+        "A continuous action"
+      ],
+      "correct": 1,
+      "explanation": "The Future Continuous describes an action that will be <strong>ongoing</strong> at a specific point in the future &mdash; not finished, but in progress."
+    },
+    {
+      "type": "intro",
+      "text": "Compare these two sentences:<br><em>A: I will practice for an hour.</em><br><em>B: I will be practicing for an hour.</em>"
+    },
+    {
+      "text": "Which sentence sounds like a promise or a decision made at the moment?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 0,
+      "explanation": "The Future Simple (<strong>will</strong>) is often used for facts, promises, or quick decisions."
+    },
+    {
+      "text": "Which sentence emphasizes the duration or the &ldquo;process&rdquo; of the activity?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 1,
+      "explanation": "The Future Continuous (<strong>will be -ing</strong>) focuses on the activity itself taking place over a period of time."
+    },
+    {
+      "type": "intro",
+      "text": "Look at the sentences:<br><em>&ldquo;How much longer <strong>will you be practicing</strong>? I <strong>will be practicing</strong> for another half hour.&rdquo;</em>"
+    },
+    {
+      "type": "fill",
+      "text": "What two &ldquo;helping&rdquo; verbs are repeated in each sentence?",
+      "answer": "will be",
+      "placeholder": "type...",
+      "explanation": "The auxiliary phrase in the Future Continuous is always <strong>will be</strong>."
+    },
+    {
+      "text": "Does &ldquo;will be&rdquo; change according to the subjects (I, You, He, or They)?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "In the Future Continuous, the auxiliary verbs &ldquo;will be&rdquo; stay the same for every person.<br><em>I <strong>will be</strong> driving home after 2 hours.</em><br><em>They <strong>will be</strong> eating dinner tomorrow at this time.</em>"
+    },
+    {
+      "text": "What form is the main verb in the sentences?",
+      "options": [
+        "Base form (infinitive)",
+        "Past Participle (3rd form)",
+        "Present Participle (-ing form)"
+      ],
+      "correct": 2,
+      "explanation": "We use the <strong>-ing form</strong> of the verb for all continuous tenses (Past, Present, and Future).<br><em>I am driv<strong>ing</strong> &nbsp;&bull;&nbsp; I was driv<strong>ing</strong> &nbsp;&bull;&nbsp; I will be driv<strong>ing</strong></em>"
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order to describe William&rsquo;s afternoon:",
+      "words": [
+        "will",
+        "he",
+        "playing",
+        "be",
+        "the",
+        "violin",
+        "at 4:00 PM."
+      ],
+      "correct": "He will be playing the violin at 4:00 PM."
+    }
+  ],
+  "grammarBank1": {
+    "blocks": [
+      {
+        "intro": "We use the Future Continuous for:<br><ul style=\"margin:8px 0 0 0;padding-left:18px;\"><li>Actions <strong>in progress at a specific time</strong> in the future;</li><li><strong>Parallel</strong> future actions.</li></ul><br>The word order for positive Future Continuous sentences is <strong>SAV-ing</strong><br>(<strong>S</strong>ubject + <strong>will be</strong> + <strong>verb+ing</strong> / present participle).<br><br>In the Future Continuous, the auxiliary phrase <strong>&ldquo;will be&rdquo; never changes</strong>. It remains the same regardless of the subject.<br><table style=\"border-collapse:collapse;margin:10px 0;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Subject</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Auxiliary Verbs</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Main Verb (V-ing)</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">I</td><td style=\"padding:3px 14px 3px 0;\">will be</td><td>practicing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">You</td><td style=\"padding:3px 14px 3px 0;\">will be</td><td>practicing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">He / She / It</td><td style=\"padding:3px 14px 3px 0;\">will be</td><td>practicing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">We</td><td style=\"padding:3px 14px 3px 0;\">will be</td><td>practicing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">They</td><td style=\"padding:3px 14px 3px 0;\">will be</td><td>practicing</td></tr></table>",
+        "table": [],
+        "examples": [
+          "I <strong>will be practicing</strong> for another half hour.",
+          "They <strong>will be waiting</strong> for us at the station.",
+          "I <strong>will be cooking</strong> when you will be sleeping."
+        ]
+      }
+    ]
+  },
+  "videoQuiz1c": [
+    {
+      "type": "fill",
+      "text": "What do we add to the auxiliary verb to negate the sentences in the Future Continuous?",
+      "answer": "will not be",
+      "altAnswers": [
+        "won't be",
+        "not"
+      ],
+      "placeholder": "type...",
+      "explanation": "To make the Future Continuous negative, insert <strong>not</strong> between &ldquo;will&rdquo; and &ldquo;be&rdquo;: <strong>will not be</strong> (or the contraction <strong>won&rsquo;t be</strong>)."
+    },
+    {
+      "text": "Choose the correct negative sentence in the Future Continuous:",
+      "options": [
+        "I will be not practicing.",
+        "I will not (won&rsquo;t) be practicing."
+      ],
+      "correct": 1,
+      "explanation": "In negative Future Continuous sentences, <strong>not</strong> stays between &ldquo;will&rdquo; and &ldquo;be&rdquo;.<br><em>I <strong>will not be</strong> sleeping at 11 pm.</em>"
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order for a question:",
+      "words": [
+        "be",
+        "dinner",
+        "will",
+        "you",
+        "having",
+        "soon?"
+      ],
+      "correct": "Will you be having dinner soon?"
+    },
+    {
+      "text": "Look at the question &ldquo;How much longer <strong>will you be</strong> practicing?&rdquo;<br>In interrogative Future Continuous sentences the subject stays&hellip;",
+      "options": [
+        "Between &ldquo;will&rdquo; and &ldquo;be&rdquo;.",
+        "After &ldquo;will be&rdquo;.",
+        "Before &ldquo;will be&rdquo;."
+      ],
+      "correct": 0,
+      "explanation": "In questions, the subject always &ldquo;sandwiches&rdquo; itself between &ldquo;will&rdquo; and &ldquo;be&rdquo;.<br><em><strong>Will you be</strong> swimming in the pool tomorrow afternoon?</em>"
+    }
+  ],
+  "grammarBank1b": {
+    "blocks": [
+      {
+        "intro": "<strong>Negative Sentences</strong><br>The word order for negative Future Continuous sentences is <strong>SAV-ing</strong><br><strong>Subject + will not be + verb+ing</strong> (present participle).<br>Contraction: <strong>won&rsquo;t</strong> = will not.",
+        "table": [],
+        "examples": [
+          "I <strong>won&rsquo;t be practicing</strong> the violin tomorrow.",
+          "They <strong>will not be joining</strong> us for dinner.",
+          "He <strong>won&rsquo;t be working</strong> this weekend."
+        ]
+      },
+      {
+        "intro": "<strong>Questions</strong><br>The word order for interrogative Future Continuous sentences is:<br><strong>Will + subject + be + verb+ing (present participle)?</strong><br>WH-question words stay at the beginning of the sentence.",
+        "table": [],
+        "examples": [
+          "<strong>Will</strong> you <strong>be practicing</strong> all afternoon?",
+          "<strong>Will</strong> they <strong>be staying</strong> at a hotel?",
+          "How much longer <strong>will</strong> he <strong>be playing</strong>?"
+        ]
+      },
+      {
+        "intro": "<strong>Present Participle</strong><br>For the Future Continuous, you always use the <strong>-ing form</strong> of the verb.<br><table style=\"border-collapse:collapse;margin:10px 0;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Base Form (V1)</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Present Participle (V-ing)</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Spelling Note</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">play &nbsp;/&nbsp; watch</td><td style=\"padding:3px 14px 3px 0;\">playing &nbsp;/&nbsp; watching</td><td>Just add -ing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">practice &nbsp;/&nbsp; develop</td><td style=\"padding:3px 14px 3px 0;\">practicing &nbsp;/&nbsp; developing</td><td>Remove the &lsquo;e&rsquo;, add -ing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">study &nbsp;/&nbsp; enjoy</td><td style=\"padding:3px 14px 3px 0;\">studying &nbsp;/&nbsp; enjoying</td><td>Keep the &lsquo;y&rsquo;, add -ing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">sit &nbsp;/&nbsp; run</td><td style=\"padding:3px 14px 3px 0;\">sitting &nbsp;/&nbsp; running</td><td>Double the consonant</td></tr></table>",
+        "table": [],
+        "examples": []
+      }
+    ]
+  },
+  "videoQuiz1d": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice Affirmative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "William says: &ldquo;I ______ (practice) for another half hour.&rdquo;",
+      "options": [
+        "will practicing",
+        "will be practicing",
+        "will be practice"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>will be practicing</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "While Dad is in the room, William ______ (hold) his violin.",
+      "options": [
+        "will be holding",
+        "will be hold",
+        "will holding"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>will be holding</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "At 5 o&rsquo;clock today, the boy ______ (play) the same melody.",
+      "options": [
+        "will playing",
+        "is be playing",
+        "will be playing"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>will be playing</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "Dad ______ (stand) near the door during the whole practice.",
+      "options": [
+        "will be stand",
+        "will be standing",
+        "will standing"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>will be standing</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "They ______ (talk) about the music for a while.",
+      "options": [
+        "will be talking",
+        "will be talk",
+        "will talking"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>will be talking</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "If you watch the video again, you ______ (listen) to the violin once more.",
+      "options": [
+        "will be listen",
+        "will listening",
+        "will be listening"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>will be listening</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "William ______ (look) at his music notes for thirty more minutes.",
+      "options": [
+        "will looking",
+        "will be looking",
+        "will be look"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>will be looking</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "Dad ______ (wait) for his son to finish the lesson.",
+      "options": [
+        "will be waiting",
+        "will be wait",
+        "will waiting"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>will be waiting</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "The violin ______ (make) a loud sound all evening.",
+      "options": [
+        "will be make",
+        "will making",
+        "will be making"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>will be making</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "text": "After Dad leaves the room, William ______ (stay) there to finish his task.",
+      "options": [
+        "will be stay",
+        "will be staying",
+        "will staying"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>will be staying</strong> &mdash; Future Continuous: will be + V-ing."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Practice Negative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "In a year, the girl ______ with her family anymore.",
+      "options": [
+        "won&rsquo;t be live",
+        "won&rsquo;t be living",
+        "won&rsquo;t living"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>won&rsquo;t be living</strong> &mdash; negative Future Continuous: won&rsquo;t be + V-ing."
+    },
+    {
+      "text": "The student ______ her math homework at home once she is in college.",
+      "options": [
+        "won&rsquo;t be doing",
+        "won&rsquo;t be do",
+        "won&rsquo;t doing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>won&rsquo;t be doing</strong> &mdash; negative Future Continuous: won&rsquo;t be + V-ing."
+    },
+    {
+      "text": "She ______ Harry Potter with her sister every evening next year.",
+      "options": [
+        "won&rsquo;t be read",
+        "won&rsquo;t be reading",
+        "won&rsquo;t reading"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>won&rsquo;t be reading</strong> &mdash; negative Future Continuous: won&rsquo;t be + V-ing."
+    },
+    {
+      "text": "The family ______ at the TV together as often after she moves out.",
+      "options": [
+        "won&rsquo;t be laughing",
+        "won&rsquo;t laugh",
+        "won&rsquo;t laughing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>won&rsquo;t be laughing</strong> &mdash; negative Future Continuous: won&rsquo;t be + V-ing."
+    },
+    {
+      "text": "In college, there ______ any family bonding time for her.",
+      "options": [
+        "won&rsquo;t be happen",
+        "won&rsquo;t happening",
+        "won&rsquo;t be happening"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>won&rsquo;t be happening</strong> &mdash; negative Future Continuous: won&rsquo;t be + V-ing."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Practice Interrogative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "______ William ______ the violin for another half hour?",
+      "options": [
+        "Will / practice",
+        "Will / be practicing",
+        "Is / be practicing"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>Will / be practicing</strong> &mdash; Future Continuous question: Will + subject + be + V-ing?"
+    },
+    {
+      "text": "How much longer ______ the boy ______ the instrument?",
+      "options": [
+        "will / be playing",
+        "will / playing",
+        "will / be play"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>will / be playing</strong> &mdash; WH- Future Continuous question: WH- word + will + subject + be + V-ing?"
+    },
+    {
+      "text": "______ the father ______ to the violin music for the whole half hour?",
+      "options": [
+        "Is / be listening",
+        "Will / listening",
+        "Will / be listening"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "<strong>Will / be listening</strong> &mdash; Future Continuous question: Will + subject + be + V-ing?"
+    },
+    {
+      "text": "______ the boy ______ his practice in the living room all afternoon?",
+      "options": [
+        "Will / be continuing",
+        "Will / continuing",
+        "Does / be continuing"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "<strong>Will / be continuing</strong> &mdash; Future Continuous question: Will + subject + be + V-ing?"
+    },
+    {
+      "text": "______ they ______ the music lesson later today?",
+      "options": [
+        "Will / finishing",
+        "Will / be finishing",
+        "Will / be finish"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "<strong>Will / be finishing</strong> &mdash; Future Continuous question: Will + subject + be + V-ing?"
+    }
+  ],
+  "videoQuiz2": [
+    {
+      "type": "intro",
+      "text": "&ldquo;We&rsquo;ll be eating and, of course, you&rsquo;ll be wearing that.&rdquo;"
+    },
+    {
+      "text": "The speaker is talking about two actions which will happen&hellip;",
+      "options": [
+        "One after the other",
+        "At the same time"
+      ],
+      "correct": 1,
+      "explanation": "The eating and the wearing of the outfit are <strong>parallel actions</strong> that will be happening at the same time in the future."
+    },
+    {
+      "type": "intro",
+      "text": "Compare these two ways of planning:<br><em>A: We will eat and then you will put that on.</em><br><em>B: We will be eating and you will be wearing that.</em>"
+    },
+    {
+      "text": "Which sentence sounds like a step-by-step list of events?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 0,
+      "explanation": "Future Simple lists events one by one &mdash; first eat, then put on the outfit."
+    },
+    {
+      "text": "Which sentence describes a &ldquo;simultaneous&rdquo; picture of the future?",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous paints a picture of two ongoing actions happening at the same time."
+    },
+    {
+      "text": "In this context, is the &ldquo;wearing&rdquo; a short action that starts and stops quickly?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "&ldquo;Wearing&rdquo; is a state that continues throughout the entire dinner."
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order:",
+      "words": [
+        "be",
+        "watching",
+        "I",
+        "will",
+        "the",
+        "movie",
+        "and",
+        "be",
+        "you",
+        "will",
+        "sleeping."
+      ],
+      "correct": "I will be watching the movie and you will be sleeping."
+    },
+    {
+      "type": "drag",
+      "text": "Create a parallel action based on the video:",
+      "words": [
+        "We",
+        "be",
+        "eating",
+        "will",
+        "and",
+        "wearing",
+        "you",
+        "will",
+        "be",
+        "that dress."
+      ],
+      "correct": "We will be eating and you will be wearing that dress."
+    }
+  ],
+  "grammarBank2": {
+    "blocks": [
+      {
+        "intro": "We use the Future Continuous for <strong>Parallel Actions</strong> to describe two or more actions that will be happening <strong>at the same time</strong> in the future.<br><br>We use <strong>and</strong> and <strong>while</strong> to connect two actions.<br><br><em>At the party tonight, the band <strong>will be playing</strong> and everyone <strong>will be dancing</strong>.</em><br><table style=\"border-collapse:collapse;margin:10px 0;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Action 1</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Connector</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Action 2</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">I <strong>will be studying</strong></td><td style=\"padding:3px 14px 3px 0;\">and</td><td>she <strong>will be working</strong>.</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">They <strong>will be flying</strong></td><td style=\"padding:3px 14px 3px 0;\">while</td><td>we <strong>will be driving</strong>.</td></tr></table>",
+        "table": [],
+        "examples": []
+      }
+    ]
+  },
+  "videoQuiz3": [
+    {
+      "type": "intro",
+      "text": "&ldquo;I won&rsquo;t be living with my family anymore.&rdquo;"
+    },
+    {
+      "text": "Is the speaker saying she will move out at one specific moment, or is she describing her ongoing situation in a year&rsquo;s time?",
+      "options": [
+        "A single, quick event.",
+        "An ongoing situation."
+      ],
+      "correct": 1,
+      "explanation": "By using &ldquo;won&rsquo;t be living,&rdquo; she is describing the <strong>state</strong> of her life a year from now. It emphasizes that the continuous action of &ldquo;living with family&rdquo; will no longer be in progress."
+    },
+    {
+      "type": "intro",
+      "text": "&ldquo;There won&rsquo;t be any family bonding time.&rdquo;"
+    },
+    {
+      "text": "When the speaker says this, is she making a prediction about her future schedule?",
+      "options": [
+        "Yes.",
+        "No."
+      ],
+      "correct": 0,
+      "explanation": "She is predicting that her future (college life) will be missing a specific continuous activity: bonding with her family."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Sentence Structure: The &ldquo;Not&rdquo; Rule</strong>"
+    },
+    {
+      "text": "Where do we put &ldquo;not&rdquo; to make a Future Continuous sentence negative?",
+      "options": [
+        "After &ldquo;be&rdquo; &mdash; <em>will be not living</em>",
+        "Between &ldquo;will&rdquo; and &ldquo;be&rdquo; &mdash; <em>will not be living</em>"
+      ],
+      "correct": 1,
+      "explanation": "In English, the negative &ldquo;not&rdquo; always attaches to the <strong>first auxiliary verb</strong> in the chain &mdash; which, in this case, is <strong>will</strong>."
+    },
+    {
+      "type": "intro",
+      "text": "<strong>Contractions</strong>"
+    },
+    {
+      "text": "In the video, the speaker says &ldquo;I won&rsquo;t be living&hellip;&rdquo; What is &ldquo;won&rsquo;t&rdquo; a short version of?",
+      "options": [
+        "will not",
+        "would not",
+        "was not"
+      ],
+      "correct": 0,
+      "explanation": "<strong>won&rsquo;t</strong> = <strong>will not</strong>. It is the standard contraction used in spoken and informal written English."
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order to describe a student who has finished their exams:",
+      "words": [
+        "be",
+        "I",
+        "studying",
+        "won't",
+        "this",
+        "weekend."
+      ],
+      "correct": "I won't be studying this weekend."
+    },
+    {
+      "type": "fill",
+      "text": "Transform this positive sentence into a negative one:<br>&ldquo;Next year, I will be attending high school.&rdquo; Type the negative version:",
+      "answer": "Next year, I won't be attending high school.",
+      "altAnswers": [
+        "Next year, I will not be attending high school."
+      ],
+      "placeholder": "type here...",
+      "explanation": "Replace <strong>will be</strong> with <strong>won&rsquo;t be</strong> (or <strong>will not be</strong>) to negate: <em>Next year, I <strong>won&rsquo;t be attending</strong> high school.</em>"
+    }
+  ],
+  "grammarBank3": {
+    "blocks": [
+      {
+        "intro": "We use the <strong>Future Continuous Negative</strong> to state that an action <strong>will not be in progress</strong> at a specific time in the future.<br><br><strong>The Formula</strong><br>Subject + <strong>will</strong> + <strong>not</strong> + <strong>be</strong> + V-ing<br>&nbsp;&nbsp;&nbsp;&nbsp;(or Subject + <strong>won&rsquo;t</strong> + <strong>be</strong> + V-ing)<br><br><strong>Common Uses:</strong><br><ul style=\"margin:6px 0 0 0;padding-left:18px;\"><li>Predicting an absence: <em>&ldquo;I won&rsquo;t be working tomorrow, so let&rsquo;s grab coffee.&rdquo;</em></li><li>Polite refusal: <em>&ldquo;I&rsquo;m sorry, I won&rsquo;t be attending the meeting on Friday.&rdquo;</em></li><li>Contrast: <em>&ldquo;I&rsquo;ll be studying for finals, so I won&rsquo;t be going to the party.&rdquo;</em></li></ul><br><table style=\"border-collapse:collapse;margin:10px 0;font-size:0.93rem;\"><tr><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Subject</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Auxiliary (Neg)</th><th style=\"padding:4px 14px 4px 0;color:#e2b714;text-align:left;\">Continuous Marker</th><th style=\"padding:4px 0;color:#e2b714;text-align:left;\">Verb (-ing)</th></tr><tr><td style=\"padding:3px 14px 3px 0;\">I</td><td style=\"padding:3px 14px 3px 0;\">won&rsquo;t</td><td style=\"padding:3px 14px 3px 0;\">be</td><td>living</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">You</td><td style=\"padding:3px 14px 3px 0;\">won&rsquo;t</td><td style=\"padding:3px 14px 3px 0;\">be</td><td>doing</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">She</td><td style=\"padding:3px 14px 3px 0;\">won&rsquo;t</td><td style=\"padding:3px 14px 3px 0;\">be</td><td>bonding</td></tr><tr><td style=\"padding:3px 14px 3px 0;\">They</td><td style=\"padding:3px 14px 3px 0;\">won&rsquo;t</td><td style=\"padding:3px 14px 3px 0;\">be</td><td>coming</td></tr></table>",
+        "table": [],
+        "examples": [
+          "I <strong>won&rsquo;t be living</strong> with my family anymore.",
+          "There <strong>won&rsquo;t be</strong> any family bonding time.",
+          "We <strong>won&rsquo;t be seeing</strong> each other every day in college."
+        ]
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "question": "\u0417\u0430\u0432\u0442\u0440\u0430 \u0432 3 \u0447\u0430\u0441\u0430 \u044f \u0431\u0443\u0434\u0443 \u0443\u0447\u0438\u0442\u044c\u0441\u044f. \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u043d\u043e:",
+      "options": [
+        "I will study at 3 PM tomorrow.",
+        "I will be studying at 3 PM tomorrow.",
+        "I am studying at 3 PM tomorrow.",
+        "I will studying at 3 PM tomorrow."
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous: \u0431\u0443\u0434\u0443\u0442 \u0430\u043a\u0442\u0438\u0432\u043d\u043e \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442\u044c \u0432 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442 \u0432 \u0431\u0443\u0434\u0443\u0449\u0435\u043c.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"This time next week, she __ __ on vacation.\"",
+      "options": [
+        "will, relax",
+        "will be, relaxing",
+        "will, relaxing",
+        "will be, relax"
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous: will be + V+ing.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "They will be playing tennis all afternoon.",
+        "They will playing tennis all afternoon.",
+        "They will be play tennis all afternoon.",
+        "They are being play tennis."
+      ],
+      "correct": 0,
+      "explanation": "Future Continuous: will be playing.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Future Continuous:",
+      "options": [
+        "He will not be working.",
+        "He won't be working.",
+        "\u041e\u0431\u0430 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u0430 \u0432\u0435\u0440\u043d\u044b.",
+        "\u041d\u0438 \u043e\u0434\u0438\u043d \u043d\u0435 \u0432\u0435\u0440\u0435\u043d."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0431\u0430 - \"will not be\" \u0438 \"won't be\" - \u0432\u0435\u0440\u043d\u044b.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"I __ not __ reading a book at 7 PM.\"",
+      "options": [
+        "will, being",
+        "will be, reading",
+        "will, be",
+        "being, will"
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: will not be reading.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "Will you be working tomorrow?",
+        "You will be working tomorrow?",
+        "Will be you working tomorrow?",
+        "You being will work tomorrow?"
+      ],
+      "correct": 0,
+      "explanation": "Future Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Will + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + be + V+ing?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"__ they __ __ tennis at noon?\"",
+      "options": [
+        "Will, playing",
+        "Will be, playing",
+        "Are, playing",
+        "Will, be playing"
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Will they be playing?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 Future Continuous:",
+      "options": [
+        "When you call me, I will eat dinner.",
+        "When you call me, I will be eating dinner.",
+        "When you will call me, I eating dinner.",
+        "When you call me, I eating dinner."
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous \u0434\u043b\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0432 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442: will be eating.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443:",
+      "options": [
+        "She will be finishing her work soon.",
+        "They will be traveling to Paris.",
+        "I will be sleep all night.",
+        "You will be studying hard next week."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"will be sleep\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"will be sleeping\".",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442:",
+      "options": [
+        "At this time tomorrow, I will study mathematics.",
+        "At this time tomorrow, I am studying mathematics.",
+        "At this time tomorrow, I will be studying mathematics.",
+        "At this time tomorrow, I studied mathematics."
+      ],
+      "correct": 2,
+      "explanation": "Future Continuous \u0434\u043b\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0432 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442: will be studying.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043e\u0448\u0438\u0431\u043a\u0443?",
+      "options": [
+        "They will be waiting for you.",
+        "I won't be watching TV tonight.",
+        "She will be work here next month.",
+        "We will be celebrating the victory."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"will be work\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"will be working\".",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 Future Continuous?",
+      "options": [
+        "Next year, we will live in Europe.",
+        "Next year, we will be living in Europe.",
+        "Next year, we lived in Europe.",
+        "Next year, we live in Europe."
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous \u043f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u0435\u0442 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0432 \u0431\u0443\u0434\u0443\u0449\u0435\u043c: will be living.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"Yes, I will be\"?",
+      "options": [
+        "Do you work tomorrow?",
+        "Will you work tomorrow?",
+        "Will you be working tomorrow?",
+        "Did you work today?"
+      ],
+      "correct": 2,
+      "explanation": "\"Will you be working?\" = \"Yes, I will (be).\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"__ you __ __ when I arrive?\"",
+      "options": [
+        "Will, study",
+        "Will, be studying",
+        "Are, studying",
+        "Will be, study"
+      ],
+      "correct": 1,
+      "explanation": "Future Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Will you be studying?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0441\u043b\u043e\u0432 \u0432 Future Continuous \u0432\u043e\u043f\u0440\u043e\u0441\u0435:",
+      "options": [
+        "What will you be doing at 6 PM?",
+        "What you will be doing at 6 PM?",
+        "You will be doing what at 6 PM?",
+        "Will be doing you what at 6 PM?"
+      ],
+      "correct": 0,
+      "explanation": "Future Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Question word + Will + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + be + V+ing?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 10
+}

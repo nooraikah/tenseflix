@@ -1,0 +1,66 @@
+{
+  "lessons": [
+    {
+      "id": "present-simple",
+      "order": 1
+    },
+    {
+      "id": "present-continuous",
+      "order": 2
+    },
+    {
+      "id": "past-simple",
+      "order": 3
+    },
+    {
+      "id": "present-perfect",
+      "order": 4
+    },
+    {
+      "id": "future-simple",
+      "order": 5
+    },
+    {
+      "id": "past-continuous",
+      "order": 6
+    },
+    {
+      "id": "present-perfect-continuous",
+      "order": 7
+    },
+    {
+      "id": "past-perfect",
+      "order": 8
+    },
+    {
+      "id": "future-perfect",
+      "order": 9
+    },
+    {
+      "id": "future-continuous",
+      "order": 10
+    },
+    {
+      "id": "past-perfect-continuous",
+      "order": 11
+    },
+    {
+      "id": "future-perfect-continuous",
+      "order": 12
+    }
+  ],
+  "tenses": [
+    "present-simple",
+    "present-continuous",
+    "past-simple",
+    "present-perfect",
+    "future-simple",
+    "past-continuous",
+    "present-perfect-continuous",
+    "past-perfect",
+    "future-perfect",
+    "future-continuous",
+    "past-perfect-continuous",
+    "future-perfect-continuous"
+  ]
+}

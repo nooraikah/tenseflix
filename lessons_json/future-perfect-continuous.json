@@ -1,0 +1,229 @@
+{
+  "title": "Future Perfect Continuous",
+  "russian": "\u0411\u0443\u0434\u0443\u0449\u0435\u0435 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435",
+  "structure": "will + have + been + V+ing",
+  "usage": [
+    "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0431\u0443\u0434\u0435\u0442 \u0434\u043b\u0438\u0442\u044c\u0441\u044f \u0434\u043e \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u043c\u043e\u043c\u0435\u043d\u0442\u0430 \u0432 \u0431\u0443\u0434\u0443\u0449\u0435\u043c",
+    "\u041f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u043d\u0438\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0431\u0443\u0434\u0443\u0449\u0435\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f",
+    "\u041a\u0430\u043a \u0434\u043e\u043b\u0433\u043e \u0447\u0442\u043e-\u0442\u043e \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442\u044c"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435",
+      "example": "I will have been working for 3 hours by 6 PM."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "She won't have been waiting long."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "How long will you have been studying?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "The Notebook",
+      "dialogue": "\"By next year, I will have been waiting for you for a long time.\"",
+      "translation": "\u041a \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u043c\u0443 \u0433\u043e\u0434\u0443 \u044f \u0431\u0443\u0434\u0443 \u0436\u0434\u0430\u0442\u044c \u0442\u0435\u0431\u044f \u0443\u0436\u0435 \u0434\u043e\u043b\u0433\u043e\u0435 \u0432\u0440\u0435\u043c\u044f."
+    }
+  ],
+  "exercises": [
+    {
+      "question": "\u041a \u043a\u043e\u043d\u0446\u0443 \u0433\u043e\u0434\u0430 \u044f \u0431\u0443\u0434\u0443 \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0437\u0434\u0435\u0441\u044c 5 \u043b\u0435\u0442. \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u043d\u043e:",
+      "options": [
+        "By the end of the year, I will work here for 5 years.",
+        "By the end of the year, I will be working here for 5 years.",
+        "By the end of the year, I will have been working here for 5 years.",
+        "By the end of the year, I have been working here for 5 years."
+      ],
+      "correct": 2,
+      "explanation": "Future Perfect Continuous: \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435, \u043a\u043e\u0442\u043e\u0440\u043e\u0435 \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u0442\u044c\u0441\u044f \u0434\u043e \u043c\u043e\u043c\u0435\u043d\u0442\u0430 \u0432 \u0431\u0443\u0434\u0443\u0449\u0435\u043c.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"By 6 PM, she __ __ __ for 8 hours.\"",
+      "options": [
+        "will working",
+        "will be working",
+        "will have been working",
+        "has been working"
+      ],
+      "correct": 2,
+      "explanation": "Future Perfect Continuous: will have been + V+ing.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "By next month, they will study here for 2 years.",
+        "By next month, they will have been studying here for 2 years.",
+        "By next month, they are studying here for 2 years.",
+        "By next month, they will be study here for 2 years."
+      ],
+      "correct": 1,
+      "explanation": "Future Perfect Continuous: will have been studying.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Future Perfect Continuous:",
+      "options": [
+        "He will not have been working.",
+        "He won't have been working.",
+        "\u041e\u0431\u0430 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u0430 \u0432\u0435\u0440\u043d\u044b.",
+        "\u041d\u0438 \u043e\u0434\u0438\u043d \u043d\u0435 \u0432\u0435\u0440\u0435\u043d."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0431\u0430 - \"will not have been\" \u0438 \"won't have been\" - \u0432\u0435\u0440\u043d\u044b.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"I __ not __ __ waiting long when you arrive.\"",
+      "options": [
+        "will, been, waiting",
+        "will have, been waiting",
+        "will have been, waiting",
+        "will not, have been, wait"
+      ],
+      "correct": 2,
+      "explanation": "Future Perfect Continuous \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: will not have been waiting.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "Will you have been working by 5 PM?",
+        "You will have been working by 5 PM?",
+        "Will have you been working by 5 PM?",
+        "Been you will working by 5 PM?"
+      ],
+      "correct": 0,
+      "explanation": "Future Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Will + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + have been + V+ing?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"__ she __ __ __ on this project for a month?\"",
+      "options": [
+        "Will, working",
+        "Will have, been working",
+        "Will, have been working",
+        "Will have been, working"
+      ],
+      "correct": 1,
+      "explanation": "Future Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Will she have been working?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 Future Perfect Continuous:",
+      "options": [
+        "By December, we will live here for a year.",
+        "By December, we will be living here for a year.",
+        "By December, we will have been living here for a year.",
+        "By December, we have been living here for a year."
+      ],
+      "correct": 2,
+      "explanation": "Future Perfect Continuous \u0434\u043b\u044f \u043f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u043d\u0438\u044f \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438: will have been living.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443:",
+      "options": [
+        "By next week, he will have been working there for 5 years.",
+        "She won't have been studying for long.",
+        "By summer, we will have been traveling for a month.",
+        "They will be living there for 10 years by 2030."
+      ],
+      "correct": 3,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"will be living\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"will have been living\" (Future Perfect Continuous).",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442:",
+      "options": [
+        "By the time you finish, I will have been waiting 2 hours.",
+        "By the time you finish, I will wait 2 hours.",
+        "By the time you finish, I am waiting 2 hours.",
+        "By the time you finish, I have been waiting 2 hours."
+      ],
+      "correct": 0,
+      "explanation": "Future Perfect Continuous: will have been waiting.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043e\u0448\u0438\u0431\u043a\u0443?",
+      "options": [
+        "By tomorrow, she will have been practicing for hours.",
+        "He won't have been waiting for you.",
+        "By 2025, we will have been married for 10 years.",
+        "They will have been study French by then."
+      ],
+      "correct": 3,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"will have been study\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"will have been studying\".",
+      "difficulty": "hard",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 Future Perfect Continuous?",
+      "options": [
+        "By midnight, he will work for 12 hours.",
+        "By midnight, he will have worked for 12 hours.",
+        "By midnight, he will have been working for 12 hours.",
+        "By midnight, he is working for 12 hours."
+      ],
+      "correct": 2,
+      "explanation": "Future Perfect Continuous \u043f\u043e\u0434\u0447\u0435\u0440\u043a\u0438\u0432\u0430\u0435\u0442 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c: will have been working.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"Yes, I will have been\"?",
+      "options": [
+        "Will you work here by 2025?",
+        "Have you been working hard?",
+        "Will you have been working here for 10 years by 2025?",
+        "Are you working hard now?"
+      ],
+      "correct": 2,
+      "explanation": "\"Will you have been working...?\" = \"Yes, I will (have been).\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"How long __ you __ __ __ this course by graduation?\"",
+      "options": [
+        "will, studying",
+        "will be, studying",
+        "will have, studied",
+        "will have been, studying"
+      ],
+      "correct": 3,
+      "explanation": "Future Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: How long will you have been studying?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0441\u043b\u043e\u0432 \u0432 Future Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441\u0435:",
+      "options": [
+        "How long will you have been working by then?",
+        "How long you will have been working by then?",
+        "You will have been working how long by then?",
+        "Will have you been working how long by then?"
+      ],
+      "correct": 0,
+      "explanation": "Future Perfect Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Question word + Will + \u043f\u043e\u0434\u043b\u0435\u0436\u0430\u0449\u0435\u0435 + have been + V+ing?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 12
+}

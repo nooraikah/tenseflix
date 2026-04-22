@@ -1,0 +1,687 @@
+{
+  "title": "Past Continuous",
+  "russian": "\u041f\u0440\u043e\u0448\u0435\u0434\u0448\u0435\u0435 \u0434\u043b\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435",
+  "videoFile": "assets/video/past cont 1.mp4",
+  "videoFile2": "assets/video/past cont 2.mp4",
+  "videoFile3": "assets/video/past cont 3.mp4",
+  "structure": "was/were + V+ing",
+  "usage": [
+    "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u043b\u043e\u0441\u044c \u0432 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442 \u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u043c",
+    "\u0414\u0432\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f: \u043e\u0434\u043d\u043e \u043f\u0440\u0435\u0440\u044b\u0432\u0430\u043b\u043e\u0441\u044c \u0434\u0440\u0443\u0433\u0438\u043c",
+    "\u0424\u043e\u043d\u043e\u0432\u044b\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0432 \u0440\u0430\u0441\u0441\u043a\u0430\u0437\u0435"
+  ],
+  "rules": [
+    {
+      "type": "\u0423\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435",
+      "example": "I was reading when you called."
+    },
+    {
+      "type": "\u041e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435",
+      "example": "They weren't sleeping."
+    },
+    {
+      "type": "\u0412\u043e\u043f\u0440\u043e\u0441",
+      "example": "What were you doing?"
+    }
+  ],
+  "examples": [
+    {
+      "source": "Jaws",
+      "dialogue": "\"We were drinking rum and singing.\"",
+      "translation": "\u041c\u044b \u043f\u0438\u043b\u0438 \u0440\u043e\u043c \u0438 \u043f\u0435\u043b\u0438."
+    }
+  ],
+  "videoQuiz1": [
+    {
+      "text": "Are they shaking their hands right now?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 1,
+      "explanation": "Rachel is describing something that happened in the past."
+    },
+    {
+      "text": "The &ldquo;saying goodbye and shaking hands&rdquo; refers to&hellip;",
+      "options": [
+        "present",
+        "past",
+        "future"
+      ],
+      "correct": 1,
+      "explanation": "Rachel is describing something that happened in the past."
+    },
+    {
+      "text": "&ldquo;Saying goodbye&rdquo; happened at once or it lasted for a certain period?",
+      "options": [
+        "happened at once",
+        "lasted for a certain time period"
+      ],
+      "correct": 1,
+      "explanation": "They were saying goodbye and shaking hands for a couple of minutes at least. We use Past Continuous to talk about actions that were in progress in the past.<br>Example: <em>I was driving home yesterday at 2 pm.</em>"
+    },
+    {
+      "text": "When the interviewer leaned towards Rachel&hellip;",
+      "options": [
+        "they were still shaking their hands",
+        "they stopped shaking their hands"
+      ],
+      "correct": 0,
+      "explanation": "We also use Past Continuous to talk about actions that were interrupted by another in the past.<br>Example: <em>I was washing my hands when the water suddenly stopped pouring.</em>"
+    }
+  ],
+  "grammarBank1": {
+    "title": "Past Continuous",
+    "intro": "We use Past Continuous to:<br><ul style=\"margin:8px 0 0 0;padding-left:18px;\"><li>talk about actions that were <strong>in progress in past</strong>;</li><li>to <strong>describe an event happened in the past</strong>;</li><li>to show that one action <strong>in progress was interrupted</strong> by another short action.</li></ul>",
+    "structure": "",
+    "examples": [
+      "1) We <strong>were saying</strong> goodbye and we <strong>were shaking</strong> our hands.",
+      "2) It was summer. The sun <strong>was shining</strong>. The birds <strong>were singing</strong>.",
+      "3) He <strong>leaned</strong> towards me when we <strong>were shaking</strong> our hands."
+    ]
+  },
+  "videoQuiz1b": [
+    {
+      "type": "intro",
+      "text": "<strong>2) Look at the sentences:</strong><br><em>We were shaking hands. &nbsp; He was going to open the door.</em>"
+    },
+    {
+      "text": "Which are the <strong>main verbs</strong> in the sentences?",
+      "options": [
+        "was, were",
+        "shaking, going"
+      ],
+      "correct": 1,
+      "explanation": "<strong>shaking</strong> and <strong>going</strong> are the main verbs. <em>Was</em> and <em>were</em> are auxiliary (helping) verbs."
+    },
+    {
+      "type": "fill",
+      "text": "What is the ending of the main verbs in the sentences?<br><em>(We were shak<u>ing</u> hands. &nbsp; He was go<u>ing</u> to open the door.)</em>",
+      "answer": "ing",
+      "placeholder": "type...",
+      "explanation": "In Past Continuous we make sentences by adding <strong>-ing</strong> to the verbs.<br><em>Rachel was talk<strong>ING</strong>.</em>"
+    },
+    {
+      "type": "fill",
+      "text": "What are the <strong>auxiliary verbs</strong> in Past Continuous?",
+      "answer": "was, were",
+      "placeholder": "type...",
+      "explanation": "The auxiliary verbs in Past Continuous are <strong>was</strong> and <strong>were</strong>.<br><table style=\"border-collapse:collapse;margin:6px 0;font-size:0.93rem;\"><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">I</td><td>was sleeping</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">You</td><td>were running</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">He</td><td>was exercising</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">She</td><td>was working</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">It</td><td>was raining</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">We</td><td>were dancing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">They</td><td>were eating</td></tr></table>"
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in correct order:",
+      "words": [
+        "Rachel",
+        "was",
+        "about her interview.",
+        "talking"
+      ],
+      "correct": "Rachel was talking about her interview."
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in correct order:",
+      "words": [
+        "were",
+        "They",
+        "at midnight.",
+        "dancing"
+      ],
+      "correct": "They were dancing at midnight."
+    }
+  ],
+  "grammarBank1b": {
+    "blocks": [
+      {
+        "intro": "The word order in positive Past Continuous sentences is <strong>SAV</strong>.<br><strong>Subject + was/were + verb(ing).</strong>",
+        "table": [],
+        "examples": [
+          "I <strong>was cooking</strong>.",
+          "You <strong>were studying</strong>.",
+          "It <strong>was raining</strong>."
+        ]
+      }
+    ]
+  },
+  "videoQuiz2": [
+    {
+      "type": "fill",
+      "text": "Focus on the sentence: <em>&ldquo;You sure you weren&rsquo;t looking at my man Randy?&rdquo;</em><br>Which word makes this sentence negative?",
+      "answer": "not",
+      "placeholder": "type...",
+      "explanation": "We add <strong>not</strong> to the auxiliary verbs to make negative sentences.<br>Example: <em>We were <strong>NOT</strong> looking at the boys.</em>"
+    },
+    {
+      "type": "fill",
+      "text": "Look at the word &ldquo;weren&rsquo;t&rdquo;. What is the full form of this contraction?",
+      "answer": "were not",
+      "placeholder": "type...",
+      "explanation": "<strong>weren&rsquo;t</strong> = <strong>were not</strong> &nbsp;&nbsp; <strong>wasn&rsquo;t</strong> = <strong>was not</strong>"
+    },
+    {
+      "text": "&ldquo;NOT&rdquo; in the sentence stays&hellip;",
+      "options": [
+        "after auxiliary verb (was not, were not)",
+        "before auxiliary verb (not was, not were)"
+      ],
+      "correct": 0,
+      "explanation": "NOT always comes <strong>after</strong> the auxiliary verb: <em>was not / were not</em> (or contractions: wasn&rsquo;t / weren&rsquo;t)."
+    },
+    {
+      "text": "Are the forms of main verbs the same in positive and negative sentences?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct": 0,
+      "explanation": "In Continuous tenses we always add <strong>-ing</strong> ending to the verbs in all types of sentences.<br><em>They <strong>were arguing</strong>.</em><br><em>They <strong>weren&rsquo;t arguing</strong>.</em><br><em>Were they <strong>arguing</strong>?</em>"
+    },
+    {
+      "text": "The auxiliary verbs in Past Continuous&hellip;",
+      "options": [
+        "change according to the subjects (I, You, He, etc)",
+        "is same for all subjects (I, You, He, etc)"
+      ],
+      "correct": 0,
+      "explanation": "The auxiliary verbs in Past Continuous change according to the subjects.<br><table style=\"border-collapse:collapse;margin:6px 0;font-size:0.93rem;\"><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">I</td><td>wasn&rsquo;t playing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">You</td><td>weren&rsquo;t playing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">He</td><td>wasn&rsquo;t playing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">She</td><td>wasn&rsquo;t playing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">It</td><td>wasn&rsquo;t playing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">We</td><td>weren&rsquo;t playing</td></tr><tr><td style=\"padding:2px 12px 2px 0;font-weight:600;color:#e2b714;\">They</td><td>weren&rsquo;t playing</td></tr></table>"
+    }
+  ],
+  "grammarBank2": {
+    "blocks": [
+      {
+        "intro": "The word order in <strong>negative</strong> Past Continuous sentences is <strong>SAV</strong>.<br><strong>Subject + wasn&rsquo;t/weren&rsquo;t + verb(ing)</strong><br><br>Contractions: <strong>wasn&rsquo;t</strong> = was not &nbsp;&nbsp; <strong>weren&rsquo;t</strong> = were not",
+        "table": [],
+        "examples": [
+          "They <strong>weren&rsquo;t looking</strong> at Randy.",
+          "She <strong>wasn&rsquo;t talking</strong> to the boys."
+        ]
+      }
+    ]
+  },
+  "videoQuiz2b": [
+    {
+      "type": "intro",
+      "text": "<strong>Choose the correct option:</strong>"
+    },
+    {
+      "text": "The two girls in glasses ______ at Randy.",
+      "options": [
+        "wasn't looking",
+        "weren't looking",
+        "weren't look"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The two girls\" = they (plural) &rarr; <strong>weren&rsquo;t looking</strong>. Use <em>weren&rsquo;t</em> with plural subjects; <em>wasn&rsquo;t</em> is for I/he/she/it; the verb must have <em>-ing</em>."
+    },
+    {
+      "text": "The girl in the blue shirt ______ to be mean.",
+      "options": [
+        "wasn't trying",
+        "weren't trying",
+        "wasn't try"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The girl\" = she (3rd person singular) &rarr; <strong>wasn&rsquo;t trying</strong>. Use <em>wasn&rsquo;t</em> with he/she/it; the verb needs <em>-ing</em>."
+    },
+    {
+      "text": "The football team ______ the field yet, so the girls had to wait.",
+      "options": [
+        "wasn't leaving",
+        "weren't leaving",
+        "wasn't leave"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"The football team\" = it (singular collective) &rarr; <strong>wasn&rsquo;t leaving</strong>. Use <em>wasn&rsquo;t</em> for a singular noun; the verb needs <em>-ing</em>."
+    },
+    {
+      "text": "The girl in the purple top ______ a blue shirt like the others.",
+      "options": [
+        "wasn't wear",
+        "weren't wearing",
+        "wasn't wearing"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"The girl\" = she (3rd person singular) &rarr; <strong>wasn&rsquo;t wearing</strong>. <em>Wasn&rsquo;t wear</em> is missing <em>-ing</em>; <em>weren&rsquo;t</em> is incorrect for a singular subject."
+    },
+    {
+      "text": "The girls ______ at each other; they were looking at the popular girl.",
+      "options": [
+        "wasn't looking",
+        "weren't looking",
+        "weren't look"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The girls\" = they (plural) &rarr; <strong>weren&rsquo;t looking</strong>. <em>Wasn&rsquo;t</em> is for singular; the verb always needs <em>-ing</em>."
+    }
+  ],
+  "videoQuiz3": [
+    {
+      "type": "match",
+      "text": "Focus on the question that the interviewer asks Chris: <em>&ldquo;What were you doing before you were arrested?&rdquo;</em><br>Match the verbs with their definitions:",
+      "pairs": [
+        {
+          "left": "what Chris <strong>was doing</strong>",
+          "rightIdx": 0
+        },
+        {
+          "left": "Chris <strong>were arrested</strong>",
+          "rightIdx": 1
+        }
+      ],
+      "definitions": [
+        "i. the action in progress that was interrupted by another short action",
+        "ii. the short action that interrupted another action in progress"
+      ],
+      "explanation": "We also use the Past Continuous to show that one action in progress was interrupted by another short action.<br><em>Chris <strong>was painting</strong> his house when he <strong>got arrested</strong>.</em>"
+    },
+    {
+      "type": "fill",
+      "text": "What word starts the question?<br><em>&ldquo;What were you doing before you were arrested?&rdquo;</em>",
+      "answer": "What",
+      "placeholder": "Type here...",
+      "explanation": "<strong>What</strong> is a WH-question word. WH-question words stay at the beginning of interrogative sentences.<br><em>What were you doing yesterday evening?</em><br><em>What was she doing when you saw her?</em>"
+    },
+    {
+      "text": "The auxiliary verbs in interrogative Past Continuous sentences stay&hellip;",
+      "options": [
+        "before the subject &nbsp;<em>(Was I, Were you, etc.)</em>",
+        "after the subject &nbsp;<em>(I was, You were, etc.)</em>"
+      ],
+      "correct": 0,
+      "explanation": "In questions the auxiliary verb comes <strong>before</strong> the subject.<br>Word order: <strong>Was/Were + subject + verb+ing?</strong>"
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order:",
+      "words": [
+        "John",
+        "Was",
+        "calling",
+        "you?"
+      ],
+      "correct": "Was John calling you?"
+    },
+    {
+      "type": "drag",
+      "text": "Put the words in the correct order:",
+      "words": [
+        "you",
+        "were",
+        "What",
+        "drawing",
+        "at your art lesson?"
+      ],
+      "correct": "What were you drawing at your art lesson?",
+      "explanation": "The word order in interrogative Past Continuous sentences is <strong>ASV</strong> (Was/Were + subject + verb+ing).<br><em>Were you dancing? &nbsp; Was he crying?</em>"
+    }
+  ],
+  "grammarBank3": {
+    "blocks": [
+      {
+        "intro": "We also use the Past Continuous to show that one action in progress was <strong>interrupted</strong> by another short action.<br><em>I <strong>was sleeping</strong> when the door knocked.</em><br><em>My mom <strong>was still cooking</strong> dinner when I came home.</em>",
+        "table": [],
+        "examples": [
+          "The word order for <strong>interrogative</strong> Past Continuous sentences is <strong>ASV</strong>: Was/Were + subject + verb+ing?",
+          "WH-questions stay at the <strong>beginning</strong> of interrogative sentences."
+        ]
+      },
+      {
+        "intro": "<strong>Was/Were + subject + verb+ing?</strong>",
+        "table": [
+          [
+            "Was",
+            "I working?"
+          ],
+          [
+            "Were",
+            "you working?"
+          ],
+          [
+            "Was",
+            "he working?"
+          ],
+          [
+            "Was",
+            "she working?"
+          ],
+          [
+            "Was",
+            "it working?"
+          ],
+          [
+            "Were",
+            "we working?"
+          ],
+          [
+            "Were",
+            "they working?"
+          ]
+        ],
+        "examples": [
+          "<strong>Was</strong> I snoring when I was sleeping?",
+          "What <strong>were</strong> you talking to the teacher?"
+        ]
+      }
+    ]
+  },
+  "videoQuiz3b": [
+    {
+      "type": "intro",
+      "text": "<strong>Practice Interrogative &mdash; Choose the correct option:</strong>"
+    },
+    {
+      "text": "______ Chris ______ his apartment before he was arrested?",
+      "options": [
+        "Was / painting",
+        "Were / painting",
+        "Was / paint"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Chris\" = he (3rd person singular) &rarr; <strong>Was</strong>; the verb needs <em>-ing</em> &rarr; <strong>painting</strong>."
+    },
+    {
+      "text": "______ the men in suits ______ to Chris&rsquo;s story?",
+      "options": [
+        "Was / listening",
+        "Were / listening",
+        "Are / listening"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The men in suits\" = they (plural) &rarr; <strong>Were</strong>; verb+ing &rarr; <strong>listening</strong>."
+    },
+    {
+      "text": "______ Chris ______ his hands while he explained the situation?",
+      "options": [
+        "Is / using",
+        "Were / using",
+        "Was / using"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"Chris\" = he (singular) &rarr; <strong>Was</strong>; verb+ing &rarr; <strong>using</strong>."
+    },
+    {
+      "text": "______ everyone ______ at the table during the interview?",
+      "options": [
+        "Were / sitting",
+        "Was / sitting",
+        "Are / sitting"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Everyone\" is treated as singular &rarr; <strong>Was</strong>; verb+ing &rarr; <strong>sitting</strong>."
+    },
+    {
+      "text": "______ other people ______ behind the glass?",
+      "options": [
+        "Was / working",
+        "Were / working",
+        "Are / working"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Other people\" = they (plural) &rarr; <strong>Were</strong>; verb+ing &rarr; <strong>working</strong>."
+    },
+    {
+      "text": "______ Chris ______ from the police station to the office?",
+      "options": [
+        "Was / running",
+        "Were / running",
+        "Was / run"
+      ],
+      "correct": 0,
+      "wrongOnly": true,
+      "explanation": "\"Chris\" = he (singular) &rarr; <strong>Was</strong>; verb+ing &rarr; <strong>running</strong>."
+    },
+    {
+      "text": "______ the interviewers ______ Chris&rsquo;s determination?",
+      "options": [
+        "Was / discussing",
+        "Is / discussing",
+        "Were / discussing"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"The interviewers\" = they (plural) &rarr; <strong>Were</strong>; verb+ing &rarr; <strong>discussing</strong>."
+    },
+    {
+      "text": "______ Chris ______ a suit during the interview?",
+      "options": [
+        "Does / wearing",
+        "Was / wearing",
+        "Were / wearing"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"Chris\" = he (singular) &rarr; <strong>Was</strong>; verb+ing &rarr; <strong>wearing</strong>."
+    },
+    {
+      "text": "______ Chris ______ about his chances of getting the job?",
+      "options": [
+        "Are / worrying",
+        "Were / worrying",
+        "Was / worrying"
+      ],
+      "correct": 2,
+      "wrongOnly": true,
+      "explanation": "\"Chris\" = he (singular) &rarr; <strong>Was</strong>; verb+ing &rarr; <strong>worrying</strong>."
+    },
+    {
+      "text": "______ the men ______ Chris&rsquo;s intelligence?",
+      "options": [
+        "Was / questioning",
+        "Were / questioning",
+        "Are / questioning"
+      ],
+      "correct": 1,
+      "wrongOnly": true,
+      "explanation": "\"The men\" = they (plural) &rarr; <strong>Were</strong>; verb+ing &rarr; <strong>questioning</strong>."
+    }
+  ],
+  "exercises": [
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "I was working when he arrived.",
+        "I were working when he arrived.",
+        "I am working when he arrived.",
+        "I work when he arrived."
+      ],
+      "correct": 0,
+      "explanation": "\u0421 \"I\" \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \"was\", \"were\" - \u0441 \"you/they/we\".",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"She __ sleeping when the phone rang.\"",
+      "options": [
+        "is",
+        "was",
+        "were",
+        "am"
+      ],
+      "correct": 1,
+      "explanation": "\u0421 \"she\" \u0432 Past Continuous: was sleeping.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435:",
+      "options": [
+        "They were playing chess all evening.",
+        "They was playing chess all evening.",
+        "They are playing chess all evening.",
+        "They have been playing chess all evening."
+      ],
+      "correct": 0,
+      "explanation": "\u0421 \"they\" \u0432 Past Continuous: were playing.",
+      "difficulty": "light",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435 \u0432 Past Continuous:",
+      "options": [
+        "He was not watching TV.",
+        "He wasn't watch TV.",
+        "He wasn't watching TV.",
+        "\u041e\u0431\u0430 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u0430 \u0432\u0435\u0440\u043d\u044b."
+      ],
+      "correct": 3,
+      "explanation": "\u041e\u0431\u0430 - \"was not\" \u0438 \"wasn't\" - \u0432\u0435\u0440\u043d\u044b.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0435: \"They __ not __ cooking when I came.\"",
+      "options": [
+        "was, cooking",
+        "were, cooking",
+        "did, cook",
+        "have, cooked"
+      ],
+      "correct": 1,
+      "explanation": "\u0421 \"they\" \u0432 \u043e\u0442\u0440\u0438\u0446\u0430\u043d\u0438\u0438: were not cooking.",
+      "difficulty": "light",
+      "sentenceForm": "negative"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0433\u0440\u0430\u043c\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0432\u0435\u0440\u0435\u043d?",
+      "options": [
+        "What was you doing?",
+        "What were you doing?",
+        "What you were doing?",
+        "What are you doing?"
+      ],
+      "correct": 1,
+      "explanation": "Past Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Were + you + doing?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u0432\u043e\u043f\u0440\u043e\u0441: \"__ she __ reading when you called?\"",
+      "options": [
+        "Was, reading",
+        "Were, reading",
+        "Is, reading",
+        "Does, read"
+      ],
+      "correct": 0,
+      "explanation": "\u0421 \"she\" \u0432 Past Continuous \u0432\u043e\u043f\u0440\u043e\u0441\u0435: Was she reading?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 Past Continuous:",
+      "options": [
+        "When I arrived, they were eating dinner.",
+        "When I arrived, they eat dinner.",
+        "When I arrive, they were eating dinner.",
+        "When I arrive, they eating dinner."
+      ],
+      "correct": 0,
+      "explanation": "Past Continuous \u0434\u043b\u044f \u0444\u043e\u043d\u043e\u0432\u043e\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f: were eating.",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043e\u0448\u0438\u0431\u043a\u0443:",
+      "options": [
+        "He was driving the car.",
+        "We were studying hard.",
+        "They was waiting for the bus.",
+        "I was getting ready for work."
+      ],
+      "correct": 2,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"They was\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"They were\".",
+      "difficulty": "medium",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442:",
+      "options": [
+        "What were they talking about at 5 PM?",
+        "What they were talking about at 5 PM?",
+        "They were talking what at 5 PM?",
+        "What was they talking about at 5 PM?"
+      ],
+      "correct": 0,
+      "explanation": "Past Continuous \u0432\u043e\u043f\u0440\u043e\u0441: What were they talking about?",
+      "difficulty": "medium",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043e\u0448\u0438\u0431\u043a\u0443?",
+      "options": [
+        "While I was working, she called me.",
+        "It was raining when we left.",
+        "They were not sleeping all night.",
+        "He were building a house for months."
+      ],
+      "correct": 3,
+      "explanation": "\u041e\u0448\u0438\u0431\u043a\u0430: \"He were\" \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \"He was\".",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 Past Continuous?",
+      "options": [
+        "I was watch a movie when the doorbell rang.",
+        "I was watching a movie when the doorbell rang.",
+        "I watched a movie when the doorbell rang.",
+        "I were watching a movie when the doorbell rang."
+      ],
+      "correct": 1,
+      "explanation": "\u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u0430\u044f \u0444\u043e\u0440\u043c\u0430: was watching.",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u041a\u0430\u043a\u043e\u0439 \u0432\u043e\u043f\u0440\u043e\u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u0430 \"Yes, I was\"?",
+      "options": [
+        "Did you work yesterday?",
+        "Were you working when I called?",
+        "Are you working now?",
+        "Have you been working?"
+      ],
+      "correct": 1,
+      "explanation": "\"Were you working?\" = \"Yes, I was (working).\"",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    },
+    {
+      "question": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435: \"While they __ __ football, it __ to rain.\"",
+      "options": [
+        "was, playing, started",
+        "were, playing, started",
+        "were, playing, was starting",
+        "was, playing, was starting"
+      ],
+      "correct": 1,
+      "explanation": "\u0424\u043e\u043d\u043e\u0432\u043e\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 (were playing) + \u043f\u0440\u0435\u0440\u044b\u0432\u0430\u044e\u0449\u0435\u0435 (started).",
+      "difficulty": "hard",
+      "sentenceForm": "positive"
+    },
+    {
+      "question": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u0432 Past Continuous \u0432\u043e\u043f\u0440\u043e\u0441\u0435:",
+      "options": [
+        "How long were you waiting for me?",
+        "How long you were waiting for me?",
+        "How long were waiting for me you?",
+        "Wait how long were you for me?"
+      ],
+      "correct": 0,
+      "explanation": "Past Continuous \u0432\u043e\u043f\u0440\u043e\u0441: Question word + Were + you + V+ing?",
+      "difficulty": "hard",
+      "sentenceForm": "question"
+    }
+  ],
+  "order": 6
+}
