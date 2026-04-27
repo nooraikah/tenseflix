@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Edit Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+        .test-item.pass {
+            border-left-color: #4caf50;
+            background: #f1f8f6;
+        }
+        .test-item.fail {
+            border-left-color: #f44336;
+            background: #fef5f5;
+        }
+        .test-item h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .test-result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test Edit Profile System</h1>
+        <p>Проверка компонентов системы редактирования профиля...</p>
+        
+        <div id="test-results"></div>
+    </div>
+
+    <script src="profiles.js"></script>
+    <script>
+        const testContainer = document.getElementById('test-results');
+
+        function addTestResult(name, passed, details = '') {
+            const div = document.createElement('div');
+            div.className = `test-item ${passed ? 'pass' : 'fail'}`;
+            div.innerHTML = `
+                <h4>${passed ? '✅' : '❌'} ${name}</h4>
+                ${details ? `<p>${details}</p>` : ''}
+                <div class="test-result">${passed ? 'PASSED' : 'FAILED'}</div>
+            `;
+            testContainer.appendChild(div);
+        }
+
+        // Test 1: ProfileManager exists
+        try {
+            if (typeof profileManager !== 'undefined' && profileManager instanceof ProfileManager) {
+                addTestResult('ProfileManager инициализирован', true, 'profileManager объект доступен и является экземпляром ProfileManager');
+            } else {
+                addTestResult('ProfileManager инициализирован', false, 'profileManager не инициализирован корректно');
+            }
+        } catch(e) {
+            addTestResult('ProfileManager инициализирован', false, 'Ошибка: ' + e.message);
+        }
+
+        // Test 2: Check ProfileManager methods
+        try {
+            const methods = ['registerUser', 'loginUser', 'logout', 'getCurrentUser', 'isLoggedIn', 'getProfile', 'updateProfile', 'changePassword', 'getUserProgress', 'getUserStats'];
+            let allMethodsExist = true;
+            let missingMethods = [];
+
+            methods.forEach(method => {
+                if (typeof profileManager[method] !== 'function') {
+                    allMethodsExist = false;
+                    missingMethods.push(method);
+                }
+            });
+
+            addTestResult('ProfileManager методы', allMethodsExist, 
+                allMethodsExist ? 'Все методы: registerUser, loginUser, logout, getCurrentUser, isLoggedIn, getProfile, updateProfile, changePassword, getUserProgress, getUserStats' :
+                'Отсутствующие методы: ' + missingMethods.join(', '));
+        } catch(e) {
+            addTestResult('ProfileManager методы', false, 'Ошибка: ' + e.message);
+        }
+
+        // Test 3: Register and login test
+        try {
+            // Clear existing storage
+            localStorage.clear();
+            
+            const testUser = 'testuser_' + Date.now();
+            const testPass = 'password123';
+            const fullName = 'Test User';
+            const age = 25;
+
+            // Test registration
+            const regResult = profileManager.registerUser(testUser, testPass, fullName, age);
+            if (!regResult.success) {
+                addTestResult('Регистрация пользователя', false, 'Ошибка при регистрации: ' + regResult.message);
+                throw new Error('Registration failed');
+            }
+
+            // Test login
+            const loginResult = profileManager.loginUser(testUser, testPass);
+            if (!loginResult.success) {
+                addTestResult('Вход в систему', false, 'Ошибка при входе: ' + loginResult.message);
+                throw new Error('Login failed');
+            }
+
+            addTestResult('Регистрация и вход', true, `Пользователь ${testUser} создан и вошел успешно`);
+
+            // Test 4: Password change
+            try {
+                const currentPass = testPass;
+                const newPass = 'newpassword456';
+                const changeResult = profileManager.changePassword(testUser, currentPass, newPass);
+                
+                if (!changeResult.success) {
+                    addTestResult('Смена пароля', false, 'Ошибка: ' + changeResult.message);
+                } else {
+                    addTestResult('Смена пароля', true, 'Пароль успешно изменен');
+                    
+                    // Test login with new password
+                    profileManager.logout();
+                    const newLoginResult = profileManager.loginUser(testUser, newPass);
+                    if (newLoginResult.success) {
+                        addTestResult('Вход с новым паролем', true, 'Успешный вход с новым паролем');
+                    } else {
+                        addTestResult('Вход с новым паролем', false, 'Ошибка при входе с новым паролем');
+                    }
+                }
+            } catch(e) {
+                addTestResult('Смена пароля', false, 'Ошибка: ' + e.message);
+            }
+
+            // Test 5: Update profile
+            try {
+                const updateResult = profileManager.updateProfile(testUser, {
+                    fullName: 'Updated User Name',
+                    age: 26,
+                    photo: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
+                });
+
+                if (!updateResult.success) {
+                    addTestResult('Обновление профиля', false, 'Ошибка: ' + updateResult.message);
+                } else {
+                    const profile = profileManager.getProfile(testUser);
+                    if (profile.fullName === 'Updated User Name' && profile.age === 26) {
+                        addTestResult('Обновление профиля', true, 'Профиль успешно обновлен');
+                    } else {
+                        addTestResult('Обновление профиля', false, 'Данные не обновились корректно');
+                    }
+                }
+            } catch(e) {
+                addTestResult('Обновление профиля', false, 'Ошибка: ' + e.message);
+            }
+
+            // Test 6: Get user progress
+            try {
+                const userProgress = profileManager.getUserProgress(testUser);
+                if (userProgress && typeof userProgress === 'object' && Object.keys(userProgress).length > 0) {
+                    addTestResult('Получение прогресса', true, `Прогресс загружен (${Object.keys(userProgress).length} видовременных форм)`);
+                } else {
+                    addTestResult('Получение прогресса', false, 'Прогресс не загружен корректно');
+                }
+            } catch(e) {
+                addTestResult('Получение прогресса', false, 'Ошибка: ' + e.message);
+            }
+
+            // Test 7: Get user stats
+            try {
+                const stats = profileManager.getUserStats(testUser);
+                if (stats && typeof stats === 'object') {
+                    addTestResult('Получение статистики', true, `Статистика загружена (${stats.tensesCompleted} видов выучено)`);
+                } else {
+                    addTestResult('Получение статистики', false, 'Статистика не загружена корректно');
+                }
+            } catch(e) {
+                addTestResult('Получение статистики', false, 'Ошибка: ' + e.message);
+            }
+
+        } catch(e) {
+            console.error('Test error:', e);
+        }
+
+        // Final summary
+        const passedTests = document.querySelectorAll('.test-item.pass').length;
+        const totalTests = document.querySelectorAll('.test-item').length;
+        
+        const summaryDiv = document.createElement('div');
+        summaryDiv.style.marginTop = '30px';
+        summaryDiv.style.padding = '20px';
+        summaryDiv.style.background = passedTests === totalTests ? '#d4edda' : '#fff3cd';
+        summaryDiv.style.borderRadius = '8px';
+        summaryDiv.style.borderLeft = '4px solid ' + (passedTests === totalTests ? '#28a745' : '#ffc107');
+        summaryDiv.innerHTML = `
+            <h3 style="margin: 0 0 10px 0;">📊 Сводка тестов</h3>
+            <p style="margin: 0;">Пройдено: <strong>${passedTests}/${totalTests}</strong> тестов</p>
+            ${passedTests === totalTests ? '<p style="margin: 5px 0 0 0; color: #28a745;">✅ Все тесты пройдены успешно!</p>' : ''}
+        `;
+        testContainer.appendChild(summaryDiv);
+    </script>
+</body>
+</html>

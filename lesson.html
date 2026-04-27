@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenseflix - Lesson</title>
+    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        /* PC Practice Section Dropdown */
+        .section-nav-header {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        /* Unified styling for section switchers across all tenses */
+        .section-dropdown, .pc-dropdown-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .section-dropbtn, .pc-dropdown-trigger {
+            width: 100%;
+            background: #1a1a2e;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .section-dropbtn:hover, .pc-dropdown-trigger:hover {
+            border-color: #60a5fa;
+            background: #242445;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .section-dropdown-content, .pc-dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #1a1a2e;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            margin-top: 5px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .section-dropdown-content a, .pc-dropdown-item {
+            color: #ffffff;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            font-weight: 600;
+            transition: all 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .section-dropdown-content a:last-child, .pc-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        .section-dropdown-content a:hover, .pc-dropdown-item:hover {
+            background-color: #3b82f6;
+            color: #ffffff;
+            padding-left: 25px;
+            cursor: pointer;
+        }
+        .section-dropdown.open .section-dropdown-content,
+        .pc-dropdown-container.open .pc-dropdown-menu {
+            display: block;
+        }
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        .open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Fix for invisible text in Practice sections 2, 3, and 4 */
+        .fill-exercise, 
+        .fill-dialogue, 
+        .fill-line {
+            color: #1a1a1a !important; /* Forces dark text on white/light backgrounds */
+        }
+
+        /* Practice Instruction Box */
+        .practice-instruction {
+            background: #fdf8e1;
+            border-left: 4px solid #e2b714;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .inst-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        .inst-content strong {
+            display: block;
+            color: #b48a00;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .inst-content p {
+            margin: 0;
+            color: #1a1a1a;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Modern Select Styling */
+        select {
+            appearance: none;
+            background: #1a1a2e;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 8px 36px 8px 12px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 18px;
+        }
+        select:hover {
+            border-color: #60a5fa;
+            background-color: #242445;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+        }
+        select:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        select option {
+            background-color: #1a1a2e;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="home-btn" title="Home">🏠</a>
+                <a href="index.html" class="logo-link"><h1 class="logo">🎬 TENSEFLIX</h1></a>
+                <div class="header-buttons">
+                    <a href="profile.html" class="user-name-link"><span class="user-name" id="user-name">User</span></a>
+                    <a href="dashboard.html" class="back-link">← Back</a>
+                    <button class="logout-btn" onclick="logout()">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Tab Navigation -->
+    <nav class="lesson-tabs-nav">
+        <button class="lesson-tab-btn active" id="tab-btn-video" onclick="switchLessonTab('video')">
+            <span class="tab-icon">🎬</span>
+            <span class="tab-label">Video 1</span>
+        </button>
+        <div class="tab-arrow" id="arrow-0">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-video2" onclick="switchLessonTab('video2')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Video 2</span>
+        </button>
+        <div class="tab-arrow" id="arrow-01">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-video3" onclick="switchLessonTab('video3')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Video 3</span>
+        </button>
+        <div class="tab-arrow" id="arrow-02">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-video4" onclick="switchLessonTab('video4')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Video 4</span>
+        </button>
+        <div class="tab-arrow" id="arrow-1">→</div>
+        <button class="lesson-tab-btn locked" id="tab-btn-check" onclick="switchLessonTab('check')">
+            <span class="tab-icon">🔒</span>
+            <span class="tab-label">Practice Tasks</span>
+        </button>
+    </nav>
+
+    <div class="lesson-container">
+        <div class="container">
+            <div class="lesson-header">
+                <h2 id="tense-title">Present Simple</h2>
+                <p id="tense-russian">Simple Present</p>
+            </div>
+
+            <!-- TAB 1: VIDEO -->
+            <div id="lesson-tab-video" class="lesson-tab-content active">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="present perfect video 1.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="present perfect video 1.mp4">Download the video</a>.
+                    </video>
+                </div>
+                <!-- VIDEO 1 QUIZ -->
+                <div class="video-quiz" id="video1-quiz">
+                    <h3 class="quiz-heading">🎯 AFFIRMATIVE</h3>
+                    <div id="video1-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 1 QUIZ -->
+
+                <!-- GRAMMAR BANK (rendered dynamically per tense) -->
+                <div id="video1-grammar-bank"></div>
+
+                <!-- PRACTICE TEST (10 questions, rendered dynamically after grammar bank) -->
+                <div id="video1-practice-questions"></div>
+
+                <!-- VIDEO 1 BLOCK 2: QUESTIONS (negative & interrogative) -->
+                <div class="video-quiz" id="video1-quiz2">
+                    <h3 class="quiz-heading">🎯 NEGATIVE AND INTERROGATIVE</h3>
+                    <div id="video1-quiz-questions2">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 1 BLOCK 2 QUESTIONS -->
+
+                <!-- GRAMMAR BANK 1B (rendered dynamically per tense) -->
+                <div id="video1-grammar-bank2"></div>
+
+                <!-- PRACTICE TEST 1B (rendered dynamically after grammar bank) -->
+                <div id="video1-practice-questions2"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz1-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz1-label">Video 1 Progress</span>
+                        <span class="quiz-progress-count" id="quiz1-count">0 / —</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz1-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz1-hint">Answer all questions to unlock Video 2 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video1">
+                    <p class="video-hint" id="quiz1-done-hint">🔒 Answer all questions to unlock the next section</p>
+                    <button class="btn-next-tab" id="btn-go-video2" onclick="triggerSave('Video 1'); unlockAndGo('video2', 'tab-btn-video2')" disabled>Next Video →</button>
+     <p></p>
+     <button type="button" onclick="skipWithPassword(1)" style="margin-left:10px; background:rgba(255,255,255,0.05); color:#666; border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.8rem;">Skip ⚡</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: VIDEO 2 -->
+            <div id="lesson-tab-video2" class="lesson-tab-content">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player-2"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="present perfect video 2.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="present perfect video 2.mp4">Download the video here</a>.
+                    </video>
+                </div>
+
+                <!-- VIDEO 2 QUIZ -->
+                <div class="video-quiz" id="video2-quiz">
+                    <h3 class="quiz-heading">🎯 Questions about Video 2</h3>
+                    <div id="video2-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 2 QUIZ (dynamic placeholder) -->
+
+                <!-- GRAMMAR BANK 2 (rendered dynamically per tense) -->
+                <div id="video2-grammar-bank"></div>
+
+                <!-- PRONUNCIATION BLOCK VIDEO 2 -->
+                <div class="pronunciation-box" id="video2-pronunciation-block" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Present Perfect Continuous Rhythm</p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">Listen and repeat the sentences. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="present perfect cont audio.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="sound-sentences" style="line-height: 1.6; font-size: 1.05rem;">
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> What <strong>have you been doing</strong>?</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> I’ve been <strong>studying</strong> for my exam.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Have you been studying <strong>all day</strong>?</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> Yes, I have. I’ve been <strong>working</strong> really hard.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Has your sister been studying too?</p>
+                            <p style="border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> No, she hasn’t. She’s been <strong>watching</strong> TV.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK VIDEO 2 -->
+
+                <!-- PRONUNCIATION BLOCK VIDEO 2 — PAST PERFECT -->
+                <div class="pronunciation-box" id="video2-pronunciation-block-ppast" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Past Perfect Sentences</p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">Listen and repeat the sentences. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="past perfect audio.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="sound-sentences" style="line-height: 1.6; font-size: 1.05rem;">
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">They <strong>hadn’t met</strong> before the party.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">He <strong>had studied</strong> English before he moved abroad.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">We <strong>had cleaned</strong> the room before guests came.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">She <strong>hadn’t seen</strong> him before that day.</p>
+                            <p style="border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">They <strong>had visited</strong> Paris before the trip.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK VIDEO 2 — PAST PERFECT -->
+
+                <!-- PRACTICE TEST 2 (rendered dynamically after grammar bank) -->
+                <div id="video2-practice-questions"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz2-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz2-label">Video 2 Progress</span>
+                        <span class="quiz-progress-count" id="quiz2-count">0 / —</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz2-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz2-hint">Answer all questions to unlock Video 3 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video2">
+                    <p class="video-hint" id="quiz2-done-hint">🔒 Answer all questions to unlock the next section</p>
+                    <button class="btn-next-tab" id="btn-go-video3" onclick="triggerSave('Video 2'); unlockAndGo('video3', 'tab-btn-video3')" disabled>Next Video →</button>
+                    <button type="button" onclick="skipWithPassword(2)" style="margin-left:10px; background:rgba(255,255,255,0.05); color:#666; border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.8rem;">Skip ⚡</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: VIDEO 3 -->
+            <div id="lesson-tab-video3" class="lesson-tab-content">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player-3"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="telegram_video.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="telegram_video.mp4">Download the video</a>.
+                    </video>
+                </div>
+
+                <!-- VIDEO 3 QUIZ -->
+                <div class="video-quiz" id="video3-quiz">
+                    <h3 class="quiz-heading">🎯 Questions about Video 3</h3>
+                    <div id="video3-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 3 QUIZ -->
+
+                <!-- VIDEO 3 GRAMMAR BANK (rendered dynamically) -->
+                <div id="video3-grammar-bank"></div>
+
+                <!-- PRONUNCIATION BLOCK -->
+                <div class="pronunciation-box" id="video3-pronunciation-block" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Final <strong>-s</strong> or <strong>-es</strong> for third person</p>
+                        </div>
+                    </div>
+
+                    <div class="pronunciation-explanation">
+                        <p>The pronunciation rules for verbs ending in <strong>-s</strong> and <strong>-es</strong> are the same as for plural nouns.</p>
+                    </div>
+
+                    <div class="pronunciation-question">
+                        <p>🎧 <em>How do you pronounce these plural nouns?</em></p>
+                        <div class="pronunciation-noun-examples">
+                            <span class="noun-pill">Books</span>
+                            <span class="noun-pill">Keys</span>
+                            <span class="noun-pill">Watches</span>
+                        </div>
+                    </div>
+
+                    <p class="pronunciation-listen-label">Listen to the sentences and sounds at the end of the verbs.</p>
+
+                    <audio class="pronunciation-audio" controls>
+                        <source src="present simple audio.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <div class="pronunciation-sounds-grid">
+                        <div class="sound-card sound-s">
+                            <div class="sound-badge">/s/</div>
+                            <ul class="sound-sentences">
+                                <li>She <strong>speak<u>s</u></strong> Arabic</li>
+                                <li>He <strong>drink<u>s</u></strong> a lot of coffee</li>
+                                <li>She <strong>cook<u>s</u></strong> everyday</li>
+                            </ul>
+                        </div>
+                        <div class="sound-card sound-z">
+                            <div class="sound-badge">/z/</div>
+                            <ul class="sound-sentences">
+                                <li>It <strong>rain<u>s</u></strong> a lot</li>
+                                <li>He <strong>ha<u>s</u></strong> a cat</li>
+                                <li>She <strong>doe<u>s</u></strong> exercise</li>
+                                <li>He <strong>goe<u>s</u></strong> out on Friday night</li>
+                            </ul>
+                        </div>
+                        <div class="sound-card sound-iz">
+                            <div class="sound-badge">/ɪz/</div>
+                            <ul class="sound-sentences">
+                                <li>He <strong>watch<u>es</u></strong> American programmes</li>
+                                <li>The film <strong>finish<u>es</u></strong> in a minute</li>
+                                <li>The bar <strong>clos<u>es</u></strong> at eleven</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK -->
+
+                <!-- PRONUNCIATION BLOCK — PRESENT PERFECT -->
+                <div class="pronunciation-box" id="video3-pronunciation-block-pp" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Stress &amp; rhythm in sentences</p>
+                        </div>
+                    </div>
+
+                    <div class="pronunciation-explanation">
+                        <p>In the sentence the stress falls on the words that carry important information.</p>
+                    </div>
+
+                    <!-- PART 1: Conversation -->
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">🎧 Listen and repeat the conversation. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls>
+                            <source src="present perfect audio 1.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="pron-dialogue">
+                            <div class="dialogue-line">
+                                <span class="dialogue-speaker speaker-a">A</span>
+                                <span class="dialogue-text">Have you seen <em>The Martian</em>?</span>
+                            </div>
+                            <div class="dialogue-line">
+                                <span class="dialogue-speaker speaker-b">B</span>
+                                <span class="dialogue-text">No, I haven't.</span>
+                            </div>
+                            <div class="dialogue-line">
+                                <span class="dialogue-speaker speaker-a">A</span>
+                                <span class="dialogue-text">Have you read the book?</span>
+                            </div>
+                            <div class="dialogue-line">
+                                <span class="dialogue-speaker speaker-b">B</span>
+                                <span class="dialogue-text">Yes, I have. I've read it twice.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PART 2: Irregular past participles -->
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">🎧 Practice saying these irregular past participles.</p>
+                        <audio class="pronunciation-audio" controls>
+                            <source src="present perfect audio 2.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="pron-participles-grid">
+                            <div class="participle-group">
+                                <span class="participle-pill">got</span>
+                                <span class="participle-pill">lost</span>
+                            </div>
+                            <div class="participle-group">
+                                <span class="participle-pill">given</span>
+                            </div>
+                            <div class="participle-group">
+                                <span class="participle-pill">eaten</span>
+                                <span class="participle-pill">seen</span>
+                            </div>
+                            <div class="participle-group">
+                                <span class="participle-pill">done</span>
+                                <span class="participle-pill">sung</span>
+                                <span class="participle-pill">won</span>
+                            </div>
+                            <div class="participle-group">
+                                <span class="participle-pill">spoken</span>
+                            </div>
+                            <div class="participle-group">
+                                <span class="participle-pill">bought</span>
+                                <span class="participle-pill">fallen</span>
+                            </div>
+                            <div class="participle-group">
+                                <span class="participle-pill">left</span>
+                                <span class="participle-pill">met</span>
+                                <span class="participle-pill">read</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK — PRESENT PERFECT -->
+
+                <!-- PRONUNCIATION BLOCK — PAST SIMPLE -->
+                <div class="pronunciation-box" id="video3-pronunciation-block-ps" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Past Simple <strong>-ed</strong> endings</p>
+                        </div>
+                    </div>
+
+                    <div class="pronunciation-explanation">
+                        <p>The <strong>-ed</strong> ending is usually pronounced <strong>/t/</strong> or <strong>/d/</strong>, e.g. <em>booked</em>, <em>arrived</em>.</p>
+                        <p>We only pronounce the <strong>e</strong> in <strong>-ed</strong> when there is a <strong>t</strong> or a <strong>d</strong> before it, e.g. <em>wanted</em>, <em>ended</em>, <strong>-ed = /ɪd/</strong>.</p>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">1. Listen and repeat the sounds and sentences.</p>
+                        <audio class="pronunciation-audio" controls>
+                            <source src="past simple audio.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="pronunciation-sounds-grid">
+                            <div class="sound-card sound-s">
+                                <div class="sound-badge">/t/</div>
+                                <ul class="sound-sentences">
+                                    <li>I <strong>book<u>ed</u></strong> a hotel.</li>
+                                    <li>We <strong>miss<u>ed</u></strong> our flight.</li>
+                                </ul>
+                            </div>
+                            <div class="sound-card sound-z">
+                                <div class="sound-badge">/d/</div>
+                                <ul class="sound-sentences">
+                                    <li>I <strong>arriv<u>ed</u></strong> at the airport.</li>
+                                    <li>We <strong>phon<u>ed</u></strong> our friends.</li>
+                                </ul>
+                            </div>
+                            <div class="sound-card sound-iz">
+                                <div class="sound-badge">/ɪd/</div>
+                                <ul class="sound-sentences">
+                                    <li>She <strong>invit<u>ed</u></strong> us to stay.</li>
+                                    <li>I <strong>need<u>ed</u></strong> a new passport.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pron-section" style="margin-top:20px;">
+                        <p class="pronunciation-listen-label">2. Say the past simple of these verbs. In which ones is <strong>-ed</strong> pronounced <strong>/ɪd/</strong>?</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 10px;">
+                            <source src="past simple 2.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        
+                        <div id="pron-sort-bank" style="display:none;"></div>
+
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:15px;">
+                            <div id="col-other" style="background:rgba(255,255,255,0.03); border:2px solid #333; border-radius:12px; padding:12px;">
+                                <h4 style="margin:0 0 10px; color:#aaa; font-size:0.85rem; text-align:center; text-transform:uppercase;">-ed (/t/ or /d/)</h4>
+                                <div class="bucket" style="display:flex; flex-wrap:wrap; gap:8px; min-height:50px;">
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">ask</span>
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">live</span>
+                                    <span class="noun-pill sortable-verb" data-answer="id" onclick="moveVerb(this)">rent</span>
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">thank</span>
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">call</span>
+                                    <span class="noun-pill sortable-verb" data-answer="id" onclick="moveVerb(this)">start</span>
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">stop</span>
+                                    <span class="noun-pill sortable-verb" data-answer="id" onclick="moveVerb(this)">want</span>
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">check</span>
+                                    <span class="noun-pill sortable-verb" data-answer="id" onclick="moveVerb(this)">decide</span>
+                                    <span class="noun-pill sortable-verb" data-answer="other" onclick="moveVerb(this)">happen</span>
+                                </div>
+                            </div>
+                            <div id="col-id" style="background:rgba(226,183,20,0.05); border:2px solid #e2b714; border-radius:12px; padding:12px;">
+                                <h4 style="margin:0 0 10px; color:#e2b714; font-size:0.85rem; text-align:center; text-transform:uppercase;">/ɪd/</h4>
+                                <div class="bucket" style="display:flex; flex-wrap:wrap; gap:8px; min-height:50px;"></div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <button class="quiz-opt-btn" onclick="checkPronSort()" style="padding:8px 20px; font-size:0.9rem;">Check Sorting ✓</button>
+                            <button class="drag-reset-btn" onclick="resetPronSort()" style="font-size:0.85rem; color:#888; background:none; border:none; cursor:pointer;">↺ Reset</button>
+                            <span id="pron-sort-feedback" style="font-weight:600; font-size:0.9rem;"></span>
+                        </div>
+
+                        <p style="font-size:0.85rem; color:#e2b714; margin-top:10px; font-style:italic;">
+                            💡 Hint: Click a verb to move it between columns.
+                        </p>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK — PAST SIMPLE -->
+
+                <!-- PRONUNCIATION BLOCK — FUTURE SIMPLE -->
+                <div class="pronunciation-box" id="video3-pronunciation-block-fs" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Future Simple <strong>'ll</strong> and <strong>won't</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">Listen and repeat the words and phrases. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="future simple audio 1.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="pron-rhythm-list" style="line-height: 1.8; font-size: 1.05rem;">
+                            <p><strong>I’ll</strong> &gt; I’ll be late &gt; I’ll be late for work.</p>
+                            <p><strong>You’ll</strong> &gt; You’ll never &gt; You’ll never learn.</p>
+                            <p><strong>He’ll</strong> &gt; He’ll pay &gt; He’ll pay you back.</p>
+                            <p><strong>It’ll</strong> &gt; It’ll go &gt; It’ll go well</p>
+                            <p><strong>We’ll</strong> &gt; We’ll miss &gt; We’ll miss the flight.</p>
+                            <p><strong>They’ll</strong> &gt; They’ll read &gt; They’ll read the paper.</p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section" style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
+                        <p class="pronunciation-listen-label">Listen and repeat. Copy the rhythm. Pay attention to “won’t”</p>
+                        <p style="margin-bottom:10px; color:#e2b714; font-weight: 600;">will not &gt; won’t</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="future simple audio 2.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <ul class="sound-sentences" style="list-style:none; padding-left:0; font-size: 1.05rem;">
+                            <li style="margin-bottom: 8px;">I <strong>won’t</strong> be late for work.</li>
+                            <li style="margin-bottom: 8px;">You <strong>won’t</strong> miss the train.</li>
+                            <li>They <strong>won’t</strong> call us back.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK — FUTURE SIMPLE -->
+
+                <!-- PRONUNCIATION BLOCK — FUTURE CONTINUOUS -->
+                <div class="pronunciation-box" id="video3-pronunciation-block-fc" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Future Continuous Rhythm</p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">Listen and repeat the sentences. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="future cont audio.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="sound-sentences" style="line-height: 1.6; font-size: 1.05rem;">
+                            <p style="margin-bottom: 5px; color: #e2b714; font-weight: 700; font-size: 1.1rem;">‘ll</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">She’ll be studying tonight.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">We’ll be waiting for you.</p>
+                            <p style="margin-bottom: 15px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">They’ll be travelling next week.</p>
+                            
+                            <p style="margin-bottom: 5px; color: #e2b714; font-weight: 700; font-size: 1.1rem;">won’t</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">I won’t be working tomorrow.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">He won’t be dancing at the ball.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;">She won’t be sleeping at this time tomorrow.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK — FUTURE CONTINUOUS -->
+
+                <!-- PRONUNCIATION BLOCK — FUTURE PERFECT -->
+                <div class="pronunciation-box" id="video3-pronunciation-block-fp" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Future Perfect Rhythm</p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">Listen and repeat the sentences. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="past perfect new.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="sound-sentences" style="line-height: 1.6; font-size: 1.05rem;">
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Will you have finished your studying by tonight?</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> Yes, I will. I’ll have finished my revision.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Will you have studied all day?</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> Yes, I will. I’ll have worked really hard.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Will your brother have finished his studying too?</p>
+                            <p style="border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> No, he won’t. He won’t have done much.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK — FUTURE PERFECT -->
+
+                <!-- PRONUNCIATION BLOCK — PAST PERFECT CONTINUOUS -->
+                <div class="pronunciation-box" id="video3-pronunciation-block-ppc" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Past Perfect Continuous Rhythm</p>
+                        </div>
+                    </div>
+
+                    <div class="pron-section">
+                        <p class="pronunciation-listen-label">Listen and repeat the sentences. Copy the rhythm.</p>
+                        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
+                            <source src="past perfect cont audio.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="sound-sentences" style="line-height: 1.6; font-size: 1.05rem;">
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> What had you been doing before I called you?</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> I’d been cooking dinner.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Had you been cooking for a long time?</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> Yes, I had. I’d been trying a new recipe.</p>
+                            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Had your brother been helping you?</p>
+                            <p style="border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> No, he hadn’t. He’d been playing video games.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK — PAST PERFECT CONTINUOUS -->
+
+                <!-- VIDEO 3 PRACTICE TEST (rendered dynamically after quiz) -->
+                <div id="video3-practice-questions"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz3-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz3-label">Video 3 Progress</span>
+                        <span class="quiz-progress-count" id="quiz3-count">0 / 5</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz3-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz3-hint">Answer all questions to unlock Video 4 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video3">
+                    <p class="video-hint" id="quiz3-done-hint">🔒 Answer all questions to unlock Video 4</p>
+                    <button class="btn-next-tab" id="btn-go-video4" onclick="triggerSave('Video 3'); unlockAndGo('video4', 'tab-btn-video4')" disabled>Next Video →</button>
+                    <button type="button" onclick="skipWithPassword(3)" style="margin-left:10px; background:rgba(255,255,255,0.05); color:#666; border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.8rem;">Skip ⚡</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: VIDEO 4 -->
+            <div id="lesson-tab-video4" class="lesson-tab-content">
+                <div class="video-embed-wrapper">
+                    <video
+                        id="lesson-video-player-4"
+                        controls
+                        style="width:100%;height:100%;border-radius:12px;">
+                        <source src="present simple video 4.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                        <a href="present simple video 4.mp4">Download the video</a>.
+                    </video>
+                </div>
+
+                <!-- VIDEO 4 QUIZ -->
+                <div class="video-quiz" id="video4-quiz">
+                    <h3 class="quiz-heading">🎯 Questions about Video 4</h3>
+                    <div id="video4-quiz-questions">
+                        <!-- Loaded dynamically by JavaScript per tense -->
+                    </div>
+                </div>
+                <!-- END VIDEO 4 QUIZ -->
+
+                <!-- GRAMMAR BANK 4 (rendered dynamically) -->
+                <div id="video4-grammar-bank"></div>
+
+                <!-- PRONUNCIATION BLOCK VIDEO 4 -->
+                <div class="pronunciation-box" id="video4-pronunciation-block" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                        </div>
+                    </div>
+
+                    <div class="pronunciation-explanation">
+                        <p>Listen to the words and sounds. Then listen again and repeat.</p>
+                    </div>
+
+                    <div class="pronunciation-ing-words">
+                        <span class="ing-pill">si<span class="hl">ng</span>er</span>
+                        <span class="ing-pill">si<span class="hl">ng</span>i<span class="hl">ng</span></span>
+                        <span class="ing-pill">goi<span class="hl">ng</span></span>
+                        <span class="ing-pill">doi<span class="hl">ng</span></span>
+                        <span class="ing-pill">studyi<span class="hl">ng</span></span>
+                        <span class="ing-pill">la<span class="hl">ng</span>uage</span>
+                        <span class="ing-pill">wro<span class="hl">ng</span></span>
+                        <span class="ing-pill">you<span class="hl">ng</span></span>
+                        <span class="ing-pill">thi<span class="hl">n</span>k</span>
+                        <span class="ing-pill">ba<span class="hl">n</span>k</span>
+                        <span class="ing-pill">pi<span class="hl">n</span>k</span>
+                        <span class="ing-pill">tha<span class="hl">n</span>ks</span>
+                    </div>
+
+                    <p class="pronunciation-listen-label">🎧 Listen to the audio and repeat.</p>
+
+                    <audio class="pronunciation-audio" controls>
+                        <source src="present cont audio.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- END PRONUNCIATION BLOCK VIDEO 4 -->
+
+                <!-- PRONUNCIATION BLOCK VIDEO 4 — PRESENT SIMPLE -->
+                <div class="pronunciation-box" id="video4-pronunciation-block-ps" style="display:none;">
+                    <div class="pronunciation-header">
+                        <span class="pronunciation-icon">🔊</span>
+                        <div>
+                            <h3 class="pronunciation-title">Pronunciation</h3>
+                            <p class="pronunciation-subtitle">Final <strong>-s</strong> or <strong>-es</strong> for third person</p>
+                        </div>
+                    </div>
+
+                    <div class="pronunciation-explanation">
+                        <p>The pronunciation rules for verbs ending in <strong>-s</strong> and <strong>-es</strong> are the same as for plural nouns.</p>
+                    </div>
+
+                    <div class="pronunciation-question">
+                        <p>🎧 <em>How do you pronounce these plural nouns?</em></p>
+                        <div class="pronunciation-noun-examples">
+                            <span class="noun-pill">Books</span>
+                            <span class="noun-pill">Keys</span>
+                            <span class="noun-pill">Watches</span>
+                        </div>
+                    </div>
+
+                    <p class="pronunciation-listen-label">Listen to the sentences and sounds at the end of the verbs.</p>
+
+                    <audio class="pronunciation-audio" controls>
+                        <source src="present simple audio.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <div class="pronunciation-sounds-grid">
+                        <div class="sound-card sound-s">
+                            <div class="sound-badge">/s/</div>
+                            <ul class="sound-sentences">
+                                <li>She <strong>speak<u>s</u></strong> Arabic</li>
+                                <li>He <strong>drink<u>s</u></strong> a lot of coffee</li>
+                                <li>She <strong>cook<u>s</u></strong> everyday</li>
+                            </ul>
+                        </div>
+                        <div class="sound-card sound-z">
+                            <div class="sound-badge">/z/</div>
+                            <ul class="sound-sentences">
+                                <li>It <strong>rain<u>s</u></strong> a lot</li>
+                                <li>He <strong>ha<u>s</u></strong> a cat</li>
+                                <li>She <strong>doe<u>s</u></strong> exercise</li>
+                                <li>He <strong>goe<u>s</u></strong> out on Friday night</li>
+                            </ul>
+                        </div>
+                        <div class="sound-card sound-iz">
+                            <div class="sound-badge">/ɪz/</div>
+                            <ul class="sound-sentences">
+                                <li>He <strong>watch<u>es</u></strong> American programmes</li>
+                                <li>The film <strong>finish<u>es</u></strong> in a minute</li>
+                                <li>The bar <strong>clos<u>es</u></strong> at eleven</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRONUNCIATION BLOCK VIDEO 4 — PRESENT SIMPLE -->
+
+                <!-- VIDEO 4 PRACTICE TEST (rendered dynamically) -->
+                <div id="video4-practice-questions"></div>
+
+                <!-- PROGRESS BAR -->
+                <div class="quiz-progress-block" id="quiz4-progress-block">
+                    <div class="quiz-progress-header">
+                        <span class="quiz-progress-label" id="quiz4-label">Video 4 Progress</span>
+                        <span class="quiz-progress-count" id="quiz4-count">0 / 5</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="quiz4-fill" style="width:0%"></div>
+                    </div>
+                    <p class="quiz-progress-hint" id="quiz4-hint">Answer all questions to unlock Practice Tasks 🔒</p>
+                </div>
+
+                <div class="video-done-bar" id="done-bar-video4">
+                    <p class="video-hint" id="quiz4-done-hint">🔒 Answer all questions to unlock Practice Tasks</p>
+                    <button class="btn-next-tab" id="btn-go-check-from-v4" onclick="triggerSave('Video 4'); unlockAndGo('check', 'tab-btn-check')" disabled>Practice Tasks →</button>
+                    <button type="button" onclick="skipWithPassword(4)" style="margin-left:10px; background:rgba(255,255,255,0.05); color:#666; border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.8rem;">Skip ⚡</button>
+                </div>
+            </div>
+            <div id="lesson-tab-check" class="lesson-tab-content">
+                <div class="check-intro">
+                    <h3>✅ Check — Reinforce Your Knowledge</h3>
+                    <p>Grammar exercises — not video-related, testing your general tense knowledge.</p>
+                </div>
+
+                <div class="practice-instruction">
+                    <span class="inst-icon">💡</span>
+                    <div class="inst-content">
+                        <strong>Instruction:</strong>
+                        <p>You must complete all practice tasks before clicking “Get Results”.</p>
+                    </div>
+                </div>
+
+                <!-- Dynamic exercises for non-PS tenses -->
+                <div id="tense-dynamic-exercises" style="display:none;">
+                    <!-- Filter Controls for Dynamic Practice -->
+                    <div class="exercise-filters" style="margin-bottom: 25px; display: flex; gap: 15px; flex-wrap: wrap; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px;">
+                        <div class="filter-group">
+                            <span style="font-weight:600; margin-right:8px; color:#e2b714;">Difficulty:</span>
+                            <button class="difficulty-btn active" data-level="light">Light</button>
+                            <button class="difficulty-btn" data-level="medium">Medium</button>
+                            <button class="difficulty-btn" data-level="hard">Hard</button>
+                        </div>
+                        <div class="filter-group">
+                            <span style="font-weight:600; margin-right:8px; color:#e2b714;">Form:</span>
+                            <button class="form-btn active" data-form="all">All</button>
+                            <button class="form-btn" data-form="positive">Positive</button>
+                            <button class="form-btn" data-form="negative">Negative</button>
+                            <button class="form-btn" data-form="question">Question</button>
+                        </div>
+                    </div>
+                    <div id="exercises-content"></div>
+                </div>
+
+                <!-- Practice Tasks (Present Simple — static hardcoded) -->
+                <!-- Practice Tasks (Present Continuous — static hardcoded) -->
+                <div id="pc-practice-static" class="practice-tasks-container" style="display:none;">
+                    <div class="section-nav-header">
+                        <div class="section-dropdown" id="pc-practice-dropdown">
+                            <button class="section-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+                                <span id="pc-current-section">Practice 1: Multiple Choice</span>
+                                <span>▼</span>
+                            </button>
+                            <div class="section-dropdown-content">
+                                <a href="javascript:void(0)" onclick="switchPCSection(1)">Practice 1: Multiple Choice</a>
+                                <a href="javascript:void(0)" onclick="switchPCSection(2)">Practice 2: Find Errors</a>
+                                <a href="javascript:void(0)" onclick="switchPCSection(3)">Practice 3: Fill in the Gaps</a>
+                                <a href="javascript:void(0)" onclick="switchPCSection(4)">Practice 4: Rewrite the Sentences</a>
+                                <a href="javascript:void(0)" onclick="switchPCSection(5)">Practice 5: Present Simple vs. Present Continuous</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 1 -->
+                    <div id="pc-section-1" style="display: none;">
+                        <div class="practice-section-label">
+                            <span class="practice-section-badge">Practice 1</span>
+                            <span class="practice-section-title">Multiple Choice</span>
+                        </div>
+
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-affirmative">
+                                <div class="practice-header-top"><span class="practice-form-tag aff-tag">Affirmative</span></div>
+                                <h4>Choose the correct affirmative form:</h4>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">1</div>
+                                <div class="exercise-options" id="pca-opts-0">
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',0,0,2)">A) I finish my homework yesterday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',0,1,2)">B) I have finished my homework yesterday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',0,2,2)">C) I finished my homework yesterday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',0,3,2)">D) I have finishing my homework yesterday.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">2</div>
+                                <div class="exercise-options" id="pca-opts-1">
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',1,0,0)">A) She has visited her grandmother last weekend.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',1,1,0)">B) She visited her grandmother last weekend.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',1,2,0)">C) She visits her grandmother last weekend.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',1,3,0)">D) She has visiting her grandmother last weekend.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">3</div>
+                                <div class="exercise-options" id="pca-opts-2">
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',2,0,3)">A) He has been at the party on Saturday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',2,1,3)">B) He is at the party on Saturday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',2,2,3)">C) He was at the party on Saturday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',2,3,3)">D) He were at the party on Saturday.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">4</div>
+                                <div class="exercise-options" id="pca-opts-3">
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',3,0,2)">A) We travel to London last year.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',3,1,2)">B) We have traveled to London last year.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',3,2,2)">C) We traveled to London last year.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',3,3,2)">D) We have traveling to London last year.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">5</div>
+                                <div class="exercise-options" id="pca-opts-4">
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',4,0,1)">A) He were late for class yesterday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',4,1,1)">B) He was late for class yesterday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',4,2,1)">C) He is late for class yesterday.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',4,3,1)">D) He be late for class yesterday.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">6</div>
+                                <div class="exercise-options" id="pca-opts-5">
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',5,0,0)">A) I am going home now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',5,1,0)">B) I am go home now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',5,2,0)">C) I going home now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pca',5,3,0)">D) I go home now.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-negative">
+                                <div class="practice-header-top"><span class="practice-form-tag neg-tag">Negative</span></div>
+                                <h4>Choose the correct negative form:</h4>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">1</div>
+                                <div class="exercise-options" id="pcn-opts-0">
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',0,0,1)">A) She not is going to school now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',0,1,1)">B) She is not going to school now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',0,2,1)">C) She not going to school now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',0,3,1)">D) She doesn’t going to school now.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">2</div>
+                                <div class="exercise-options" id="pcn-opts-1">
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',1,0,2)">A) They are not play football now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',1,1,2)">B) They not are playing football now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',1,2,2)">C) They are not playing football now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',1,3,2)">D) They don’t playing football now.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">3</div>
+                                <div class="exercise-options" id="pcn-opts-2">
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',2,0,2)">A) I am not watch TV now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',2,1,2)">B) I not am watching TV now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',2,2,2)">C) I am not watching TV now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',2,3,2)">D) I don’t watching TV now.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">4</div>
+                                <div class="exercise-options" id="pcn-opts-3">
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',3,0,3)">A) They are not listen to music now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',3,1,3)">B) They not are listening to music now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',3,2,3)">C) They don’t listening to music now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',3,3,3)">D) They are not listening to music now.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">5</div>
+                                <div class="exercise-options" id="pcn-opts-4">
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',4,0,0)">A) He is not running in the park now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',4,1,0)">B) He not is running in the park now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',4,2,0)">C) He is not run in the park now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',4,3,0)">D) He doesn’t running in the park now.</div>
+                                </div>
+                            </div>
+                            <div class="exercise">
+                                <div class="exercise-number">6</div>
+                                <div class="exercise-options" id="pcn-opts-5">
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',5,0,1)">A) I not reading a book right now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',5,1,1)">B) I am not reading a book right now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',5,2,1)">C) I am not read a book right now.</div>
+                                    <div class="option" onclick="selectPracticeOption(event,'pcn',5,3,1)">D) I am reading a book right now.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pc-section-2" style="display: none;">
+                        <div class="practice-section-label" style="margin-top:12px;">
+                            <span class="practice-section-badge">Practice 2</span>
+                            <span class="practice-section-title">Find Errors</span>
+                        </div>
+
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-affirmative">
+                                <div class="practice-header-top"><span class="practice-form-tag aff-tag">Error Correction</span></div>
+                                <h4>Find the error (shown in bold) and type the correct word.</h4>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">1</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">He is <strong style="color:#e04040;text-decoration:underline;">go</strong> to the gym right now to do sports.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e1" placeholder="type correction..." data-answer="going" onkeydown="if(event.key==='Enter')checkFill('pc-p2e1')">
+                                        <span class="fill-result" id="pc-p2e1-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">2</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">She <strong style="color:#e04040;text-decoration:underline;">are</strong> reading a novel at the moment.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e2" placeholder="correction..." data-answer="is" onkeydown="if(event.key==='Enter')checkFill('pc-p2e2')">
+                                        <span class="fill-result" id="pc-p2e2-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">3</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">I am <strong style="color:#e04040;text-decoration:underline;">work</strong> on my project now.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e3" placeholder="correction..." data-answer="working" onkeydown="if(event.key==='Enter')checkFill('pc-p2e3')">
+                                        <span class="fill-result" id="pc-p2e3-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">4</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">They <strong style="color:#e04040;text-decoration:underline;">is</strong> playing football in the yard now.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e4" placeholder="correction..." data-answer="are" onkeydown="if(event.key==='Enter')checkFill('pc-p2e4')">
+                                        <span class="fill-result" id="pc-p2e4-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">5</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">He <strong style="color:#e04040;text-decoration:underline;">don’t</strong> eating breakfast right now.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e5" placeholder="correction..." data-answer="isn't|is not" onkeydown="if(event.key==='Enter')checkFill('pc-p2e5')">
+                                        <span class="fill-result" id="pc-p2e5-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">6</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">She <strong style="color:#e04040;text-decoration:underline;">am</strong> not watching TV at the moment.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e6" placeholder="correction..." data-answer="is" onkeydown="if(event.key==='Enter')checkFill('pc-p2e6')">
+                                        <span class="fill-result" id="pc-p2e6-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">7</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">They <strong style="color:#e04040;text-decoration:underline;">doesn’t</strong> going to the park now.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e7" placeholder="correction..." data-answer="aren't|are not" onkeydown="if(event.key==='Enter')checkFill('pc-p2e7')">
+                                        <span class="fill-result" id="pc-p2e7-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">8</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">I <strong style="color:#e04040;text-decoration:underline;">isn’t</strong> working today, I am resting.</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e8" placeholder="correction..." data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('pc-p2e8')">
+                                        <span class="fill-result" id="pc-p2e8-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">9</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Are</strong> she going to the gym now?</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e9" placeholder="correction..." data-answer="is" onkeydown="if(event.key==='Enter')checkFill('pc-p2e9')">
+                                        <span class="fill-result" id="pc-p2e9-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">10</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Am</strong> they playing football now?</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e10" placeholder="correction..." data-answer="are" onkeydown="if(event.key==='Enter')checkFill('pc-p2e10')">
+                                        <span class="fill-result" id="pc-p2e10-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">11</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">Is he <strong style="color:#e04040;text-decoration:underline;">work</strong> at the moment?</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e11" placeholder="correction..." data-answer="working" onkeydown="if(event.key==='Enter')checkFill('pc-p2e11')">
+                                        <span class="fill-result" id="pc-p2e11-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">12</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line"><strong style="color:#e04040;text-decoration:underline;">Is</strong> they studying for the test now?</div>
+                                    <div class="fill-line" style="margin-top:6px;">
+                                        <span class="speaker-label">Correct:</span>
+                                        <input class="fill-input" id="pc-p2e12" placeholder="correction..." data-answer="are" onkeydown="if(event.key==='Enter')checkFill('pc-p2e12')">
+                                        <span class="fill-result" id="pc-p2e12-res"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                                <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3 -->
+                    <div id="pc-section-3" style="display:none;">
+                        <div class="practice-section-label" style="margin-top:12px;">
+                            <span class="practice-section-badge">Practice 3</span>
+                            <span class="practice-section-title">Fill in the Gaps</span>
+                        </div>
+
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-affirmative">
+                                <div class="practice-header-top"><span class="practice-form-tag aff-tag">a) Affirmative</span></div>
+                                <h4>Fill in the gaps in Present Continuous affirmative forms:</h4>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">1</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: I <input class="fill-input" id="pc-p3a-1a" placeholder="read" data-answer="am reading"> a book now. <span class="fill-result" id="pc-p3a-1a-res"></span></div>
+                                    <div class="fill-line">B: That’s great! I <input class="fill-input" id="pc-p3a-1b" placeholder="listen" data-answer="am listening"> to music right now. <span class="fill-result" id="pc-p3a-1b-res"></span></div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">2</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: She <input class="fill-input" id="pc-p3a-2a" placeholder="cook" data-answer="is cooking"> dinner at the moment. <span class="fill-result" id="pc-p3a-2a-res"></span></div>
+                                    <div class="fill-line">B: Nice! I <input class="fill-input" id="pc-p3a-2b" placeholder="watch" data-answer="am watching"> TV now. <span class="fill-result" id="pc-p3a-2b-res"></span></div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">3</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: They <input class="fill-input" id="pc-p3a-3a" placeholder="play" data-answer="are playing"> football now.</div>
+                                    <div class="fill-line">B: Really? We <input class="fill-input" id="pc-p3a-3b" placeholder="do" data-answer="are doing"> our homework.</div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">4</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: He <input class="fill-input" id="pc-p3a-4a" placeholder="drive" data-answer="is driving"> to work now.</div>
+                                    <div class="fill-line">B: Oh, I <input class="fill-input" id="pc-p3a-4b" placeholder="wait" data-answer="am waiting"> for the bus.</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                                <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                            </div>
+                        </div>
+
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-negative">
+                                <div class="practice-header-top"><span class="practice-form-tag neg-tag">b) Negative</span></div>
+                                <h4>Fill in the gaps in Present Continuous negative forms:</h4>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">1</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: I <input class="fill-input" id="pc-p3b-1a" placeholder="not / work" data-answer="am not working"> now. <span class="fill-result" id="pc-p3b-1a-res"></span></div>
+                                    <div class="fill-line">B: Really? I <input class="fill-input" id="pc-p3b-1b" placeholder="not / study" data-answer="am not studying"> either. <span class="fill-result" id="pc-p3b-1b-res"></span></div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">2</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: She <input class="fill-input" id="pc-p3b-2a" placeholder="not / sleep" data-answer="is not sleeping|isn't sleeping"> at the moment. <span class="fill-result" id="pc-p3b-2a-res"></span></div>
+                                    <div class="fill-line">B: Oh, she <input class="fill-input" id="pc-p3b-2b" placeholder="not / rest" data-answer="is not resting|isn't resting"> then. <span class="fill-result" id="pc-p3b-2b-res"></span></div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">3</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: They <input class="fill-input" id="pc-p3b-3a" placeholder="not / play" data-answer="are not playing|aren't playing"> outside now.</div>
+                                    <div class="fill-line">B: Yes, they <input class="fill-input" id="pc-p3b-3b" placeholder="not / enjoy" data-answer="are not enjoying|aren't enjoying"> the weather.</div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">4</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: He <input class="fill-input" id="pc-p3b-4a" placeholder="not / use" data-answer="is not using|isn't using"> his phone now.</div>
+                                    <div class="fill-line">B: Good, he <input class="fill-input" id="pc-p3b-4b" placeholder="not / waste" data-answer="is not wasting|isn't wasting"> time.</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                                <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                            </div>
+                        </div>
+
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-interrogative">
+                                <div class="practice-header-top"><span class="practice-form-tag int-tag">c) Questions</span></div>
+                                <h4>Fill in the gaps in Present Continuous question forms:</h4>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">1</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: <input class="fill-input" id="pc-p3c-1a" style="width:70px" placeholder="Am/Is/Are" data-answer="Are"> you <input class="fill-input" id="pc-p3c-1b" placeholder="study" data-answer="studying"> now? <span class="fill-result" id="pc-p3c-1a-res"></span> <span class="fill-result" id="pc-p3c-1b-res"></span></div>
+                                    <div class="fill-line">B: Yes, I am.</div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">2</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: <input class="fill-input" id="pc-p3c-2a" style="width:70px" placeholder="Am/Is/Are" data-answer="Is"> she <input class="fill-input" id="pc-p3c-2b" placeholder="cook" data-answer="cooking"> dinner now?</div>
+                                    <div class="fill-line">B: No, she isn’t.</div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">3</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: <input class="fill-input" id="pc-p3c-3a" style="width:70px" placeholder="Am/Is/Are" data-answer="Are"> they <input class="fill-input" id="pc-p3c-3b" placeholder="play" data-answer="playing"> outside now?</div>
+                                    <div class="fill-line">B: Yes, they are.</div>
+                                </div>
+                            </div>
+                            <div class="fill-exercise">
+                                <div class="fill-q-num">4</div>
+                                <div class="fill-dialogue">
+                                    <div class="fill-line">A: <input class="fill-input" id="pc-p3c-4a" style="width:70px" placeholder="Am/Is/Are" data-answer="Is"> he <input class="fill-input" id="pc-p3c-4b" placeholder="use" data-answer="using"> his laptop now?</div>
+                                    <div class="fill-line">B: No, he isn’t.</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;">
+                                <button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4 -->
+                    <div id="pc-section-4" style="display: none;">
+                        <div class="practice-section-label" style="margin-top:12px;">
+                            <span class="practice-section-badge">Practice 4</span>
+                            <span class="practice-section-title">Rewrite the Sentences</span>
+                        </div>
+
+                        <!-- 4a Affirmative -->
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-affirmative">
+                                <div class="practice-header-top"><span class="practice-form-tag aff-tag">a) Affirmative</span></div>
+                                <h4>Rewrite the sentence in affirmative form.</h4>
+                            </div>
+                            <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">She isn’t eating breakfast right now because she is in a hurry.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4a-1" placeholder="rewrite..." data-answer="she is eating breakfast right now because she is in a hurry." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4a-1')"><span class="fill-result" id="pc-p4a-1-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">They aren’t playing football at the moment because it is raining.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4a-2" placeholder="rewrite..." data-answer="they are playing football at the moment because it is raining." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4a-2')"><span class="fill-result" id="pc-p4a-2-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">He isn’t watching TV now; he is doing his homework.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4a-3" placeholder="rewrite..." data-answer="he is watching tv now; he is doing his homework." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4a-3')"><span class="fill-result" id="pc-p4a-3-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">She isn’t feeling happy today.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4a-4" placeholder="rewrite..." data-answer="she is feeling happy today." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4a-4')"><span class="fill-result" id="pc-p4a-4-res"></span></div></div></div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button></div>
+                        </div>
+
+                        <!-- 4b Negative -->
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-negative">
+                                <div class="practice-header-top"><span class="practice-form-tag neg-tag">b) Negative</span></div>
+                                <h4>Rewrite the sentence in negative form.</h4>
+                            </div>
+                            <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">She is drinking coffee right now before school.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4b-1" placeholder="rewrite..." data-answer="she is not drinking coffee right now before school.|she isn't drinking coffee right now before school." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4b-1')"><span class="fill-result" id="pc-p4b-1-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">They are playing football in the park at the moment.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4b-2" placeholder="rewrite..." data-answer="they are not playing football in the park at the moment.|they aren't playing football in the park at the moment." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4b-2')"><span class="fill-result" id="pc-p4b-2-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">He is watching TV after finishing his homework.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4b-3" placeholder="rewrite..." data-answer="he is not watching tv after finishing his homework.|he isn't watching tv after finishing his homework." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4b-3')"><span class="fill-result" id="pc-p4b-3-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">I am getting ready for the lesson now.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4b-4" placeholder="rewrite..." data-answer="i am not getting ready for the lesson now." style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4b-4')"><span class="fill-result" id="pc-p4b-4-res"></span></div></div></div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button></div>
+                        </div>
+
+                        <!-- 4c Questions -->
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-interrogative">
+                                <div class="practice-header-top"><span class="practice-form-tag int-tag">c) Questions</span></div>
+                                <h4>Rewrite the sentence in question form.</h4>
+                            </div>
+                            <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">She is studying English at the moment.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4c-1" placeholder="rewrite..." data-answer="is she studying english at the moment?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4c-1')"><span class="fill-result" id="pc-p4c-1-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">He is walking to work now.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4c-2" placeholder="rewrite..." data-answer="is he walking to work now?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4c-2')"><span class="fill-result" id="pc-p4c-2-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">We are cleaning our classroom right now.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4c-3" placeholder="rewrite..." data-answer="are we cleaning our classroom right now?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4c-3')"><span class="fill-result" id="pc-p4c-3-res"></span></div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue"><div class="fill-line" style="color:#888;font-style:italic;">They are sitting in the park now.</div><div class="fill-line" style="margin-top:6px;"><input class="fill-input" id="pc-p4c-4" placeholder="rewrite..." data-answer="are they sitting in the park now?" style="width:100%;min-width:280px;" onkeydown="if(event.key==='Enter')checkFill('pc-p4c-4')"><span class="fill-result" id="pc-p4c-4-res"></span></div></div></div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button></div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 5 -->
+                    <div id="pc-section-5" style="display: none;">
+                        <div class="practice-section-label" style="margin-top:12px;">
+                            <span class="practice-section-badge">Practice 5</span>
+                            <span class="practice-section-title">Present Simple vs. Continuous</span>
+                        </div>
+                        <div class="practice-form-block">
+                            <div class="practice-form-header practice-affirmative">
+                                <div class="practice-header-top"><span class="practice-form-tag aff-tag">Comparison</span></div>
+                                <h4>Fill in the blanks using Present Simple or Present Continuous.</h4>
+                            </div>
+                            <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue"><div class="fill-line">She usually <input class="fill-input" id="pc-p5-1a" placeholder="drink" data-answer="drinks"> coffee, but today she <input class="fill-input" id="pc-p5-1b" placeholder="drink" data-answer="is drinking"> tea.</div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue"><div class="fill-line">My brother <input class="fill-input" id="pc-p5-2a" placeholder="not like" data-answer="does not like|doesn't like"> vegetables, but today he <input class="fill-input" id="pc-p5-2b" placeholder="eat" data-answer="is eating"> them.</div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue"><div class="fill-line">They often <input class="fill-input" id="pc-p5-3a" placeholder="play" data-answer="play"> football, but today they <input class="fill-input" id="pc-p5-3b" placeholder="study" data-answer="are studying">.</div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue"><div class="fill-line">I <input class="fill-input" id="pc-p5-4a" placeholder="read" data-answer="am reading"> a book now, but I usually <input class="fill-input" id="pc-p5-4b" placeholder="watch" data-answer="watch"> TV.</div></div></div>
+                            <div class="fill-exercise"><div class="fill-q-num">5</div><div class="fill-dialogue"><div class="fill-line">We <input class="fill-input" id="pc-p5-5a" placeholder="have" data-answer="are having"> dinner now. We usually <input class="fill-input" id="pc-p5-5b" placeholder="eat" data-answer="eat"> at 7 p.m.</div></div></div>
+                            <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">✓ Check</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ✅ GET RESULT BUTTON -->
+                    <div class="get-result-bar">
+                        <button class="get-result-btn" onclick="getResult()">
+                            📊 Get Result
+                        </button>
+                        <button type="button" onclick="skipWithPassword(5)" style="margin-left:10px; background:rgba(255,255,255,0.05); color:#666; border:1px solid #333; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.8rem;">Skip ⚡</button>
+                    </div>
+
+                </div><!-- end #pc-practice-static -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 TENSEFLIX - Master English Tenses | <a href="index.html">← Home</a> | <a href="dashboard.html">← Dashboard</a></p>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="progress-data.js"></script>
+    <script src="profiles.js"></script>
+    <script src="lesson-script.js"></script>
+    <script src="lesson-complete.js"></script>
+
+    <script>
+        function skipWithPassword(stage) {
+            const pass = prompt("Введите пароль для пропуска (cheat code):");
+            if (pass === "67") {
+                if (stage === 1) {
+                    unlockAndGo('video2', 'tab-btn-video2');
+                } else if (stage === 2) {
+                    const tab3 = document.getElementById('tab-btn-video3');
+                    if (tab3 && tab3.style.display !== 'none') unlockAndGo('video3', 'tab-btn-video3');
+                    else unlockAndGo('check', 'tab-btn-check');
+                } else if (stage === 3) {
+                    const tab4 = document.getElementById('tab-btn-video4');
+                    if (tab4 && tab4.style.display !== 'none') unlockAndGo('video4', 'tab-btn-video4');
+                    else unlockAndGo('check', 'tab-btn-check');
+                } else if (stage === 4) {
+                    unlockAndGo('check', 'tab-btn-check');
+                } else if (stage === 5) {
+                    const currentUser = profileManager.getCurrentUser();
+                    if (currentUser) {
+                        const tense = getTenseFromURL();
+                        profileManager.markTenseCompleted(currentUser.username, tense);
+                        alert("Lesson skipped and marked as completed!");
+                        window.location.href = 'dashboard.html';
+                    }
+                }
+            } else if (pass !== null) {
+                alert("Неверный пароль!");
+            }
+        }
+
+        function moveVerb(el) {
+            const colOther = document.getElementById('col-other').querySelector('.bucket');
+            const colId = document.getElementById('col-id').querySelector('.bucket');
+            
+            if (el.parentElement === colOther) {
+                colId.appendChild(el);
+            } else {
+                colOther.appendChild(el);
+            }
+            el.style.background = '';
+            el.style.borderColor = '';
+            document.getElementById('pron-sort-feedback').textContent = '';
+        }
+
+        function checkPronSort() {
+            const verbs = document.querySelectorAll('.sortable-verb');
+            const feedback = document.getElementById('pron-sort-feedback');
+            
+            let correctCount = 0;
+            const colOther = document.getElementById('col-other').querySelector('.bucket');
+            const colId = document.getElementById('col-id').querySelector('.bucket');
+            
+            verbs.forEach(v => {
+                const type = v.dataset.answer;
+                const inId = colId.contains(v);
+                const inOther = colOther.contains(v);
+                
+                if ((type === 'id' && inId) || (type === 'other' && inOther)) {
+                    v.style.background = 'rgba(34,197,94,0.2)';
+                    v.style.borderColor = '#22c55e';
+                    correctCount++;
+                } else {
+                    v.style.background = 'rgba(239,68,68,0.2)';
+                    v.style.borderColor = '#ef4444';
+                }
+            });
+            
+            if (correctCount === verbs.length) {
+                feedback.style.color = '#22c55e';
+                feedback.textContent = '✓ Correct!';
+            } else {
+                feedback.style.color = '#ef4444';
+                feedback.textContent = `✗ ${correctCount}/${verbs.length} correct`;
+            }
+        }
+
+        function resetPronSort() {
+            const colOther = document.getElementById('col-other').querySelector('.bucket');
+            const verbs = document.querySelectorAll('.sortable-verb');
+            const feedback = document.getElementById('pron-sort-feedback');
+            verbs.forEach(v => {
+                colOther.appendChild(v);
+                v.style.background = '';
+                v.style.borderColor = '';
+            });
+            feedback.textContent = '';
+        }
+    </script>
+</body>
+</html>
