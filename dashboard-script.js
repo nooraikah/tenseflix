@@ -83,7 +83,7 @@ function initializeLevels() {
 
     const isAdmin = profileManager.isCurrentUserAdmin();
     
-    let unlockedMilestones = 0;
+    let completedCount = 0;
     let previousCompleted = true; // First tense is always unlocked
 
     TENSE_PROGRESSION.forEach((tenseId) => {
@@ -104,23 +104,25 @@ function initializeLevels() {
         const isCompleted = tenseData.completedAt !== null;
         const accuracy = tenseData.completed > 0 ? Math.round((tenseData.correctCount / tenseData.completed) * 100) : 0;
         const isPassed = isCompleted && accuracy >= 70;
-
-        // Handle Tags (1, 3, 5, 7, 9, 11)
-        const tagEl = document.getElementById(`tag-${tenseId}`);
-        if (tagEl && isPassed) {
-            tagEl.classList.add('tag-unlocked');
-            tagEl.querySelector('.milestone-tooltip').textContent = "🏷️ Tag Earned!";
-            unlockedMilestones++;
-        }
-
-        // Handle Badges (After 2, 4, 6, 8, 10)
+        
         const levelIdx = TENSE_PROGRESSION.indexOf(tenseId) + 1;
-        if (levelIdx % 2 === 0) {
-            const badgeEl = document.getElementById(`badge-${levelIdx}`);
-            if (badgeEl && isPassed) {
-                badgeEl.classList.add('milestone-unlocked');
-                badgeEl.innerHTML = '🎓<div class="milestone-tooltip">Badge Earned!</div>';
-                unlockedMilestones++;
+
+        // Handle Movie Frames Unlocking
+        const frame = document.getElementById(`frame-${levelIdx}`);
+        const frame2 = (levelIdx === 8) ? document.getElementById('frame-8_2') : null;
+        
+        // Reset frames first
+        if (frame) frame.classList.remove('unlocked');
+        if (frame2) frame2.classList.remove('unlocked');
+
+        if (isPassed) { // Теперь строго проверяем прохождение на 70%+
+            completedCount++;
+            if (frame) {
+                frame.classList.add('unlocked');
+            }
+            // Special case for level 8 extra frame
+            if (levelIdx === 8) {
+                if (frame2) frame2.classList.add('unlocked');
             }
         }
         
@@ -264,7 +266,203 @@ function initializeLevels() {
         }
     });
 
-    updateUserRank(unlockedMilestones);
+    // Update Counter and Final Reward
+    const counterBtn = document.getElementById('tense-counter-btn');
+    if (counterBtn) {
+        counterBtn.textContent = `${completedCount}/12 Tenses Mastered`;
+        if (completedCount === 12) {
+            counterBtn.classList.add('ready-for-victory');
+            counterBtn.textContent = "🏆 Claim Victory!";
+            counterBtn.onclick = () => {
+                triggerSaluteConfetti();
+                const reward = document.getElementById('final-reward');
+                if (reward) {
+                    reward.style.display = 'block';
+                    reward.classList.add('fire-show');
+                    reward.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            };
+        } else {
+            // Reset button if not at 12/12
+            counterBtn.classList.remove('ready-for-victory');
+            counterBtn.onclick = null;
+        }
+    }
+
+    updateUserRank(completedCount);
+}
+
+function triggerSaluteConfetti() {
+    const duration = 5 * 1000;
+    const end = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    (function frame() {
+        const timeLeft = end - Date.now();
+        if (timeLeft <= 0) return;
+        const particleCount = 50 * (timeLeft / duration);
+
+        confetti(Object.assign({}, defaults, { 
+            particleCount, origin: { x: Math.random() * 0.3, y: Math.random() - 0.2 }, colors: ['#e2b714', '#ffffff', '#ff4500']
+        }));
+        confetti(Object.assign({}, defaults, { 
+            particleCount, origin: { x: Math.random() * 0.3 + 0.7, y: Math.random() - 0.2 }, colors: ['#e2b714', '#ffffff', '#ff4500']
+        }));
+        requestAnimationFrame(frame);
+    }());
+}
+
+// Penguin Story Data
+const PENGUIN_STORY = {
+    1: { title: "The Spark", desc: "Our hero finds a poster for an annual screenplay competition. The dream of making a movie begins right here!" },
+    2: { title: "Nights of Creation", desc: "Nights of hard work. Coffee, focus, and a growing pile of drafts. The screenplay is taking shape." },
+    3: { title: "The Pitch", desc: "Presenting the 'Little Hearts, Big Stories' treatment. It's time to convince the board that this story matters." },
+    4: { title: "The Reality Check", desc: "Rejected. Three times. It's tough, and the city feels cold, but our penguin director won't quit." },
+    5: { title: "The Breakthrough", desc: "A notification ding that changes everything! 'Hey! We loved your script. YOU'RE IN!' Celebration time!" },
+    6: { title: "Table Read", desc: "The team gathers. 'OK, let's dive into the story.' Characters, goals, and a shared vision come to life." },
+    7: { title: "Action on Set", desc: "On the rooftop at night. 'Let's keep the emotion real.' The first big scene is being filmed." },
+    8: { title: "Directing the Chaos", desc: "Today's shot list is long. Tracking shots, close-ups... the director is in total control now." },
+    '8_2': { title: "Movie Magic", desc: "Checking the monitor. 'Action!' Every take brings the penguin closer to their masterpiece." },
+    9: { title: "The Final Cut", desc: "Editing room sessions. Color, sound, and magic. From an idea to a screen that touches hearts." },
+    10: { title: "The Closed Screening", desc: "A private viewing for the team. Tears of joy in the dark theater. Stories truly connect us." },
+    11: { title: "Oscar Shortlist!", desc: "The notification of a lifetime: Our film is on the Oscar shortlist! Dreams are becoming reality." },
+    12: { title: "In the Spotlight", desc: "Seeing the movie poster at the exact same spot where the journey started. Trust the spark." },
+    'final': { title: "Absolute Cinema", desc: "Victory! The Little Penguin has won the Oscar for Best Animated Short Film. A true adventure complete." }
+};
+
+// Lightbox Functions
+function openMovieLightbox(id) {
+    const frame = document.getElementById(id === 'final' ? 'final-reward' : `frame-${id}`);
+    // Only open if unlocked (or if it's the final reward which only shows when 12/12)
+    if (id === 'final' || (frame && frame.classList.contains('unlocked'))) {
+        const modal = document.getElementById('movie-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        
+        const story = PENGUIN_STORY[id];
+        if (story) {
+            modalImg.src = `${id}.png`;
+            modalTitle.textContent = story.title;
+            modalDesc.textContent = story.desc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+    } else {
+        alert("Pass this level with 70% accuracy or higher to unlock the next part of the story!");
+    }
+}
+
+function closeMovieLightbox() {
+    document.getElementById('movie-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Autocomplete logic for quick testing
+function autocompleteTense(tenseId, refresh = true) {
+    const currentUser = profileManager.getCurrentUser();
+    if (!currentUser) return;
+
+    const username = currentUser.username;
+    
+    // CRITICAL: Only create backup if the tense is NOT already in a "Magic" state.
+    // We check if progress light is 100 to determine if Magic was already used.
+    const currentProgress = profileManager.getTenseProgress(username, tenseId);
+    if (currentProgress.light < 100 && !localStorage.getItem(`tenseflix_backup_${username}_${tenseId}`)) {
+        const currentState = localStorage.getItem(`tenseflix_state_${username}_${tenseId}`);
+        
+        localStorage.setItem(`tenseflix_backup_${username}_${tenseId}`, JSON.stringify(currentProgress));
+        if (currentState) localStorage.setItem(`tenseflix_state_backup_${username}_${tenseId}`, currentState);
+    }
+
+    // Set progress to 80% (12/15 correct)
+    const progressUpdate = {
+        completedAt: new Date().toISOString(),
+        completed: 15,
+        correctCount: 15,
+        light: 100,
+        lastAccessed: new Date().toISOString()
+    };
+
+    profileManager.updateProgress(currentUser.username, tenseId, progressUpdate);
+
+    // Save lesson state to fill progress bars
+    const state = {
+        video1Answered: ['q1', 'q2', 'q3', 'q4', 'q5'],
+        video2Answered: ['q1', 'q2', 'q3', 'q4', 'q5'],
+        video3Answered: ['q1', 'q2', 'q3'],
+        video4Answered: ['q1', 'q2', 'q3', 'q4', 'q5'],
+        activeTab: 'practice'
+    };
+    profileManager.saveLessonState(currentUser.username, tenseId, state);
+
+    if (refresh) initializeLevels();
+}
+
+function autocompleteAll() {
+    const TENSE_PROGRESSION = [
+        'present-simple', 'present-continuous', 'past-simple', 'present-perfect',
+        'future-simple', 'past-continuous', 'present-perfect-continuous', 'past-perfect',
+        'future-continuous', 'future-perfect', 'past-perfect-continuous', 'future-perfect-continuous'
+    ];
+    
+    if (confirm('Magic will complete all 12 tenses with 80% accuracy. Continue?')) {
+        TENSE_PROGRESSION.forEach(id => autocompleteTense(id, false));
+        initializeLevels();
+    }
+}
+
+/**
+ * Unmagic logic: Restores actual version from backup or resets to 0
+ */
+function unmagicTense(tenseId, refresh = true) {
+    const currentUser = profileManager.getCurrentUser();
+    if (!currentUser) return;
+
+    const username = currentUser.username;
+    const backupProgress = localStorage.getItem(`tenseflix_backup_${username}_${tenseId}`);
+    const backupState = localStorage.getItem(`tenseflix_state_backup_${username}_${tenseId}`);
+
+    if (backupProgress) {
+        // Restore the full progress object
+        profileManager.updateProgress(username, tenseId, JSON.parse(backupProgress));
+        
+        // Restore the lesson state
+        if (backupState) {
+            const stateObj = JSON.parse(backupState);
+            profileManager.saveLessonState(username, tenseId, stateObj);
+            localStorage.setItem(`tenseflix_state_${username}_${tenseId}`, backupState);
+        } else {
+            localStorage.removeItem(`tenseflix_state_${username}_${tenseId}`);
+        }
+
+        // Clean up backups after successful restoration
+        localStorage.removeItem(`tenseflix_backup_${username}_${tenseId}`);
+        localStorage.removeItem(`tenseflix_state_backup_${username}_${tenseId}`);
+    } else {
+        // If no backup exists, reset progress to zero for this tense
+        const freshProgress = profileManager.initializeProgress()[tenseId];
+        profileManager.updateProgress(username, tenseId, freshProgress);
+        localStorage.removeItem(`tenseflix_state_${username}_${tenseId}`);
+    }
+
+    if (refresh) initializeLevels();
+}
+
+/**
+ * Unmagic all tenses
+ */
+function unmagicAll() {
+    const TENSE_PROGRESSION = [
+        'present-simple', 'present-continuous', 'past-simple', 'present-perfect',
+        'future-simple', 'past-continuous', 'present-perfect-continuous', 'past-perfect',
+        'future-continuous', 'future-perfect', 'past-perfect-continuous', 'future-perfect-continuous'
+    ];
+    
+    if (confirm('Unmagic will restore your actual progress or reset all tenses to 0%. Continue?')) {
+        TENSE_PROGRESSION.forEach(id => unmagicTense(id, false));
+        initializeLevels();
+    }
 }
 
 // Update Nametag Rank based on milestones

@@ -104,6 +104,120 @@ function loadProfile() {
 
     // Load tense progress bars
     loadTenseProgress(userProgress);
+
+    // Reveal animation logic for the first unlocked item
+    const prevUnlockedCount = parseInt(localStorage.getItem('tenseflix_gallery_count') || '0');
+    
+    // Load Movie Gallery
+    loadGallery(userProgress);
+
+    // Check if this is the first time they see a gallery item
+    const currentUnlockedCount = container.querySelectorAll('.gallery-item').length - (unlockedCount === 0 ? 1 : 0); 
+    // Note: loadGallery handles its own count check, I'll rely on the localStorage flag
+    if (prevUnlockedCount === 0 && unlockedCount > 0) {
+        const gallerySection = document.getElementById('movie-gallery-container').parentNode;
+        gallerySection.style.opacity = '0';
+        gallerySection.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+            gallerySection.style.transition = 'all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            gallerySection.style.opacity = '1';
+            gallerySection.style.transform = 'translateY(0)';
+            gallerySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    }
+    localStorage.setItem('tenseflix_gallery_count', unlockedCount);
+}
+
+function loadGallery(userProgress) {
+    let container = document.getElementById('movie-gallery-container');
+    
+    // If container doesn't exist in HTML, create it ABOVE the statistics
+    if (!container) {
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid && statsGrid.parentNode) {
+            const gallerySection = document.createElement('div');
+            gallerySection.className = 'profile-section';
+            gallerySection.style.marginBottom = '50px';
+            gallerySection.innerHTML = `
+                <h2 style="color: #e2b714; margin-bottom: 20px; border-bottom: 2px solid #e2b714; padding-bottom: 10px;">🎬 Movie Collection</h2>
+                <div id="movie-gallery-container"></div>
+            `;
+            statsGrid.parentNode.insertBefore(gallerySection, statsGrid);
+            container = document.getElementById('movie-gallery-container');
+        }
+    }
+
+    if (!container) return;
+
+    const PENGUIN_STORY = {
+        1: { title: "The Spark", desc: "Our hero finds a poster for a competition." },
+        2: { title: "Nights of Creation", desc: "Nights of hard work writing the script." },
+        3: { title: "The Pitch", desc: "Presenting the treatment to the board." },
+        4: { title: "The Reality Check", desc: "Dealing with rejections." },
+        5: { title: "The Breakthrough", desc: "Getting the big 'You're In' call!" },
+        6: { title: "Table Read", desc: "The team gathers to dive into the story." },
+        7: { title: "Action on Set", desc: "Filming the first emotional scenes." },
+        8: { title: "Directing the Chaos", desc: "Taking total control of the set." },
+        '8_2': { title: "Movie Magic", desc: "Checking the monitor. Every take brings perfection." },
+        9: { title: "The Final Cut", desc: "Magic happens in the editing room." },
+        10: { title: "The Closed Screening", desc: "A private viewing for the crew." },
+        11: { title: "Oscar Shortlist!", desc: "The film makes the big list!" },
+        12: { title: "In the Spotlight", desc: "Seeing the poster where it all began." }
+    };
+
+    const DISPLAY_ORDER = [
+        { key: 'present-simple', id: '1' },
+        { key: 'present-continuous', id: '2' },
+        { key: 'past-simple', id: '3' },
+        { key: 'present-perfect', id: '4' },
+        { key: 'future-simple', id: '5' },
+        { key: 'past-continuous', id: '6' },
+        { key: 'present-perfect-continuous', id: '7' },
+        { key: 'past-perfect', id: '8' },
+        { key: 'past-perfect', id: '8_2' }, // Show the extra frame for level 8
+        { key: 'future-continuous', id: '9' },
+        { key: 'future-perfect', id: '10' },
+        { key: 'past-perfect-continuous', id: '11' },
+        { key: 'future-perfect-continuous', id: '12' }
+    ];
+
+    let unlockedCount = 0;
+    DISPLAY_ORDER.forEach(item => {
+        if (userProgress[item.key] && (userProgress[item.key].completedAt || userProgress[item.key].light >= 70)) {
+            unlockedCount++;
+        }
+    });
+
+    // If NO tasks passed at all, show the empty state
+    if (unlockedCount === 0) {
+        container.innerHTML = `
+            <div style="text-align:center; padding: 60px 20px; background: rgba(15, 15, 30, 0.6); border-radius: 15px; border: 2px dashed rgba(226, 183, 20, 0.3); margin: 20px 0;">
+                <p style="color: #e2b714; font-size: 1.2rem; font-weight: 800; margin-bottom: 10px;">Your collection is empty!</p>
+                <p style="color: #aaa; font-size: 0.95rem;">Complete lesson tasks with 70% accuracy or more to unlock movie scenes and build your gallery.</p>
+            </div>`;
+        return;
+    }
+
+    // If at least ONE task is passed, show the full grid of 13 items
+    let galleryHTML = '<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; padding: 20px 0;">';
+    
+    DISPLAY_ORDER.forEach((item) => {
+        const isUnlocked = userProgress[item.key] && (userProgress[item.key].completedAt || userProgress[item.key].light >= 70);
+        const story = PENGUIN_STORY[item.id];
+        
+        galleryHTML += `
+            <div class="gallery-item" style="background:#0f0f1e; border-radius:15px; overflow:hidden; border: 3px solid ${isUnlocked ? '#e2b714' : '#1a1a2e'}; opacity: ${isUnlocked ? '1' : '0.15'}; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" onclick="${isUnlocked ? `openMovieLightbox('${item.id}')` : ''}">
+                <img src="${isUnlocked ? item.id + '.png' : 'placeholder.png'}" style="width:100%; height:220px; object-fit:cover; background:#000; display:block; transition: transform 0.5s ease;">
+                <div style="padding:25px; background: linear-gradient(to bottom, #0f0f1e, #050510);">
+                    <h4 style="color:#e2b714; margin:0; font-size:1.3rem; font-weight:900; letter-spacing: 0.5px;">${isUnlocked ? story.title : 'Locked Episode'}</h4>
+                    <p style="font-size:1rem; color:#e0e0e0; margin:12px 0 0; line-height:1.6; font-weight: 400;">${isUnlocked ? story.desc : 'Finish this level with a high score to reveal this chapter.'}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    galleryHTML += '</div>';
+    container.innerHTML = galleryHTML;
 }
 
 function formatTimeSpent(seconds) {

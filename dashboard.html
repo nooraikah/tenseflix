@@ -30,75 +30,238 @@
             text-transform: uppercase;
         }
 
-        /* Milestone Markers */
-        .milestone-wrap {
+        /* Side Movie Frames */
+        .movie-frame-wrap {
             position: relative;
-            height: 0;
+            height: 0; /* Не разрывает поток карточек */
+            z-index: 20;
+        }
+
+        .movie-frame {
+            position: absolute;
+            width: 300px;
+            height: 175px;
+            background: #000;
+            border: 3px solid #333;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: -240px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s, box-shadow 0.4s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            cursor: help;
             z-index: 10;
         }
 
-        .badge-marker, .tag-marker {
+        .movie-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fills the frame completely */
+            border-radius: 5px;
+            display: none;
+        }
+
+        .movie-frame.unlocked {
+            border-color: #e2b714;
+            box-shadow: 0 0 25px rgba(226, 183, 20, 0.6);
+            transform: scale(1);
+            cursor: zoom-in;
+        }
+
+        /* Zoom effect on hover */
+        .movie-frame.unlocked:hover {
+            transform: scale(1.15) translateY(-10px);
+            z-index: 50;
+        }
+
+        .movie-frame-wrap.left .movie-frame { left: -320px; }
+        .movie-frame-wrap.right .movie-frame { right: -320px; }
+        
+        /* Позиционирование для двух кадров на 8 уровне */
+        .movie-frame-wrap.double .movie-frame#frame-8 { right: -320px; top: -330px; }
+        .movie-frame-wrap.double .movie-frame#frame-8_2 { right: -320px; top: -140px; }
+
+        .movie-frame span {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #333;
+            line-height: 1;
+        }
+
+        .movie-frame .unlock-hint {
+            font-size: 0.65rem;
+            color: #555;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .movie-frame.unlocked span { display: none; }
+        .movie-frame.unlocked img { display: block; }
+
+        /* Description Tooltip */
+        .movie-frame.unlocked::after {
+            content: "Click to see story";
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+            bottom: -30px;
+            background: #e2b714;
+            color: #000;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .movie-frame.unlocked:hover::after { opacity: 1; }
+
+        /* Lightbox Modal for Movies */
+        .movie-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .movie-modal-content {
+            max-width: 1000px;
+            width: 95%;
+            text-align: center;
+        }
+        .movie-modal img {
+            width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 4px solid #e2b714;
+            margin-bottom: 20px;
+            box-shadow: 0 0 50px rgba(226, 183, 20, 0.3);
+        }
+        .movie-modal h3 {
+            color: #e2b714;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .movie-modal p {
+            color: #eee;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* Final Section */
+        .final-path-section {
+            margin-top: 50px;
+            text-align: center;
+            padding-bottom: 50px;
+        }
+        .tense-counter-btn {
+            background: #1a1a2e;
+            border: 2px solid #e2b714;
+            color: #e2b714;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 800;
+            display: inline-block;
+        }
+        
+        .tense-counter-btn.ready-for-victory {
+            cursor: pointer;
+            background: #e2b714;
+            color: #1a1a2e;
+            animation: pulse-gold 1.5s infinite;
+        }
+
+        .final-reward { display: none; margin-top: 20px; }
+        .final-reward img { max-width: 400px; border-radius: 15px; border: 5px solid #e2b714; }
+
+        /* Unmagic Button Styling */
+        .unmagic-btn {
+            background: transparent;
+            border: 1px dashed #555;
+            color: #555;
+            font-size: 0.65rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #1a1a1a;
-            border: 6px solid #333;
-            color: #666;
-            font-weight: 900;
-            cursor: help;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            top: -180px;
         }
-        
-        .milestone-wrap.left .badge-marker, .milestone-wrap.left .tag-marker { left: -180px; }
-        .milestone-wrap.right .badge-marker, .milestone-wrap.right .tag-marker { right: -180px; }
-
-        .badge-marker { border-color: #000; font-size: 42px; }
-        .tag-marker { width: 85px; height: 85px; border-color: #e2b714; font-size: 34px; top: -170px; }
-
-        .milestone-tooltip {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.9);
+        .unmagic-btn:hover {
+            border-color: #e74c3c;
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+        .unmagic-all-btn {
+            background: #e74c3c;
             color: #fff;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            white-space: nowrap;
-            bottom: -40px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 100;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .badge-marker:hover .milestone-tooltip, .tag-marker:hover .milestone-tooltip { opacity: 1; }
-
-        .milestone-unlocked {
-            background: #e2b714 !important;
-            color: #fff !important;
-            border-color: #ffd700 !important;
-            box-shadow: 0 0 40px rgba(226, 183, 20, 0.8) !important;
-            transform: scale(1.15) rotate(5deg);
-            animation: pulse-gold 2s infinite;
-        }
-        .tag-unlocked {
-            background: #4CAF50 !important;
-            color: #fff !important;
-            border-color: #81c784 !important;
-            box-shadow: 0 0 35px rgba(76, 175, 80, 0.7) !important;
-            transform: scale(1.1) rotate(-5deg);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 10px;
         }
 
-        @keyframes pulse-gold {
-            0% { box-shadow: 0 0 20px rgba(226, 183, 20, 0.5); }
-            50% { box-shadow: 0 0 50px rgba(226, 183, 20, 0.9); }
-            100% { box-shadow: 0 0 20px rgba(226, 183, 20, 0.5); }
+        /* Button Row Container */
+        .magic-controls {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Autocomplete Button Styling */
+        .autocomplete-btn {
+            background: transparent;
+            border: 1px dashed #555;
+            color: #555;
+            font-size: 0.65rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .autocomplete-btn:hover {
+            border-color: #e2b714;
+            color: #e2b714;
+            background: rgba(226, 183, 20, 0.1);
+        }
+        .magic-all-btn {
+            background: #e2b714;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -127,6 +290,8 @@
         <div class="dashboard-intro">
             <h2>🎓 Your Path to Mastery</h2>
             <p>Complete levels in order from simple to complex. Study all 12 English tenses through movie examples!</p>
+            <button class="magic-all-btn" onclick="autocompleteAll()">🪄 Magic Finish All</button>
+            <button class="unmagic-all-btn" onclick="unmagicAll()">❌ Unmagic All</button>
         </div>
 
         <div class="tenses-path">
@@ -138,9 +303,13 @@
                     <h3>Present Simple</h3>
                     <p class="tense-keyword">ROUTINE</p>
                     <button class="start-btn" onclick="startLesson('present-simple', 1)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('present-simple')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('present-simple')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap left"><div class="tag-marker" id="tag-present-simple">🏷️<div class="milestone-tooltip">Pass with 70%+ to get tag</div></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-1" onclick="openMovieLightbox(1)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="1.png"></div></div>
 
             <!-- LEVEL 2: PRESENT CONTINUOUS -->
             <div class="tense-level" data-level="2" data-tense="present-continuous">
@@ -150,9 +319,13 @@
                     <h3>Present Continuous</h3>
                     <p class="tense-keyword">RIGHT NOW</p>
                     <button class="start-btn" onclick="startLesson('present-continuous', 2)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('present-continuous')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('present-continuous')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap right"><div class="badge-marker" id="badge-2">?<div class="milestone-tooltip">Pass exam to get the badge</div></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-2" onclick="openMovieLightbox(2)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="2.png"></div></div>
 
             <!-- LEVEL 3: PAST SIMPLE -->
             <div class="tense-level" data-level="3" data-tense="past-simple">
@@ -162,9 +335,13 @@
                     <h3>Past Simple</h3>
                     <p class="tense-keyword">HABITS</p>
                     <button class="start-btn" onclick="startLesson('past-simple', 3)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('past-simple')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('past-simple')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap left"><div class="tag-marker" id="tag-past-simple">🏷️<div class="milestone-tooltip">Pass with 70%+ to get tag</div></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-3" onclick="openMovieLightbox(3)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="3.png"></div></div>
 
             <!-- LEVEL 4: PRESENT PERFECT -->
             <div class="tense-level" data-level="4" data-tense="present-perfect">
@@ -174,9 +351,13 @@
                     <h3>Present Perfect</h3>
                     <p class="tense-keyword">RESULT</p>
                     <button class="start-btn" onclick="startLesson('present-perfect', 4)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('present-perfect')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('present-perfect')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap right"><div class="badge-marker" id="badge-4">?<div class="milestone-tooltip">Pass exam to get the badge</div></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-4" onclick="openMovieLightbox(4)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="4.png"></div></div>
 
             <!-- LEVEL 5: FUTURE SIMPLE -->
             <div class="tense-level" data-level="5" data-tense="future-simple">
@@ -186,9 +367,13 @@
                     <h3>Future Simple</h3>
                     <p class="tense-keyword">PREDICTION</p>
                     <button class="start-btn" onclick="startLesson('future-simple', 5)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('future-simple')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('future-simple')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap left"><div class="tag-marker" id="tag-future-simple">🏷️<div class="milestone-tooltip">Pass with 70%+ to get tag</div></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-5" onclick="openMovieLightbox(5)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="5.png"></div></div>
 
             <!-- LEVEL 6: PAST CONTINUOUS -->
             <div class="tense-level" data-level="6" data-tense="past-continuous">
@@ -198,9 +383,13 @@
                     <h3>Past Continuous</h3>
                     <p class="tense-keyword">IN PROGRESS</p>
                     <button class="start-btn" onclick="startLesson('past-continuous', 6)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('past-continuous')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('past-continuous')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap right"><div class="badge-marker" id="badge-6">?<div class="milestone-tooltip">Pass exam to get the badge</div></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-6" onclick="openMovieLightbox(6)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="6.png"></div></div>
 
             <!-- LEVEL 7: PRESENT PERFECT CONTINUOUS -->
             <div class="tense-level" data-level="7" data-tense="present-perfect-continuous">
@@ -210,9 +399,13 @@
                     <h3>Present Perfect Continuous</h3>
                     <p class="tense-keyword">DURATION</p>
                     <button class="start-btn" onclick="startLesson('present-perfect-continuous', 7)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('present-perfect-continuous')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('present-perfect-continuous')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap left"><div class="tag-marker" id="tag-present-perfect-continuous">🏷️<div class="milestone-tooltip">Pass with 70%+ to get tag</div></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-7" onclick="openMovieLightbox(7)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="7.png"></div></div>
 
             <!-- LEVEL 8: PAST PERFECT -->
             <div class="tense-level" data-level="8" data-tense="past-perfect">
@@ -222,9 +415,16 @@
                     <h3>Past Perfect</h3>
                     <p class="tense-keyword">BEFORE PAST</p>
                     <button class="start-btn" onclick="startLesson('past-perfect', 8)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('past-perfect')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('past-perfect')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap right"><div class="badge-marker" id="badge-8">?<div class="milestone-tooltip">Pass exam to get the badge</div></div></div>
+            <div class="movie-frame-wrap right double">
+                <div class="movie-frame" id="frame-8" onclick="openMovieLightbox(8)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="8.png"></div>
+                <div class="movie-frame" id="frame-8_2" onclick="openMovieLightbox('8_2')"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="8_2.png"></div>
+            </div>
 
             <!-- LEVEL 9: FUTURE CONTINUOUS -->
             <div class="tense-level" data-level="9" data-tense="future-continuous">
@@ -234,9 +434,13 @@
                     <h3>Future Continuous</h3>
                     <p class="tense-keyword">IN PROGRESS</p>
                     <button class="start-btn" onclick="startLesson('future-continuous', 9)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('future-continuous')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('future-continuous')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap left"><div class="tag-marker" id="tag-future-continuous">🏷️<div class="milestone-tooltip">Pass with 70%+ to get tag</div></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-9" onclick="openMovieLightbox(9)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="9.png"></div></div>
 
             <!-- LEVEL 10: FUTURE PERFECT -->
             <div class="tense-level" data-level="10" data-tense="future-perfect">
@@ -246,9 +450,13 @@
                     <h3>Future Perfect</h3>
                     <p class="tense-keyword">FINISHED BY</p>
                     <button class="start-btn" onclick="startLesson('future-perfect', 10)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('future-perfect')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('future-perfect')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap right"><div class="badge-marker" id="badge-10">?<div class="milestone-tooltip">Pass exam to get the badge</div></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-10" onclick="openMovieLightbox(10)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="10.png"></div></div>
 
             <!-- LEVEL 11: PAST PERFECT CONTINUOUS -->
             <div class="tense-level" data-level="11" data-tense="past-perfect-continuous">
@@ -258,9 +466,13 @@
                     <h3>Past Perfect Continuous</h3>
                     <p class="tense-keyword">DURATION BEFORE</p>
                     <button class="start-btn" onclick="startLesson('past-perfect-continuous', 11)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('past-perfect-continuous')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('past-perfect-continuous')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
-            <div class="milestone-wrap left"><div class="tag-marker" id="tag-past-perfect-continuous">🏷️<div class="milestone-tooltip">Pass with 70%+ to get tag</div></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-11" onclick="openMovieLightbox(11)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="11.png"></div></div>
 
             <!-- LEVEL 12: FUTURE PERFECT CONTINUOUS -->
             <div class="tense-level" data-level="12" data-tense="future-perfect-continuous">
@@ -270,9 +482,23 @@
                     <h3>Future Perfect Continuous</h3>
                     <p class="tense-keyword">DURATION UNTIL</p>
                     <button class="start-btn" onclick="startLesson('future-perfect-continuous', 12)">Start Lesson</button>
+                    <div class="magic-controls">
+                        <button class="autocomplete-btn" onclick="autocompleteTense('future-perfect-continuous')">Magic 🪄</button>
+                        <button class="unmagic-btn" onclick="unmagicTense('future-perfect-continuous')">Unmagic ❌</button>
+                    </div>
                 </div>
             </div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-12" onclick="openMovieLightbox(12)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="12.png"></div></div>
         </div>
+
+        <!-- Final Section -->
+        <div class="final-path-section">
+            <div class="tense-counter-btn" id="tense-counter-btn">0/12 Tenses Mastered</div>
+            <div class="final-reward" id="final-reward" onclick="openMovieLightbox('final')">
+                <img src="final.png" alt="Path Complete!">
+            </div>
+        </div>
+
     </div>
 
     <div class="footer">
@@ -280,6 +506,7 @@
     </div>
 
     <script src="i18n.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script src="profiles.js"></script>
     <script src="dashboard-script.js"></script>
     <script>
