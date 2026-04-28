@@ -403,6 +403,11 @@ function completeTense() {
         correctCount: score.correct,
         light: score.percent
     });
+    profileManager.savePracticeResult(currentUser.username, {
+        score: score.percent,
+        status: passed ? 'done' : 'retake',
+        tense: tense
+    });
 
     // Remove any existing overlay
     const old = document.getElementById('score-result-overlay');
@@ -488,6 +493,103 @@ function finishAndRedirect() {
     const overlay = document.getElementById('score-result-overlay');
     if (overlay) overlay.classList.remove('score-overlay-visible');
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 350);
+}
+
+function forcePracticeResult(percent) {
+    const tense = getTenseFromURL();
+    const currentUser = profileManager.getCurrentUser();
+    if (!currentUser) {
+        showSaveToast('❌ Войдите в аккаунт', 'error');
+        return;
+    }
+
+    const passed = percent >= 70;
+    const resultData = {
+        completed: passed ? 10 : 3,
+        correctCount: passed ? 7 : 2,
+        light: percent,
+        lastAccessed: new Date().toISOString()
+    };
+
+    profileManager.updateProgress(currentUser.username, tense, resultData);
+    profileManager.savePracticeResult(currentUser.username, {
+        score: percent,
+        status: passed ? 'done' : 'retake',
+        tense: tense
+    });
+    if (passed) {
+        profileManager.markTenseCompleted(currentUser.username, tense);
+        lockPracticeSection();
+    }
+
+    triggerSave(null, true);
+    showForcedResultOverlay(percent, resultData.correctCount, resultData.completed, passed);
+}
+
+function showForcedResultOverlay(percent, correct, total, passed) {
+    const tense = getTenseFromURL();
+    const currentIdx = TENSE_ORDER.findIndex(t => t.id === tense);
+    const currentTense = TENSE_ORDER[currentIdx] || { label: tense, level: currentIdx + 1 };
+    const next = TENSE_ORDER[currentIdx + 1] || null;
+
+    const old = document.getElementById('score-result-overlay');
+    if (old) old.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'score-result-overlay';
+    overlay.className = 'score-overlay';
+    const ringColor = passed ? '#22c55e' : '#ef4444';
+    const ringBg = passed ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)';
+
+    if (passed) {
+        overlay.innerHTML = `
+            <div class="score-card">
+                <div class="score-emoji">🎉</div>
+                <h2 class="score-title">✅ Done</h2>
+                <p class="score-tense-name">${currentTense.label}</p>
+
+                <div class="score-ring" style="--ring-color:${ringColor};--ring-bg:${ringBg}">
+                    <span class="score-percent">${percent}%</span>
+                    <span class="score-fraction">${correct} / ${total} correct</span>
+                </div>
+
+                <p class="score-unlock">${next ? `🔓 Level ${next.level} — <strong>${next.label}</strong> unlocked!` : '🏆 All tenses completed!'}</p>
+
+                <div class="score-btn-row">
+                    <button class="score-btn score-btn-next" onclick="finishAndRedirect()">
+                        Next Tense →
+                    </button>
+                </div>
+            </div>
+        `;
+    } else {
+        overlay.innerHTML = `
+            <div class="score-card">
+                <div class="score-emoji">😕</div>
+                <h2 class="score-title">⚠️ Retake</h2>
+                <p class="score-tense-name">${currentTense.label}</p>
+
+                <div class="score-ring" style="--ring-color:${ringColor};--ring-bg:${ringBg}">
+                    <span class="score-percent">${percent}%</span>
+                    <span class="score-fraction">${correct} / ${total} correct</span>
+                </div>
+
+                <p class="score-need-msg">You need at least 70% to continue</p>
+
+                <div class="score-btn-row">
+                    <button class="score-btn score-btn-retry" onclick="retryPractice()">
+                        ⚠️ Retake
+                    </button>
+                    <button class="score-btn score-btn-dashboard" onclick="window.location.href='dashboard.html'">
+                        ← Dashboard
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add('score-overlay-visible'));
 }
 
 /** Блокирует секцию практики (инпуты, кнопки, варианты), если урок завершен. */
@@ -1769,7 +1871,8 @@ window.lessonsData = { // Make lessonsData explicitly global
                 subLetter: 'c',
                 text: 'Where do we put &ldquo;not&rdquo; in the sentence to make negative sentences?',
                 options: ['before the auxiliary verb (not am, not is, not are)', 'after the auxiliary verb (am not, is not, are not)'],
-                correct: 1
+                correct: 1,
+                explanation: '&ldquo;Not&rdquo; comes after the auxiliary verb in Present Continuous negativity: <em>am not</em>, <em>is not</em>, <em>are not</em>.'
             },
             {
                 type: 'intro', num: 2,
@@ -8774,14 +8877,10 @@ function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {
             var dragResEl = document.createElement('span');
             dragResEl.className = 'drag-result';
             dragResEl.id = 'drag-result-' + qId;
-            var resetBtnEl = document.createElement('button');
-            resetBtnEl.className = 'drag-reset-btn';
-            resetBtnEl.textContent = '\u21BA Reset';
-            resetBtnEl.setAttribute('onclick', 'resetDragQ(\'' + qId + '\')');
             var attBadge = document.createElement('span');
             attBadge.id = 'drag-att-' + qId;
             attBadge.style.cssText = 'font-size:0.82rem;color:#aaa;margin-left:6px;';
-            attBadge.textContent = '3 attempts';
+            attBadge.textContent = '1 attempt';
 
             var checkDragBtn = document.createElement('button');
             checkDragBtn.className = 'quiz-opt-btn';
@@ -8794,7 +8893,6 @@ function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {
             })(qId, videoNum, q.correct, q.explanation || '');
 
             checkRow.appendChild(dragResEl);
-            checkRow.appendChild(resetBtnEl);
             checkRow.appendChild(checkDragBtn);
             checkRow.appendChild(attBadge);
             dragBody.appendChild(bankDiv);
@@ -8893,7 +8991,7 @@ function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {
 
 // ---- Drag-and-drop answer handler for video quiz ----
 function checkDynVideoDrag(videoNum, questionId, correctAnswer, explanation) {
-    var MAX_ATT = 3;
+    var MAX_ATT = 1;
     if (_videoDragAttempts[questionId] === undefined) _videoDragAttempts[questionId] = 0;
 
     var zone    = document.getElementById('answer-' + questionId);
@@ -9229,7 +9327,10 @@ function handlePracticeTab(tense, lesson) {
         if (dynExercises) renderPresentSimplePracticeTasks(dynExercises);
         useDynamicRenderer = true;
     } else if (tense === 'present-continuous') {
-        if (pcStatic) pcStatic.style.display = '';
+        if (pcStatic) {
+            pcStatic.style.display = '';
+            switchPCSection(1);
+        }
     } else if (tense === 'past-simple') {
         if (dynExercises) renderPastSimplePracticeTasks(dynExercises);
         useDynamicRenderer = true;
@@ -9757,8 +9858,16 @@ function renderPresentPerfectPracticeTasks(container) {
     </div>
 
     <!-- ✅ GET RESULT BUTTON -->
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -9887,8 +9996,16 @@ function renderFutureSimplePracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -10308,8 +10425,16 @@ function renderPastContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -11126,9 +11251,17 @@ function renderPastSimplePracticeTasks(container) {
 </div><!-- end ps-section-4 -->
 
 <!-- ✅ GET RESULT BUTTON -->
-<div class="get-result-bar">
-    <button class="get-result-btn" onclick="getResult()">&#128202; Get Result</button>
-</div>
+<div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
+    </div>
 
 </div><!-- end practice-tasks-container -->
     `;
@@ -11572,8 +11705,16 @@ function renderFutureSimplePracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -12014,8 +12155,16 @@ function renderPastPerfectPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -12448,8 +12597,16 @@ function renderPresentSimplePracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -12925,8 +13082,16 @@ function renderPresentPerfectContinuousPracticeTasks(container) {
             <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">Check ✓</button></div>
         </div>
     </div>
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>`;
 }
@@ -13195,8 +13360,16 @@ function renderPastPerfectContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>`;
 }
@@ -13485,8 +13658,16 @@ function renderFutureContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -13724,8 +13905,16 @@ function renderFuturePerfectPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -14003,8 +14192,16 @@ function renderFuturePerfectContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>`;
 }
@@ -14548,10 +14745,14 @@ function chipClickHandler(chip) {
 function resetDragQ(qId) {
     const zone = document.getElementById('answer-' + qId);
     const bank = document.getElementById('bank-' + qId);
-    // Move chips back
+    if (!zone || !bank) return;
+
+    // Move chips back to the bank and restore click behavior.
     [...zone.querySelectorAll('.word-chip')].forEach(c => {
         c.classList.remove('chip-correct', 'chip-dragging');
         c.style.cursor = 'pointer';
+        c.style.pointerEvents = '';
+        c.style.opacity = '';
         c.onclick = function() { chipClickHandler(this); };
         bank.appendChild(c);
     });
@@ -14559,6 +14760,8 @@ function resetDragQ(qId) {
     [...bank.querySelectorAll('.word-chip')].forEach(c => {
         c.classList.remove('chip-correct', 'chip-dragging');
         c.style.cursor = 'pointer';
+        c.style.pointerEvents = '';
+        c.style.opacity = '';
         c.onclick = function() { chipClickHandler(this); };
     });
     // Restore placeholder

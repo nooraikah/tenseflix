@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenseflix - Login</title>
     <link rel="stylesheet" href="auth-styles.css">
+    <style>
+        .auth-card {
+            max-width: 360px; /* Уменьшаем размер карточки */
+            width: 100%;
+            margin: 0 auto;
+            padding: 25px 30px; /* Уменьшаем внутренние отступы для компактности */
+        }
+        /* auth-container уже настроен на центрирование и min-height: 90vh */
+        /* Складываем элементы выбора пола в колонку */
+        .gender-group {
+            display: flex;
+            flex-direction: row; /* Размещаем элементы в одну линию */
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="auth-container">
@@ -17,7 +32,7 @@
             </div>
 
             <!-- Login Form -->
-            <div class="form-container active" id="login-form">
+            <div class="form-container" id="login-form">
                 <h2>Sign In</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
@@ -38,7 +53,7 @@
                             required
                         >
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Sign In</button>
                 </form>
                 <p class="form-switch">
                     Don't have an account? 
@@ -47,7 +62,7 @@
             </div>
 
             <!-- Register Form -->
-            <div class="form-container" id="register-form">
+            <div class="form-container active" id="register-form">
                 <h2>Register</h2>
                 <form onsubmit="handleRegister(event)">
                     <div class="form-group">
@@ -60,13 +75,17 @@
                         >
                     </div>
                     <div class="form-group">
-                        <label for="register-name">Full Name</label>
+                        <label for="register-dob">Date of Birth</label>
                         <input 
-                            type="text" 
-                            id="register-name" 
-                            placeholder="Your full name" 
+                            type="date" 
+                            id="register-dob" 
                             required
                         >
+                    </div>
+                    <div class="form-group gender-group" style="margin-bottom: 15px;">
+                        <label style="margin:0; font-weight:600;">Gender:</label>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="radio" name="register-gender" value="Male" required style="width:18px; height:18px;"> Male</label>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="radio" name="register-gender" value="Female" required style="width:18px; height:18px;"> Female</label>
                     </div>
                     <div class="form-group">
                         <label for="register-password">Password</label>
@@ -87,20 +106,9 @@
                             required
                         >
                     </div>
-                    <div class="terms">
-                        <input type="checkbox" id="terms" required>
-                        <label for="terms">I agree to the terms of use</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Register</button>
                 </form>
-                <p class="form-switch">
-                    Already have an account? 
-                    <a href="#" onclick="switchForm(event)">Sign In</a>
-                </p>
-            </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </form>
-                <p class="form-switch">
+                <p class="form-switch" style="font-size:0.9rem;margin-top:12px;">
                     Already have an account? 
                     <a href="#" onclick="switchForm(event)">Sign In</a>
                 </p>

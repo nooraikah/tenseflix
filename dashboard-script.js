@@ -102,7 +102,9 @@ function initializeLevels() {
         
         // Check if tense is completed
         const isCompleted = tenseData.completedAt !== null;
-        const accuracy = tenseData.completed > 0 ? Math.round((tenseData.correctCount / tenseData.completed) * 100) : 0;
+        const accuracy = tenseData.completed > 0
+            ? Math.round((tenseData.correctCount / tenseData.completed) * 100)
+            : (typeof tenseData.light === 'number' ? tenseData.light : 0);
         const isPassed = isCompleted && accuracy >= 70;
         
         const levelIdx = TENSE_PROGRESSION.indexOf(tenseId) + 1;

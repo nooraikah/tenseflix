@@ -33,7 +33,9 @@ function switchForm(e) {
     // Clear message and inputs
     clearMessage();
     document.querySelectorAll('input').forEach(input => {
-        if (input.type !== 'checkbox') {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            input.checked = false;
+        } else {
             input.value = '';
         }
     });
@@ -71,18 +73,13 @@ function handleRegister(e) {
     e.preventDefault();
     
     const username = document.getElementById('register-username').value.trim();
-    const fullName = document.getElementById('register-name').value.trim();
+    const dob = document.getElementById('register-dob').value;
+    const gender = document.querySelector('input[name="register-gender"]:checked')?.value;
     const password = document.getElementById('register-password').value;
     const confirm = document.getElementById('register-confirm').value;
-    const terms = document.getElementById('terms').checked;
     
-    if (!username || !fullName || !password || !confirm) {
+    if (!username || !dob || !gender || !password || !confirm) {
         showMessage('Please fill in all fields', 'error');
-        return;
-    }
-    
-    if (!terms) {
-        showMessage('You must agree to the terms of use', 'error');
         return;
     }
     
@@ -91,7 +88,8 @@ function handleRegister(e) {
         return;
     }
     
-    const result = profileManager.registerUser(username, password, fullName);
+    // Используем username как имя, так как поле ввода удалено
+    const result = profileManager.registerUser(username, password, username, 'user', dob, gender);
     
     if (!result.success) {
         showMessage(result.message, 'error');
@@ -103,8 +101,11 @@ function handleRegister(e) {
     // Clear form and switch to login
     setTimeout(() => {
         document.querySelectorAll('input').forEach(input => {
-            if (input.type !== 'checkbox') {
+            if (input.type !== 'checkbox' && input.type !== 'radio') {
                 input.value = '';
+            }
+            if (input.type === 'radio') {
+                input.checked = false;
             }
         });
         switchForm({preventDefault: () => {}});

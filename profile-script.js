@@ -109,10 +109,10 @@ function loadProfile() {
     const prevUnlockedCount = parseInt(localStorage.getItem('tenseflix_gallery_count') || '0');
     
     // Load Movie Gallery
-    loadGallery(userProgress);
+    const unlockedCount = loadGallery(userProgress);
 
     // Check if this is the first time they see a gallery item
-    const currentUnlockedCount = container.querySelectorAll('.gallery-item').length - (unlockedCount === 0 ? 1 : 0); 
+    const galleryContainer = document.getElementById('movie-gallery-container');
     // Note: loadGallery handles its own count check, I'll rely on the localStorage flag
     if (prevUnlockedCount === 0 && unlockedCount > 0) {
         const gallerySection = document.getElementById('movie-gallery-container').parentNode;
@@ -206,8 +206,8 @@ function loadGallery(userProgress) {
         const story = PENGUIN_STORY[item.id];
         
         galleryHTML += `
-            <div class="gallery-item" style="background:#0f0f1e; border-radius:15px; overflow:hidden; border: 3px solid ${isUnlocked ? '#e2b714' : '#1a1a2e'}; opacity: ${isUnlocked ? '1' : '0.15'}; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" onclick="${isUnlocked ? `openMovieLightbox('${item.id}')` : ''}">
-                <img src="${isUnlocked ? item.id + '.png' : 'placeholder.png'}" style="width:100%; height:220px; object-fit:cover; background:#000; display:block; transition: transform 0.5s ease;">
+            <div class="gallery-item" style="background:#0f0f1e; border-radius:15px; overflow:hidden; border: 3px solid ${isUnlocked ? '#e2b714' : '#1a1a2e'}; opacity: ${isUnlocked ? '1' : '0.2'}; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" onclick="${isUnlocked ? `openMovieLightbox('${item.id}')` : ''}">
+                <img src="${isUnlocked ? item.id + '.png' : 'workout.png'}" style="width:100%; height:220px; object-fit:cover; background:#000; display:block; transition: transform 0.5s ease;">
                 <div style="padding:25px; background: linear-gradient(to bottom, #0f0f1e, #050510);">
                     <h4 style="color:#e2b714; margin:0; font-size:1.3rem; font-weight:900; letter-spacing: 0.5px;">${isUnlocked ? story.title : 'Locked Episode'}</h4>
                     <p style="font-size:1rem; color:#e0e0e0; margin:12px 0 0; line-height:1.6; font-weight: 400;">${isUnlocked ? story.desc : 'Finish this level with a high score to reveal this chapter.'}</p>
@@ -218,6 +218,8 @@ function loadGallery(userProgress) {
 
     galleryHTML += '</div>';
     container.innerHTML = galleryHTML;
+
+    return unlockedCount;
 }
 
 function formatTimeSpent(seconds) {
@@ -572,7 +574,9 @@ function loadTenseProgress(userProgress) {
 
         // ── Has the user actually started this tense? ─────────────────────────
         const hasStarted = v1Count > 0 || exercisesAnswered > 0 || tasksAnswered > 0
-                        || fillAnswered > 0 || practiceAnswered > 0;
+                        || fillAnswered > 0 || practiceAnswered > 0
+                        || tenseData.completed > 0
+                        || (typeof tenseData.light === 'number' && tenseData.light > 0);
 
         // ── Unlock check (same logic as dashboard) ────────────────────────────
         const isUnlocked        = previousCompleted || isAdmin;
@@ -588,7 +592,12 @@ function loadTenseProgress(userProgress) {
         ];
         const correct  = allAnswers.filter(a => a.isCorrect).length;
         const answered = allAnswers.length;
-        const accuracy = answered > 0 ? Math.round((correct / answered) * 100) : null;
+        let accuracy = null;
+        if (answered > 0) {
+            accuracy = Math.round((correct / answered) * 100);
+        } else if (typeof tenseData.light === 'number') {
+            accuracy = tenseData.light;
+        }
 
         // ── Last accessed ─────────────────────────────────────────────────────
         const rawDate = ls.timestamp || tenseData.lastAccessed;
