@@ -88,8 +88,8 @@ function handleRegister(e) {
         return;
     }
     
-    // Используем username как имя, так как поле ввода удалено
-    const result = profileManager.registerUser(username, password, username, 'user', dob, gender);
+    // Pass arguments in the correct order: (username, password, dob, gender, fullName, role)
+    const result = profileManager.registerUser(username, password, dob, gender, username, 'user');
     
     if (!result.success) {
         showMessage(result.message, 'error');
