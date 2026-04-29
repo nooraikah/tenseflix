@@ -29,7 +29,7 @@ class ProfileManager {
     /**
      * Register new user
      */
-    registerUser(username, password, fullName, role = 'user', dob = null, gender = null) {
+    registerUser(username, password, fullName, role = 'user') {
         const profiles = this.getAllProfiles();
 
         // Check if username already exists
@@ -38,7 +38,7 @@ class ProfileManager {
         }
 
         // Validate inputs
-        if (!username || !password || !fullName || !dob || !gender) {
+        if (!username || !password || !fullName) {
             return { success: false, message: 'Please fill in all fields' };
         }
 
@@ -50,25 +50,18 @@ class ProfileManager {
             return { success: false, message: 'Password must be at least 6 characters' };
         }
 
-        if (gender !== 'Male' && gender !== 'Female') {
-            return { success: false, message: 'Please select a valid gender' };
-        }
-
         // Create new profile
         const newProfile = {
             username: username,
             password: password,
             fullName: fullName,
             role: role,
-            dob: dob,
-            gender: gender,
             age: null,
             totalTimeSpent: 0,
             photo: null,
             createdAt: new Date().toISOString(),
             lastLogin: null,
-            progress: this.initializeProgress(),
-            lastPracticeResult: null
+            progress: this.initializeProgress()
         };
 
         profiles[username] = newProfile;
@@ -278,31 +271,6 @@ class ProfileManager {
             ...stateData
         };
         localStorage.setItem(this.storageKey, JSON.stringify(profiles));
-    }
-
-    /**
-     * Save the latest practice result for display in dashboard/profile
-     */
-    savePracticeResult(username, result) {
-        const profiles = this.getAllProfiles();
-        if (!profiles[username]) return { success: false, message: 'User not found' };
-
-        profiles[username].lastPracticeResult = {
-            ...(profiles[username].lastPracticeResult || {}),
-            ...result,
-            timestamp: new Date().toISOString()
-        };
-
-        localStorage.setItem(this.storageKey, JSON.stringify(profiles));
-        return { success: true };
-    }
-
-    /**
-     * Get the latest practice result for the user
-     */
-    getPracticeResult(username) {
-        const profile = this.getProfile(username);
-        return profile ? profile.lastPracticeResult || null : null;
     }
 
     /**
