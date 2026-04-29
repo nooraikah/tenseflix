@@ -67,15 +67,15 @@ function updateProgressBars(userProgress) {
     const tensList = [
         'present-simple',
         'present-continuous',
-        'past-simple',
         'present-perfect',
-        'future-simple',
-        'past-continuous',
         'present-perfect-continuous',
+        'past-simple',
+        'past-continuous',
         'past-perfect',
+        'past-perfect-continuous',
+        'future-simple',
         'future-continuous',
         'future-perfect',
-        'past-perfect-continuous',
         'future-perfect-continuous'
     ];
     

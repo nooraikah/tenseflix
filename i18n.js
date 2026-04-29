@@ -30,36 +30,6 @@ const translations = {
         'feature-6-title': 'Никаких платежей',
         'feature-6-desc': '100% бесплатное обучение без скрытых подписок и рекламы',
 
-            // Interactive Film Section (above tenses)
-            'interactive-film-section-title': 'Интерактивный фильм',
-            'interactive-film-section-btn': 'Попробовать интерактивный фильм',
-            'film-detailed-title': 'Интерактивный фильм: Ваша история',
-            'film-detailed-info': 'Наш фильм — это не просто видео, это полноценный тренажер английского языка. Вы становитесь главным героем, принимаете решения и влияете на ход событий, практикуя грамматику в реальном времени.',
-            'film-how-to-title': 'Как смотреть фильм',
-            'film-how-to-desc': 'Перейдите в личный кабинет, начните обучение и следите за историей маленького пингвина. Каждый пройденный уровень открывает новую главу фильма.',
-            'film-additional-info': 'Погрузитесь в атмосферу "Absolute Cinema" и доведите свои знания до уровня Оскара!',
-
-            // Dashboard Film Section
-            'dashboard-film-title': 'О фильме',
-            'dashboard-film-desc': 'Этот фильм создан специально для практики английских времен. Делайте выборы, влиять на сюжет и учитесь через интерактивные сцены!',
-
-            // Useful Websites Section
-            'useful-websites-title': 'Полезные сайты',
-            'useful-websites-desc': 'Рекомендуемые ресурсы для дополнительной практики английского языка:',
-            'useful-websites-1-title': 'BBC Learning English',
-            'useful-websites-1-desc': 'Классический ресурс с видеоуроками, объяснениями грамматики и советами по произношению на основе реальных новостей.',
-            'useful-websites-2-title': 'British Council',
-            'useful-websites-2-desc': 'Высокоструктурированные учебные курсы с интерактивными упражнениями по грамматике, лексике и подготовке к экзаменам.',
-            'useful-websites-3-title': 'Oxford Online English',
-            'useful-websites-3-desc': 'Отличные видеоуроки, охватывающие деловой английский, разговорную речь и основные грамматические темы.',
-            'useful-websites-4-title': 'TED Talks',
-            'useful-websites-4-desc': 'Смотрите короткие выступления экспертов на самые разные темы. Отлично подходит для продвинутой практики аудирования.',
-            'useful-websites-5-title': 'Cambridge English',
-            'useful-websites-5-desc': 'Официальный сайт Кембриджских экзаменов, предлагающий бесплатные задания для практики чтения, письма и аудирования.',
-            'useful-websites-6-title': 'Memrise',
-            'useful-websites-6-desc': 'Использует интервальные повторения и развлекательные видео, чтобы помочь вам запомнить тысячи слов и фраз.',
-            'useful-websites-visit': 'Посетить сайт →',
-
         // How It Works Section
         'how-it-works-title': 'Как это работает',
         'how-it-works-1-title': 'Смотрите видео',
@@ -181,7 +151,7 @@ const translations = {
         'team-name-1': 'Матай Нурай',
         'team-name-2': 'Майлыбай Анеля',
         'team-name-3': 'Дюсенова Ельнура',
-        'team-name-4': 'Беркимбаева Аида',
+        'team-name-4': 'Беркинбаева Аида',
         'team-name-5': 'Тулешова Аружан',
         'about-title': 'О нас',
         'about-hint': 'Наведите, чтобы увидеть имя и роль. Нажмите на круг, чтобы увидеть опыт. Инфо исчезнет, когда вы уберете мышку.',
@@ -226,36 +196,6 @@ const translations = {
         'feature-5-desc': 'Барлық құрылғыларда жұмыс істейді - компьютер, планшеттер және смартфондар',
         'feature-6-title': 'Ешқандай төлем жоқ',
         'feature-6-desc': '100% тегін оқыту жасырын жазылмасы және жарнамасыз',
-
-            // Interactive Film Section (above tenses)
-            'interactive-film-section-title': 'Интерактивті фильм',
-            'interactive-film-section-btn': 'Интерактивті фильмді көру',
-            'film-detailed-title': 'Интерактивті фильм: Сіздің тарихыңыз',
-            'film-detailed-info': 'Біздің фильм — жай ғана видео емес, бұл ағылшын тілінің толыққанды тренажеры. Сіз басты кейіпкерге айналып, шешім қабылдайсыз және грамматиканы нақты уақытта жаттықтыра отырып, оқиғаның барысына әсер етесіз.',
-            'film-how-to-title': 'Фильмді қалай көруге болады',
-            'film-how-to-desc': 'Жеке кабинетке өтіңіз, оқуды бастаңыз және кішкентай пингвиннің тарихын тамашалаңыз. Әрбір өткен деңгей фильмнің жаңа тарауын ашады.',
-            'film-additional-info': '"Absolute Cinema" атмосферасына еніп, біліміңізді Оскар деңгейіне дейін жеткізіңіз!',
-
-            // Dashboard Film Section
-            'dashboard-film-title': 'Фильм туралы',
-            'dashboard-film-desc': 'Бұл фильм ағылшын шақтарын тәжірибе жасау үшін арнайы жасалған. Таңдау жасап, сюжетті өзгертіңіз және интерактивті көріністер арқылы үйреніңіз!',
-
-            // Useful Websites Section
-            'useful-websites-title': 'Пайдалы веб-сайттар',
-            'useful-websites-desc': 'Ағылшын тілін қосымша тәжірибе жасауға арналған ұсынылған ресурстар:',
-            'useful-websites-1-title': 'BBC Learning English',
-            'useful-websites-1-desc': 'Нақты жаңалықтарға негізделген бейнелер, грамматикалық түсіндірмелер және айтылым бойынша классикалық ресурс.',
-            'useful-websites-2-title': 'British Council',
-            'useful-websites-2-desc': 'Грамматика, сөздік қор және емтиханға дайындыққа арналған интерактивті жаттығулары бар жоғары деңгейдегі оқыту жолдары.',
-            'useful-websites-3-title': 'Oxford Online English',
-            'useful-websites-3-desc': 'Іскерлік ағылшын тілін, сөйлесу тілін және негізгі грамматикалық тақырыптарды қамтитын тамаша бейне сабақтар.',
-            'useful-websites-4-title': 'TED Talks',
-            'useful-websites-4-desc': 'Кез келген тақырыптағы сарапшылардың қысқаша сөздерін көріңіз. Тыңдалымды (listening) жаттықтыру үшін өте қолайлы.',
-            'useful-websites-5-title': 'Cambridge English',
-            'useful-websites-5-desc': 'Оқу, жазу және тыңдау дағдыларын жаттықтыруға арналған тегін тапсырмаларды ұсынатын Кембридж емтихандарының ресми сайты.',
-            'useful-websites-6-title': 'Memrise',
-            'useful-websites-6-desc': 'Мыңдаған сөздер мен сөз тіркестерін жаттауға көмектесетін интервалды қайталаулар мен қызықты бейнелерді пайдаланады.',
-            'useful-websites-visit': 'Сайтқа өту →',
 
         // How It Works Section
         'how-it-works-title': 'Бұл қалай жұмыс істейді',
@@ -378,7 +318,7 @@ const translations = {
         'team-name-1': 'Матай Нурай',
         'team-name-2': 'Майлыбай Анеля',
         'team-name-3': 'Дюсенова Ельнура',
-        'team-name-4': 'Беркимбаева Аида',
+        'team-name-4': 'Беркинбаева Аида',
         'team-name-5': 'Тулешова Аружан',
         'about-title': 'Біз туралы',
         'about-hint': 'Атын және рөлін көру үшін тінтуірді үстіне апарыңыз. Тәжірибені көру үшін шеңберді басыңыз. Тінтуірді басқа жаққа апарғанда ақпарат жоғалады.',
@@ -423,36 +363,6 @@ const translations = {
         'feature-5-desc': 'Works on all devices - desktop, tablets and smartphones',
         'feature-6-title': 'No Payments',
         'feature-6-desc': '100% free learning without hidden subscriptions and ads',
-
-            // Interactive Film Section (above tenses)
-            'interactive-film-section-title': 'Interactive Film',
-            'interactive-film-section-btn': 'Try Interactive Film',
-            'film-detailed-title': 'Interactive Movie: You are the Lead',
-            'film-detailed-info': 'This isn’t just a video — it’s a fully immersive language experience. Step into the shoes of the protagonist, make critical choices that shape the narrative, and master English grammar naturally as the story unfolds.',
-            'film-how-to-title': 'Start Your Adventure',
-            'film-how-to-desc': 'Head to your dashboard to begin your quest. Follow the journey of a determined little penguin; every grammar level you conquer unlocks the next thrilling chapter of the movie.',
-            'film-additional-info': 'Experience "Absolute Cinema" and elevate your English skills to Oscar-winning heights!',
-
-            // Dashboard Film Section
-            'dashboard-film-title': 'About the Film',
-            'dashboard-film-desc': 'This film is created especially for practicing English tenses. Make choices, influence the story, and learn through interactive scenes!',
-
-            // Useful Websites Section
-            'useful-websites-title': 'Useful Websites',
-            'useful-websites-desc': 'Recommended resources for extra English practice:',
-            'useful-websites-1-title': 'BBC Learning English',
-            'useful-websites-1-desc': 'A classic resource featuring videos, grammar explanations, and pronunciation tips using real-world news.',
-            'useful-websites-2-title': 'British Council',
-            'useful-websites-2-desc': 'Highly structured learning paths with interactive exercises for grammar, vocabulary, and exam prep.',
-            'useful-websites-3-title': 'Oxford Online English',
-            'useful-websites-3-desc': 'Excellent video lessons covering business English, spoken English, and essential grammar topics.',
-            'useful-websites-4-title': 'TED Talks',
-            'useful-websites-4-desc': 'Watch short talks by experts on every subject imaginable. Excellent for advanced listening practice.',
-            'useful-websites-5-title': 'Cambridge English',
-            'useful-websites-5-desc': 'Official site for Cambridge exams, offering great free activities to practice reading, writing, and listening.',
-            'useful-websites-6-title': 'Memrise',
-            'useful-websites-6-desc': 'Uses spaced repetition and entertaining videos to help you memorize thousands of words and phrases.',
-            'useful-websites-visit': 'Visit Website →',
 
         // How It Works Section
         'how-it-works-title': 'How It Works',
