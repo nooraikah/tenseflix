@@ -78,7 +78,7 @@ function handleRegister(e) {
     const password = document.getElementById('register-password').value;
     const confirm = document.getElementById('register-confirm').value;
     
-    if (!username || !dob || !gender || !password || !confirm) {
+    if (!username || !dob || !password || !confirm) {
         showMessage('Please fill in all fields', 'error');
         return;
     }
@@ -88,29 +88,21 @@ function handleRegister(e) {
         return;
     }
     
-    // Pass arguments in the correct order: (username, password, dob, gender, fullName, role)
-    const result = profileManager.registerUser(username, password, dob, gender, username, 'user');
+    // Используем username как имя, так как поле ввода удалено
+    const result = profileManager.registerUser(username, password, username, 'user', dob, gender);
     
     if (!result.success) {
         showMessage(result.message, 'error');
         return;
     }
     
-    showMessage('Account created! Redirecting to login...', 'success');
+    // Автоматический вход и перенаправление на дашборд
+    profileManager.loginUser(username, password);
+    showMessage('Success! Entering...', 'success');
     
-    // Clear form and switch to login
     setTimeout(() => {
-        document.querySelectorAll('input').forEach(input => {
-            if (input.type !== 'checkbox' && input.type !== 'radio') {
-                input.value = '';
-            }
-            if (input.type === 'radio') {
-                input.checked = false;
-            }
-        });
-        switchForm({preventDefault: () => {}});
-        showMessage('Enter your credentials to sign in', 'info');
-    }, 1500);
+        window.location.href = 'index.html';
+    }, 1000);
 }
 
 // Initialize page
