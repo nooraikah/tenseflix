@@ -7,6 +7,259 @@
     <link rel="stylesheet" href="home-styles.css">
     <style>
         /* Ensure smooth scroll lands correctly above the heading, accounting for the navbar */
+
+        /* --- Useful Website Cards --- */
+        .website-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.08) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 16px;
+            padding: 25px !important;
+            z-index: 1;
+            transition: transform 0.1s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .website-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Fade-In Animation for Sections */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Initial state for scroll animation */
+        section:not(.hero) {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+
+        /* Pulse Animation for the Interactive Film Button */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 15px 45px rgba(102, 126, 234, 0.7); transform: scale(1.03); }
+            100% { box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4); transform: scale(1); }
+        }
+        .pulse-btn {
+            animation: pulse-glow 2.5s infinite ease-in-out;
+        }
+
+        .geometric-bg {
+            position: relative;
+            background-color: #ffffff !important;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Glowing icons for Dark sections (How It Works) */
+        @keyframes icon-float-glow {
+            0%, 100% { 
+                transform: translateY(0); 
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4)); 
+            }
+            50% { 
+                transform: translateY(-12px); 
+                filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8)); 
+            }
+        }
+
+        .how-it-works .step-icon {
+            animation: icon-float-glow 3s infinite ease-in-out;
+            display: inline-block;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+            margin-bottom: 25px;
+        }
+
+        /* Pulsing Golden Halo for Active Team Cards */
+        @keyframes haloPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(226, 183, 20, 0.8), 0 0 60px rgba(226, 183, 20, 0.4); transform: scale(1.08) translateY(-5px); }
+            50% { box-shadow: 0 0 50px rgba(226, 183, 20, 1), 0 0 100px rgba(226, 183, 20, 0.6); transform: scale(1.1) translateY(-8px); }
+        }
+
+        .circle.active {
+            animation: haloPulse 2s infinite ease-in-out !important;
+            border-color: #ffda44 !important;
+        }
+
+        /* Golden Halo for Team Cards */
+        .team-member .circle {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        }
+        .team-member .circle:hover {
+            box-shadow: 0 0 30px rgba(226, 183, 20, 0.8), 0 0 60px rgba(226, 183, 20, 0.4) !important;
+            border-color: #ffda44 !important;
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        /* Geometric Background Pattern for Light Sections */
+        @keyframes bgFloat {
+            0%, 100% { background-position: 0% 0%, 100% 100%, 0px 0px, 0px 0px; }
+            50% { background-position: 5% 5%, 95% 95%, 30px 30px, -30px -30px; }
+        }
+
+        .geometric-bg {
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.03) 0%, transparent 20%),
+                linear-gradient(45deg, transparent 48%, rgba(102, 126, 234, 0.01) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(102, 126, 234, 0.01) 50%, transparent 52%) !important;
+            background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px !important;
+            animation: bgFloat 20s infinite linear;
+            overflow: hidden;
+        }
+
+        /* Jump animation for icons */
+        @keyframes iconJump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .step-card:hover .step-icon,
+        .feature-card:hover .feature-icon {
+            animation: iconJump 0.6s ease-out;
+        }
+
+        /* Glow effect for Why TENSEFLIX cards */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(118, 75, 162, 0.25), 0 0 15px rgba(102, 126, 234, 0.2);
+            border-color: #764ba2 !important;
+        }
+
+        /* Twinkling Stars Animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes shooting-star {
+            0% { transform: translateX(0) translateY(0) rotate(215deg); opacity: 0; }
+            10% { opacity: 1; }
+            30% { transform: translateX(-800px) translateY(800px) rotate(215deg); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .shooting-star {
+            position: absolute;
+            top: -10%; right: -10%;
+            width: 2px;
+            height: 150px;
+            background: linear-gradient(to bottom, rgba(226, 183, 20, 0), #e2b714);
+            opacity: 0;
+            animation: shooting-star 6s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shooting-star:nth-child(2) { animation-delay: 2s; top: 10%; right: 20%; }
+        .shooting-star:nth-child(3) { animation-delay: 4.5s; top: -5%; right: 40%; }
+
+        .cosmic-glow {
+            position: absolute;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0) 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        .interactive-film-section {
+            position: relative;
+            overflow: hidden; /* Changed from container to section for better star clipping */
+        }
+        
+        .stars-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(1.2px 1.2px at 20px 30px, #fff, rgba(0,0,0,0)), 
+                        radial-gradient(1.5px 1.5px at 40px 70px, #fff, rgba(0,0,0,0)), 
+                        radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)), 
+                        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)), 
+                        radial-gradient(1.2px 1.2px at 130px 80px, #fff, rgba(0,0,0,0)), 
+                        radial-gradient(1.5px 1.5px at 160px 120px, #ddd, rgba(0,0,0,0));
+            background-size: 200px 200px;
+            animation: twinkle 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+            color: #e2b714;
+            font-size: 5rem;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 2;
+            text-shadow: 0 0 25px rgba(226, 183, 20, 0.6);
+        }
+
+        .film-left {
+            cursor: pointer;
+            filter: grayscale(100%);
+            transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .film-left img {
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .film-left:hover img {
+            transform: scale(1.06);
+        }
+
+        .film-left:hover {
+            filter: grayscale(0%);
+        }
+        
+        .film-left:hover .play-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox Modal */
+        .film-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 4px solid #e2b714;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(226, 183, 20, 0.3);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: -10px;
+            color: #fff;
+            font-size: 2.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .lightbox-close:hover { color: #e2b714; }
+
         #features, #tenses {
             scroll-margin-top: 100px;
         }
@@ -297,7 +550,7 @@
         }
         /* ===== BEAUTIFIED ABOUT US SECTION ===== */
         .about-us {
-            background: linear-gradient(180deg, #f8faff 0%, #f0f4ff 100%); /* Light suitable background */
+            background: linear-gradient(rgb(255, 255, 255) 0%, rgb(248, 250, 255) 100%); /* Light suitable background */
             padding: 80px 20px;
             color: #2d3436;
             text-align: center;
@@ -374,15 +627,17 @@
       justify-content: center;
       opacity: 0;
       transition: opacity 0.3s ease;
-      padding: 10px;
+      padding: 8px;
       box-sizing: border-box;
       text-align: center;
     }
     .name {
         font-weight: 800;
         color: #e2b714;
-        font-size: 1.1em;
-        margin-bottom: 5px;
+        font-size: 0.95rem;
+        line-height: 1.2;
+        margin-bottom: 4px;
+        word-break: break-word;
     }
     .description {
         font-size: 0.72em;
@@ -549,38 +804,7 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 data-i18n="how-it-works-title">🎯 How It Works</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">🎬</div>
-                    <h3 data-i18n="how-it-works-1-title">Watch Videos</h3>
-                    <p data-i18n="how-it-works-1-desc">Each lesson starts with a video clip from popular movies and series featuring the tense being studied</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">📚</div>
-                    <h3 data-i18n="how-it-works-2-title">Learn the Rules</h3>
-                    <p data-i18n="how-it-works-2-desc">We break down tense structure, usage rules, and formation patterns in a clear and simple way</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">✍️</div>
-                    <h3 data-i18n="how-it-works-3-title">Do Exercises</h3>
-                    <p data-i18n="how-it-works-3-desc">Practice with interactive tasks and reinforce what you have learned</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <div class="step-icon">🏆</div>
-                    <h3 data-i18n="how-it-works-4-title">Level Up</h3>
-                    <p data-i18n="how-it-works-4-desc">Complete all 12 tenses in sequence, from the simplest to the most advanced</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 <section class="about-us">
         <div class="container">
             <h2 data-i18n="about-title">About Us</h2>
@@ -641,7 +865,7 @@
                     <div class="circle" onclick="toggleInfo(this)" onmouseleave="hideInfo(this)">
                         <img src="Aida.jpeg" alt="Беркинбаева Аида">
                         <div class="overlay">
-                            <div class="name" data-i18n="team-name-4">Беркинбаева Аида</div>
+                            <div class="name" data-i18n="team-name-4">Беркимбаева Аида</div>
                             <div class="description" data-i18n="team-role-4">TES Certified Educator & Olympiad Winner</div>
                         </div>
                     </div>
@@ -672,36 +896,68 @@
             </div>
         </div>
     </section>
-    <section id="features" class="features">
+     <!-- How It Works Section -->
+    <section class="how-it-works geometric-bg" style="background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%); color: #2d3436; padding: 80px 0;">
         <div class="container">
-            <h2 data-i18n="features-title">Why TENSEFLIX?</h2>
+            <h2 data-i18n="how-it-works-title" style="color: #667eea; text-shadow: none;">🎯 How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card" style="background: #ffffff; border: 2px solid #667eea; border-bottom: 5px solid #667eea; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.05);">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🎬</div>
+                    <h3 data-i18n="how-it-works-1-title">Watch Videos</h3>
+                    <p data-i18n="how-it-works-1-desc">Each lesson starts with a video clip from popular movies and series featuring the tense being studied</p>
+                </div>
+                <div class="step-card" style="background: #ffffff; border: 2px solid #667eea; border-bottom: 5px solid #667eea; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📚</div>
+                    <h3 data-i18n="how-it-works-2-title">Learn the Rules</h3>
+                    <p data-i18n="how-it-works-2-desc">We break down tense structure, usage rules, and formation patterns in a clear and simple way</p>
+                </div>
+                <div class="step-card" style="background: #ffffff; border: 2px solid #667eea; border-bottom: 5px solid #667eea; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">✍️</div>
+                    <h3 data-i18n="how-it-works-3-title">Do Exercises</h3>
+                    <p data-i18n="how-it-works-3-desc">Practice with interactive tasks and reinforce what you have learned</p>
+                </div>
+                <div class="step-card" style="background: #ffffff; border: 2px solid #667eea; border-bottom: 5px solid #667eea; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🏆</div>
+                    <h3 data-i18n="how-it-works-4-title">Level Up</h3>
+                    <p data-i18n="how-it-works-4-desc">Complete all 12 tenses in sequence, from the simplest to the most advanced</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="features geometric-bg" style="background: linear-gradient(180deg, #f0f4ff 0%, #eef2ff 100%); padding: 80px 0;">
+        <div class="container">
+            <h2 data-i18n="features-title" style="color: #667eea;">Why TENSEFLIX?</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" style="background: #ffffff; border: 2px solid #764ba2; border-bottom: 5px solid #764ba2; box-shadow: 0 10px 25px rgba(118, 75, 162, 0.05);">
                     <div class="feature-icon">🎓</div>
                     <h3 data-i18n="feature-1-title">Complete Learning System</h3>
                     <p data-i18n="feature-1-desc">Theory, movie examples and interactive exercises for every tense</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: #ffffff; border: 2px solid #764ba2; border-bottom: 5px solid #764ba2; box-shadow: 0 10px 25px rgba(118, 75, 162, 0.1);">
                     <div class="feature-icon">🎬</div>
                     <h3 data-i18n="feature-2-title">Authentic Examples</h3>
                     <p data-i18n="feature-2-desc">Dialogues from popular movies and series for better retention</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: #ffffff; border: 2px solid #764ba2; border-bottom: 5px solid #764ba2; box-shadow: 0 10px 25px rgba(118, 75, 162, 0.1);">
                     <div class="feature-icon">✏️</div>
                     <h3 data-i18n="feature-3-title">Interactive Exercises</h3>
                     <p data-i18n="feature-3-desc">40+ tasks with instant feedback and error explanations</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: #ffffff; border: 2px solid #764ba2; border-bottom: 5px solid #764ba2; box-shadow: 0 10px 25px rgba(118, 75, 162, 0.1);">
                     <div class="feature-icon">🔐</div>
                     <h3 data-i18n="feature-4-title">Personal Account</h3>
                     <p data-i18n="feature-4-desc">Login system to track your personal progress</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: #ffffff; border: 2px solid #764ba2; border-bottom: 5px solid #764ba2; box-shadow: 0 10px 25px rgba(118, 75, 162, 0.1);">
                     <div class="feature-icon">📱</div>
                     <h3 data-i18n="feature-5-title">Responsive Design</h3>
                     <p data-i18n="feature-5-desc">Works on all devices — desktop, tablet, and smartphone</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="background: #ffffff; border: 2px solid #764ba2; border-bottom: 5px solid #764ba2; box-shadow: 0 10px 25px rgba(118, 75, 162, 0.1);">
                     <div class="feature-icon">⚡</div>
                     <h3 data-i18n="feature-6-title">Completely Free</h3>
                     <p data-i18n="feature-6-desc">100% free learning with no hidden subscriptions or ads</p>
@@ -710,7 +966,62 @@
         </div>
     </section>
 
-    <section id="tenses" class="tenses">
+    <!-- Interactive Film Section -->
+    <section id="interactive-film" class="interactive-film-section" style="padding: 40px 0; background: #05060f; border-top: 1px solid rgba(226, 183, 20, 0.2); border-bottom: 1px solid rgba(226, 183, 20, 0.2);">
+        <div class="stars-overlay"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="cosmic-glow" style="top: 10%; left: 10%;"></div>
+        <div class="cosmic-glow" style="bottom: 10%; right: 10%; background: radial-gradient(circle, rgba(226, 183, 20, 0.05) 0%, rgba(226, 183, 20, 0) 70%);"></div>
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 60px; justify-content: center; position: relative; z-index: 2;">
+            <!-- Left Side: Organic Image Card -->
+            <div class="film-left" style="flex: 1; min-width: 320px; max-width: 580px; overflow: hidden; border-radius: 40px; position: relative;" onclick="openTrailerLightbox()">
+                <img src="trailer.jpeg" alt="Film Trailer" style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); border: 4px solid rgba(255,255,255,0.1); display: block;">
+                <div class="play-overlay">▶</div>
+            </div>
+            
+            <!-- Right Side: Organic Content -->
+            <div class="film-right" style="flex: 1; min-width: 320px; max-width: 550px; text-align: left;">
+                <h2 data-i18n="film-detailed-title" style="color: #e2b714; font-size: 2.6rem; font-weight: 900; margin-bottom: 25px; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Interactive Movie: You are the Lead</h2>
+                <div>
+                    <p data-i18n="film-detailed-info" style="font-size: 1.15rem; color: #ffffff; margin-bottom: 30px; line-height: 1.7; opacity: 0.9;">This isn’t just a video — it’s a fully immersive language experience. Step into the shoes of the protagonist, make critical choices that shape the narrative, and master English grammar naturally as the story unfolds.</p>
+                    
+                    <div style="border-left: 5px solid #e2b714; padding-left: 24px; margin-bottom: 35px; background: rgba(255, 255, 255, 0.03); padding-top: 15px; padding-bottom: 15px; border-radius: 0 15px 15px 0;">
+                        <h3 data-i18n="film-how-to-title" style="color: #ffffff; margin-bottom: 10px; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Start Your Adventure</h3>
+                        <p data-i18n="film-how-to-desc" style="font-size: 1rem; color: #cbd5e0; line-height: 1.5;">Head to your dashboard to begin your quest. Follow the journey of a determined little penguin; every grammar level you conquer unlocks the next thrilling chapter of the movie.</p>
+                    </div>
+                    
+                    <p data-i18n="film-additional-info" style="font-size: 1rem; color: #667eea; font-weight: 700; font-style: italic; margin-bottom: 40px;">Experience "Absolute Cinema" and elevate your English skills to Oscar-winning heights!</p>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <a href="javascript:void(0)"
+                       onclick="if(profileManager.isLoggedIn()) { 
+                                   window.location.href='dashboard.html'; 
+                               } else { 
+                                   alert('You need to be logged in to watch the interactive movie! Redirecting to Sign In page...'); 
+                                   window.location.href='login.html'; 
+                               }"
+                       class="pulse-btn"
+                       style="display: inline-block; 
+                              padding: 20px 50px; 
+                              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                              color: #fff; 
+                              text-decoration: none; 
+                              border-radius: 50px; 
+                              font-weight: 800; 
+                              font-size: 1.2rem; 
+                              transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                              text-transform: uppercase; 
+                              letter-spacing: 1px;"
+                       data-i18n="interactive-film-section-btn">Try Interactive Film</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tenses" class="tenses geometric-bg" style="background: #ffffff; padding: 80px 0;">
         <div class="container">
             <h2 data-i18n="tenses-title">12 English Tenses</h2>
             <div class="tenses-overview">
@@ -781,39 +1092,39 @@
         </div>
     </section>
 
-    <section class="useful-websites">
+    <section class="useful-websites" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; border-top: 1px solid rgba(255,255,255,0.1);">
         <div class="container">
-            <h2>Useful Websites</h2>
+            <h2 data-i18n="useful-websites-title" style="color: #ffffff; margin-bottom: 50px;">Useful Websites</h2>
             <div class="websites-grid">
                 <div class="website-card">
-                    <h3>BBC Learning English</h3>
-                    <p>A classic resource featuring videos, grammar explanations, and pronunciation tips using real-world news.</p>
-                    <a href="https://www.bbc.co.uk/learningenglish" target="_blank" class="website-link">Visit Website →</a>
+                    <h3 data-i18n="useful-websites-1-title" style="color: #ffffff;">BBC Learning English</h3>
+                    <p data-i18n="useful-websites-1-desc" style="color: #eee;">A classic resource featuring videos, grammar explanations, and pronunciation tips using real-world news.</p>
+                    <a href="https://www.bbc.co.uk/learningenglish" target="_blank" class="website-link" data-i18n="useful-websites-visit" style="color: #ffffff;">Visit Website →</a>
                 </div>
                 <div class="website-card">
-                    <h3>British Council</h3>
-                    <p>Highly structured learning paths with interactive exercises for grammar, vocabulary, and exam prep.</p>
-                    <a href="https://learnenglish.britishcouncil.org/" target="_blank" class="website-link">Visit Website →</a>
+                    <h3 data-i18n="useful-websites-2-title" style="color: #ffffff;">British Council</h3>
+                    <p data-i18n="useful-websites-2-desc" style="color: #eee;">Highly structured learning paths with interactive exercises for grammar, vocabulary, and exam prep.</p>
+                    <a href="https://learnenglish.britishcouncil.org/" target="_blank" class="website-link" data-i18n="useful-websites-visit" style="color: #ffffff;">Visit Website →</a>
                 </div>
                 <div class="website-card">
-                    <h3>Oxford Online English</h3>
-                    <p>Excellent video lessons covering business English, spoken English, and essential grammar topics.</p>
-                    <a href="https://www.oxfordonlineenglish.com/" target="_blank" class="website-link">Visit Website →</a>
+                    <h3 data-i18n="useful-websites-3-title" style="color: #ffffff;">Oxford Online English</h3>
+                    <p data-i18n="useful-websites-3-desc" style="color: #eee;">Excellent video lessons covering business English, spoken English, and essential grammar topics.</p>
+                    <a href="https://www.oxfordonlineenglish.com/" target="_blank" class="website-link" data-i18n="useful-websites-visit" style="color: #ffffff;">Visit Website →</a>
                 </div>
                 <div class="website-card">
-                    <h3>TED Talks</h3>
-                    <p>Watch short talks by experts on every subject imaginable. Excellent for advanced listening practice.</p>
-                    <a href="https://www.ted.com/talks" target="_blank" class="website-link">Visit Website →</a>
+                    <h3 data-i18n="useful-websites-4-title" style="color: #ffffff;">TED Talks</h3>
+                    <p data-i18n="useful-websites-4-desc" style="color: #eee;">Watch short talks by experts on every subject imaginable. Excellent for advanced listening practice.</p>
+                    <a href="https://www.ted.com/talks" target="_blank" class="website-link" data-i18n="useful-websites-visit" style="color: #ffffff;">Visit Website →</a>
                 </div>
                 <div class="website-card">
-                    <h3>Cambridge English</h3>
-                    <p>Official site for Cambridge exams, offering great free activities to practice reading, writing, and listening.</p>
-                    <a href="https://www.cambridgeenglish.org/learning-english/" target="_blank" class="website-link">Visit Website →</a>
+                    <h3 data-i18n="useful-websites-5-title" style="color: #ffffff;">Cambridge English</h3>
+                    <p data-i18n="useful-websites-5-desc" style="color: #eee;">Official site for Cambridge exams, offering great free activities to practice reading, writing, and listening.</p>
+                    <a href="https://www.cambridgeenglish.org/learning-english/" target="_blank" class="website-link" data-i18n="useful-websites-visit" style="color: #ffffff;">Visit Website →</a>
                 </div>
                 <div class="website-card">
-                    <h3>Memrise</h3>
-                    <p>Uses spaced repetition and entertaining videos to help you memorize thousands of words and phrases.</p>
-                    <a href="https://www.memrise.com/" target="_blank" class="website-link">Visit Website →</a>
+                    <h3 data-i18n="useful-websites-6-title" style="color: #ffffff;">Memrise</h3>
+                    <p data-i18n="useful-websites-6-desc" style="color: #eee;">Uses spaced repetition and entertaining videos to help you memorize thousands of words and phrases.</p>
+                    <a href="https://www.memrise.com/" target="_blank" class="website-link" data-i18n="useful-websites-visit" style="color: #ffffff;">Visit Website →</a>
                 </div>
             </div>
         </div>
@@ -983,11 +1294,42 @@
         </button>
     </div>
 
+    <!-- TRAILER LIGHTBOX -->
+    <div id="trailer-lightbox" class="film-lightbox" onclick="closeTrailerLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeTrailerLightbox()">×</button>
+            <iframe id="trailer-video" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px;"></iframe>
+        </div>
+    </div>
+
     <script src="i18n.js"></script>
     <script src="profiles.js"></script>
     <script src="home-script.js"></script>
     <script>
+        // ===== LIGHTBOX LOGIC =====
+        function openTrailerLightbox() {
+            const lightbox = document.getElementById('trailer-lightbox');
+            const iframe = document.getElementById('trailer-video');
+            // Swapping in your trailer URL (using a placeholder study-related video)
+            iframe.src = "https://www.youtube.com/embed/B8UquHzbMmE?autoplay=1"; 
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTrailerLightbox() {
+            const lightbox = document.getElementById('trailer-lightbox');
+            const iframe = document.getElementById('trailer-video');
+            iframe.src = ""; // Stop video
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Ensure Lightbox closes on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeTrailerLightbox();
+            });
+
             const widget = document.getElementById('faq-widget');
             const panel = document.getElementById('faq-panel');
             const btn = document.getElementById('faq-mascot-btn');
@@ -1214,6 +1556,32 @@
 
         // Init
         document.addEventListener('DOMContentLoaded', checkCooldown);
+
+        // ===== TILT EFFECT FOR USEFUL WEBSITES =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.website-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Rotate strength (divide by 15 for subtle effect)
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+                });
+            });
+        });
     </script>
 </body>
 </html>

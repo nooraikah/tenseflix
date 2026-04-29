@@ -41,7 +41,7 @@ const observer = new IntersectionObserver(entries => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.feature-card, .stat, .about-us-section, #about-us').forEach(el => {
+document.querySelectorAll('section').forEach(el => {
     observer.observe(el);
 });
 
@@ -73,40 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Стилизация секции "About Us"
-    const aboutSection = document.getElementById('about-us') || document.querySelector('.about-us');
-    if (aboutSection) {
-        aboutSection.style.backgroundImage = "url('anelya.jpg')";
-        aboutSection.style.backgroundSize = "cover";
-        aboutSection.style.backgroundPosition = "center";
-        aboutSection.style.color = '#ffffff';
-        aboutSection.style.padding = '80px 20px 0';
-        aboutSection.style.borderTop = '3px solid #667eea';
-        const title = aboutSection.querySelector('h2, h3');
-        if (title) title.style.color = '#667eea';
-        const texts = aboutSection.querySelectorAll('p, li');
-        texts.forEach(t => t.style.color = '#2d3436');
-    }
-
-    // Стилизация секции "Why TENSEFLIX?"
-    const featuresSection = document.getElementById('features');
-    if (featuresSection) {
-        featuresSection.style.paddingTop = '0';
-    }
-
-    // Стилизация секции "USEFUL WEBSITES"
-    const usefulWebsitesSection = document.getElementById('useful-websites') || document.querySelector('.useful-websites');
-    if (usefulWebsitesSection) {
-        usefulWebsitesSection.style.background = '#1a1a2e';
-        usefulWebsitesSection.style.color = '#ffffff';
-        usefulWebsitesSection.style.padding = '80px 20px';
-        usefulWebsitesSection.style.borderTop = '3px solid #667eea';
-        const title = usefulWebsitesSection.querySelector('h2, h3');
-        if (title) title.style.color = '#ffffff';
-        const texts = usefulWebsitesSection.querySelectorAll('p, li');
-        texts.forEach(t => t.style.color = '#ecf0f1');
-    }
-    
     // Add smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 });
