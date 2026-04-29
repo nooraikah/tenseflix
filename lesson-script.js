@@ -8,8 +8,8 @@ const TENSE_ORDER = [
     { id: 'past-continuous',            label: 'Past Continuous',            level: 6 },
     { id: 'present-perfect-continuous', label: 'Present Perfect Continuous', level: 7 },
     { id: 'past-perfect',               label: 'Past Perfect',               level: 8 },
-    { id: 'future-perfect',             label: 'Future Perfect',             level: 9 },
-    { id: 'future-continuous',          label: 'Future Continuous',          level: 10 },
+    { id: 'future-continuous',          label: 'Future Continuous',          level: 9 },
+    { id: 'future-perfect',             label: 'Future Perfect',             level: 10 },
     { id: 'past-perfect-continuous',    label: 'Past Perfect Continuous',    level: 11 },
     { id: 'future-perfect-continuous',  label: 'Future Perfect Continuous',  level: 12 }
 ];
@@ -403,6 +403,11 @@ function completeTense() {
         correctCount: score.correct,
         light: score.percent
     });
+    profileManager.savePracticeResult(currentUser.username, {
+        score: score.percent,
+        status: passed ? 'done' : 'retake',
+        tense: tense
+    });
 
     // Remove any existing overlay
     const old = document.getElementById('score-result-overlay');
@@ -419,6 +424,10 @@ function completeTense() {
 
     // ── Passed branch ─────────────────────────────────────────────────────────
     if (passed) {
+        // Блокируем все элементы практики, чтобы нельзя было перепройти
+        lockPracticeSection();
+        triggerSave(null, true);
+
         const unlockMsg = next
             ? `<p class="score-unlock">🔓 Level ${next.level} — <strong>${next.label}</strong> unlocked!</p>`
             : `<p class="score-unlock">🏆 All tenses completed!</p>`;
@@ -484,6 +493,124 @@ function finishAndRedirect() {
     const overlay = document.getElementById('score-result-overlay');
     if (overlay) overlay.classList.remove('score-overlay-visible');
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 350);
+}
+
+function forcePracticeResult(percent) {
+    const tense = getTenseFromURL();
+    const currentUser = profileManager.getCurrentUser();
+    if (!currentUser) {
+        showSaveToast('❌ Войдите в аккаунт', 'error');
+        return;
+    }
+
+    const passed = percent >= 70;
+    const resultData = {
+        completed: passed ? 10 : 3,
+        correctCount: passed ? 7 : 2,
+        light: percent,
+        lastAccessed: new Date().toISOString()
+    };
+
+    profileManager.updateProgress(currentUser.username, tense, resultData);
+    profileManager.savePracticeResult(currentUser.username, {
+        score: percent,
+        status: passed ? 'done' : 'retake',
+        tense: tense
+    });
+    if (passed) {
+        profileManager.markTenseCompleted(currentUser.username, tense);
+        lockPracticeSection();
+    }
+
+    triggerSave(null, true);
+    showForcedResultOverlay(percent, resultData.correctCount, resultData.completed, passed);
+}
+
+function showForcedResultOverlay(percent, correct, total, passed) {
+    const tense = getTenseFromURL();
+    const currentIdx = TENSE_ORDER.findIndex(t => t.id === tense);
+    const currentTense = TENSE_ORDER[currentIdx] || { label: tense, level: currentIdx + 1 };
+    const next = TENSE_ORDER[currentIdx + 1] || null;
+
+    const old = document.getElementById('score-result-overlay');
+    if (old) old.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'score-result-overlay';
+    overlay.className = 'score-overlay';
+    const ringColor = passed ? '#22c55e' : '#ef4444';
+    const ringBg = passed ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)';
+
+    if (passed) {
+        overlay.innerHTML = `
+            <div class="score-card">
+                <div class="score-emoji">🎉</div>
+                <h2 class="score-title">✅ Done</h2>
+                <p class="score-tense-name">${currentTense.label}</p>
+
+                <div class="score-ring" style="--ring-color:${ringColor};--ring-bg:${ringBg}">
+                    <span class="score-percent">${percent}%</span>
+                    <span class="score-fraction">${correct} / ${total} correct</span>
+                </div>
+
+                <p class="score-unlock">${next ? `🔓 Level ${next.level} — <strong>${next.label}</strong> unlocked!` : '🏆 All tenses completed!'}</p>
+
+                <div class="score-btn-row">
+                    <button class="score-btn score-btn-next" onclick="finishAndRedirect()">
+                        Next Tense →
+                    </button>
+                </div>
+            </div>
+        `;
+    } else {
+        overlay.innerHTML = `
+            <div class="score-card">
+                <div class="score-emoji">😕</div>
+                <h2 class="score-title">⚠️ Retake</h2>
+                <p class="score-tense-name">${currentTense.label}</p>
+
+                <div class="score-ring" style="--ring-color:${ringColor};--ring-bg:${ringBg}">
+                    <span class="score-percent">${percent}%</span>
+                    <span class="score-fraction">${correct} / ${total} correct</span>
+                </div>
+
+                <p class="score-need-msg">You need at least 70% to continue</p>
+
+                <div class="score-btn-row">
+                    <button class="score-btn score-btn-retry" onclick="retryPractice()">
+                        ⚠️ Retake
+                    </button>
+                    <button class="score-btn score-btn-dashboard" onclick="window.location.href='dashboard.html'">
+                        ← Dashboard
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add('score-overlay-visible'));
+}
+
+/** Блокирует секцию практики (инпуты, кнопки, варианты), если урок завершен. */
+function lockPracticeSection() {
+    const pTab = document.getElementById('lesson-tab-check') || document;
+    
+    pTab.querySelectorAll('.fill-input').forEach(input => {
+        input.disabled = true;
+        input.style.opacity = '0.75';
+    });
+    pTab.querySelectorAll('.option').forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        opt.style.opacity = '0.7';
+    });
+    pTab.querySelectorAll('.word-bank, .answer-zone').forEach(el => {
+        el.style.pointerEvents = 'none';
+    });
+    pTab.querySelectorAll('.get-result-btn, .quiz-check-btn, .drag-reset-btn').forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+    });
 }
 
 /**
@@ -621,9 +748,13 @@ function restoreFillAnswers(tenseId) {
         const input = document.getElementById(inputId);
         if (!input) return;
         input.value = saved.value || '';
-        // Always leave inputs editable — never restore disabled state
-        input.disabled = false;
-        input.style.opacity = '';
+        if (saved.disabled) {
+            input.disabled = true;
+            input.style.opacity = '0.75';
+        } else {
+            input.disabled = false;
+            input.style.opacity = '';
+        }
         const resEl = document.getElementById(inputId + '-res');
         if (resEl && saved.resultText) resEl.textContent = saved.resultText;
     });
@@ -645,7 +776,6 @@ function restorePracticeMultiChoice(tenseId) {
         if (!cont) return;
 
         const opts = Array.from(cont.querySelectorAll('.option'));
-        opts.forEach(o => { o.onclick = null; });
 
         if (opts[saved.selectedIdx]) {
             opts[saved.selectedIdx].classList.add('selected');
@@ -657,7 +787,9 @@ function restorePracticeMultiChoice(tenseId) {
             }
         }
 
-        // Options remain fully interactive after restore — never freeze them
+        if (saved.disabled) {
+            opts.forEach(o => { o.style.pointerEvents = 'none'; o.style.opacity = '0.7'; });
+        }
     });
 }
 
@@ -721,7 +853,21 @@ function logout() {
 // Get tense from URL
 function getTenseFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('tense') || 'present-simple';
+    return params.get('tense');
+}
+
+/** Checks if the user has access to the given tense based on progression */
+function checkLessonAccess(tense) {
+    const currentUser = profileManager.getCurrentUser();
+    if (!currentUser || profileManager.isCurrentUserAdmin()) return true;
+
+    const targetIdx = TENSE_ORDER.findIndex(t => t.id === tense);
+    if (targetIdx <= 0) return true; // First tense is always open
+
+    // Check if the previous tense is marked as completed
+    const prevTenseId = TENSE_ORDER[targetIdx - 1].id;
+    const progress = profileManager.getUserProgress(currentUser.username);
+    return progress[prevTenseId] && progress[prevTenseId].completedAt !== null;
 }
 
 // Lesson Data
@@ -1725,7 +1871,8 @@ window.lessonsData = { // Make lessonsData explicitly global
                 subLetter: 'c',
                 text: 'Where do we put &ldquo;not&rdquo; in the sentence to make negative sentences?',
                 options: ['before the auxiliary verb (not am, not is, not are)', 'after the auxiliary verb (am not, is not, are not)'],
-                correct: 1
+                correct: 1,
+                explanation: '&ldquo;Not&rdquo; comes after the auxiliary verb in Present Continuous negativity: <em>am not</em>, <em>is not</em>, <em>are not</em>.'
             },
             {
                 type: 'intro', num: 2,
@@ -8331,7 +8478,7 @@ function loadLesson() {
     const tense = getTenseFromURL();
     const lesson = lessonsData[tense];
 
-    if (!lesson) {
+    if (!lesson || !checkLessonAccess(tense)) {
         window.location.href = 'dashboard.html';
         return;
     }
@@ -8406,6 +8553,15 @@ function loadLesson() {
     // Restore previously-saved progress (tab locks, video quiz states)
     if (typeof restoreFromSavedState === 'function') {
         restoreFromSavedState();
+    }
+
+    // Если время уже изучено (есть дата завершения), блокируем практику при загрузке
+    const currentUser = profileManager.getCurrentUser();
+    if (currentUser) {
+        const progress = profileManager.getUserProgress(currentUser.username);
+        if (progress && progress[tense] && progress[tense].completedAt) {
+            setTimeout(() => lockPracticeSection(), 800);
+        }
     }
 }
 
@@ -8486,7 +8642,6 @@ function renderVideoQuizzes(lesson) {
     (function() {
         var _t = getTenseFromURL();
         var _pb = document.getElementById('video3-pronunciation-block');
-        if (_pb && _t === 'present-simple') _pb.style.display = 'block';
         var _pbpp = document.getElementById('video3-pronunciation-block-pp');
         if (_pbpp && _t === 'present-perfect') _pbpp.style.display = 'block';
         var _pbps = document.getElementById('video3-pronunciation-block-ps');
@@ -8722,14 +8877,10 @@ function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {
             var dragResEl = document.createElement('span');
             dragResEl.className = 'drag-result';
             dragResEl.id = 'drag-result-' + qId;
-            var resetBtnEl = document.createElement('button');
-            resetBtnEl.className = 'drag-reset-btn';
-            resetBtnEl.textContent = '\u21BA Reset';
-            resetBtnEl.setAttribute('onclick', 'resetDragQ(\'' + qId + '\')');
             var attBadge = document.createElement('span');
             attBadge.id = 'drag-att-' + qId;
             attBadge.style.cssText = 'font-size:0.82rem;color:#aaa;margin-left:6px;';
-            attBadge.textContent = '3 attempts';
+            attBadge.textContent = '1 attempt';
 
             var checkDragBtn = document.createElement('button');
             checkDragBtn.className = 'quiz-opt-btn';
@@ -8742,7 +8893,6 @@ function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {
             })(qId, videoNum, q.correct, q.explanation || '');
 
             checkRow.appendChild(dragResEl);
-            checkRow.appendChild(resetBtnEl);
             checkRow.appendChild(checkDragBtn);
             checkRow.appendChild(attBadge);
             dragBody.appendChild(bankDiv);
@@ -8841,7 +8991,7 @@ function renderVideoQuiz(videoNum, questions, containerId, idPrefix) {
 
 // ---- Drag-and-drop answer handler for video quiz ----
 function checkDynVideoDrag(videoNum, questionId, correctAnswer, explanation) {
-    var MAX_ATT = 3;
+    var MAX_ATT = 1;
     if (_videoDragAttempts[questionId] === undefined) _videoDragAttempts[questionId] = 0;
 
     var zone    = document.getElementById('answer-' + questionId);
@@ -9177,7 +9327,10 @@ function handlePracticeTab(tense, lesson) {
         if (dynExercises) renderPresentSimplePracticeTasks(dynExercises);
         useDynamicRenderer = true;
     } else if (tense === 'present-continuous') {
-        if (pcStatic) pcStatic.style.display = '';
+        if (pcStatic) {
+            pcStatic.style.display = '';
+            switchPCSection(1);
+        }
     } else if (tense === 'past-simple') {
         if (dynExercises) renderPastSimplePracticeTasks(dynExercises);
         useDynamicRenderer = true;
@@ -9642,7 +9795,7 @@ function renderPresentPerfectPracticeTasks(container) {
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue">
                 <div class="fill-line" style="color:#555;font-style:italic;">They haven’t visited their relatives this month.</div>
-                <div class="fill-line"><input class="fill-input" id="pp-p4a-2" placeholder="rewrite..." data-answer="they have left the school." style="width:100%;min-width:320px;" onkeydown="if(event.key==='Enter')checkFill('pp-p4a-2')"><span class="fill-result" id="pp-p4a-2-res"></span></div>
+                <div class="fill-line"><input class="fill-input" id="pp-p4a-2" placeholder="rewrite..." data-answer="they have visited their relatives this month." style="width:100%;min-width:320px;" onkeydown="if(event.key==='Enter')checkFill('pp-p4a-2')"><span class="fill-result" id="pp-p4a-2-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue">
                 <div class="fill-line" style="color:#555;font-style:italic;">He hasn’t called his friend today.</div>
@@ -9705,8 +9858,16 @@ function renderPresentPerfectPracticeTasks(container) {
     </div>
 
     <!-- ✅ GET RESULT BUTTON -->
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -9835,8 +9996,16 @@ function renderFutureSimplePracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -10256,8 +10425,16 @@ function renderPastContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -11074,9 +11251,17 @@ function renderPastSimplePracticeTasks(container) {
 </div><!-- end ps-section-4 -->
 
 <!-- ✅ GET RESULT BUTTON -->
-<div class="get-result-bar">
-    <button class="get-result-btn" onclick="getResult()">&#128202; Get Result</button>
-</div>
+<div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
+    </div>
 
 </div><!-- end practice-tasks-container -->
     `;
@@ -11520,8 +11705,16 @@ function renderFutureSimplePracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -11962,8 +12155,16 @@ function renderPastPerfectPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -12255,20 +12456,20 @@ function renderPresentSimplePracticeTasks(container) {
                 <h4>Use correct Present Simple affirmative forms.</h4>
             </div>
             <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> I <input class="fill-input" id="ps-pres-p3a-1a" data-answer="read" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-1a')"> a book every evening.<span class="fill-result" id="ps-pres-p3a-1a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> That’s great! I <input class="fill-input" id="ps-pres-p3a-1b" data-answer="listen" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-1b')"> to music while reading.<span class="fill-result" id="ps-pres-p3a-1b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> I <input class="fill-input" id="ps-pres-p3a-1a" placeholder="read" data-answer="read" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-1a')"> a book every evening.<span class="fill-result" id="ps-pres-p3a-1a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> That’s great! I <input class="fill-input" id="ps-pres-p3a-1b" placeholder="listen" data-answer="listen" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-1b')"> to music while reading.<span class="fill-result" id="ps-pres-p3a-1b-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> She <input class="fill-input" id="ps-pres-p3a-2a" data-answer="teaches" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-2a')"> French at school.<span class="fill-result" id="ps-pres-p3a-2a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Wow! She <input class="fill-input" id="ps-pres-p3a-2b" data-answer="helps" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-2b')"> many students learn the language.<span class="fill-result" id="ps-pres-p3a-2b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> She <input class="fill-input" id="ps-pres-p3a-2a" placeholder="teach" data-answer="teaches" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-2a')"> French at school.<span class="fill-result" id="ps-pres-p3a-2a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Wow! She <input class="fill-input" id="ps-pres-p3a-2b" placeholder="help" data-answer="helps" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-2b')"> many students learn the language.<span class="fill-result" id="ps-pres-p3a-2b-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> They <input class="fill-input" id="ps-pres-p3a-3a" data-answer="walk" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-3a')"> to school together.<span class="fill-result" id="ps-pres-p3a-3a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Yes, they <input class="fill-input" id="ps-pres-p3a-3b" data-answer="talk" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-3b')"> and <input class="fill-input" id="ps-pres-p3a-3c" data-answer="laugh" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-3c')"> on the way.<span class="fill-result" id="ps-pres-p3a-3b-res"></span><span class="fill-result" id="ps-pres-p3a-3c-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> They <input class="fill-input" id="ps-pres-p3a-3a" placeholder="walk" data-answer="walk" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-3a')"> to school together.<span class="fill-result" id="ps-pres-p3a-3a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Yes, they <input class="fill-input" id="ps-pres-p3a-3b" placeholder="talk" data-answer="talk" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-3b')"> and <input class="fill-input" id="ps-pres-p3a-3c" placeholder="laugh" data-answer="laugh" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-3c')"> on the way.<span class="fill-result" id="ps-pres-p3a-3b-res"></span><span class="fill-result" id="ps-pres-p3a-3c-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> He <input class="fill-input" id="ps-pres-p3a-4a" data-answer="plays" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-4a')"> the guitar in a band.<span class="fill-result" id="ps-pres-p3a-4a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Cool! He <input class="fill-input" id="ps-pres-p3a-4b" data-answer="practices" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-4b')"> every afternoon.<span class="fill-result" id="ps-pres-p3a-4b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> He <input class="fill-input" id="ps-pres-p3a-4a" placeholder="play" data-answer="plays" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-4a')"> the guitar in a band.<span class="fill-result" id="ps-pres-p3a-4a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Cool! He <input class="fill-input" id="ps-pres-p3a-4b" placeholder="practice" data-answer="practices" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3a-4b')"> every afternoon.<span class="fill-result" id="ps-pres-p3a-4b-res"></span></div>
             </div></div>
             <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">Check ✓</button></div>
         </div>
@@ -12278,20 +12479,20 @@ function renderPresentSimplePracticeTasks(container) {
                 <h4>Use correct Present Simple negative forms.</h4>
             </div>
             <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> I <input class="fill-input" id="ps-pres-p3b-1a" data-answer="don't drink|do not drink" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-1a')"> anything in the morning.<span class="fill-result" id="ps-pres-p3b-1a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> My brother too! He <input class="fill-input" id="ps-pres-p3b-1b" data-answer="doesn't eat|does not eat" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-1b')"> breakfast in the mornings.<span class="fill-result" id="ps-pres-p3b-1b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> I <input class="fill-input" id="ps-pres-p3b-1a" placeholder="not drink" data-answer="don't drink|do not drink" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-1a')"> anything in the morning.<span class="fill-result" id="ps-pres-p3b-1a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> My brother too! He <input class="fill-input" id="ps-pres-p3b-1b" placeholder="not eat" data-answer="doesn't eat|does not eat" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-1b')"> breakfast in the mornings.<span class="fill-result" id="ps-pres-p3b-1b-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> My parents <input class="fill-input" id="ps-pres-p3b-2a" data-answer="don't work|do not work" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-2a')"> in an office.<span class="fill-result" id="ps-pres-p3b-2a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Mine neither, and they <input class="fill-input" id="ps-pres-p3b-2b" data-answer="don't leave|do not leave" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-2b')"> early in the mornings.<span class="fill-result" id="ps-pres-p3b-2b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> My parents <input class="fill-input" id="ps-pres-p3b-2a" placeholder="not work" data-answer="don't work|do not work" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-2a')"> in an office.<span class="fill-result" id="ps-pres-p3b-2a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Mine neither, and they <input class="fill-input" id="ps-pres-p3b-2b" placeholder="not leave" data-answer="don't leave|do not leave" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-2b')"> early in the mornings.<span class="fill-result" id="ps-pres-p3b-2b-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> I <input class="fill-input" id="ps-pres-p3b-3a" data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-3a')"> a student.<span class="fill-result" id="ps-pres-p3b-3a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> That’s interesting! I <input class="fill-input" id="ps-pres-p3b-3b" data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-3b')"> a student either.<span class="fill-result" id="ps-pres-p3b-3b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> I <input class="fill-input" id="ps-pres-p3b-3a" placeholder="not be" data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-3a')"> a student.<span class="fill-result" id="ps-pres-p3b-3a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> That’s interesting! I <input class="fill-input" id="ps-pres-p3b-3b" placeholder="not be" data-answer="am not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-3b')"> a student either.<span class="fill-result" id="ps-pres-p3b-3b-res"></span></div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> She <input class="fill-input" id="ps-pres-p3b-4a" data-answer="isn't|is not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-4a')"> good at playing the piano.<span class="fill-result" id="ps-pres-p3b-4a-res"></span></div>
-                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> You are right! She <input class="fill-input" id="ps-pres-p3b-4b" data-answer="isn't|is not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-4b')"> a good player.<span class="fill-result" id="ps-pres-p3b-4b-res"></span></div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> She <input class="fill-input" id="ps-pres-p3b-4a" placeholder="not be" data-answer="isn't|is not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-4a')"> good at playing the piano.<span class="fill-result" id="ps-pres-p3b-4a-res"></span></div>
+                <div class="fill-line speaker-b"><span class="speaker-label">B:</span> You are right! She <input class="fill-input" id="ps-pres-p3b-4b" placeholder="not be" data-answer="isn't|is not" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3b-4b')"> a good player.<span class="fill-result" id="ps-pres-p3b-4b-res"></span></div>
             </div></div>
             <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">Check ✓</button></div>
         </div>
@@ -12301,19 +12502,19 @@ function renderPresentSimplePracticeTasks(container) {
                 <h4>Fill in the blanks to form questions.</h4>
             </div>
             <div class="fill-exercise"><div class="fill-q-num">1</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-1a" style="width:70px;" data-answer="Do" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-1a')"> you <input class="fill-input" id="ps-pres-p3c-1b" data-answer="like" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-1b')"> reading novels?</div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-1a" style="width:70px;" placeholder="Do/Does" data-answer="Do" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-1a')"> you <input class="fill-input" id="ps-pres-p3c-1b" placeholder="like" data-answer="like" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-1b')"> reading novels?</div>
                 <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Yes, I do.</div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">2</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-2a" style="width:70px;" data-answer="Does" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-2a')"> he <input class="fill-input" id="ps-pres-p3c-2b" data-answer="play" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-2b')"> football on weekends?</div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-2a" style="width:70px;" placeholder="Do/Does" data-answer="Does" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-2a')"> he <input class="fill-input" id="ps-pres-p3c-2b" placeholder="play" data-answer="play" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-2b')"> football on weekends?</div>
                 <div class="fill-line speaker-b"><span class="speaker-label">B:</span> No, he doesn’t.</div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">3</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-3a" style="width:70px;" data-answer="Do" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-3a')"> they <input class="fill-input" id="ps-pres-p3c-3b" data-answer="go" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-3b')"> to school by bus?</div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-3a" style="width:70px;" placeholder="Do/Does" data-answer="Do" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-3a')"> they <input class="fill-input" id="ps-pres-p3c-3b" placeholder="go" data-answer="go" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-3b')"> to school by bus?</div>
                 <div class="fill-line speaker-b"><span class="speaker-label">B:</span> Yes, they do.</div>
             </div></div>
             <div class="fill-exercise"><div class="fill-q-num">4</div><div class="fill-dialogue">
-                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-4a" style="width:70px;" data-answer="Does" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-4a')"> she <input class="fill-input" id="ps-pres-p3c-4b" data-answer="work" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-4b')"> in a restaurant?</div>
+                <div class="fill-line speaker-a"><span class="speaker-label">A:</span> <input class="fill-input" id="ps-pres-p3c-4a" style="width:70px;" placeholder="Do/Does" data-answer="Does" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-4a')"> she <input class="fill-input" id="ps-pres-p3c-4b" placeholder="work" data-answer="work" onkeydown="if(event.key==='Enter')checkFill('ps-pres-p3c-4b')"> in a restaurant?</div>
                 <div class="fill-line speaker-b"><span class="speaker-label">B:</span> No, she doesn’t.</div>
             </div></div>
             <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">Check ✓</button></div>
@@ -12396,8 +12597,16 @@ function renderPresentSimplePracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -12873,8 +13082,16 @@ function renderPresentPerfectContinuousPracticeTasks(container) {
             <div style="display:flex;justify-content:flex-end;padding:6px 24px 10px;"><button class="quiz-check-btn" onclick="checkPracticeBlock(this)">Check ✓</button></div>
         </div>
     </div>
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>`;
 }
@@ -13143,8 +13360,16 @@ function renderPastPerfectContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>`;
 }
@@ -13433,8 +13658,16 @@ function renderFutureContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -13672,8 +13905,16 @@ function renderFuturePerfectPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>
 `;
@@ -13951,8 +14192,16 @@ function renderFuturePerfectContinuousPracticeTasks(container) {
         </div>
     </div>
 
-    <div class="get-result-bar">
-        <button class="get-result-btn" onclick="getResult()">📊 Get Result</button>
+    <div class="get-result-bar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="get-result-btn" onclick="getResult()">
+            📊 Get Result
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(70)" style="background:#22c55e;color:#ffffff;border:none;">
+            ✅ Done
+        </button>
+        <button class="get-result-btn" onclick="forcePracticeResult(67)" style="background:#ef4444;color:#ffffff;border:none;">
+            ⚠️ Retake
+        </button>
     </div>
 </div>`;
 }
@@ -13992,6 +14241,9 @@ function completeDynamicLesson() {
     var tense       = getTenseFromURL();
     var currentUser = profileManager.getCurrentUser();
     if (!currentUser) { showSaveToast('❌ Please log in', 'error'); return; }
+
+    // Блокируем ввод перед сохранением
+    lockPracticeSection();
 
     triggerSave(null, true);
     profileManager.markTenseCompleted(currentUser.username, tense);
@@ -14493,10 +14745,14 @@ function chipClickHandler(chip) {
 function resetDragQ(qId) {
     const zone = document.getElementById('answer-' + qId);
     const bank = document.getElementById('bank-' + qId);
-    // Move chips back
+    if (!zone || !bank) return;
+
+    // Move chips back to the bank and restore click behavior.
     [...zone.querySelectorAll('.word-chip')].forEach(c => {
         c.classList.remove('chip-correct', 'chip-dragging');
         c.style.cursor = 'pointer';
+        c.style.pointerEvents = '';
+        c.style.opacity = '';
         c.onclick = function() { chipClickHandler(this); };
         bank.appendChild(c);
     });
@@ -14504,6 +14760,8 @@ function resetDragQ(qId) {
     [...bank.querySelectorAll('.word-chip')].forEach(c => {
         c.classList.remove('chip-correct', 'chip-dragging');
         c.style.cursor = 'pointer';
+        c.style.pointerEvents = '';
+        c.style.opacity = '';
         c.onclick = function() { chipClickHandler(this); };
     });
     // Restore placeholder

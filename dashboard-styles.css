@@ -501,3 +501,22 @@ body {
         font-size: 12px;
     }
 }
+
+/* Toggle Autocomplete Button Styling */
+.toggle-autocomplete-btn {
+    background: transparent;
+    border: 1px dashed #777;
+    color: #777;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+.toggle-autocomplete-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+

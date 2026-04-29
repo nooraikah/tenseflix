@@ -147,6 +147,25 @@ body {
     font-family: inherit;
 }
 
+.gender-options {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.gender-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.gender-options input {
+    width: auto;
+    margin: 0;
+}
+
 .form-group input:focus {
     outline: none;
     border-color: #667eea;

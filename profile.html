@@ -21,9 +21,23 @@
             border-left: 3px solid #e2b714;
         }
         .detail-item strong { color: #e2b714; min-width: 120px; margin-right: 10px; }
+        /* Make profile values (Male, Date, etc.) readable */
+        .detail-item span:not(.detail-icon):not(strong) {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
         .detail-icon { margin-right: 12px; font-size: 1.2rem; }
         .gender-options label { cursor: pointer; transition: color 0.2s; }
         .gender-options input { width: auto !important; margin-right: 8px; }
+
+        /* Smooth golden glow on hover for movie frames */
+        .gallery-item:hover {
+            box-shadow: 0 0 35px rgba(226, 183, 20, 0.45) !important;
+            border-color: #e2b714 !important;
+            transform: translateY(-5px);
+        }
 
         /* Beautiful headers and consistent spacing in Edit Mode */
         .form-section h4 {
@@ -43,6 +57,8 @@
         .footer p { margin: 0 !important; }
         .profile-container { padding-bottom: 0 !important; min-height: auto !important; }
         body { margin: 0; padding: 0; }
+        /* Hide language switcher on this page */
+        .language-switcher { display: none !important; }
     </style>
 </head>
 <body>
@@ -76,7 +92,6 @@
                     </div>
                     <div class="profile-info">
                         <h2 id="username">User</h2>
-                        <p class="user-subtitle">English Learner</p>
                         <div class="profile-details">
                             <div id="user-gender" class="detail-item" style="display: none;"><span class="detail-icon">👤</span><strong>Gender:</strong> <span id="gender-value">-</span></div>
                             <div id="user-dob" class="detail-item" style="display: none;"><span class="detail-icon">📅</span><strong>Birth Date:</strong> <span id="dob-value">-</span></div>

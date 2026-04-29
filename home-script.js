@@ -76,8 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Стилизация секции "About Us"
     const aboutSection = document.getElementById('about-us') || document.querySelector('.about-us');
     if (aboutSection) {
-        aboutSection.style.background = '#f8f9fa';
-        aboutSection.style.color = '#2d3436';
+        aboutSection.style.backgroundImage = "url('anelya.jpg')";
+        aboutSection.style.backgroundSize = "cover";
+        aboutSection.style.backgroundPosition = "center";
+        aboutSection.style.color = '#ffffff';
         aboutSection.style.padding = '80px 20px 0';
         aboutSection.style.borderTop = '3px solid #667eea';
         const title = aboutSection.querySelector('h2, h3');
