@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isRedirecting) {
         loadUserInfo();
         initializeLevels();
-        if (typeof initStarryBackground === 'function') initStarryBackground();
     }
 });
 
@@ -44,6 +43,7 @@ function loadUserInfo() {
                 adminBadge.style.color = '#e74c3c';
                 adminBadge.style.fontWeight = 'bold';
                 userElement.parentNode.appendChild(adminBadge);
+                addTeacherGuideButton(); // Add teacher guide button for admins
             }
         }
 
@@ -69,6 +69,66 @@ function loadUserInfo() {
         }
         const dashboardContent = document.querySelector('.dashboard-container') || document.querySelector('.profile-container');
         if (dashboardContent) dashboardContent.style.paddingBottom = '0';
+    }
+}
+
+// Function to add the teacher guide button
+function addTeacherGuideButton() {
+    const userInfoDiv = document.querySelector('.user-info'); // Or another suitable parent
+    if (!userInfoDiv) return;
+
+    let guideButton = document.getElementById('teacher-guide-btn');
+    if (!guideButton) {
+        guideButton = document.createElement('button');
+        guideButton.id = 'teacher-guide-btn';
+        guideButton.innerHTML = '👩‍🏫 Teacher\'s Guide';
+        guideButton.style.cssText = `
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap; /* Prevent text wrapping */
+        `;
+        guideButton.onmouseover = () => {
+            guideButton.style.transform = 'translateY(-2px)';
+            guideButton.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
+        };
+        guideButton.onmouseout = () => {
+            guideButton.style.transform = 'translateY(0)';
+            guideButton.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+        };
+        guideButton.onclick = openTeacherGuideModal;
+
+        userInfoDiv.appendChild(guideButton);
+    }
+}
+
+// New functions for modal
+function openTeacherGuideModal() {
+    const modal = document.getElementById('teacher-guide-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('show'), 10); // Add 'show' class for fade-in
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+}
+
+function closeTeacherGuideModal() {
+    const modal = document.getElementById('teacher-guide-modal');
+    if (modal) {
+        modal.classList.remove('show'); // Remove 'show' class for fade-out
+        setTimeout(() => modal.style.display = 'none', 300); // Hide after transition
+        document.body.style.overflow = 'auto'; // Restore scrolling
     }
 }
 
@@ -297,10 +357,11 @@ function initializeLevels() {
     }
 
     updateUserRank(completedCount);
+    initStarryBackground(completedCount); // Инициализируем фон с учетом прогресса
 }
 
 function triggerSaluteConfetti() {
-    const duration = 7 * 1000; // Празднуем чуть дольше
+    const duration = 8 * 1000; // Cinematic 8-second show
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 45, spread: 360, ticks: 100, zIndex: 10000 };
 
@@ -310,17 +371,52 @@ function triggerSaluteConfetti() {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
+            // Grand Finale Gold Star Burst
+            confetti({
+                ...defaults,
+                particleCount: 400,
+                origin: { x: 0.5, y: 0.4 },
+                colors: ['#FFD700', '#FFDF00', '#DAA520', '#FFFFFF'],
+                shapes: ['star'],
+                scalar: 2.5
+            });
             return clearInterval(interval);
         }
 
-        // Запускаем мощные залпы фейерверков (меньше мелкого конфетти, больше взрывов)
-        const particleCount = 150 * (timeLeft / duration);
-        
-        // Взрывы с боков и из центра
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#e2b714', '#ffffff'] });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#e2b714', '#ff4500'] });
-        confetti({ ...defaults, particleCount: particleCount * 1.5, origin: { x: 0.5, y: 0.7 }, gravity: 0.8, scalar: 1.2, colors: ['#e2b714', '#ffffff', '#ff4500'] });
-    }, 500); // Интервал между залпами для эффекта салюта
+        const particleCount = 60 * (timeLeft / duration);
+
+        // 1. Golden "Salute" bursts from random sky positions
+        confetti({
+            ...defaults,
+            particleCount: particleCount * 1.5,
+            origin: { x: randomInRange(0.1, 0.9), y: randomInRange(0.1, 0.4) },
+            colors: ['#FFD700', '#FFDF00', '#DAA520'],
+            shapes: ['star'],
+            gravity: 0.6,
+            scalar: randomInRange(0.7, 1.4)
+        });
+
+        // 2. FireShow Sparks shooting up from the bottom
+        confetti({
+            ...defaults,
+            particleCount: 15,
+            origin: { x: randomInRange(0.2, 0.8), y: 0.9 },
+            colors: ['#FF4500', '#FF8C00', '#FF0000'],
+            angle: randomInRange(70, 110),
+            spread: 30,
+            startVelocity: randomInRange(50, 75),
+            gravity: 1.5,
+            shapes: ['circle', 'star']
+        });
+
+        // 3. Constant gold glitter rain
+        confetti({
+            particleCount: 5,
+            origin: { x: Math.random(), y: -0.1 },
+            colors: ['#FFD700'],
+            shapes: ['star']
+        });
+    }, 250);
 }
 
 // Penguin Story Data
@@ -621,23 +717,74 @@ function createCompletionStats(tenseData) {
     return container;
 }
 
-function initStarryBackground() {
+let backgroundIntervals = []; // Для очистки таймеров при обновлении
+
+function initStarryBackground(completedLevels = 0) {
     const container = document.getElementById('stars-container');
     if (!container) return;
 
-    for (let i = 0; i < 150; i++) {
+    // Очищаем старые элементы и интервалы
+    container.innerHTML = '';
+    backgroundIntervals.forEach(id => clearInterval(id));
+    backgroundIntervals = [];
+
+    // 1. Меняем цвет фона в зависимости от уровня (от черного к фиолетовому)
+    const intensity = Math.min(completedLevels * 5, 60);
+    container.style.background = `radial-gradient(circle at center, rgb(${10 + intensity/2}, 10, ${30 + intensity}) 0%, rgb(5, 5, 15) 100%)`;
+
+    // 2. Генерация звезд разных типов
+    const starCount = 200 + (completedLevels * 40); // Больше звезд с каждым уровнем
+    for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
-        star.className = 'star';
-        const size = Math.random() * 3 + 1; // Slightly larger stars
+        
+        const typeRand = Math.random();
+        if (typeRand > 0.85) star.className = 'star star-pulse';
+        else if (typeRand > 0.7) star.className = 'star star-flicker';
+        else star.className = 'star';
+
+        const size = Math.random() * 2 + 1;
         star.style.width = size + 'px';
         star.style.height = size + 'px';
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
-        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        
+        // Уменьшаем длительность (ускоряем мерцание) с уровнем
+        const duration = Math.max(1, (Math.random() * 3 + 2) - (completedLevels * 0.1));
+        star.style.setProperty('--duration', duration + 's');
         container.appendChild(star);
     }
 
-    setInterval(() => {
+    // 3. Планеты (их количество и скорость тоже растут)
+    const planetCount = 3 + Math.floor(completedLevels / 3);
+    const planetColors = ['#a8dadc', '#f4a261', '#e76f51', '#2a9d8f', '#bbd0ff']; // Различные цвета
+    const planetSizes = [15, 25, 35, 40, 50]; // Различные размеры
+
+    for (let i = 0; i < planetCount; i++) {
+        const planet = document.createElement('div');
+        planet.className = 'planet';
+        const size = planetSizes[Math.floor(Math.random() * planetSizes.length)];
+        const color = planetColors[Math.floor(Math.random() * planetColors.length)];
+
+        planet.style.width = size + 'px';
+        planet.style.height = size + 'px';
+        planet.style.borderRadius = '50%';
+        planet.style.backgroundColor = color;
+        planet.style.boxShadow = `0 0 ${size / 4}px ${size / 8}px ${color}, inset 0 0 ${size / 8}px rgba(0,0,0,0.3)`; // Нежное свечение
+        planet.style.position = 'absolute';
+        planet.style.left = Math.random() * 100 + '%';
+        planet.style.top = Math.random() * 100 + '%';
+        planet.style.zIndex = '1'; // Ниже звезд и падающих звезд
+        
+        // Ускоряем движение планет с уровнем
+        const speed = Math.max(15, (Math.random() * 30 + 60) - (completedLevels * 3));
+        planet.style.animation = `planet-drift ${speed}s linear infinite alternate`;
+        planet.style.animationDelay = `-${Math.random() * 60}s`; // Начинать в случайной точке цикла анимации
+        container.appendChild(planet);
+    }
+
+    // 4. Падающие звезды (частота увеличивается)
+    const ssFreq = Math.max(250, 1200 - (completedLevels * 100));
+    const ssId = setInterval(() => {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = (Math.random() * 80 + 20) + '%';
@@ -645,5 +792,17 @@ function initStarryBackground() {
         shootingStar.style.setProperty('--duration', (Math.random() * 1 + 0.8) + 's');
         container.appendChild(shootingStar);
         setTimeout(() => shootingStar.remove(), 2000); // Remove after animation
-    }, 1500); // Make shooting stars appear more frequently (every 1.5 seconds)
+    }, ssFreq);
+    backgroundIntervals.push(ssId);
+
+    // 5. Кометы (Редкие, появляются раз в 15-30 секунд)
+    const cometId = setInterval(() => {
+        const comet = document.createElement('div');
+        comet.className = 'comet';
+        comet.style.top = (Math.random() * 70) + '%';
+        comet.style.animation = `comet-move ${Math.random() * 2 + 3}s linear forwards`;
+        container.appendChild(comet);
+        setTimeout(() => comet.remove(), 5000);
+    }, 15000 + Math.random() * 15000);
+    backgroundIntervals.push(cometId);
 }
