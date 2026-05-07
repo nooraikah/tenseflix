@@ -235,6 +235,116 @@ body {
     }
 }
 
+/* ===== TEACHER GUIDE WIDGET (Bottom Right) ===== */
+#teacher-guide-widget {
+    position: fixed;
+    bottom: 32px;
+    right: 28px;
+    z-index: 1001;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutDown {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(15px); }
+}
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(40, 100, 200, 0.45), 0 0 0 3px #2a6db5, 0 0 0 0px rgba(42, 109, 181, 0.4); /* Base shadow, no outer glow */
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(40, 100, 200, 0.6), 0 0 0 3px #2a6db5, 0 0 0 15px rgba(42, 109, 181, 0.4); /* More prominent outer glow */
+    }
+}
+
+/* Base style for the trigger button */
+#teacher-guide-trigger {
+    width: 72px; /* Set width */
+    height: 72px; /* Set height */
+    border-radius: 50%; /* Make it circular */
+    background: #162040; /* Circle background color */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(40, 100, 200, 0.45), 0 0 0 3px #2a6db5;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+#teacher-guide-trigger .teacher-image-container { /* Container for the image */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #e5f3f7; /* Background color for the image area */
+    background-image: url('teacher.png');
+    background-size: 130%; /* Increased image size a little more */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#teacher-guide-trigger.pulsing {
+    animation: pulse-glow 2s infinite alternate;
+}
+
+#teacher-guide-trigger:hover {
+    transform: scale(1.05); /* Slightly larger on hover */
+    box-shadow: 0 6px 28px rgba(40, 100, 200, 0.6), 0 0 0 4px #4aa3e0; /* Enhanced hover shadow */
+}
+
+.teacher-guide-label-outside {
+    position: absolute;
+    bottom: -20px; /* Position below the circle */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 10px;
+    color: #7ec8f7;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase; /* Text with caps */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+#teacher-guide-popup {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    right: 0;
+    width: 320px;
+    background: linear-gradient(160deg, rgba(26, 29, 58, 0.85) 0%, rgba(13, 17, 33, 0.9) 100%); /* Adjusted transparency */
+    backdrop-filter: blur(15px);
+    border: 2px solid #667eea;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    display: none;
+    animation: fadeInUp 0.3s ease forwards;
+    color: white;
+    z-index: 1002;
+    text-align: left;
+}
+#teacher-guide-popup.closing {
+    animation: fadeOutDown 0.3s ease forwards;
+}
+.guide-popup-close {
+    position: absolute;
+    top: 15px; right: 15px;
+    color: #7ec8f7; background: none; border: none;
+    font-size: 24px; cursor: pointer; line-height: 1;
+    transition: color 0.2s;
+}
+.guide-popup-close:hover { color: #fff; }
+#guide-display { color: #e2b714; font-weight: 800; font-size: 1.1rem; margin-bottom: 12px; text-transform: uppercase; }
+#guide-content { color: #c9e8ff; font-size: 0.9rem; line-height: 1.5; }
+#guide-content p { margin-bottom: 10px; }
+#guide-content ul { padding-left: 18px; margin: 0; }
+#guide-content li { margin-bottom: 6px; }
 .tense-card.completed {
     border: 3px solid #007bff;
     background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
@@ -519,4 +629,3 @@ body {
     color: #667eea;
     background: rgba(102, 126, 234, 0.1);
 }
-

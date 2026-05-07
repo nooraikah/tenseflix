@@ -200,6 +200,7 @@ const translations = {
         'team-exp-3': 'Обладательница бронзовой медали «Елбасы медалі». Эксперт по разработке учебных программ и точности контента.',
         'team-exp-4': '1-е место на Республиканской олимпиаде по английскому языку. Бронзовый медалист «Елбасы медалі».',
         'team-exp-5': 'Участие в международных образовательных проектах. Публичные выступления.'
+
     },
     kk: {
         // Language Selector
@@ -401,6 +402,10 @@ const translations = {
         'team-exp-3': '«Елбасы медалі» қола медалінің иегері. Оқу бағдарламаларын әзірлеу және мазмұн дәлдігі бойынша сарапшы.',
         'team-exp-4': 'Ағылшын тілінен Республикалық олимпиаданың 1-орын иегері. «Елбасы медалі» қола жүлдегері.',
         'team-exp-5': 'Халықаралық білім беру жобаларына қатысу. Көпшілік алдында сөйлеу маманы.'
+        ,
+        'oscar-speech-btn-label': '🎤 Жеңіс сөзін оқу',
+        'oscar-speech-title': 'Оскар сыйлығын тапсыру сөзі',
+        'oscar-speech-text': 'О, Тәңірім! Мен бұған сене алар емеспін! Біз мұны жасадық! Бұл Оскар тек менікі емес — бұл біздікі. Әрбір жобада, әрбір сәтсіздікте және әрбір шақта менімен бірге болғаныңыз үшін сізге үлкен рахмет. Сіздің ағылшын тілін үйренуге деген құлшынысыңыз менің оқиғама жан бітірді. Сіздің еңбегіңізсіз мен "Absolute Cinema" деңгейіне жете алмас едім. Бұл біздің ортақ жеңісіміз, досым! Біз — чемпионбыз!'
     },
     en: {
         // Language Selector
@@ -598,6 +603,10 @@ const translations = {
         'team-exp-3': 'Owner of the bronze medal of Elbasy medali. Expert in curriculum development and accuracy.',
         'team-exp-4': '1st place in Republican English Olympiad. Bronze Medalist of "Elbasy Medali".',
         'team-exp-5': 'Participating in international educational projects. Public Speaking.'
+        ,
+        'oscar-speech-btn-label': '🎤 Read the Acceptance Speech',
+        'oscar-speech-title': 'The Oscar Acceptance Speech',
+        'oscar-speech-text': 'Oh my goodness! I can\'t believe it! We did it! This Oscar isn\'t just mine—it\'s ours. Thank you so much for being with me through every draft, every rejection, and every single tense. Your dedication to learning English is what gave my story a voice. I couldn\'t have mastered the "Absolute Cinema" without your hard work. This victory belongs to both of us, my friend! We are champions!'
     }
 };
 

@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isRedirecting) {
         loadUserInfo();
         initializeLevels();
+        initTeacherGuide();
+        updateWelcomeMessage(); // Call the new function here
     }
 });
 
@@ -131,6 +133,89 @@ function closeTeacherGuideModal() {
         document.body.style.overflow = 'auto'; // Restore scrolling
     }
 }
+
+// Teacher Guide Widget Functions
+function initTeacherGuide() {
+    const popup = document.getElementById('teacher-guide-popup');
+    if (popup) {
+        popup.style.display = 'none'; // Ensure it's hidden on load
+    }
+
+    const trigger = document.getElementById('teacher-guide-trigger');
+    if (trigger && localStorage.getItem('teacherGuidePulsedOnce') === 'true') {
+        trigger.classList.remove('pulsing'); // Hide pulse if already clicked once
+    }
+}
+
+// Function to update the welcome message based on time of day
+function updateWelcomeMessage() {
+    const welcomeElement = document.getElementById('welcome-message');
+    const currentUser = profileManager.getCurrentUser(); // Get current user
+    if (!welcomeElement) return;
+
+    const now = new Date();
+    const hour = now.getHours();
+    let greeting;
+
+    if (hour < 12) greeting = 'Good morning';
+    else if (hour < 18) greeting = 'Good afternoon';
+    else greeting = 'Good evening';
+
+    let userName = '';
+    if (currentUser && currentUser.fullName) {
+        userName = currentUser.fullName.split(' ')[0]; // Get first name
+        userName = userName.charAt(0).toUpperCase() + userName.slice(1); // Capitalize
+    }
+
+    welcomeElement.textContent = `${greeting}${userName ? ', ' + userName : ''}!`;
+}
+
+function openTeacherGuidePopup(event) {
+    if (event) event.stopPropagation();
+    
+    const popup = document.getElementById('teacher-guide-popup');
+    const trigger = document.getElementById('teacher-guide-trigger');
+
+    if (!popup || !trigger) return;
+
+    if (popup.style.display === 'block' && !popup.classList.contains('closing')) {
+        // If already open and not closing, close it
+        closeTeacherGuidePopup();
+    } else {
+        // If closed or currently closing, open it
+        popup.classList.remove('closing');
+        popup.style.display = 'block';
+        
+        // Stop pulsing animation after first click
+        if (trigger) {
+            trigger.classList.remove('pulsing');
+            localStorage.setItem('teacherGuidePulsedOnce', 'true');
+        }
+    }
+}
+
+function closeTeacherGuidePopup() {
+    const popup = document.getElementById('teacher-guide-popup');
+    if (!popup || popup.style.display === 'none' || popup.classList.contains('closing')) return;
+
+    // Add closing class for fade-out animation
+    popup.classList.add('closing');
+    
+    // Hide after animation finishes
+    setTimeout(() => {
+        popup.style.display = 'none';
+        popup.classList.remove('closing');
+    }, 300);
+}
+
+// Close popup when clicking outside the widget area
+window.addEventListener('click', (event) => {
+    const widget = document.getElementById('teacher-guide-widget');
+    const popup = document.getElementById('teacher-guide-popup');
+    if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
+        closeTeacherGuidePopup();
+    }
+});
 
 // Initialize levels based on user progress
 function initializeLevels() {
@@ -343,10 +428,16 @@ function initializeLevels() {
             counterBtn.onclick = () => {
                 triggerSaluteConfetti();
                 const reward = document.getElementById('final-reward');
+                const speechBtnContainer = document.getElementById('oscar-speech-btn-container');
                 if (reward) {
                     reward.style.display = 'block';
                     reward.classList.add('fire-show');
                     reward.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                if (speechBtnContainer) {
+                    setTimeout(() => {
+                        speechBtnContainer.style.display = 'block';
+                    }, 1000);
                 }
             };
         } else {
@@ -361,7 +452,7 @@ function initializeLevels() {
 }
 
 function triggerSaluteConfetti() {
-    const duration = 8 * 1000; // Cinematic 8-second show
+    const duration = 3 * 1000; // Shortened to 3 seconds
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 45, spread: 360, ticks: 100, zIndex: 10000 };
 
@@ -482,6 +573,203 @@ function closeMovieLightbox() {
         if (!modal.classList.contains('show')) modal.style.display = 'none';
     }, 300);
     document.body.style.overflow = 'auto';
+}
+
+function openOscarSpeech() {
+    const modal = document.getElementById('oscar-modal');
+    const textContainer = document.getElementById('oscar-speech-p');
+    
+    if (modal) {
+        modal.classList.add('show');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Typewriter effect logic
+        if (textContainer) {
+            textContainer.textContent = ''; // Ensure it's empty initially
+            
+            const speechText = "Oh my goodness! I can't believe it! We did it! This Oscar isn't just mine—it's ours. Thank you so much for being with me through every draft, every rejection, and every single tense. Your dedication to learning English is what gave my story a voice. I couldn't have mastered the \"Absolute Cinema\" without your hard work. This victory belongs to both of us, my friend! We are champions!";
+            
+            let i = 0;
+            const speed = 40; // Typing speed in milliseconds
+            
+            function typeChar() {
+                if (i < speechText.length) {
+                    textContainer.textContent += speechText.charAt(i);
+                    i++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    // Speech finished! Show credits after a short pause
+                    setTimeout(showCinematicCredits, 2500);
+                }
+            }
+            
+            // Start typing after a short delay to allow modal to open
+            setTimeout(typeChar, 600);
+        }
+    }
+}
+
+function showCinematicCredits() {
+    const credits = document.getElementById('cinematic-credits');
+    const scroll = credits?.querySelector('.credits-scroll');
+    const cert = document.getElementById('certificate-display');
+    
+    if (credits) {
+        // Reset states
+        if (cert) cert.classList.remove('show');
+        if (scroll) {
+            scroll.style.display = 'block';
+            scroll.style.animation = 'none';
+            void scroll.offsetWidth; // trigger reflow
+            scroll.style.animation = 'credits-animation 25s linear forwards';
+        }
+        
+        credits.style.display = 'flex';
+
+        // Wait for credits animation to finish (25s) then show certificate
+        setTimeout(() => {
+            showFinalCertificate();
+        }, 25000);
+    }
+}
+
+function showFinalCertificate() {
+    const cert = document.getElementById('certificate-display');
+    const scroll = document.querySelector('.credits-scroll');
+    const currentUser = profileManager.getCurrentUser();
+    
+    if (scroll) scroll.style.display = 'none'; 
+    
+    if (cert) {
+        const nameEl = document.getElementById('cert-user-name');
+        if (nameEl && currentUser) {
+            nameEl.textContent = currentUser.fullName;
+        }
+        cert.classList.add('show');
+    }
+}
+
+function downloadCertificate() {
+    const currentUser = profileManager.getCurrentUser();
+    const userName = currentUser?.fullName || 'Valued Learner';
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Устанавливаем размер (альбомный формат)
+    canvas.width = 1200;
+    canvas.height = 840;
+
+    // 1. Фон
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 2. Рамка (темно-синяя и золотая)
+    ctx.strokeStyle = '#1a1a2e';
+    ctx.lineWidth = 40;
+    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+    ctx.strokeStyle = '#e2b714';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(50, 50, canvas.width - 100, canvas.height - 100);
+
+    // 3. Текст: Заголовок
+    ctx.fillStyle = '#e2b714';
+    ctx.font = 'bold 60px Georgia';
+    ctx.textAlign = 'center';
+    ctx.fillText('TENSEFLIX', canvas.width / 2, 130);
+
+    ctx.fillStyle = '#000';
+    ctx.font = '30px Georgia';
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 180);
+
+    // 4. Текст: Имя пользователя
+    ctx.font = 'italic 24px Georgia';
+    ctx.fillText('This is to certify that', canvas.width / 2, 250);
+    
+    ctx.fillStyle = '#1a1a2e';
+    ctx.font = 'bold 80px "Brush Script MT", cursive, serif';
+    ctx.fillText(userName, canvas.width / 2, 350);
+
+    // 5. Текст: Описание
+    ctx.fillStyle = '#333';
+    ctx.font = '22px Georgia';
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 420);
+    
+    ctx.fillStyle = '#e2b714';
+    ctx.font = 'bold 28px Georgia';
+    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 460);
+
+    ctx.fillStyle = '#333';
+    ctx.font = '22px Georgia';
+    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 500);
+
+    // 6. Подписи
+    const sigs = ['M. Nuray', 'M. Anelya', 'D. Elnura', 'B. Aida', 'T. Aruzhan'];
+    ctx.font = 'italic 18px "Brush Script MT", cursive';
+    ctx.fillStyle = '#555';
+    sigs.forEach((s, i) => {
+        const x = 180 + (i * 210);
+        ctx.fillText(s, x, 740);
+        ctx.beginPath();
+        ctx.moveTo(x - 50, 750);
+        ctx.lineTo(x + 50, 750);
+        ctx.stroke();
+    });
+
+    // 7. Отрисовка Pinguo (берем из DOM)
+    const pinguoImg = document.querySelector('.cert-pinguo');
+    if (pinguoImg) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, 600, 60, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(pinguoImg, canvas.width / 2 - 60, 600 - 60, 120, 120);
+        ctx.restore();
+    }
+
+    // Скачивание PNG
+    const link = document.createElement('a');
+    const safeName = userName.replace(/[^a-z0-9а-я]/gi, '_');
+    link.download = `TENSEFLIX_Certificate_${safeName}.png`;
+    
+    try {
+        link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Показываем кнопки "Поделиться"
+        const shareSection = document.getElementById('cert-share-section');
+        if (shareSection) shareSection.style.display = 'flex';
+    } catch (e) {
+        console.error('Ошибка при генерации PNG:', e);
+        alert('Не удалось скачать сертификат. Если вы открыли файл напрямую через браузер, попробуйте использовать локальный сервер (например, Live Server в VS Code) или просто сделайте скриншот экрана.');
+    }
+}
+
+function shareCertificate(platform) {
+    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆");
+    const url = platform === 'telegram' 
+        ? `https://t.me/share/url?url=https://tenseflix.com&text=${text}`
+        : `https://api.whatsapp.com/send?text=${text}`;
+    window.open(url, '_blank');
+}
+
+function closeOscarSpeech() {
+    const modal = document.getElementById('oscar-modal');
+    const textContainer = document.getElementById('oscar-speech-p');
+    const credits = document.getElementById('cinematic-credits');
+    
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => { 
+            modal.style.display = 'none'; 
+            if (textContainer) textContainer.textContent = ''; // Reset for next open
+            if (credits) credits.style.display = 'none'; // Stop credits if user closes modal
+        }, 300);
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Autocomplete logic for quick testing

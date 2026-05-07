@@ -216,8 +216,239 @@
             animation: pulse-gold 1.5s infinite;
         }
 
-        .final-reward { display: none; margin-top: 20px; }
-        .final-reward img { max-width: 400px; border-radius: 15px; border: 5px solid #e2b714; }
+        /* Oscar Speech Modal Layout */
+        .oscar-speech-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            background: rgba(13, 27, 62, 0.95);
+            padding: 50px;
+            border-radius: 24px;
+            border: 4px solid #e2b714;
+            max-width: 1000px;
+            box-shadow: 0 0 60px rgba(226, 183, 20, 0.4);
+        }
+
+        .oscar-speech-img-wrap {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .oscar-speech-img-wrap img {
+            width: 100%;
+            border-radius: 16px;
+            border: 2px solid rgba(226, 183, 20, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .oscar-speech-text-wrap {
+            flex: 1.2;
+            text-align: left;
+        }
+
+        .oscar-speech-text-wrap h3 {
+            color: #e2b714;
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .oscar-speech-text-wrap p {
+            color: #fff;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 0;
+            font-style: italic;
+            min-height: 200px;
+            position: relative;
+        }
+
+        /* Blinking cursor effect for typewriter */
+        .oscar-speech-text-wrap p::after {
+            content: '|';
+            color: #e2b714;
+            animation: blink-cursor 0.8s infinite;
+            margin-left: 3px;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        @keyframes blink-cursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Cinematic Credits Overlay */
+        #cinematic-credits {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 5000; /* Above everything */
+            display: none;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .credits-scroll {
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            text-align: center;
+            animation: credits-animation 25s linear forwards;
+        }
+
+        @keyframes credits-animation {
+            0% { top: 100%; }
+            100% { top: -180%; }
+        }
+
+        .credits-header {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 0 0 20px #e2b714;
+            letter-spacing: 10px;
+            margin-bottom: 100px;
+            text-transform: uppercase;
+        }
+
+        .credit-group { margin-bottom: 60px; }
+        .credit-role {
+            color: #888;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        .credit-name {
+            color: #e2b714;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(226,183,20,0.3);
+        }
+
+        /* Button Fire Animation */
+        @keyframes button-fire {
+            0%, 100% { 
+                background: #e2b714;
+                box-shadow: 0 0 15px #ff4500, 0 0 30px #ffa500;
+                transform: scale(1);
+            }
+            50% { 
+                background: #ff8c00;
+                box-shadow: 0 0 35px #ff0000, 0 0 60px #ff8c00, inset 0 0 15px rgba(255,255,255,0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        .final-reward { 
+            display: none; 
+            margin-top: 30px; 
+            position: relative; /* Container for the smoke */
+        }
+        .final-reward img { max-width: 400px; border-radius: 15px; border: 5px solid #e2b714; transition: all 0.5s; position: relative; z-index: 2; }
+
+        /* Rising Smoke Effect (Darker, more cinematic) */
+        @keyframes smoke-rising {
+            0% { transform: translate(-50%, 0) scale(0.6); opacity: 0; }
+            20% { opacity: 0.4; } /* Increased peak opacity */
+            100% { transform: translate(-50%, -300px) scale(4.0); opacity: 0; filter: blur(60px); } /* More blur, higher rise */
+        }
+
+        .final-reward::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            width: 200px; 
+            height: 200px; 
+            background: radial-gradient(circle, rgba(10, 10, 10, 0.85) 0%, transparent 75%); 
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .final-reward.fire-show::before {
+            animation: smoke-rising 5s infinite ease-out;
+        }
+
+        /* Ember Particles */
+        @keyframes ember-float {
+            0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; transform: translate(0, -20px) scale(0.7); filter: brightness(1.2); }
+            40% { opacity: 0.6; transform: translate(var(--x-drift-small), -40px) scale(0.6); filter: brightness(1.0); }
+            60% { opacity: 0.9; transform: translate(var(--x-drift-medium), -60px) scale(0.8); filter: brightness(1.3); }
+            100% { transform: translate(var(--x-drift-large), var(--y-rise)) scale(1.5); opacity: 0; filter: brightness(0.8); }
+        }
+        .final-reward.fire-show::after {
+            content: '';
+            position: absolute;
+            bottom: 0; /* Start from the bottom of the image */
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: #ff8c00; /* Orange ember color */
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff4500; /* Ember glow */
+            z-index: 3; /* Above the image */
+            animation: ember-float 2s infinite ease-out;
+            animation-delay: var(--delay); /* Use CSS variable for staggered animation */
+            --x-drift-small: 10px;
+            --x-drift-medium: -15px;
+            --x-drift-large: 20px;
+            --y-rise: -180px; /* Rise upwards */
+        }
+
+        /* To create multiple embers, we'd typically use JavaScript or multiple pseudo-elements.
+           For a single ::after, it will be one ember. To simulate multiple, we can make it larger
+           and blurrier, or use a more complex background-image.
+           For this diff, I'll stick to a single ::after for simplicity, but make it more impactful. */
+        .final-reward.fire-show::after { /* This block will be overridden by the next one if it is not removed */
+            width: 10px; /* Larger ember */
+            height: 10px; /* Larger ember */
+            box-shadow: 0 0 15px #ff4500, 0 0 5px #ffa500; /* More intense glow */
+            animation: ember-float 2.5s infinite ease-out; /* Slightly slower for larger embers */
+            --x-drift: -50px; 
+            --y-rise: -200px; /* Higher rise */
+        }
+        /* Multiple embers with varied properties */
+        .final-reward.fire-show::after,
+        .final-reward.fire-show::before { /* Using ::before for a second ember, if possible, or just for smoke */
+            /* Resetting ::before for smoke, so it doesn't interfere with ember */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 6px; /* Base ember size */
+            height: 6px;
+            background: #ff8c00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff4500, 0 0 5px #ffa500;
+            z-index: 3;
+            animation: ember-float 2s infinite ease-out;
+            animation-delay: var(--delay);
+            --x-drift-small: calc(var(--random-factor) * 20px);
+            --x-drift-medium: calc(var(--random-factor) * -30px);
+            --x-drift-large: calc(var(--random-factor) * 40px);
+            --y-rise: -180px;
+            --delay: 0s; /* Default delay */
+            --random-factor: 1; /* Placeholder, ideally randomized by JS or multiple elements */
+        }
+        /* Deep Slow Fire Pulse for the Image */
+        @keyframes fire-glow-deep {
+            0%, 100% { border-color: #e2b714; box-shadow: 0 0 30px #ff4500, 0 0 60px rgba(255, 140, 0, 0.4); filter: brightness(1); }
+            50% { border-color: #fff; box-shadow: 0 0 80px #ff0000, 0 0 140px #ff8c00, 0 0 50px #fff; filter: brightness(1.2); transform: scale(1.01); }
+        }
+
+        .final-reward.fire-show img {
+            animation: fire-glow-deep 4s infinite ease-in-out;
+            cursor: pointer;
+        }
 
         /* Unmagic Button Styling */
         .unmagic-btn {
@@ -291,6 +522,95 @@
             cursor: pointer;
             margin-top: 10px;
         }
+           /* Certificate Styles */
+        .certificate-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 900px;
+            height: 630px;
+            background: #fff;
+            color: #000;
+            padding: 40px;
+            border: 20px solid #1a1a2e;
+            box-shadow: 0 0 50px rgba(226, 183, 20, 0.5);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 6000;
+            opacity: 0;
+            transition: all 1s ease-out;
+            font-family: 'Georgia', serif;
+            background-image: radial-gradient(circle, #fff 70%, #f0f0f0 100%);
+        }
+        .certificate-wrapper.show {
+            display: flex;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .cert-border-inner {
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 2px solid #e2b714;
+            pointer-events: none;
+        }
+        .cert-header { color: #e2b714; font-size: 3rem; margin-bottom: 10px; font-weight: bold; }
+        .cert-title { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .cert-user { font-size: 3.5rem; font-family: 'Brush Script MT', cursive; color: #1a1a2e; margin: 20px 0; }
+        .cert-text { font-size: 1.2rem; line-height: 1.6; max-width: 80%; margin-bottom: 40px; }
+        .cert-pinguo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #e2b714; margin-bottom: 20px; }
+        .cert-signatures {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            width: 100%;
+            gap: 10px;
+            margin-top: auto;
+        }
+        .signature-item { display: flex; flex-direction: column; align-items: center; }
+        .sig-font { font-family: 'Brush Script MT', cursive; font-size: 1.4rem; color: #555; border-bottom: 1px solid #333; width: 120px; margin-bottom: 5px; }
+        .sig-name { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; color: #888; }
+        
+        .download-cert-btn {
+            position: absolute;
+            bottom: -80px;
+            background: #e2b714;
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .download-cert-btn:hover { transform: scale(1.05); background: #fff; }
+        
+        .share-section {
+            display: none;
+            margin-top: 20px;
+            gap: 15px;
+            justify-content: center;
+        }
+        .share-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #certificate-display, #certificate-display * { visibility: visible; }
+            #certificate-display { position: absolute; left: 0; top: 0; transform: none; box-shadow: none; border: 10px solid #1a1a2e; }
+            .download-cert-btn { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -321,6 +641,7 @@
 
     <div class="container">
         <div class="dashboard-intro">
+            <span id="welcome-message" style="font-size: 1.5em; color: #e2b714; margin-bottom: 10px;"></span>
             <h2>🎓 Your Path to Mastery</h2>
             <p>Complete levels in order from simple to complex. Study all 12 English tenses through movie examples!</p>
             <button class="magic-all-btn" onclick="autocompleteAll()">🪄 Magic Finish All</button>
@@ -530,8 +851,34 @@
             <div class="final-reward" id="final-reward" onclick="openMovieLightbox('final')">
                 <img src="final.png" alt="Path Complete!">
             </div>
+            <div id="oscar-speech-btn-container" style="margin-top: 30px; display: none;">
+                <button class="btn btn-primary pulse-btn" id="oscar-speech-btn" onclick="openOscarSpeech()" data-i18n="oscar-speech-btn-label" style="padding: 18px 45px; font-size: 1.1rem; border-radius: 50px;">
+                    🎤 Read the Acceptance Speech
+                </button>
+            </div>
         </div>
 
+    </div>
+
+    <!-- TEACHER GUIDE WIDGET -->
+    <div id="teacher-guide-widget">
+        <div id="teacher-guide-popup">
+            <button class="guide-popup-close" onclick="closeTeacherGuidePopup()">×</button>
+            <div id="guide-display">👩‍🏫 Teacher's Guide</div>
+            <div id="guide-content">
+                <p>Welcome! Here is how to use Tenseflix to teach your kids:</p>
+                <ul>
+                    <li>Watch <b>movie clips</b> to see grammar in action.</li>
+                    <li>Review <b>Grammar Banks</b> for rules and formulas.</li>
+                    <li>Complete <b>Practice Tasks</b> (70% score needed for progress).</li>
+                    <li>Track individual growth in the <b>Profile</b> section.</li>
+                </ul>
+            </div>
+        </div>
+        <button id="teacher-guide-trigger" class="pulsing" onclick="openTeacherGuidePopup(event)" title="Teacher's Guide">
+            <div class="teacher-image-container"></div>
+        </button>
+        <span class="teacher-guide-label-outside">Teacher's Guide</span>
     </div>
 
     <!-- Lightbox Modal for Movie Frames -->
@@ -541,6 +888,102 @@
             <img id="modal-img" src="" alt="Movie Scene">
             <h3 id="modal-title"></h3>
             <p id="modal-desc"></p>
+        </div>
+    </div>
+
+    <!-- Oscar Speech Modal -->
+    <div id="oscar-modal" class="movie-modal" onclick="closeOscarSpeech()">
+        <span class="close-modal" onclick="closeOscarSpeech()">&times;</span>
+        <div class="movie-modal-content oscar-speech-content" onclick="event.stopPropagation()">
+            <div class="oscar-speech-img-wrap">
+                <img src="speech.png" alt="Oscar Penguin">
+            </div>
+            <div class="oscar-speech-text-wrap">
+                <h3 data-i18n="oscar-speech-title">The Oscar Speech</h3>
+                <p id="oscar-speech-p"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cinematic Credits -->
+    <div id="cinematic-credits">
+        <div class="credits-scroll">
+            <h1 class="credits-header">TENSEFLIX</h1>
+            
+            <div class="credit-group">
+                <p class="credit-role">Executive Producer & UX Designer</p>
+                <p class="credit-name">Matay Nuray</p>
+            </div>
+
+            <div class="credit-group">
+                <p class="credit-role">Creative Director & Linguist</p>
+                <p class="credit-name">Mailybay Anelya</p>
+            </div>
+
+            <div class="credit-group">
+                <p class="credit-role">Senior Content Architect</p>
+                <p class="credit-name">Dusenova Elnura</p>
+            </div>
+
+            <div class="credit-group">
+                <p class="credit-role">Head of Pedagogy</p>
+                <p class="credit-name">Berkinbaeva Aida</p>
+            </div>
+
+            <div class="credit-group">
+                <p class="credit-role">Lead Developer & Technical Strategy</p>
+                <p class="credit-name">Tuleshova Aruzhan</p>
+            </div>
+
+            <div class="credit-group" style="margin-top: 150px;">
+                <p class="credit-role">Starring</p>
+                <p class="credit-name">YOU</p>
+                <p style="color: #fff; margin-top: 10px; font-style: italic;">For completing the path to Absolute Cinema</p>
+            </div>
+
+            <h2 style="margin-top: 200px; opacity: 0.3; color: #fff;">THE END</h2>
+        </div>
+
+        <!-- Certificate Display -->
+        <div id="certificate-display" class="certificate-wrapper">
+            <div class="cert-border-inner"></div>
+            <img src="duopinguo.jpg" class="cert-pinguo" alt="Duopinguo">
+            <div class="cert-header">TENSEFLIX</div>
+            <div class="cert-title">Certificate of Achievement</div>
+            <p style="margin:0; font-size: 1.1rem;">This is to certify that</p>
+            <div id="cert-user-name" class="cert-user">Student Name</div>
+            <p class="cert-text">
+                has successfully mastered all 12 English Tenses and reached the level of 
+                <strong style="color: #e2b714;">Absolute Cinema</strong> through dedication, 
+                practice, and a passion for learning.
+            </p>
+            
+            <div class="cert-signatures">
+                <div class="signature-item">
+                    <div class="sig-font">M. Nuray</div><div class="sig-name">Matay Nuray</div>
+                </div>
+                <div class="signature-item">
+                    <div class="sig-font">M. Anelya</div><div class="sig-name">Mailybay Anelya</div>
+                </div>
+                <div class="signature-item">
+                    <div class="sig-font">D. Elnura</div><div class="sig-name">Dusenova Elnura</div>
+                </div>
+                <div class="signature-item">
+                    <div class="sig-font">B. Aida</div><div class="sig-name">Berkinbaeva Aida</div>
+                </div>
+                <div class="signature-item">
+                    <div class="sig-font">T. Aruzhan</div><div class="sig-name">Tuleshova Aruzhan</div>
+                </div>
+            </div>
+
+            <button class="download-cert-btn" onclick="downloadCertificate()">⬇ DOWNLOAD CERTIFICATE</button>
+
+            <!-- Share Section -->
+            <div id="cert-share-section" class="share-section">
+                <button class="share-btn" style="background: #0088cc;" onclick="shareCertificate('telegram')">✈ Telegram</button>
+                <button class="share-btn" style="background: #25d366;" onclick="shareCertificate('whatsapp')">💬 WhatsApp</button>
+                <button class="share-btn" style="background: #555;" onclick="closeOscarSpeech()">❌ Finish</button>
+            </div>
         </div>
     </div>
 
