@@ -102,10 +102,10 @@ function updateProgressBars(userProgress) {
         const pointsPerVideo = 60 / totalVideos;
         
         let videoPoints = 0;
-        if (v1Count >= 5) videoPoints += pointsPerVideo;
-        if (v2Count >= 5) videoPoints += pointsPerVideo;
-        if (hasV3 && v3Count >= 3) videoPoints += pointsPerVideo;
-        if (hasV4 && v4Count >= 5) videoPoints += pointsPerVideo;
+        videoPoints += (Math.min(v1Count, 5) / 5) * pointsPerVideo;
+        videoPoints += (Math.min(v2Count, 5) / 5) * pointsPerVideo;
+        if (hasV3) videoPoints += (Math.min(v3Count, 3) / 3) * pointsPerVideo;
+        if (hasV4) videoPoints += (Math.min(v4Count, 5) / 5) * pointsPerVideo;
 
         const progress = Math.round(videoPoints + practicePoints);
         const finalProgress = tenseData.completedAt ? 100 : Math.min(progress, 99);
@@ -124,24 +124,29 @@ function updateProgressBars(userProgress) {
 function updateAchievements(stats, userProgress) {
     if (!stats) return;
     
+    const currentUser = profileManager.getCurrentUser();
+    if (!currentUser) return;
+
     // Achievement 1: First lesson
     if (stats.exercisesCompleted > 0) {
         unlockAchievement(1);
     }
-    
     // Achievement 2: Halfway (6 tenses)
     if (stats.tensesCompleted >= 6) {
         unlockAchievement(2);
     }
-    
     // Achievement 3: Master (all 12 tenses)
     if (stats.tensesCompleted === 12) {
         unlockAchievement(3);
     }
-    
     // Achievement 4: Perfect student (100% accuracy)
     if (stats.exercisesCompleted > 10 && stats.averageAccuracy === 100) {
         unlockAchievement(4);
+    }
+
+    // Achievement 5: Birthday Celebration
+    if (localStorage.getItem(`birthday_achievement_${currentUser.username}`)) {
+        unlockAchievement(5);
     }
 }
 

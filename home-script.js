@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const navbarRight = document.getElementById('navbar-right');
         
         if (navbarRight && currentUser) {
-            const avatarHtml = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 34, 8);
-            const btnAvatarHtml = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 28, 6);
+            const avatarHtml = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 34, 8, profile ? profile.dob : null);
+            const btnAvatarHtml = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 28, 6, profile ? profile.dob : null);
 
             navbarRight.innerHTML = `
                 <div class="language-switcher">

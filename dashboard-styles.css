@@ -237,10 +237,9 @@ body {
 
 /* ===== TEACHER GUIDE WIDGET (Bottom Right) ===== */
 #teacher-guide-widget {
-    position: fixed;
-    bottom: 32px;
-    right: 28px;
-    z-index: 1001;
+    display: flex;
+            flex-direction: column;
+            align-items: center;
 }
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(15px); }
@@ -259,21 +258,6 @@ body {
     }
 }
 
-/* Base style for the trigger button */
-#teacher-guide-trigger {
-    width: 72px; /* Set width */
-    height: 72px; /* Set height */
-    border-radius: 50%; /* Make it circular */
-    background: #162040; /* Circle background color */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(40, 100, 200, 0.45), 0 0 0 3px #2a6db5;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
-}
 
 #teacher-guide-trigger .teacher-image-container { /* Container for the image */
     width: 100%;
@@ -298,19 +282,6 @@ body {
     box-shadow: 0 6px 28px rgba(40, 100, 200, 0.6), 0 0 0 4px #4aa3e0; /* Enhanced hover shadow */
 }
 
-.teacher-guide-label-outside {
-    position: absolute;
-    bottom: -20px; /* Position below the circle */
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 10px;
-    color: #7ec8f7;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    text-transform: uppercase; /* Text with caps */
-    pointer-events: none; /* Allow clicks to pass through */
-}
 
 #teacher-guide-popup {
     position: absolute;

@@ -197,21 +197,51 @@
             <div class="achievements-section">
                 <h2>Achievements</h2>
                 <div class="achievements-grid">
-                    <div class="achievement-badge" id="achievement-1">
+                    <div class="achievement-badge" id="achievement-1" title="The Spark: Completed your very first interactive lesson on TENSEFLIX! The journey begins." onclick="alert(this.title)">
                         <div class="achievement-icon">🌟</div>
                         <p>First Lesson</p>
                     </div>
-                    <div class="achievement-badge" id="achievement-2">
+                    <div class="achievement-badge" id="achievement-2" title="Climbing the Ranks: Mastered 6 tenses! You're halfway through becoming a grammar expert." onclick="alert(this.title)">
                         <div class="achievement-icon">🎓</div>
                         <p>Halfway There</p>
                     </div>
-                    <div class="achievement-badge" id="achievement-3">
+                    <div class="achievement-badge" id="achievement-3" title="Absolute Cinema: You've mastered all 12 English tenses! A legendary achievement." onclick="alert(this.title)">
                         <div class="achievement-icon">🏆</div>
                         <p>Tense Master</p>
                     </div>
-                    <div class="achievement-badge" id="achievement-4">
+                    <div class="achievement-badge" id="achievement-4" title="Precision Expert: Maintained 100% accuracy across more than 10 exercises. Flawless performance!" onclick="alert(this.title)">
                         <div class="achievement-icon">⭐</div>
                         <p>Perfect Student</p>
+                    </div>
+                    <div class="achievement-badge" id="achievement-5" title="Birthday Legend: Celebrated a special day and leveled up your life! Happy Birthday!" onclick="alert(this.title)">
+                        <div class="achievement-icon">
+                            <!-- Birthday Medal SVG -->
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <style>
+                                    .medal-base { fill: #FFD700; stroke: #DAA520; stroke-width: 1.5; }
+                                    .medal-ribbon { fill: #FF4500; }
+                                    .candle-body { fill: #FFFFFF; stroke: #CCCCCC; stroke-width: 0.5; }
+                                    .candle-flame { fill: #FFA500; stroke: #FFD700; stroke-width: 0.5; }
+                                    .flame-glow { fill: #FFD700; opacity: 0.8; filter: blur(1px); }
+                                    .flame-spark { fill: #FFFFFF; opacity: 0.6; }
+                                    .candle-wick { stroke: #333333; stroke-width: 0.5; }
+                                </style>
+                                <!-- Ribbon -->
+                                <path class="medal-ribbon" d="M12 2L10 6H14L12 2Z"/>
+                                <path class="medal-ribbon" d="M12 2L8 6H16L12 2Z"/>
+                                <path class="medal-ribbon" d="M12 2L6 6H18L12 2Z"/>
+                                <!-- Medal Base (Star Shape) -->
+                                <path class="medal-base" d="M12 2.5L14.5 8.5L21 9L16 13.5L17.5 20L12 17L6.5 20L8 13.5L3 9L9.5 8.5L12 2.5Z"/>
+                                <!-- Candle on the medal -->
+                                <rect class="candle-body" x="11" y="10" width="2" height="4" rx="0.5"/>
+                                <line class="candle-wick" x1="12" y1="9.5" x2="12" y2="10"/>
+                                <!-- Flame -->
+                                <path class="flame-glow" d="M12 8.5C12.5 8.5 13 9 12.5 9.5C12 10 11.5 9.5 12 8.5Z"/>
+                                <path class="candle-flame" d="M12 8.5C12.2 8.7 12.3 8.9 12.2 9.1C12.1 9.3 11.9 9.3 11.8 9.1C11.7 8.9 11.8 8.7 12 8.5Z"/>
+                                <circle class="flame-spark" cx="12.5" cy="8.7" r="0.2"/>
+                            </svg>
+                        </div>
+                        <p>Birthday Celebrator</p>
                     </div>
                 </div>
             </div>

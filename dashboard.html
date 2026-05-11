@@ -544,6 +544,7 @@
             transition: all 1s ease-out;
             font-family: 'Georgia', serif;
             background-image: radial-gradient(circle, #fff 70%, #f0f0f0 100%);
+            padding-bottom: 60px; /* Increased bottom padding to lift signatures */
         }
         .certificate-wrapper.show {
             display: flex;
@@ -566,7 +567,7 @@
             grid-template-columns: repeat(5, 1fr);
             width: 100%;
             gap: 10px;
-            margin-top: auto;
+            margin-top: -30px;
         }
         .signature-item { display: flex; flex-direction: column; align-items: center; }
         .sig-font { font-family: 'Brush Script MT', cursive; font-size: 1.4rem; color: #555; border-bottom: 1px solid #333; width: 120px; margin-bottom: 5px; }
@@ -574,6 +575,7 @@
         
         .download-cert-btn {
             position: absolute;
+            /* Adjusted bottom position to account for removed margin-bottom from signatures */
             bottom: -80px;
             background: #e2b714;
             color: #000;
@@ -610,6 +612,193 @@
             #certificate-display, #certificate-display * { visibility: visible; }
             #certificate-display { position: absolute; left: 0; top: 0; transform: none; box-shadow: none; border: 10px solid #1a1a2e; }
             .download-cert-btn { display: none; }
+        }
+
+        /* ===== PRONUNCIATION WIDGET (Bottom Left - Stacked) ===== */
+        #pronunciation-widget {
+            position: fixed;
+            bottom: 32px;
+            left: 28px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        /* Align Teacher Guide Widget with Pronunciation Widget */
+        #teacher-guide-widget {
+            position: fixed;
+            bottom: 32px;
+            right: 28px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px; 
+
+        }
+        #teacher-guide-trigger {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: none;
+            padding: 0;
+            background: #162040;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(40, 100, 200, 0.45), 0 0 0 3px #2a6db5;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #teacher-guide-trigger:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(40, 100, 200, 0.6), 0 0 0 4px #4aa3e0; }
+        
+        .pron-label-outside, .teacher-guide-label-outside  { 
+            font-size: 10px; 
+            color: #7ec8f7; 
+            font-weight: 800; 
+            letter-spacing: 0.5px; 
+            text-transform: uppercase; 
+            pointer-events: none;
+
+            position: absolute;
+            bottom: -20px; /* Position below the circle, same as teacher's guide */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            height: 20px; /* Adjusted height to be more compact */
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #pron-btn {
+            background: #162040;
+            border: 3px solid #e2b714;
+            border: none;
+            cursor: pointer;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(226,183,20,0.45);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(40, 100, 200, 0.45), 0 0 0 3px #2a6db5;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+       #pron-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 28px rgba(40, 100, 200, 0.6), 0 0 0 4px #4aa3e0;
+        }
+        #pron-btn .pron-icon-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: url('pronounce.png'); /* Set the background image */
+            background-size: 100%; /* Make the image cover the container */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent image repetition */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            line-height: 1;
+        }
+        .pron-label-outside {
+            font-size: 10px;
+            color: #7ec8f7;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+        #pron-popup {
+            position: absolute;
+            bottom: 0;
+            left: calc(100% + 14px);
+            width: 320px;
+            background: linear-gradient(160deg, #0d1b3e 0%, #132a5e 100%);
+            border: 2px solid #e2b714;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+            display: none;
+            animation: fadeInRight 0.3s ease forwards;
+        }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        .pron-popup-close { position: absolute; top: 10px; right: 12px; color: #e2b714; background: none; border: none; font-size: 22px; cursor: pointer; }
+        .pron-panel-header { text-align: center; margin-bottom: 15px; border-bottom: 1px solid rgba(226,183,20,0.2); padding-bottom: 10px; }
+        .pron-panel-title { color: #e2b714; font-size: 16px; font-weight: 900; letter-spacing: 3px; margin: 0; }
+        #pron-target-wrap { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 12px; margin-bottom: 15px; position: relative; }
+        #pron-target-text { color: #fff; font-weight: 600; font-size: 15px; line-height: 1.4; padding-right: 25px; }
+        #pron-status { text-align: center; font-size: 12px; color: #7ec8f7; margin-bottom: 15px; font-weight: 600; }
+        #pron-record-btn { display: block; margin: 0 auto; width: 60px; height: 60px; border-radius: 50%; background: #e2b714; border: none; font-size: 24px; cursor: pointer; transition: all 0.3s; }
+        #pron-record-btn.recording { background: #e74c3c; animation: pulse-red 1.5s infinite; color: #fff; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
+       
+        /* Mobile responsiveness for Movie Frames, Certificate, and Floating Widgets */
+        @media (max-width: 1200px) {
+            .movie-frame-wrap {
+                height: auto;
+                margin: 15px 0 35px;
+            }
+            .movie-frame-wrap.left .movie-frame, 
+            .movie-frame-wrap.right .movie-frame,
+            .movie-frame-wrap.double .movie-frame#frame-8,
+            .movie-frame-wrap.double .movie-frame#frame-8_1 {
+                position: relative;
+                left: 0;
+                right: 0;
+                top: 0 !important;
+                margin: 0 auto;
+                width: 90%;
+                max-width: 320px;
+                height: 180px;
+                transform: none !important;
+            }
+            .movie-frame-wrap.double .movie-frame#frame-8_1 { margin-top: 15px; }
+        }
+
+        @media (max-width: 920px) {
+            .certificate-wrapper {
+                width: 95vw;
+                height: auto;
+                aspect-ratio: 1.2;
+                padding: 15px;
+                border-width: 10px;
+            }
+            .cert-header { font-size: 1.8rem; }
+            .cert-user { font-size: 2rem; margin: 10px 0; text-align: center; }
+            .cert-text { font-size: 0.9rem; max-width: 95%; margin-bottom: 20px; text-align: center; }
+            .cert-pinguo { width: 60px; height: 60px; margin-bottom: 10px; }
+            
+           
+            .sig-font { width: 90px; font-size: 1rem; }
+            .sig-name { font-size: 0.6rem; text-align: center; }
+            .download-cert-btn { padding: 10px 25px; font-size: 0.9rem; bottom: -60px; }
+            
+            .oscar-speech-content { flex-direction: column; padding: 25px; gap: 20px; width: 95%; }
+            .oscar-speech-img-wrap { min-width: 100%; }
+            #pronunciation-widget, #teacher-guide-widget { bottom: 20px !important; }
+
+            /* Mobile specific adjustments for certificate signatures */
+            .cert-signatures {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 20px;
+                margin-bottom: 5px;
+                gap: 15px 25px;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -906,7 +1095,7 @@
     </div>
 
     <!-- Cinematic Credits -->
-    <div id="cinematic-credits">
+    <div id="cinematic-credits" onclick="closeOscarSpeech()">
         <div class="credits-scroll">
             <h1 class="credits-header">TENSEFLIX</h1>
             
@@ -945,7 +1134,7 @@
         </div>
 
         <!-- Certificate Display -->
-        <div id="certificate-display" class="certificate-wrapper">
+        <div id="certificate-display" class="certificate-wrapper" onclick="event.stopPropagation()">
             <div class="cert-border-inner"></div>
             <img src="duopinguo.jpg" class="cert-pinguo" alt="Duopinguo">
             <div class="cert-header">TENSEFLIX</div>
@@ -987,6 +1176,33 @@
         </div>
     </div>
 
+    <!-- PRONUNCIATION WIDGET -->
+    <div id="pronunciation-widget">
+        <div id="pron-popup">
+            <button class="pron-popup-close" onclick="closePronPopup()">×</button>
+            <div class="pron-panel-header">
+                <p class="pron-panel-title">PRONUNCIATION</p>
+                <p class="pron-panel-sub">Speak the sentence below</p>
+            </div>
+            <div id="pron-target-wrap">
+                <div id="pron-target-text">Loading...</div>
+                <div style="position:absolute; top:8px; right:8px; display:flex; gap:8px;">
+                    <button id="pron-play-btn" onclick="playPronTarget()" title="Listen to Pronunciation" style="background:none; border:none; cursor:pointer; font-size:16px; display: none;">🔊</button>
+                </div>
+            </div>
+            <div id="pron-status">Click the mic to start</div>
+            <div id="pron-result-wrap" style="text-align:center; min-height:40px; margin-bottom:15px;">
+                <p id="pron-transcript" style="color:#c9e8ff; font-style:italic; font-size:13px; margin:0;"></p>
+                <p id="pron-score" style="font-weight:800; font-size:18px; margin:5px 0 0;"></p>
+            </div>
+            <button id="pron-record-btn" onclick="togglePronRecording()">🎤</button>
+        </div>
+        <button id="pron-btn" onclick="openPronPopup()" title="Check Pronunciation">
+            <div class="pron-icon-container"></div>
+        </button>
+        <span class="pron-label-outside">SPEAK</span>
+    </div>
+
     <div class="footer">
         <p>&copy; 2026 TENSEFLIX - Master English Tenses | <a href="index.html">← Home</a></p>
     </div>
@@ -996,6 +1212,398 @@
     <script src="profiles.js"></script>
     <script src="dashboard-script.js"></script>
     <script>
+        // ===== PRONUNCIATION LOGIC (Dashboard Version) =====
+        const pronData = [ // 20 sentences covering all main tenses
+            {
+                original: "I am learning English every day.",
+                transformations: [
+                    { target: "Past Simple", text: "I learned English yesterday.", hint: "Past Simple for completed actions in the past." },
+                    { target: "Present Continuous", text: "I am learning English right now.", hint: "Present Continuous for actions happening at the moment." },
+                    { target: "Future Simple", text: "I will learn English next year.", hint: "Future Simple for future plans or predictions." }
+                ]
+            },
+            {
+                original: "She is watching a movie at the moment.",
+                transformations: [
+                    { target: "Past Continuous", text: "She was watching a movie when I called.", hint: "Past Continuous for actions in progress in the past." },
+                    { target: "Present Simple", text: "She watches movies every weekend.", hint: "Present Simple for habits and routines." },
+                    { target: "Future Continuous", text: "She will be watching a movie tonight.", hint: "Future Continuous for actions in progress in the future." }
+                ]
+            },
+            {
+                original: "They have finished their homework.",
+                transformations: [
+                    { target: "Past Simple", text: "They finished their homework an hour ago.", hint: "Past Simple for completed actions at a specific past time." },
+                    { target: "Future Perfect", text: "They will have finished their homework by dinner.", hint: "Future Perfect for actions completed before a future time." },
+                    { target: "Present Simple", text: "They finish their homework every day.", hint: "Present Simple for habitual actions." }
+                ]
+            },
+            {
+                original: "He has been working here for five years.",
+                transformations: [
+                    { target: "Past Perfect Continuous", text: "He had been working here for five years before he left.", hint: "Past Perfect Continuous for actions ongoing until a past point." },
+                    { target: "Present Simple", text: "He works here.", hint: "Present Simple for general truths or permanent situations." },
+                    { target: "Future Perfect Continuous", text: "He will have been working here for six years by next month.", hint: "Future Perfect Continuous for actions ongoing until a future point." }
+                ]
+            },
+            {
+                original: "We went to the park yesterday.",
+                transformations: [
+                    { target: "Present Perfect", text: "We have gone to the park many times.", hint: "Present Perfect for life experiences." },
+                    { target: "Past Continuous", text: "We were going to the park when it started raining.", hint: "Past Continuous for interrupted actions." },
+                    { target: "Future Simple", text: "We will go to the park tomorrow.", hint: "Future Simple for future actions." }
+                ]
+            },
+            {
+                original: "She was cooking dinner when I arrived.",
+                transformations: [
+                    { target: "Past Simple", text: "She cooked dinner yesterday.", hint: "Past Simple for a completed action." },
+                    { target: "Present Continuous", text: "She is cooking dinner now.", hint: "Present Continuous for an action happening now." },
+                    { target: "Past Perfect", text: "She had cooked dinner before I arrived.", hint: "Past Perfect for an action completed before another past action." }
+                ]
+            },
+            {
+                original: "They had left before the movie started.",
+                transformations: [
+                    { target: "Past Simple", text: "They left before the movie started.", hint: "Past Simple for a sequence of events." },
+                    { target: "Present Perfect", text: "They have left already.", hint: "Present Perfect for a completed action with present result." },
+                    { target: "Future Perfect", text: "They will have left by the time the movie starts.", hint: "Future Perfect for an action completed before a future time." }
+                ]
+            },
+            {
+                original: "I had been studying for three hours when you called.",
+                transformations: [
+                    { target: "Past Continuous", text: "I was studying when you called.", hint: "Past Continuous for an action in progress when another happened." },
+                    { target: "Present Perfect Continuous", text: "I have been studying for three hours.", hint: "Present Perfect Continuous for an action started in the past and continuing now." },
+                    { target: "Past Simple", text: "I studied for three hours.", hint: "Past Simple for a completed action with duration." }
+                ]
+            },
+            {
+                original: "He will call you tomorrow.",
+                transformations: [
+                    { target: "Present Simple", text: "He calls you every day.", hint: "Present Simple for habitual actions." },
+                    { target: "Future Continuous", text: "He will be calling you around noon tomorrow.", hint: "Future Continuous for an action in progress at a future time." },
+                    { target: "Past Simple", text: "He called you yesterday.", hint: "Past Simple for a completed action." }
+                ]
+            },
+            {
+                original: "We will be eating dinner at 7 PM.",
+                transformations: [
+                    { target: "Future Simple", text: "We will eat dinner at 7 PM.", hint: "Future Simple for a planned future action." },
+                    { target: "Present Continuous", text: "We are eating dinner now.", hint: "Present Continuous for an action happening now." },
+                    { target: "Future Perfect", text: "We will have eaten dinner by 8 PM.", hint: "Future Perfect for an action completed before a future time." }
+                ]
+            },
+            {
+                original: "She will have finished the book by next week.",
+                transformations: [
+                    { target: "Present Perfect", text: "She has finished the book.", hint: "Present Perfect for a completed action with present result." },
+                    { target: "Future Simple", text: "She will finish the book next week.", hint: "Future Simple for a future action." },
+                    { target: "Past Perfect", text: "She had finished the book before I asked.", hint: "Past Perfect for an action completed before another past action." }
+                ]
+            },
+            {
+                original: "I will have been living here for ten years by next month.",
+                transformations: [
+                    { target: "Present Perfect Continuous", text: "I have been living here for ten years.", hint: "Present Perfect Continuous for an action started in the past and continuing now." },
+                    { target: "Future Continuous", text: "I will be living here next month.", hint: "Future Continuous for an action in progress at a future time." },
+                    { target: "Past Perfect Continuous", text: "I had been living here for ten years before I moved.", hint: "Past Perfect Continuous for an action ongoing until a past point." }
+                ]
+            },
+            {
+                original: "Nature provides everything we need.",
+                transformations: [
+                    { target: "Past Simple", text: "Nature provided everything we needed.", hint: "Regular verb: provide -> provided." },
+                    { target: "Present Continuous", text: "Nature is providing everything we need at the moment.", hint: "Present Continuous for current states." }
+                ]
+            },
+            {
+                original: "The sun will shine all day tomorrow.",
+                transformations: [
+                    { target: "Past Simple", text: "The sun shone all day yesterday.", hint: "Irregular verb: shine -> shone." },
+                    { target: "Present Perfect", text: "The sun has shone all day.", hint: "Present Perfect for actions that just finished." }
+                ]
+            },
+            {
+                original: "They are building a new bridge over the river.",
+                transformations: [
+                    { target: "Present Perfect", text: "They have built a new bridge over the river.", hint: "Irregular verb: build -> built." },
+                    { target: "Future Simple", text: "They will build a new bridge over the river next year.", hint: "Future Simple for future plans." }
+                ]
+            },
+            {
+                original: "She had prepared a wonderful meal.",
+                transformations: [
+                    { target: "Future Perfect", text: "She will have prepared a wonderful meal by the time you arrive.", hint: "Action completed before a future point." },
+                    { target: "Present Simple", text: "She prepares a wonderful meal every Sunday.", hint: "Present Simple for routines." }
+                ]
+            },
+            {
+                original: "The train leaves the station at 9 AM.",
+                transformations: [
+                    { target: "Past Simple", text: "The train left the station at 9 AM.", hint: "Irregular verb: leave -> left." },
+                    { target: "Future Simple", text: "The train will leave the station at 9 AM tomorrow.", hint: "Future Simple for scheduled events." }
+                ]
+            },
+            {
+                original: "I have never seen such a beautiful sunset.",
+                transformations: [
+                    { target: "Past Simple", text: "I saw a beautiful sunset last night.", hint: "Irregular verb: see -> saw." },
+                    { target: "Future Simple", text: "I will see a beautiful sunset soon.", hint: "Future Simple for predictions." }
+                ]
+            },
+            {
+                original: "He was driving home when the accident happened.",
+                transformations: [
+                    { target: "Present Continuous", text: "He is driving home right now.", hint: "Action happening at the moment of speaking." },
+                    { target: "Present Perfect", text: "He has driven home safely.", hint: "Irregular verb: drive -> drove -> driven." }
+                ]
+            },
+            {
+                original: "We will have been working on this for a year by then.",
+                transformations: [
+                    { target: "Past Perfect Continuous", text: "We had been working on this for a year before we finished.", hint: "Action ongoing until a point in the past." },
+                    { target: "Present Simple", text: "We work on this project every day.", hint: "Routine in Present Simple." }
+                ]
+            }
+        ];
+
+        let pronRecognition = null;
+        let isPronRecording = false;
+        let lastPronIdx = -1;
+        let currentPronAttempts = 0;
+        let currentTask = 'primary'; // 'primary' or 'bonus'
+        let bonusAttempts = 0;
+        let currentSentenceObj = null;
+        let currentTransformation = null;
+        let autoLoadTimeout = null; // To store the timeout ID for auto-loading next sentence
+
+        // Levenshtein distance for accurate phoneme/word matching
+        function getLevenshteinDistance(s, t) {
+            const d = [];
+            const n = s.length;
+            const m = t.length;
+            if (n === 0) return m;
+            if (m === 0) return n;
+            for (let i = 0; i <= n; i++) d[i] = [i];
+            for (let j = 0; j <= m; j++) d[0][j] = j;
+            for (let i = 1; i <= n; i++) {
+                for (let j = 1; j <= m; j++) {
+                    const cost = (s[i - 1] === t[j - 1]) ? 0 : 1;
+                    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+                }
+            }
+            return d[n][m];
+        }
+
+        function playPronTarget() {
+            if (!currentSentenceObj) return; // Allow playing for both primary and bonus
+            
+            const textToPlay = currentTask === 'primary' ? currentSentenceObj.original : currentTransformation.text;
+            const utterance = new SpeechSynthesisUtterance(textToPlay);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function initPronRecognition() {
+            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (window.SpeechRecognition) {
+                pronRecognition = new SpeechRecognition();
+                pronRecognition.lang = 'en-US';
+                pronRecognition.interimResults = false;
+                pronRecognition.onresult = (event) => {
+                    const speech = event.results[0][0].transcript;
+                    displayPronResult(speech);
+                };
+                pronRecognition.onend = () => stopPronRecordingUI();
+                pronRecognition.onerror = (e) => {
+                    document.getElementById('pron-status').textContent = "Error: " + e.error;
+                    stopPronRecordingUI();
+                };
+            } else {
+                document.getElementById('pron-status').textContent = "Browser not supported";
+                document.getElementById('pron-record-btn').disabled = true;
+            }
+        }
+
+        function openPronPopup() {
+            document.getElementById('pron-popup').style.display = 'block';
+            if (!pronRecognition) initPronRecognition();
+            loadNewPronTarget();
+        }
+
+        function closePronPopup() {
+            document.getElementById('pron-popup').style.display = 'none';
+            clearTimeout(autoLoadTimeout); // Clear any pending auto-load
+            if (isPronRecording) pronRecognition.stop();
+        }
+
+        function loadNewPronTarget() {
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * pronData.length);
+            } while (idx === lastPronIdx && pronData.length > 1);
+            
+            lastPronIdx = idx;
+            currentSentenceObj = pronData[idx];
+            currentTask = 'primary';
+            currentPronAttempts = 0;
+            bonusAttempts = 0; // Reset bonus attempts for a new primary sentence
+            clearTimeout(autoLoadTimeout); // Clear any pending auto-load
+            
+            updateUIForTask();
+        }
+
+        function updateUIForTask() {
+            const targetEl = document.getElementById('pron-target-text');
+            const statusEl = document.getElementById('pron-status');
+            const transcriptEl = document.getElementById('pron-transcript');
+            const scoreEl = document.getElementById('pron-score');
+            
+            // Only show play button after 2 attempts for primary, or always for bonus
+            document.getElementById('pron-play-btn').style.display = 
+                (currentTask === 'primary' && currentPronAttempts < 2) ? 'none' : 'inline-block';
+
+            if (currentTask === 'primary') {
+                targetEl.textContent = currentSentenceObj.original;
+                statusEl.textContent = `Click mic to start (0/3)`;
+            } else {
+                targetEl.innerHTML = `
+                    <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">Original: "${currentSentenceObj.original}"</div>
+                    <span style="color:#e2b714">BONUS Challenge:</span> Say it in <strong>${currentTransformation.target}</strong>
+                `;
+                statusEl.textContent = `Bonus Challenge! (${bonusAttempts}/2 attempts)`;
+            }
+            
+            transcriptEl.textContent = "";
+            scoreEl.textContent = "";
+        }
+
+        function togglePronRecording() {
+            if (!pronRecognition) return;
+            if (isPronRecording) {
+                pronRecognition.stop();
+            } else {
+                pronRecognition.start();
+                startPronRecordingUI();
+            }
+        }
+
+        function startPronRecordingUI() {
+            isPronRecording = true;
+            const btn = document.getElementById('pron-record-btn');
+            btn.classList.add('recording');
+            btn.textContent = "⏹️";
+            document.getElementById('pron-status').textContent = currentTask === 'primary' ? `Listening... (${currentPronAttempts}/3)` : `Listening... (${bonusAttempts}/2)`;
+        }
+
+        function stopPronRecordingUI() {
+            isPronRecording = false;
+            const btn = document.getElementById('pron-record-btn');
+            btn.classList.remove('recording');
+            btn.textContent = "🎤";
+        }
+
+        const clean = (s) => s.toLowerCase().replace(/[.?!,]/g, "").trim();
+
+        function displayPronResult(speech) {
+            const transcriptEl = document.getElementById('pron-transcript');
+            const scoreEl = document.getElementById('pron-score');
+            const statusEl = document.getElementById('pron-status');
+            
+            transcriptEl.textContent = `You said: "${speech}"`;
+            
+            const targetForComparison = currentTask === 'primary' ? currentSentenceObj.original : currentTransformation.text;
+            
+            const cleanS = clean(speech);
+            const cleanT = clean(targetForComparison);
+            const distance = getLevenshteinDistance(cleanS, cleanT);
+            const maxLength = Math.max(cleanS.length, cleanT.length);
+            const accuracy = Math.max(0, Math.round(((maxLength - distance) / maxLength) * 100));
+            
+            const isSuccess = accuracy >= 85;
+            
+            if (accuracy >= 85) { scoreEl.style.color = "#22c55e"; scoreEl.textContent = `Perfect! ${accuracy}%`; }
+            else if (accuracy >= 60) { scoreEl.style.color = "#e2b714"; scoreEl.textContent = `Good! ${accuracy}%`; }
+            else { scoreEl.style.color = "#e74c3c"; scoreEl.textContent = `Try Again: ${accuracy}%`; }
+            
+            if (currentTask === 'primary') {
+                currentPronAttempts++;
+                statusEl.textContent = `Result: (${currentPronAttempts}/3)`;
+
+                if (isSuccess) {
+                    const currentUser = profileManager.getCurrentUser();
+                    if (currentUser) {
+                        profileManager.savePronunciationScore(currentUser.username, accuracy);
+                    }
+                    // Trigger bonus challenge or load new sentence if no bonus
+                    if (currentSentenceObj.transformations && currentSentenceObj.transformations.length > 0) {
+                        currentTask = 'bonus';
+                        bonusAttempts = 0;
+                        currentTransformation = currentSentenceObj.transformations[Math.floor(Math.random() * currentSentenceObj.transformations.length)];
+                        autoLoadTimeout = setTimeout(updateUIForTask, 2500);
+                    } else {
+                        statusEl.textContent = "Perfect! Moving to next sentence...";
+                        autoLoadTimeout = setTimeout(loadNewPronTarget, 2500);
+                    }
+                    return;
+                }
+
+                if (currentPronAttempts === 2) {
+                    document.getElementById('pron-play-btn').style.display = 'inline-block';
+                } else if (currentPronAttempts >= 3) {
+                    document.getElementById('pron-play-btn').style.display = 'none';
+                    autoLoadTimeout = setTimeout(loadNewPronTarget, 3000);
+                }
+                
+                const currentUser = profileManager.getCurrentUser();
+                if (currentUser) {
+                    profileManager.savePronunciationScore(currentUser.username, accuracy);
+                }
+            } else {
+                // Bonus task attempt handling
+                bonusAttempts++;
+                statusEl.textContent = `Bonus: (${bonusAttempts}/2)`;
+
+                if (isSuccess) {
+                    // Trigger confetti for bonus success
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#e2b714', '#ffffff', '#3b82f6']
+                    });
+                    statusEl.textContent = "Bonus Challenge Complete! 🎉 Moving to next sentence...";
+                    autoLoadTimeout = setTimeout(loadNewPronTarget, 3000);
+                    return;
+                }
+
+                if (bonusAttempts >= 2) {
+                    // Show explanation and the correct version
+                    const targetEl = document.getElementById('pron-target-text');
+                    targetEl.innerHTML = `
+                        <div style="font-size:0.9rem; color:#fff; text-align:left;">
+                            <div style="margin-bottom:8px;"><span style="color:#e2b714; font-weight:700;">Correct:</span> ${currentTransformation.text}</div>
+                            <div style="font-style:italic; opacity:0.8; font-size:0.85rem;">${currentTransformation.hint}</div>
+                        </div>
+                    `;
+                    statusEl.textContent = "Moving to next sentence...";
+                    autoLoadTimeout = setTimeout(loadNewPronTarget, 7000);
+                }
+            }
+        }
+
+        // Close pronunciation popup when clicking outside the widget area
+        window.addEventListener('click', (event) => {
+            const widget = document.getElementById('pronunciation-widget');
+            const popup = document.getElementById('pron-popup');
+            if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
+                closePronPopup();
+            }
+        });
+
         // Ensure page scrolls to top on load
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);

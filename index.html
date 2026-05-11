@@ -454,10 +454,24 @@
             opacity: 0.7;
         }
         #word-btn .btn-label {
-            font-size: 10px;
-            color: #7ec8f7;
-            font-weight: 800;
-            margin-top: -2px;
+            font-size: 10px; 
+            color: #7ec8f7; 
+            font-weight: 800; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            pointer-events: none;
+
+            position: absolute;
+            bottom: -20px; /* Position below the circle, same as teacher's guide */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            height: 20px;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         #word-cooldown-timer {
             position: absolute;
@@ -547,6 +561,39 @@
         }
         @media (max-width: 768px) {
             .hero-mascot-anim { width: 150px; height: 150px; }
+            .navbar .container { padding: 0 10px; }
+        .navbar-content {
+            flex-direction: column;
+            height: auto;
+            padding: 15px 0;
+            gap: 15px;
+            text-align: center;
+        }
+        .nav-links {
+            gap: 20px;
+            justify-content: center;
+        }
+        .navbar-right {
+            width: 100%;
+            justify-content: center;
+            gap: 15px;
+        }
+        .info-box {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .info-penguo {
+            margin-bottom: 10px;
+        }
+        .info-content {
+            min-width: unset;
+            width: 100%;
+        }
+        #word-widget, #faq-widget, #pronunciation-widget {
+            bottom: 20px !important;
+        }
+
         }
         /* ===== BEAUTIFIED ABOUT US SECTION ===== */
         .about-us {
@@ -638,6 +685,7 @@
         line-height: 1.2;
         margin-bottom: 4px;
         word-break: break-word;
+        text-align: center;
     }
     .description {
         font-size: 0.72em;
@@ -657,6 +705,34 @@
       transition: all 0.3s ease;
       text-align: left;
     }
+
+    /* Mobile Fixes for About Us and Navbar */
+    @media (max-width: 768px) {
+        .navbar-content { flex-direction: column; height: auto; padding: 10px 0; gap: 8px; }
+        .nav-links { gap: 8px; font-size: 0.75rem; flex-wrap: wrap; justify-content: center; }
+        .logo { font-size: 1.4rem !important; }
+        .navbar-right { flex-wrap: wrap; justify-content: center; gap: 10px; }
+        
+        .team-member { width: 280px; }
+        .info-box { 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            visibility: hidden; /* Keep default hidden state */
+            width: 100%;
+            margin-top: 15px;
+        }
+        .info-box.visible { visibility: visible; display: flex; }
+        .info-content { min-width: unset; width: 100%; padding: 12px; font-size: 0.85rem; } /* Adjusted padding and font size */
+        .info-penguo { margin-bottom: 10px; width: 60px; height: 60px; }
+
+        #word-widget, #faq-widget, #pronunciation-widget {
+            bottom: 15px !important; /* Slightly lower for better spacing from bottom edge */
+        }
+        .faq-mascot-img, #word-btn, #pron-btn { width: 52px !important; height: 52px !important; } /* Slightly smaller buttons */
+        .faq-mascot-label, .btn-label, .pron-label-outside { font-size: 7px !important; height: 20px; display: flex; align-items: center; } /* Consistent label height */
+    }
+
     .info-box.visible { visibility: visible; opacity: 1; transform: translateY(5px); }
 
     .info-content {
@@ -764,6 +840,38 @@
         visibility: visible;
         transform: translateX(0);
     }
+     /* ===== PRONUNCIATION WIDGET (Bottom Left - Stacked) ===== */
+        #pronunciation-widget {
+            position: fixed;
+            bottom: 120px;
+            left: 28px;
+            z-index: 999;
+        }
+        #pron-btn {
+            background: #162040;
+            border: 3px solid #e2b714;
+            cursor: pointer;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(226,183,20,0.45);
+            transition: all 0.3s ease;
+        }
+
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        .pron-popup-close { position: absolute; top: 10px; right: 12px; color: #e2b714; background: none; border: none; font-size: 22px; cursor: pointer; }
+        .pron-panel-header { text-align: center; margin-bottom: 15px; border-bottom: 1px solid rgba(226,183,20,0.2); padding-bottom: 10px; }
+        .pron-panel-title { color: #e2b714; font-size: 16px; font-weight: 900; letter-spacing: 3px; margin: 0; }
+        #pron-target-wrap { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 12px; margin-bottom: 15px; position: relative; }
+        #pron-target-text { color: #fff; font-weight: 600; font-size: 15px; line-height: 1.4; padding-right: 25px; }
+        #pron-status { text-align: center; font-size: 12px; color: #7ec8f7; margin-bottom: 15px; font-weight: 600; }
+        #pron-record-btn { display: block; margin: 0 auto; width: 60px; height: 60px; border-radius: 50%; background: #e2b714; border: none; font-size: 24px; cursor: pointer; transition: all 0.3s; }
+        #pron-record-btn.recording { background: #e74c3c; animation: pulse-red 1.5s infinite; color: #fff; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
     </style>
 </head>
 <body>
@@ -1542,6 +1650,15 @@
             clearTimeout(autoCloseTimer);
         }
 
+        // Close word popup when clicking outside the widget area
+        window.addEventListener('click', (event) => {
+            const widget = document.getElementById('word-widget');
+            const popup = document.getElementById('word-popup');
+            if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
+                closeWordPopup();
+            }
+        });
+
         // ===== ABOUT US INTERACTIVITY =====
         function toggleInfo(element) {
             const infoBox = element.nextElementSibling;
@@ -1582,6 +1699,8 @@
                 });
             });
         });
+
+    
     </script>
 </body>
 </html>

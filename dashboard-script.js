@@ -35,25 +35,28 @@ function loadUserInfo() {
 
         const nameFirst = currentUser.fullName ? currentUser.fullName.split(' ')[0] : 'User';
         const userElement = document.getElementById('user-name');
+        const profile = profileManager.getProfile(currentUser.username);
+
         if (userElement) {
             userElement.textContent = nameFirst;
+            if (profile?.dob && isBirthdayToday(profile.dob)) {
+                userElement.classList.add('birthday-shine');
+            } else {
+                userElement.classList.remove('birthday-shine');
+            }
             
             // Add admin badge if user is admin
             if (profileManager.isCurrentUserAdmin()) {
-                const adminBadge = document.createElement('span');
-                adminBadge.textContent = ' [ADMIN]';
-                adminBadge.style.color = '#e74c3c';
-                adminBadge.style.fontWeight = 'bold';
-                userElement.parentNode.appendChild(adminBadge);
                 addTeacherGuideButton(); // Add teacher guide button for admins
             }
         }
 
         // Replace human icon with profile picture if available
-        const profile = profileManager.getProfile(currentUser.username);
         const profileBtn = document.querySelector('.profile-btn');
         if (profileBtn) {
-            profileBtn.innerHTML = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 34, 0);
+            const todayStr = new Date().toISOString().split('T')[0];
+            const hasCelebratedToday = localStorage.getItem(`birthday_celebrated_${currentUser.username}_${todayStr}`) === 'true';
+            profileBtn.innerHTML = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 34, 0, profile ? profile.dob : null, hasCelebratedToday);
             profileBtn.style.display = 'flex';
             profileBtn.style.alignItems = 'center';
             profileBtn.style.justifyContent = 'center';
@@ -166,8 +169,15 @@ function updateWelcomeMessage() {
         userName = currentUser.fullName.split(' ')[0]; // Get first name
         userName = userName.charAt(0).toUpperCase() + userName.slice(1); // Capitalize
     }
+    
+    let birthdayGreeting = '';
+    // Check for birthday and add special greeting
+    const profile = profileManager.getProfile(currentUser.username);
+    if (profile && profile.dob && isBirthdayToday(profile.dob)) {
+        birthdayGreeting = ' Happy Birthday! 🎉';
+    }
 
-    welcomeElement.textContent = `${greeting}${userName ? ', ' + userName : ''}!`;
+    welcomeElement.textContent = `${greeting}${userName ? ', ' + userName : ''}!${birthdayGreeting}`;
 }
 
 function openTeacherGuidePopup(event) {
@@ -334,10 +344,10 @@ function initializeLevels() {
             const practicePoints = (tenseData.completedAt || (tenseData.light >= 70)) ? 40 : 0;
             const pointsPerVideo = 60 / totalVideos;
             let videoPoints = 0;
-            if (v1Count >= 5) videoPoints += pointsPerVideo;
-            if (v2Count >= 5) videoPoints += pointsPerVideo;
-            if (hasV3 && v3Count >= 3) videoPoints += pointsPerVideo;
-            if (hasV4 && v4Count >= 5) videoPoints += pointsPerVideo;
+            videoPoints += (Math.min(v1Count, 5) / 5) * pointsPerVideo;
+            videoPoints += (Math.min(v2Count, 5) / 5) * pointsPerVideo;
+            if (hasV3) videoPoints += (Math.min(v3Count, 3) / 3) * pointsPerVideo;
+            if (hasV4) videoPoints += (Math.min(v4Count, 5) / 5) * pointsPerVideo;
 
             const totalProgress = Math.round(videoPoints + practicePoints);
 
@@ -427,6 +437,7 @@ function initializeLevels() {
             counterBtn.textContent = "🏆 Claim Victory!";
             counterBtn.onclick = () => {
                 triggerSaluteConfetti();
+                triggerVictorySky();
                 const reward = document.getElementById('final-reward');
                 const speechBtnContainer = document.getElementById('oscar-speech-btn-container');
                 if (reward) {
@@ -508,6 +519,36 @@ function triggerSaluteConfetti() {
             shapes: ['star']
         });
     }, 250);
+}
+
+/**
+ * Transforms the dashboard background into a spectacular purple nebula
+ */
+function triggerVictorySky() {
+    const container = document.getElementById('stars-container');
+    if (!container) return;
+
+    // Transition to a more vibrant purple/nebula color
+    container.style.transition = 'background 3s ease-in-out';
+    container.style.background = 'radial-gradient(circle at center, #3a007d 0%, #1a0033 40%, #050510 100%)';
+
+    // Maximize star and celestial effects
+    initStarryBackground(12); // Re-init with 12 completed levels to max out density
+    
+    // Add a periodic intense burst of shooting stars for 10 seconds
+    const burstInterval = setInterval(() => {
+        for(let i=0; i<3; i++) {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.left = (Math.random() * 80 + 20) + '%';
+            shootingStar.style.top = (Math.random() * 40) + '%';
+            shootingStar.style.setProperty('--duration', (Math.random() * 0.5 + 0.3) + 's');
+            container.appendChild(shootingStar);
+            setTimeout(() => shootingStar.remove(), 1000);
+        }
+    }, 400);
+
+    setTimeout(() => clearInterval(burstInterval), 10000);
 }
 
 // Penguin Story Data
@@ -654,6 +695,14 @@ function downloadCertificate() {
     const currentUser = profileManager.getCurrentUser();
     const userName = currentUser?.fullName || 'Valued Learner';
     
+    const tutorNames = [
+        { short: 'M. Nuray', full: 'Matay Nuray' },
+        { short: 'M. Anelya', full: 'Mailybay Anelya' },
+        { short: 'D. Elnura', full: 'Dusenova Elnura' },
+        { short: 'B. Aida', full: 'Berkinbaeva Aida' },
+        { short: 'T. Aruzhan', full: 'Tuleshova Aruzhan' }
+    ];
+    const userStats = profileManager.getUserStats(currentUser.username);
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -664,67 +713,99 @@ function downloadCertificate() {
     // 1. Фон
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 2. Рамка (темно-синяя и золотая) - Улучшенный стиль
+    ctx.strokeStyle = '#0d1b3e'; // Темно-синий
+    ctx.lineWidth = 30;
+    ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+    
+    ctx.strokeStyle = '#e2b714'; // Золотой
+    ctx.lineWidth = 5;
+    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
 
-    // 2. Рамка (темно-синяя и золотая)
-    ctx.strokeStyle = '#1a1a2e';
-    ctx.lineWidth = 40;
-    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-    ctx.strokeStyle = '#e2b714';
-    ctx.lineWidth = 4;
-    ctx.strokeRect(50, 50, canvas.width - 100, canvas.height - 100);
-
-    // 3. Текст: Заголовок
+    // 3. Текст: Заголовок и подзаголовок
     ctx.fillStyle = '#e2b714';
-    ctx.font = 'bold 60px Georgia';
+    ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 130);
+    ctx.fillText('TENSEFLIX', canvas.width / 2, 120); // Moved up
 
-    ctx.fillStyle = '#000';
-    ctx.font = '30px Georgia';
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 180);
+    ctx.fillStyle = '#333';
+    ctx.font = '28px "Georgia", serif'; // Slightly smaller
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 170); // Moved up
 
-    // 4. Текст: Имя пользователя
-    ctx.font = 'italic 24px Georgia';
-    ctx.fillText('This is to certify that', canvas.width / 2, 250);
+    // 4. Текст: Имя пользователя и описание достижения
+    ctx.fillStyle = '#555';
+    ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
+    ctx.fillText('This is to certify that', canvas.width / 2, 240); // Moved up
     
     ctx.fillStyle = '#1a1a2e';
-    ctx.font = 'bold 80px "Brush Script MT", cursive, serif';
-    ctx.fillText(userName, canvas.width / 2, 350);
+    ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
+    ctx.fillText(userName, canvas.width / 2, 320); // Moved up
 
-    // 5. Текст: Описание
     ctx.fillStyle = '#333';
-    ctx.font = '22px Georgia';
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 420);
+    ctx.font = '22px "Georgia", serif'; // Slightly smaller
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 390); // Moved up
     
     ctx.fillStyle = '#e2b714';
-    ctx.font = 'bold 28px Georgia';
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 460);
+    ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
+    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 430); // Moved up
 
-    ctx.fillStyle = '#333';
-    ctx.font = '22px Georgia';
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 500);
+    ctx.fillStyle = '#555';
+    ctx.font = '22px "Georgia", serif'; // Slightly smaller
+    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 470); // Moved up
+
+    // 5. Статистика пользователя
+    if (userStats) {
+        ctx.fillStyle = '#1a1a2e';
+        ctx.font = 'bold 20px "Georgia", serif';
+        ctx.fillText('Your TENSEFLIX Journey:', canvas.width / 2, 530); // Moved up
+
+        ctx.font = '18px "Georgia", serif';
+        ctx.textAlign = 'left';
+        const statsX = canvas.width / 2 - 200; // Adjust X position for left alignment
+        let statsY = 560; // Moved up
+
+        ctx.fillText(`Tenses Mastered: ${userStats.tensesCompleted}/12`, statsX, statsY);
+        statsY += 25;
+        ctx.fillText(`Exercises Completed: ${userStats.exercisesCompleted}`, statsX, statsY);
+        statsY += 25;
+        ctx.fillText(`Average Accuracy: ${userStats.averageAccuracy}%`, statsX, statsY);
+        // Removed Time Spent as per request to simplify and make space
+        
+        ctx.textAlign = 'center'; // Reset text alignment
+    }
 
     // 6. Подписи
-    const sigs = ['M. Nuray', 'M. Anelya', 'D. Elnura', 'B. Aida', 'T. Aruzhan'];
     ctx.font = 'italic 18px "Brush Script MT", cursive';
     ctx.fillStyle = '#555';
-    sigs.forEach((s, i) => {
-        const x = 180 + (i * 210);
-        ctx.fillText(s, x, 740);
+    const sigY = 720; // Base Y for signatures
+    const lineY = sigY + 10; // Line below short name
+    const fullNameY = lineY + 15; // Full name below the line
+
+    tutorNames.forEach((tutor, i) => {
+        const x = 180 + (i * 210); // Spacing for 5 signatures
+        ctx.fillText(tutor.short, x, sigY);
         ctx.beginPath();
-        ctx.moveTo(x - 50, 750);
-        ctx.lineTo(x + 50, 750);
+        ctx.moveTo(x - 50, lineY);
+        ctx.lineTo(x + 50, lineY);
         ctx.stroke();
+        ctx.font = 'bold 12px "Georgia", serif'; // Smaller font for full name
+        ctx.fillStyle = '#333';
+        ctx.fillText(tutor.full, x, fullNameY);
     });
 
-    // 7. Отрисовка Pinguo (берем из DOM)
+    // 7. Дата
+    ctx.fillStyle = '#888';
+    ctx.font = 'italic 18px "Georgia", serif';
+    ctx.fillText(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, canvas.width / 2, canvas.height - 40); // Moved up
+
+    // 8. Отрисовка Pinguo (берем из DOM) - Центрируем внизу
     const pinguoImg = document.querySelector('.cert-pinguo');
     if (pinguoImg) {
         ctx.save();
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, 600, 60, 0, Math.PI * 2);
-        ctx.clip();
-        ctx.drawImage(pinguoImg, canvas.width / 2 - 60, 600 - 60, 120, 120);
+        const pinguoSize = 80; // Even smaller for better fit
+        const pinguoY = canvas.height - 150; // Position above the date
+        ctx.drawImage(pinguoImg, canvas.width / 2 - pinguoSize / 2, pinguoY, pinguoSize, pinguoSize);
         ctx.restore();
     }
 
@@ -1093,4 +1174,11 @@ function initStarryBackground(completedLevels = 0) {
         setTimeout(() => comet.remove(), 5000);
     }, 15000 + Math.random() * 15000);
     backgroundIntervals.push(cometId);
+}
+
+function isBirthdayToday(dobString) {
+    if (!dobString) return false;
+    const today = new Date();
+    const birthDate = new Date(dobString);
+    return today.getMonth() === birthDate.getMonth() && today.getDate() === birthDate.getDate();
 }

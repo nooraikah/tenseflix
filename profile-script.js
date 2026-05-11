@@ -37,8 +37,12 @@ function loadProfile() {
         return;
     }
 
-    // Display user name
-    document.getElementById('username').textContent = profile.fullName || 'User';
+    const todayStr = new Date().toISOString().split('T')[0];
+    const hasCelebratedToday = localStorage.getItem(`birthday_celebrated_${currentUser.username}_${todayStr}`) === 'true';
+
+    // Display user name with badges
+    const badges = profileManager.getUserBadges(profile.dob, hasCelebratedToday);
+    document.getElementById('username').innerHTML = `${profile.fullName || 'User'} ${badges}`;
     
     // Display Nametag Rank
     let titleEl = document.getElementById('user-nametag');
@@ -50,6 +54,9 @@ function loadProfile() {
         if (nameHeader) nameHeader.parentNode.insertBefore(titleEl, nameHeader.nextSibling);
     }
     titleEl.textContent = profile.title || 'English Learner';
+    titleEl.title = 'Your current rank based on the number of tenses mastered.';
+    titleEl.style.cursor = 'pointer';
+    titleEl.onclick = function() { alert(this.title); };
 
     // Display gender if available
     if (profile.gender) {
@@ -63,8 +70,19 @@ function loadProfile() {
         document.getElementById('dob-value').textContent = new Date(profile.dob).toLocaleDateString();
     }
 
-    // Display Age if DOB is available
-    const age = calculateAge(profile.dob);
+    // Display Age & handle Birthday celebration
+    const isBirthday = isBirthdayToday(profile.dob);
+
+    let age = profileManager.calculateAge(profile.dob);
+    if (isBirthday) {
+        if (!hasCelebratedToday) age--; // Show old age until the update animation happens
+        setupBirthdayButton(profile.dob, currentUser.username);
+    } else {
+        // Remove button if it's no longer birthday (e.g. after editing DOB)
+        const existingBtn = document.getElementById('birthday-update-btn');
+        if (existingBtn) existingBtn.remove();
+    }
+
     if (age !== null) {
         document.getElementById('user-age').style.display = 'flex';
         document.getElementById('age-value').textContent = age;
@@ -73,19 +91,7 @@ function loadProfile() {
     }
 
     // Display photo with gender defaults
-    displayProfilePhoto(profile.photo, profile.gender);
-
-    // Update small profile icon in header if it exists
-    const profileBtn = document.querySelector('.profile-btn') || document.querySelector('.logout-btn')?.parentNode.querySelector('.profile-icon-nav');
-    if (profileBtn) {
-        profileBtn.innerHTML = profileManager.getAvatarHTML(profile.photo, profile.gender, 34, 0);
-        profileBtn.style.width = '34px';
-        profileBtn.style.height = '34px';
-        profileBtn.style.padding = '0';
-        profileBtn.style.display = 'flex';
-        profileBtn.style.alignItems = 'center';
-        profileBtn.style.justifyContent = 'center';
-    }
+    displayProfilePhoto(profile.photo, profile.gender, profile.dob, hasCelebratedToday);
 
     // Get user progress and stats
     const userProgress = profileManager.getUserProgress(currentUser.username);
@@ -96,6 +102,7 @@ function loadProfile() {
         document.getElementById('tenses-learned').textContent = stats.tensesCompleted;
         document.getElementById('exercises-completed').textContent = stats.exercisesCompleted;
         document.getElementById('accuracy').textContent = stats.averageAccuracy + '%';
+        document.getElementById('pronunciation-score').textContent = (stats.averagePronunciationScore || 0) + '%';
 
         // Time Spent
         const timeSpent = stats.totalTimeSpent || 0;
@@ -111,9 +118,6 @@ function loadProfile() {
     // Load Movie Gallery
     const unlockedCount = loadGallery(userProgress);
 
-    // Check if this is the first time they see a gallery item
-    const galleryContainer = document.getElementById('movie-gallery-container');
-    
     // Remove instructions text if photos are unlocked
     const instructionText = document.getElementById('gallery-instruction');
     if (instructionText && unlockedCount > 0) {
@@ -133,6 +137,369 @@ function loadProfile() {
         }, 300);
     }
     localStorage.setItem('tenseflix_gallery_count', unlockedCount);
+}
+
+function isBirthdayToday(dobString) {
+    if (!dobString) return false;
+    const today = new Date();
+    const birthDate = new Date(dobString);
+    return today.getMonth() === birthDate.getMonth() && today.getDate() === birthDate.getDate();
+}
+
+function setupBirthdayButton(dob, username) {
+    const profileInfo = document.querySelector('.profile-info');
+    if (!profileInfo) return;
+    
+    let btn = document.getElementById('birthday-update-btn'); // Ensure btn is defined
+    const todayStr = new Date().toISOString().split('T')[0];
+    const hasCelebratedToday = localStorage.getItem(`birthday_celebrated_${username}_${todayStr}`) === 'true';
+    const newAge = profileManager.calculateAge(dob);
+
+    if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'birthday-update-btn';
+        btn.className = 'btn-edit-profile';
+        profileInfo.appendChild(btn);
+    }
+
+    if (newAge === 67) {
+        btn.innerHTML = hasCelebratedToday ? '🔥 Level 67 Celebration! 🔥' : '🔥 UNLEASH LEVEL 67 CELEBRATION! 🔥';
+        btn.style.cssText = `
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 15px;
+            animation: pulse-glow 2.5s infinite, rainbow-bg 10s linear infinite;
+        `;
+    } else { // For other ages, use standard birthday button styling
+        btn.innerHTML = hasCelebratedToday ? '🎂 Celebration!' : '🎂 Update Age for Birthday!';
+        btn.style.cssText = `
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        color: #1a1a2e;
+        font-weight: 800;
+        margin-top: 15px;
+        border: none;
+        animation: pulse-gold 2s infinite;
+    `;
+    }
+
+    btn.onclick = () => startBirthdayCelebration(dob, username, hasCelebratedToday);
+}
+
+function startBirthdayCelebration(dob, username, isReplay = false) {
+    const newAge = profileManager.calculateAge(dob);
+    const oldAge = newAge - 1;
+    
+    const modal = document.getElementById('birthday-celebration-modal');
+    const modalContent = modal.querySelector('.birthday-modal-content');
+    const celebrationTitle = document.getElementById('celebration-title');
+    const celebrationMessage = document.getElementById('celebration-message');
+    const closeBtn = document.getElementById('celebration-close-btn');
+    const ageNum = document.getElementById('celebration-age-number');
+    const avatarImg = document.getElementById('celebration-avatar-img');
+    const profile = profileManager.getProfile(username);
+
+    // Set initial avatar in modal based on old age
+    if (avatarImg) {
+        avatarImg.innerHTML = profileManager.getAvatarHTML(profile.photo, profile.gender, 120, 0, dob, false);
+    }
+    
+    if (!modal || !ageNum) return;
+
+    // Initialize starry space background
+    initBirthdayStars();
+
+    modal.style.display = 'flex';
+    setTimeout(() => {
+        modal.classList.add('show');
+        if (newAge === 67) {
+            // Mars-like yellowish-brownish-goldish background (Enhanced Gold)
+            modal.style.background = 'radial-gradient(circle at center, #8B6B23 0%, #5D4017 50%, #1A0F00 100%)';
+            if (celebrationTitle) celebrationTitle.classList.add('rainbow-text-animated');
+            if (celebrationMessage) celebrationMessage.classList.add('rainbow-text-animated');
+            if (ageNum) ageNum.classList.add('rainbow-text-animated', 'pulse-text-glow-animated');
+            if (ageNum) ageNum.style.color = 'inherit'; // Allow rainbow animation to take effect
+            // Remove the "rectangle" look and enhance the button
+            if (modalContent) modalContent.style.background = 'transparent'; // Ensure no background for the content box
+            if (closeBtn) closeBtn.classList.add('rainbow-btn-animated');
+            triggerMarsStrikes(); // Start the comet strikes
+        }
+    }, 10);
+    ageNum.textContent = oldAge;
+    
+    // Trigger initial confetti
+    // Disabled for age 67 to prevent lag
+    if (newAge !== 67) {
+        triggerBirthdayConfetti(false);
+    }
+    
+    // Age transition animation (only if it's not a replay)
+    setTimeout(() => {
+        // Fade out and shrink old age
+        ageNum.style.transition = 'all 0.5s ease-in';
+        ageNum.style.transform = 'scale(1.5) rotate(15deg)';
+        ageNum.style.opacity = '0';
+        
+        if (avatarImg) {
+            avatarImg.style.transform = 'scale(0.8) rotate(-10deg)';
+            avatarImg.style.filter = 'blur(5px)';
+            avatarImg.style.opacity = '0.5';
+        }
+
+        setTimeout(() => {
+            ageNum.textContent = newAge;
+            ageNum.style.transform = 'scale(0.5) rotate(-15deg)';
+            
+            setTimeout(() => {
+                // Pop in new age
+                if (ageNum) {
+                    ageNum.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    ageNum.style.transform = 'scale(1) rotate(0deg)';
+                }
+                ageNum.style.opacity = '1';
+                ageNum.style.color = '#e2b714';
+                ageNum.style.textShadow = '0 0 40px rgba(226, 183, 20, 1)';
+                
+                // Update avatar to new age version and pop in
+                if (avatarImg) {
+                    avatarImg.innerHTML = profileManager.getAvatarHTML(profile.photo, profile.gender, 120, 0, dob, true);
+                    avatarImg.style.transform = 'scale(1.1) rotate(0deg)';
+                    avatarImg.style.filter = 'blur(0)';
+                    avatarImg.style.opacity = '1';
+                }
+                // Only set color if not 67, otherwise rainbow animation handles it
+                if (newAge !== 67) {
+                    ageNum.style.color = '#e2b714';
+                    ageNum.style.textShadow = '0 0 40px rgba(226, 183, 20, 1)';
+                } else { // Enhanced glow for rainbow text
+                    ageNum.style.textShadow = '0 0 40px rgba(255,255,255,0.8)';
+                }
+                // Final confetti burst
+                if (newAge === 67) {
+                    const duration = 5 * 1000;
+                    const end = Date.now() + duration;
+                    (function frame() {
+                        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff'] });
+                        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff'] });
+                        if (Date.now() < end) requestAnimationFrame(frame);
+                    }());
+                } else {
+                    confetti({
+                        particleCount: 200,
+                        spread: 90,
+                        origin: { y: 0.6 },
+                        shapes: ['star', 'circle'],
+                        colors: ['#ff0a54', '#ff477e', '#ff7096', '#e2b714', '#ffffff']
+                    });
+                }
+                
+                // Update actual profile display in background
+                const ageVal = document.getElementById('age-value');
+                if (ageVal) ageVal.textContent = newAge;
+                
+                // Save status for current day
+                const todayStr = new Date().toISOString().split('T')[0];
+                localStorage.setItem(`birthday_celebrated_${username}_${todayStr}`, 'true');
+                
+                loadProfile(); // Refresh badges and main UI age
+                
+                // Set achievement flag for the progress page
+                localStorage.setItem(`birthday_achievement_${username}`, 'true');
+                
+                // Transition button to "Replay" mode
+                const btn = document.getElementById('birthday-update-btn');
+                if (btn) {
+                    btn.innerHTML = '🎂 Celebration!';
+                    btn.onclick = () => startBirthdayCelebration(dob, username, true);
+                }
+            }, 50);
+        }, 500);
+    }, 1200);
+}
+
+function triggerBirthdayConfetti(isMega = false) {
+    const duration = isMega ? 8 * 1000 : 4 * 1000;
+    const animationEnd = Date.now() + duration;
+    // Optimized ticks and particle count to reduce lag
+    const defaults = { startVelocity: isMega ? 50 : 30, spread: 360, ticks: 60, zIndex: 4000 };
+
+    // Create custom heart shape for confetti
+    const heart = confetti.shapeFromPath({ path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 2 7.5 2c1.74 0 3.41.81 4.5 2.09C13.09 2.81 14.76 2 16.5 2 19.58 2 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' });
+    const standardColors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7', '#e2b714', '#ffffff'];
+    const megaColors = ['#ff7300', '#fffb00', '#e2b714', '#ffffff', '#A0522D']; // Mars-themed palette
+    const colors = isMega ? megaColors : standardColors;
+
+    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+        // Cap particle count at 40 to prevent lag
+        const particleCount = Math.min(40, 30 * (timeLeft / duration));
+        
+        confetti({ 
+            ...defaults,
+            particleCount: isMega ? particleCount * 1.5 : particleCount,
+            shapes: isMega ? ['star', 'circle', 'square'] : [heart, 'star', 'circle'],
+            colors: colors,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            scalar: isMega ? randomInRange(1.2, 1.8) : 1,
+            gravity: 0.7,
+        });
+        confetti({
+            ...defaults,
+            particleCount: isMega ? particleCount * 1.5 : particleCount,
+            shapes: isMega ? ['star', 'circle', 'square'] : [heart, 'star', 'circle'],
+            colors: colors,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            scalar: isMega ? randomInRange(1.2, 1.8) : 1,
+            gravity: 0.7,
+        });
+    }, 250);
+}
+function triggerFullScreen67() {
+    const colors = MEGA_CELEBRATION_COLORS;
+    const container = document.body;
+    
+    for (let i = 0; i < 67; i++) {
+        setTimeout(() => {
+            const el = document.createElement('div');
+            el.textContent = '67';
+            el.style.cssText = `
+                position: fixed;
+                left: ${Math.random() * 90 + 5}vw;
+                top: ${Math.random() * 90 + 5}vh;
+                font-size: ${Math.random() * 3 + 2}rem;
+                color: ${colors[Math.floor(Math.random() * colors.length)]};
+                font-weight: 900;
+                z-index: 5000;
+                pointer-events: none;
+                text-shadow: 0 0 20px rgba(0,0,0,0.8);
+                opacity: 0;
+                transform: scale(0) rotate(${Math.random() * 40 - 20}deg);
+                transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            `;
+            
+            container.appendChild(el);
+            
+            // Trigger appearance animation
+            requestAnimationFrame(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'scale(1) rotate(0deg)';
+            });
+            
+            // Clean up elements after a random interval
+            setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.transform = 'scale(2.5)';
+                setTimeout(() => el.remove(), 800);
+            }, 3500 + Math.random() * 3000);
+        }, i * 60); // Controlled "typing" speed
+    }
+}
+
+function triggerMarsStrikes() {
+    const container = document.getElementById('birthday-stars-container');
+    if (!container) return;
+
+    const strikeInterval = setInterval(() => {
+        const modal = document.getElementById('birthday-celebration-modal');
+        if (!modal || modal.style.display === 'none') {
+            clearInterval(strikeInterval);
+            return;
+        }
+
+        // Spawn More Mars Comets
+        for(let i=0; i<2; i++) {
+            const comet = document.createElement('div');
+            comet.className = 'mars-comet';
+            comet.style.left = Math.random() * 100 + '%';
+            comet.style.top = Math.random() * 30 + '%';
+            comet.style.animation = `comet-strike ${Math.random() * 0.4 + 0.3}s linear forwards`;
+            container.appendChild(comet);
+            setTimeout(() => comet.remove(), 1000);
+        }
+
+        // Make random stars "strike" more frequently
+        const stars = container.querySelectorAll('div:not(.mars-comet)');
+        if (stars.length > 0) {
+            for(let i=0; i<3; i++) {
+                const randomStar = stars[Math.floor(Math.random() * stars.length)];
+                randomStar.classList.add('striking-star');
+                setTimeout(() => randomStar.classList.remove('striking-star'), 600);
+            }
+        }
+    }, 400); // Increased frequency
+}
+
+function initBirthdayStars() {
+    const container = document.getElementById('birthday-stars-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    // Create 100 flickering stars
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        const size = Math.random() * 2 + 1;
+        star.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: #fff;
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            opacity: ${Math.random()};
+            animation: flicker ${Math.random() * 3 + 2}s infinite alternate;
+        `;
+        container.appendChild(star);
+    }
+
+    // Add floating golden particles
+    for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 2;
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(226, 183, 20, 0.3);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float-slow ${Math.random() * 20 + 10}s infinite linear;
+        `;
+        container.appendChild(particle);
+    }
+}
+
+function closeBirthdayModal() {
+    const modal = document.getElementById('birthday-celebration-modal');
+    const modalContent = modal.querySelector('.birthday-modal-content');
+    const celebrationTitle = document.getElementById('celebration-title');
+    const celebrationMessage = document.getElementById('celebration-message');
+    const closeBtn = document.getElementById('celebration-close-btn');
+    const ageNum = document.getElementById('celebration-age-number');
+
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            const ageNum = document.getElementById('celebration-age-number');
+            if (ageNum) ageNum.style.cssText = ''; // Reset for next time
+            if (celebrationTitle) celebrationTitle.classList.remove('rainbow-text-animated');
+            if (celebrationMessage) celebrationMessage.classList.remove('rainbow-text-animated');
+            if (ageNum) ageNum.classList.remove('rainbow-text-animated', 'pulse-text-glow-animated');
+            if (closeBtn) closeBtn.classList.remove('rainbow-btn-animated');
+            if (modalContent) modalContent.style.background = ''; // Reset background
+            modal.style.background = ''; // Reset modal background
+        }, 500); // Ensure this matches the transition duration
+    }
 }
 
 function loadGallery(userProgress) {
@@ -254,20 +621,9 @@ function formatTimeSpent(seconds) {
     return hours + 'h ' + minutes + 'm';
 }
 
-function calculateAge(dobString) {
-    if (!dobString) return null;
-    const today = new Date();
-    const birthDate = new Date(dobString);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
-}
-
 function enterEditMode() {
-    const profile = profileManager.getProfile(profileManager.getCurrentUser().username);
+    const currentUser = profileManager.getCurrentUser();
+    const profile = profileManager.getProfile(currentUser.username);
     
     // Load data into edit form
     document.getElementById('edit-name').value = profile.fullName || '';
@@ -287,7 +643,7 @@ function enterEditMode() {
     
     // Synchronize photo in edit mode
     if (profile.photo) {
-        displayProfilePhotoEdit(profile.photo, profile.gender);
+        displayProfilePhotoEdit(profile.photo, profile.gender, profile.dob);
     } else {
         // Reset to emoji avatar
         document.getElementById('edit-user-avatar').style.display = 'block';
@@ -325,15 +681,19 @@ function switchEditTab(tab) {
     });
 }
 
-function displayProfilePhotoEdit(photoData, gender) {
+function displayProfilePhotoEdit(photoData, gender, dob) {
     const avatarSection = document.getElementById('edit-user-avatar');
     const imageContainer = document.getElementById('edit-avatar-image-container');
     const profilePhoto = document.getElementById('edit-profile-photo');
     const deleteBtn = document.getElementById('delete-photo-btn-edit');
 
     let displaySrc = photoData;
-    if (!displaySrc && gender === 'Male') displaySrc = 'duopinguo.jpg';
-    if (!displaySrc && gender === 'Female') displaySrc = 'penguo_w.png';
+    if (!displaySrc) {
+        const age = profileManager.calculateAge(dob);
+        const isSpecial = (age !== null && (age <= 16 || age === 67));
+        if (gender === 'Female') displaySrc = isSpecial ? '67w.png' : 'penguo_w.png';
+        else if (gender === 'Male') displaySrc = isSpecial ? '67m.png' : 'duopinguo.jpg';
+    }
 
     // Hide emoji avatar, show image
     avatarSection.style.display = 'none';
@@ -367,7 +727,9 @@ function handlePhotoUploadEdit(event) {
     const reader = new FileReader();
     reader.onload = (e) => {
         const photoData = e.target.result;
-        displayProfilePhotoEdit(photoData);
+        const gender = document.querySelector('input[name="gender"]:checked')?.value;
+        const dob = document.getElementById('edit-dob').value;
+        displayProfilePhotoEdit(photoData, gender, dob);
     };
     reader.readAsDataURL(file);
     
@@ -393,21 +755,31 @@ function deleteProfilePhotoEdit() {
     }
 }
 
-function displayProfilePhoto(photoData, gender) {
+function displayProfilePhoto(photoData, gender, dob, celebratedToday = true) {
     const avatarSection = document.querySelector('#view-mode .user-avatar');
     const imageContainer = document.querySelector('#view-mode .avatar-image-container');
     const profilePhoto = document.querySelector('#view-mode .avatar-image');
 
+    const isBirthday = isBirthdayToday(dob);
+
     let displaySrc = photoData;
     if (!displaySrc) {
-        if (gender === 'Male') displaySrc = 'duopinguo.jpg';
-        else if (gender === 'Female') displaySrc = 'penguo_w.png';
+        const realAge = profileManager.calculateAge(dob);
+        const effectiveAge = (isBirthday && !celebratedToday) ? realAge - 1 : realAge;
+        const isSpecial = (effectiveAge !== null && (effectiveAge <= 16 || effectiveAge === 67));
+        if (gender === 'Female') displaySrc = isSpecial ? '67w.png' : 'penguo_w.png';
+        else if (gender === 'Male') displaySrc = isSpecial ? '67m.png' : 'duopinguo.jpg';
     }
 
     if (displaySrc) {
         avatarSection.style.display = 'none';
         imageContainer.style.display = 'block';
         profilePhoto.src = displaySrc;
+        if (isBirthday) {
+            imageContainer.classList.add('birthday-border');
+        } else {
+            imageContainer.classList.remove('birthday-border');
+        }
     } else {
         avatarSection.style.display = 'flex';
         imageContainer.style.display = 'none';
@@ -584,10 +956,10 @@ function loadTenseProgress(userProgress) {
         const pointsPerVideo = 60 / totalVideos;
         
         let videoPoints = 0;
-        if (v1Count >= 5) videoPoints += pointsPerVideo;
-        if (v2Count >= 5) videoPoints += pointsPerVideo;
-        if (hasV3 && v3Count >= 3) videoPoints += pointsPerVideo;
-        if (hasV4 && v4Count >= 5) videoPoints += pointsPerVideo;
+        videoPoints += (Math.min(v1Count, 5) / 5) * pointsPerVideo;
+        videoPoints += (Math.min(v2Count, 5) / 5) * pointsPerVideo;
+        if (hasV3) videoPoints += (Math.min(v3Count, 3) / 3) * pointsPerVideo;
+        if (hasV4) videoPoints += (Math.min(v4Count, 5) / 5) * pointsPerVideo;
 
         const computedProgress = Math.round(videoPoints + practicePoints);
         const progressPercentage = tenseData.completedAt ? 100 : Math.min(computedProgress, 99);
@@ -628,10 +1000,10 @@ function loadTenseProgress(userProgress) {
         // ── Video badges ──────────────────────────────────────────────────────
         const videoBadges = (v1Count >= 5 || v2Count >= 5 || v3Count >= 3 || v4Count >= 5) ? `
             <div class="video-badges">
-                <span class="vbadge ${v1Count >= 5 ? 'done' : ''}">V1${v1Count >= 5 ? ' ✔' : ''}</span>
-                <span class="vbadge ${v2Count >= 5 ? 'done' : ''}">V2${v2Count >= 5 ? ' ✔' : ''}</span>
-                ${hasV3 ? `<span class="vbadge ${v3Count >= 3 ? 'done' : ''}">V3${v3Count >= 3 ? ' ✔' : ''}</span>` : ''}
-                ${hasV4 ? `<span class="vbadge ${v4Count >= 5 ? 'done' : ''}">V4${v4Count >= 5 ? ' ✔' : ''}</span>` : ''}
+                <span class="vbadge ${v1Count >= 5 ? 'done' : ''}" title="Video 1 Progress: Introduction and Basic concepts." onclick="alert(this.title)">V1${v1Count >= 5 ? ' ✔' : ''}</span>
+                <span class="vbadge ${v2Count >= 5 ? 'done' : ''}" title="Video 2 Progress: Negative and Question forms." onclick="alert(this.title)">V2${v2Count >= 5 ? ' ✔' : ''}</span>
+                ${hasV3 ? `<span class="vbadge ${v3Count >= 3 ? 'done' : ''}" title="Video 3 Progress: Nuances and advanced context." onclick="alert(this.title)">V3${v3Count >= 3 ? ' ✔' : ''}</span>` : ''}
+                ${hasV4 ? `<span class="vbadge ${v4Count >= 5 ? 'done' : ''}" title="Video 4 Progress: Dialogue practice and review." onclick="alert(this.title)">V4${v4Count >= 5 ? ' ✔' : ''}</span>` : ''}
             </div>` : '';
 
         const accuracyHtml = accuracy !== null

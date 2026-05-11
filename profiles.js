@@ -68,7 +68,8 @@ class ProfileManager {
             createdAt: new Date().toISOString(),
             lastLogin: null,
             progress: this.initializeProgress(),
-            lastPracticeResult: null
+            lastPracticeResult: null,
+            pronunciationScores: []
         };
 
         profiles[username] = newProfile;
@@ -177,26 +178,95 @@ class ProfileManager {
     }
 
     /**
+     * Save a pronunciation score to user statistics
+     */
+    savePronunciationScore(username, score) {
+        const profiles = this.getAllProfiles();
+        if (!profiles[username]) return;
+        
+        if (!profiles[username].pronunciationScores) {
+            profiles[username].pronunciationScores = [];
+        }
+        
+        profiles[username].pronunciationScores.push({
+            score: score,
+            timestamp: new Date().toISOString()
+        });
+        
+        localStorage.setItem(this.storageKey, JSON.stringify(profiles));
+    }
+
+    /**
      * Универсальный помощник для получения HTML аватара (фото или синяя иконка)
      */
-    getAvatarHTML(photo, gender = null, size = 34, marginRight = 8) {
+    getAvatarHTML(photo, gender = null, size = 34, marginRight = 8, dob = null, celebratedToday = true) {
         const styleBase = `width: ${size}px; height: ${size}px; border-radius: 50%; object-fit: cover; vertical-align: middle; flex-shrink: 0;`;
         const marginStyle = marginRight > 0 ? `margin-right: ${marginRight}px;` : '';
         
+        const realAge = this.calculateAge(dob);
+        const isBirthday = dob ? (new Date().getMonth() === new Date(dob).getMonth() && new Date().getDate() === new Date(dob).getDate()) : false;
+        const effectiveAge = (isBirthday && !celebratedToday) ? (realAge !== null ? realAge - 1 : null) : realAge;
+        const bdayStyle = isBirthday ? `box-shadow: 0 0 0 2px #0d1b3e, 0 0 0 ${Math.max(2, size/8)}px #e2b714, 0 0 15px rgba(226, 183, 20, 0.8);` : '';
+
         let src = photo;
         if (!src) {
-            if (gender === 'Female') src = 'penguo_w.png';
-            else if (gender === 'Male') src = 'duopinguo.jpg';
+            const isSpecialAge = (effectiveAge !== null && (effectiveAge <= 16 || effectiveAge === 67));
+            
+            if (gender === 'Female') {
+                src = isSpecialAge ? '67w.png' : 'penguo_w.png';
+            } else if (gender === 'Male') {
+                src = isSpecialAge ? '67m.png' : 'duopinguo.jpg';
+            }
         }
 
         if (src) {
-            return `<img src="${src}" alt="Avatar" style="${styleBase} ${marginStyle} border: 1.5px solid #7ec8f7;">`;
+            return `<img src="${src}" alt="Avatar" style="${styleBase} ${marginStyle} border: 1.5px solid #7ec8f7; ${bdayStyle}">`;
         } else {
             // Дефолтная синяя иконка (градиент соответствует стилю сайта)
             const fontSize = Math.round(size * 0.5);
             const gradient = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-            return `<div style="${styleBase} ${marginStyle} background: ${gradient}; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: ${fontSize}px; border: 1px solid rgba(255,255,255,0.2);">👤</div>`;
+            return `<div style="${styleBase} ${marginStyle} background: ${gradient}; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: ${fontSize}px; border: 1px solid rgba(255,255,255,0.2); ${bdayStyle}">👤</div>`;
         }
+    }
+
+    /**
+     * Returns HTML for special badges (Birthday or Special Age)
+     */
+    getUserBadges(dob, celebratedToday = true) {
+        if (!dob) return '';
+        const realAge = this.calculateAge(dob);
+        const isBirthday = (new Date().getMonth() === new Date(dob).getMonth() && new Date().getDate() === new Date(dob).getDate());
+        const displayAge = (isBirthday && !celebratedToday) ? realAge - 1 : realAge;
+        
+        let badges = '';
+        if (isBirthday) {
+            const bdayTooltip = celebratedToday ? "Birthday Level Up Completed! 🎉 You've reached a new chapter in your journey." : "It's your Birthday! 🎂 You have a pending Level Up. Click the update button to celebrate!";
+            badges += `<span class="user-badge bday-badge" title="${bdayTooltip}" style="cursor:pointer;" onclick="alert(this.title)">🎂</span>`;
+        }
+        
+        if (displayAge !== null) {
+            if (displayAge === 67) {
+                badges += `<span class="user-badge age-badge" title="Elite 67 Member: A legendary age for cinematic mastery! 🌟 This badge honors our most experienced students." style="cursor:pointer; font-weight:900; color:#e2b714; background: rgba(226, 183, 20, 0.15); padding: 0 6px; border-radius: 4px; border: 1.5px solid #e2b714; font-size: 0.85rem; line-height: 1.4; display: inline-block;" onclick="alert(this.title)">67</span>`;
+            } else if (displayAge < 17) {
+                badges += `<span class="user-badge age-badge" title="Young Prodigy: Starting the path to Absolute Cinema early! 🐣 This badge is for our talented students under 17." style="cursor:pointer;" onclick="alert(this.title)">🐣</span>`;
+            }
+        }
+        return badges;
+    }
+
+    /**
+     * Helper to calculate age from DOB string
+     */
+    calculateAge(dobString) {
+        if (!dobString) return null;
+        const today = new Date();
+        const birthDate = new Date(dobString);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
     }
 
     /**
@@ -385,13 +455,21 @@ class ProfileManager {
             }
         });
 
+        // Calculate pronunciation statistics
+        const pronScores = profile.pronunciationScores || [];
+        const avgPronScore = pronScores.length > 0 
+            ? Math.round(pronScores.reduce((acc, curr) => acc + curr.score, 0) / pronScores.length)
+            : 0;
+
         return {
             tensesCompleted: tensesCompleted,
             totalTenses: tenses.length,
             exercisesCompleted: completedExercises,
             totalExercises: totalExercises,
             averageAccuracy: tenesesWithAccuracy > 0 ? Math.round(totalAccuracy / tenesesWithAccuracy) : 0,
-            totalTimeSpent: profile.totalTimeSpent || 0
+            totalTimeSpent: profile.totalTimeSpent || 0,
+            averagePronunciationScore: avgPronScore,
+            pronunciationAttempts: pronScores.length
         };
     }
 
