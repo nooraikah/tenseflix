@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Continuous A2 - Practice</title>
+    <style>
+        :root {
+            --bg-color: #050510;
+            --card-bg: #0d1b3e;
+            --accent-color: #e2b714;
+            --text-color: #ffffff;
+            --input-bg: #1a1a2e;
+            --correct-color: #22c55e;
+            --wrong-color: #ef4444;
+        }
+        .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; background: var(--bg-color); }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        .shooting-star { position: absolute; width: 2px; height: 2px; background: linear-gradient(90deg, white, transparent); animation: shoot var(--duration) linear forwards; opacity: 0; }
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(-600px) translateY(600px) rotate(-45deg); opacity: 0; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-size: 1.5rem;
+        }
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+        .exercise-item {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+        input {
+            background: var(--input-bg);
+            border: 2px solid #2a6db5;
+            border-radius: 8px;
+            color: white;
+            padding: 6px 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        input:focus { border-color: var(--accent-color); }
+        input.correct { border-color: var(--correct-color); background: rgba(34, 197, 94, 0.1); }
+        input.wrong { border-color: var(--wrong-color); background: rgba(239, 68, 68, 0.1); }
+        .check-btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .check-btn:hover:not(:disabled) { transform: scale(1.05); }
+        .check-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .main-btn {
+            background: #2a6db5;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-btn:hover { transform: scale(1.05); }
+        .correct-answer-text { color: #22c55e; font-weight: bold; margin-left: 10px; }
+        .feedback { text-align: center; font-weight: bold; font-size: 1.2rem; margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <div class="stars-container" id="stars-container"></div>
+    <div class="container">
+        <h1>Past Continuous A2: Fill in the Gaps</h1>
+        
+        <div class="section">
+            <h2>Positive</h2>
+            <div class="exercise-item">1. Joey <input type="text" data-answer="was eating"> (eat) when the phone rang.</div>
+            <div class="exercise-item">2. Ross <input type="text" data-answer="was talking"> (talk) while we were watching TV.</div>
+            <div class="exercise-item">3. Peppa and George <input type="text" data-answer="were jumping"> (jump) at 5 o'clock yesterday.</div>
+            <div class="exercise-item">4. Suzy <input type="text" data-answer="was playing"> (play) with her dolls all morning.</div>
+            <div class="exercise-item">5. I <input type="text" data-answer="was sleeping"> (sleep) when you called.</div>
+            <div class="exercise-item">6. We <input type="text" data-answer="were walking"> (walk) in the park at noon.</div>
+            <div class="exercise-item">7. They <input type="text" data-answer="were studying"> (study) all evening.</div>
+            <div class="exercise-item">8. The sun <input type="text" data-answer="was shining"> (shine) when I woke up.</div>
+            <div class="exercise-item">9. Rachel <input type="text" data-answer="was working"> (work) late last night.</div>
+            <div class="exercise-item">10. The kids <input type="text" data-answer="were dancing"> (dance) at the party.</div>
+        </div>
+
+        <div class="section">
+            <h2>Negative</h2>
+            <div class="exercise-item">1. Joey <input type="text" data-answer="was not listening|wasn't listening|wasn’t listening"> (not / listening) to Ross.</div>
+            <div class="exercise-item">2. Ross <input type="text" data-answer="was not wearing|wasn't wearing|wasn’t wearing"> (not / wearing) his leather pants.</div>
+            <div class="exercise-item">3. Peppa and George <input type="text" data-answer="were not fighting|weren't fighting|weren’t fighting"> (not / fighting).</div>
+            <div class="exercise-item">4. I <input type="text" data-answer="was not feeling|wasn't feeling|wasn’т feeling"> (not / feeling) well yesterday morning.</div>
+            <div class="exercise-item">5. We <input type="text" data-answer="were not watching|weren't watching|weren’т watching"> (not / watching) the news.</div>
+            <div class="exercise-item">6. Suzy <input type="text" data-answer="was not swimming|wasn't swimming|wasn’т swimming"> (not / swimming) in the pool.</div>
+            <div class="exercise-item">7. They <input type="text" data-answer="were not waiting|weren't waiting|weren’т waiting"> (not / waiting) for the bus.</div>
+            <div class="exercise-item">8. It <input type="text" data-answer="was not raining|wasn't raining|wasn’т raining"> (not / raining) when we left.</div>
+            <div class="exercise-item">9. Chandler <input type="text" data-answer="was not laughing|wasn't laughing|wasn’т laughing"> (not / laughing) at the joke.</div>
+            <div class="exercise-item">10. You <input type="text" data-answer="were not studying|weren't studying|weren’т studying"> (not / studying) at 8 PM.</div>
+        </div>
+
+        <div class="section">
+            <h2>Interrogative</h2>
+            <div class="exercise-item">1. <input type="text" data-answer="Was" style="width: 70px;"> Joey <input type="text" data-answer="dreaming" style="width: 100px;"> (dream) about food?</div>
+            <div class="exercise-item">2. <input type="text" data-answer="Was" style="width: 70px;"> Ross <input type="text" data-answer="looking" style="width: 100px;"> (look) at dinosaurs?</div>
+            <div class="exercise-item">3. <input type="text" data-answer="Were" style="width: 70px;"> the kids <input type="text" data-answer="playing" style="width: 100px;"> (play) outside?</div>
+            <div class="exercise-item">4. <input type="text" data-answer="Were" style="width: 70px;"> you <input type="text" data-answer="cooking" style="width: 100px;"> (cook) dinner at 6 PM?</div>
+            <div class="exercise-item">5. <input type="text" data-answer="Was" style="width: 70px;"> it <input type="text" data-answer="snowing" style="width: 100px;"> (snow) yesterday morning?</div>
+            <div class="exercise-item">6. <input type="text" data-answer="Was" style="width: 70px;"> Suzy <input type="text" data-answer="singing" style="width: 100px;"> (sing) a song?</div>
+            <div class="exercise-item">7. <input type="text" data-answer="Were" style="width: 70px;"> they <input type="text" data-answer="driving" style="width: 100px;"> (drive) to the beach?</div>
+            <div class="exercise-item">8. <input type="text" data-answer="Was" style="width: 70px;"> I <input type="text" data-answer="talking" style="width: 100px;"> (talking) too loud?</div>
+            <div class="exercise-item">9. <input type="text" data-answer="Was" style="width: 70px;"> Phoebe <input type="text" data-answer="running" style="width: 100px;"> (run) in the park?</div>
+            <div class="exercise-item">10. <input type="text" data-answer="Were" style="width: 70px;"> we <input type="text" data-answer="doing" style="width: 100px;"> (doing) the right thing?</div>
+        </div>
+
+        <div class="btn-container">
+            <a href="lesson.html?tense=present-perfect" class="main-btn" style="background: #22c55e;">Next Tense →</a>
+            <button class="check-btn" id="check-btn" onclick="checkAll()" disabled>Check Answers ✓</button>
+            <a href="index.html" class="main-btn">Go to Main Page</a>
+        </div>
+        <div id="final-msg" class="feedback"></div>
+    </div>
+    <script src="profiles.js"></script>
+    <script>
+        function initStarryBackground() {
+            const container = document.getElementById('stars-container');
+            if (!container) return;
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                container.appendChild(star);
+            }
+            setInterval(() => {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = (Math.random() * 80 + 20) + '%';
+                shootingStar.style.top = (Math.random() * 40) + '%';
+                shootingStar.style.setProperty('--duration', (Math.random() * 1 + 0.8) + 's');
+                container.appendChild(shootingStar);
+                setTimeout(() => shootingStar.remove(), 2000);
+            }, 1500);
+        }
+        document.addEventListener('DOMContentLoaded', initStarryBackground);
+
+        const inputs = document.querySelectorAll('input');
+        const checkBtn = document.getElementById('check-btn');
+        const validateInputs = () => checkBtn.disabled = !Array.from(inputs).every(i => i.value.trim() !== '');
+        inputs.forEach(i => i.addEventListener('input', validateInputs));
+
+        function checkAll() {
+            inputs.forEach(i => {
+                const val = i.value.trim().toLowerCase();
+                const answers = i.dataset.answer.split('|').map(s => s.toLowerCase().trim());
+                const isCorrect = answers.includes(val);
+                i.className = isCorrect ? 'correct' : 'wrong';
+                const existing = i.parentNode.querySelector('.correct-answer-text');
+                if (existing) existing.remove();
+                if (!isCorrect) {
+                    const msg = document.createElement('span');
+                    msg.className = 'correct-answer-text';
+                    msg.textContent = `(Correct: ${i.dataset.answer.split('|')[0]})`;
+                    i.parentNode.appendChild(msg);
+                }
+            });
+            const correctCount = Array.from(inputs).filter(i => i.classList.contains('correct')).length;
+            const finalMsg = document.getElementById('final-msg');
+            finalMsg.textContent = `Done! Your score: ${correctCount} / ${inputs.length}`;
+            
+            const user = profileManager.getCurrentUser();
+            if (user) profileManager.markTenseCompleted(user.username, 'past-continuous-a2');
+
+            if (correctCount === inputs.length) {
+                finalMsg.style.color = "var(--correct-color)";
+            } else {
+                finalMsg.style.color = "var(--wrong-color)";
+            }
+        }
+    </script>
+</body>
+</html>

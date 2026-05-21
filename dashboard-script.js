@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isRedirecting) {
         loadUserInfo();
         initializeLevels();
-        initTeacherGuide();
-        updateWelcomeMessage(); // Call the new function here
+        if (typeof initStarryBackground === 'function') initStarryBackground();
     }
 });
 
@@ -35,28 +34,24 @@ function loadUserInfo() {
 
         const nameFirst = currentUser.fullName ? currentUser.fullName.split(' ')[0] : 'User';
         const userElement = document.getElementById('user-name');
-        const profile = profileManager.getProfile(currentUser.username);
-
         if (userElement) {
             userElement.textContent = nameFirst;
-            if (profile?.dob && isBirthdayToday(profile.dob)) {
-                userElement.classList.add('birthday-shine');
-            } else {
-                userElement.classList.remove('birthday-shine');
-            }
             
             // Add admin badge if user is admin
             if (profileManager.isCurrentUserAdmin()) {
-                addTeacherGuideButton(); // Add teacher guide button for admins
+                const adminBadge = document.createElement('span');
+                adminBadge.textContent = ' [ADMIN]';
+                adminBadge.style.color = '#e74c3c';
+                adminBadge.style.fontWeight = 'bold';
+                userElement.parentNode.appendChild(adminBadge);
             }
         }
 
         // Replace human icon with profile picture if available
+        const profile = profileManager.getProfile(currentUser.username);
         const profileBtn = document.querySelector('.profile-btn');
         if (profileBtn) {
-            const todayStr = new Date().toISOString().split('T')[0];
-            const hasCelebratedToday = localStorage.getItem(`birthday_celebrated_${currentUser.username}_${todayStr}`) === 'true';
-            profileBtn.innerHTML = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 34, 0, profile ? profile.dob : null, hasCelebratedToday);
+            profileBtn.innerHTML = profileManager.getAvatarHTML(profile ? profile.photo : null, profile ? profile.gender : null, 34, 0);
             profileBtn.style.display = 'flex';
             profileBtn.style.alignItems = 'center';
             profileBtn.style.justifyContent = 'center';
@@ -76,156 +71,6 @@ function loadUserInfo() {
         if (dashboardContent) dashboardContent.style.paddingBottom = '0';
     }
 }
-
-// Function to add the teacher guide button
-function addTeacherGuideButton() {
-    const userInfoDiv = document.querySelector('.user-info'); // Or another suitable parent
-    if (!userInfoDiv) return;
-
-    let guideButton = document.getElementById('teacher-guide-btn');
-    if (!guideButton) {
-        guideButton = document.createElement('button');
-        guideButton.id = 'teacher-guide-btn';
-        guideButton.innerHTML = '👩‍🏫 Teacher\'s Guide';
-        guideButton.style.cssText = `
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            margin-left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap; /* Prevent text wrapping */
-        `;
-        guideButton.onmouseover = () => {
-            guideButton.style.transform = 'translateY(-2px)';
-            guideButton.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-        };
-        guideButton.onmouseout = () => {
-            guideButton.style.transform = 'translateY(0)';
-            guideButton.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-        };
-        guideButton.onclick = openTeacherGuideModal;
-
-        userInfoDiv.appendChild(guideButton);
-    }
-}
-
-// New functions for modal
-function openTeacherGuideModal() {
-    const modal = document.getElementById('teacher-guide-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-        setTimeout(() => modal.classList.add('show'), 10); // Add 'show' class for fade-in
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-}
-
-function closeTeacherGuideModal() {
-    const modal = document.getElementById('teacher-guide-modal');
-    if (modal) {
-        modal.classList.remove('show'); // Remove 'show' class for fade-out
-        setTimeout(() => modal.style.display = 'none', 300); // Hide after transition
-        document.body.style.overflow = 'auto'; // Restore scrolling
-    }
-}
-
-// Teacher Guide Widget Functions
-function initTeacherGuide() {
-    const popup = document.getElementById('teacher-guide-popup');
-    if (popup) {
-        popup.style.display = 'none'; // Ensure it's hidden on load
-    }
-
-    const trigger = document.getElementById('teacher-guide-trigger');
-    if (trigger && localStorage.getItem('teacherGuidePulsedOnce') === 'true') {
-        trigger.classList.remove('pulsing'); // Hide pulse if already clicked once
-    }
-}
-
-// Function to update the welcome message based on time of day
-function updateWelcomeMessage() {
-    const welcomeElement = document.getElementById('welcome-message');
-    const currentUser = profileManager.getCurrentUser(); // Get current user
-    if (!welcomeElement) return;
-
-    const now = new Date();
-    const hour = now.getHours();
-    let greeting;
-
-    if (hour < 12) greeting = 'Good morning';
-    else if (hour < 18) greeting = 'Good afternoon';
-    else greeting = 'Good evening';
-
-    let userName = '';
-    if (currentUser && currentUser.fullName) {
-        userName = currentUser.fullName.split(' ')[0]; // Get first name
-        userName = userName.charAt(0).toUpperCase() + userName.slice(1); // Capitalize
-    }
-    
-    let birthdayGreeting = '';
-    // Check for birthday and add special greeting
-    const profile = profileManager.getProfile(currentUser.username);
-    if (profile && profile.dob && isBirthdayToday(profile.dob)) {
-        birthdayGreeting = ' Happy Birthday! 🎉';
-    }
-
-    welcomeElement.textContent = `${greeting}${userName ? ', ' + userName : ''}!${birthdayGreeting}`;
-}
-
-function openTeacherGuidePopup(event) {
-    if (event) event.stopPropagation();
-    
-    const popup = document.getElementById('teacher-guide-popup');
-    const trigger = document.getElementById('teacher-guide-trigger');
-
-    if (!popup || !trigger) return;
-
-    if (popup.style.display === 'block' && !popup.classList.contains('closing')) {
-        // If already open and not closing, close it
-        closeTeacherGuidePopup();
-    } else {
-        // If closed or currently closing, open it
-        popup.classList.remove('closing');
-        popup.style.display = 'block';
-        
-        // Stop pulsing animation after first click
-        if (trigger) {
-            trigger.classList.remove('pulsing');
-            localStorage.setItem('teacherGuidePulsedOnce', 'true');
-        }
-    }
-}
-
-function closeTeacherGuidePopup() {
-    const popup = document.getElementById('teacher-guide-popup');
-    if (!popup || popup.style.display === 'none' || popup.classList.contains('closing')) return;
-
-    // Add closing class for fade-out animation
-    popup.classList.add('closing');
-    
-    // Hide after animation finishes
-    setTimeout(() => {
-        popup.style.display = 'none';
-        popup.classList.remove('closing');
-    }, 300);
-}
-
-// Close popup when clicking outside the widget area
-window.addEventListener('click', (event) => {
-    const widget = document.getElementById('teacher-guide-widget');
-    const popup = document.getElementById('teacher-guide-popup');
-    if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
-        closeTeacherGuidePopup();
-    }
-});
 
 // Initialize levels based on user progress
 function initializeLevels() {
@@ -344,10 +189,10 @@ function initializeLevels() {
             const practicePoints = (tenseData.completedAt || (tenseData.light >= 70)) ? 40 : 0;
             const pointsPerVideo = 60 / totalVideos;
             let videoPoints = 0;
-            videoPoints += (Math.min(v1Count, 5) / 5) * pointsPerVideo;
-            videoPoints += (Math.min(v2Count, 5) / 5) * pointsPerVideo;
-            if (hasV3) videoPoints += (Math.min(v3Count, 3) / 3) * pointsPerVideo;
-            if (hasV4) videoPoints += (Math.min(v4Count, 5) / 5) * pointsPerVideo;
+            if (v1Count >= 5) videoPoints += pointsPerVideo;
+            if (v2Count >= 5) videoPoints += pointsPerVideo;
+            if (hasV3 && v3Count >= 3) videoPoints += pointsPerVideo;
+            if (hasV4 && v4Count >= 5) videoPoints += pointsPerVideo;
 
             const totalProgress = Math.round(videoPoints + practicePoints);
 
@@ -437,18 +282,11 @@ function initializeLevels() {
             counterBtn.textContent = "🏆 Claim Victory!";
             counterBtn.onclick = () => {
                 triggerSaluteConfetti();
-                triggerVictorySky();
                 const reward = document.getElementById('final-reward');
-                const speechBtnContainer = document.getElementById('oscar-speech-btn-container');
                 if (reward) {
                     reward.style.display = 'block';
                     reward.classList.add('fire-show');
                     reward.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                if (speechBtnContainer) {
-                    setTimeout(() => {
-                        speechBtnContainer.style.display = 'block';
-                    }, 1000);
                 }
             };
         } else {
@@ -459,11 +297,10 @@ function initializeLevels() {
     }
 
     updateUserRank(completedCount);
-    initStarryBackground(completedCount); // Инициализируем фон с учетом прогресса
 }
 
 function triggerSaluteConfetti() {
-    const duration = 3 * 1000; // Shortened to 3 seconds
+    const duration = 7 * 1000; // Празднуем чуть дольше
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 45, spread: 360, ticks: 100, zIndex: 10000 };
 
@@ -473,82 +310,17 @@ function triggerSaluteConfetti() {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
-            // Grand Finale Gold Star Burst
-            confetti({
-                ...defaults,
-                particleCount: 400,
-                origin: { x: 0.5, y: 0.4 },
-                colors: ['#FFD700', '#FFDF00', '#DAA520', '#FFFFFF'],
-                shapes: ['star'],
-                scalar: 2.5
-            });
             return clearInterval(interval);
         }
 
-        const particleCount = 60 * (timeLeft / duration);
-
-        // 1. Golden "Salute" bursts from random sky positions
-        confetti({
-            ...defaults,
-            particleCount: particleCount * 1.5,
-            origin: { x: randomInRange(0.1, 0.9), y: randomInRange(0.1, 0.4) },
-            colors: ['#FFD700', '#FFDF00', '#DAA520'],
-            shapes: ['star'],
-            gravity: 0.6,
-            scalar: randomInRange(0.7, 1.4)
-        });
-
-        // 2. FireShow Sparks shooting up from the bottom
-        confetti({
-            ...defaults,
-            particleCount: 15,
-            origin: { x: randomInRange(0.2, 0.8), y: 0.9 },
-            colors: ['#FF4500', '#FF8C00', '#FF0000'],
-            angle: randomInRange(70, 110),
-            spread: 30,
-            startVelocity: randomInRange(50, 75),
-            gravity: 1.5,
-            shapes: ['circle', 'star']
-        });
-
-        // 3. Constant gold glitter rain
-        confetti({
-            particleCount: 5,
-            origin: { x: Math.random(), y: -0.1 },
-            colors: ['#FFD700'],
-            shapes: ['star']
-        });
-    }, 250);
-}
-
-/**
- * Transforms the dashboard background into a spectacular purple nebula
- */
-function triggerVictorySky() {
-    const container = document.getElementById('stars-container');
-    if (!container) return;
-
-    // Transition to a more vibrant purple/nebula color
-    container.style.transition = 'background 3s ease-in-out';
-    container.style.background = 'radial-gradient(circle at center, #3a007d 0%, #1a0033 40%, #050510 100%)';
-
-    // Maximize star and celestial effects
-    initStarryBackground(12); // Re-init with 12 completed levels to max out density
-    
-    // Add a periodic intense burst of shooting stars for 10 seconds
-    const burstInterval = setInterval(() => {
-        for(let i=0; i<3; i++) {
-            const shootingStar = document.createElement('div');
-            shootingStar.className = 'shooting-star';
-            shootingStar.style.left = (Math.random() * 80 + 20) + '%';
-            shootingStar.style.top = (Math.random() * 40) + '%';
-            shootingStar.style.setProperty('--duration', (Math.random() * 0.5 + 0.3) + 's');
-            container.appendChild(shootingStar);
-            setTimeout(() => shootingStar.remove(), 1000);
-        }
-    }, 400);
-
-    setTimeout(() => clearInterval(burstInterval), 10000);
+        // Запускаем мощные залпы фейерверков (меньше мелкого конфетти, больше взрывов)
+        const particleCount = 150 * (timeLeft / duration);
+        
+        // Взрывы с боков и из центра
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#e2b714', '#ffffff'] });
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#e2b714', '#ff4500'] });
+        confetti({ ...defaults, particleCount: particleCount * 1.5, origin: { x: 0.5, y: 0.7 }, gravity: 0.8, scalar: 1.2, colors: ['#e2b714', '#ffffff', '#ff4500'] });
+    }, 500); // Интервал между залпами для эффекта салюта
 }
 
 // Penguin Story Data
@@ -614,243 +386,6 @@ function closeMovieLightbox() {
         if (!modal.classList.contains('show')) modal.style.display = 'none';
     }, 300);
     document.body.style.overflow = 'auto';
-}
-
-function openOscarSpeech() {
-    const modal = document.getElementById('oscar-modal');
-    const textContainer = document.getElementById('oscar-speech-p');
-    
-    if (modal) {
-        modal.classList.add('show');
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        // Typewriter effect logic
-        if (textContainer) {
-            textContainer.textContent = ''; // Ensure it's empty initially
-            
-            const speechText = "Oh my goodness! I can't believe it! We did it! This Oscar isn't just mine—it's ours. Thank you so much for being with me through every draft, every rejection, and every single tense. Your dedication to learning English is what gave my story a voice. I couldn't have mastered the \"Absolute Cinema\" without your hard work. This victory belongs to both of us, my friend! We are champions!";
-            
-            let i = 0;
-            const speed = 40; // Typing speed in milliseconds
-            
-            function typeChar() {
-                if (i < speechText.length) {
-                    textContainer.textContent += speechText.charAt(i);
-                    i++;
-                    setTimeout(typeChar, speed);
-                } else {
-                    // Speech finished! Show credits after a short pause
-                    setTimeout(showCinematicCredits, 2500);
-                }
-            }
-            
-            // Start typing after a short delay to allow modal to open
-            setTimeout(typeChar, 600);
-        }
-    }
-}
-
-function showCinematicCredits() {
-    const credits = document.getElementById('cinematic-credits');
-    const scroll = credits?.querySelector('.credits-scroll');
-    const cert = document.getElementById('certificate-display');
-    
-    if (credits) {
-        // Reset states
-        if (cert) cert.classList.remove('show');
-        if (scroll) {
-            scroll.style.display = 'block';
-            scroll.style.animation = 'none';
-            void scroll.offsetWidth; // trigger reflow
-            scroll.style.animation = 'credits-animation 25s linear forwards';
-        }
-        
-        credits.style.display = 'flex';
-
-        // Wait for credits animation to finish (25s) then show certificate
-        setTimeout(() => {
-            showFinalCertificate();
-        }, 25000);
-    }
-}
-
-function showFinalCertificate() {
-    const cert = document.getElementById('certificate-display');
-    const scroll = document.querySelector('.credits-scroll');
-    const currentUser = profileManager.getCurrentUser();
-    
-    if (scroll) scroll.style.display = 'none'; 
-    
-    if (cert) {
-        const nameEl = document.getElementById('cert-user-name');
-        if (nameEl && currentUser) {
-            nameEl.textContent = currentUser.fullName;
-        }
-        cert.classList.add('show');
-    }
-}
-
-function downloadCertificate() {
-    const currentUser = profileManager.getCurrentUser();
-    const userName = currentUser?.fullName || 'Valued Learner';
-    
-    const tutorNames = [
-        { short: 'M. Nuray', full: 'Matay Nuray' },
-        { short: 'M. Anelya', full: 'Mailybay Anelya' },
-        { short: 'D. Elnura', full: 'Dusenova Elnura' },
-        { short: 'B. Aida', full: 'Berkinbaeva Aida' },
-        { short: 'T. Aruzhan', full: 'Tuleshova Aruzhan' }
-    ];
-    const userStats = profileManager.getUserStats(currentUser.username);
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Устанавливаем размер (альбомный формат)
-    canvas.width = 1200;
-    canvas.height = 840;
-
-    // 1. Фон
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // 2. Рамка (темно-синяя и золотая) - Улучшенный стиль
-    ctx.strokeStyle = '#0d1b3e'; // Темно-синий
-    ctx.lineWidth = 30;
-    ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
-    
-    ctx.strokeStyle = '#e2b714'; // Золотой
-    ctx.lineWidth = 5;
-    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
-
-    // 3. Текст: Заголовок и подзаголовок
-    ctx.fillStyle = '#e2b714';
-    ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
-    ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 120); // Moved up
-
-    ctx.fillStyle = '#333';
-    ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 170); // Moved up
-
-    // 4. Текст: Имя пользователя и описание достижения
-    ctx.fillStyle = '#555';
-    ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', canvas.width / 2, 240); // Moved up
-    
-    ctx.fillStyle = '#1a1a2e';
-    ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, canvas.width / 2, 320); // Moved up
-
-    ctx.fillStyle = '#333';
-    ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 390); // Moved up
-    
-    ctx.fillStyle = '#e2b714';
-    ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 430); // Moved up
-
-    ctx.fillStyle = '#555';
-    ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 470); // Moved up
-
-    // 5. Статистика пользователя
-    if (userStats) {
-        ctx.fillStyle = '#1a1a2e';
-        ctx.font = 'bold 20px "Georgia", serif';
-        ctx.fillText('Your TENSEFLIX Journey:', canvas.width / 2, 530); // Moved up
-
-        ctx.font = '18px "Georgia", serif';
-        ctx.textAlign = 'left';
-        const statsX = canvas.width / 2 - 200; // Adjust X position for left alignment
-        let statsY = 560; // Moved up
-
-        ctx.fillText(`Tenses Mastered: ${userStats.tensesCompleted}/12`, statsX, statsY);
-        statsY += 25;
-        ctx.fillText(`Exercises Completed: ${userStats.exercisesCompleted}`, statsX, statsY);
-        statsY += 25;
-        ctx.fillText(`Average Accuracy: ${userStats.averageAccuracy}%`, statsX, statsY);
-        // Removed Time Spent as per request to simplify and make space
-        
-        ctx.textAlign = 'center'; // Reset text alignment
-    }
-
-    // 6. Подписи
-    ctx.font = 'italic 18px "Brush Script MT", cursive';
-    ctx.fillStyle = '#555';
-    const sigY = 720; // Base Y for signatures
-    const lineY = sigY + 10; // Line below short name
-    const fullNameY = lineY + 15; // Full name below the line
-
-    tutorNames.forEach((tutor, i) => {
-        const x = 180 + (i * 210); // Spacing for 5 signatures
-        ctx.fillText(tutor.short, x, sigY);
-        ctx.beginPath();
-        ctx.moveTo(x - 50, lineY);
-        ctx.lineTo(x + 50, lineY);
-        ctx.stroke();
-        ctx.font = 'bold 12px "Georgia", serif'; // Smaller font for full name
-        ctx.fillStyle = '#333';
-        ctx.fillText(tutor.full, x, fullNameY);
-    });
-
-    // 7. Дата
-    ctx.fillStyle = '#888';
-    ctx.font = 'italic 18px "Georgia", serif';
-    ctx.fillText(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, canvas.width / 2, canvas.height - 40); // Moved up
-
-    // 8. Отрисовка Pinguo (берем из DOM) - Центрируем внизу
-    const pinguoImg = document.querySelector('.cert-pinguo');
-    if (pinguoImg) {
-        ctx.save();
-        const pinguoSize = 80; // Even smaller for better fit
-        const pinguoY = canvas.height - 150; // Position above the date
-        ctx.drawImage(pinguoImg, canvas.width / 2 - pinguoSize / 2, pinguoY, pinguoSize, pinguoSize);
-        ctx.restore();
-    }
-
-    // Скачивание PNG
-    const link = document.createElement('a');
-    const safeName = userName.replace(/[^a-z0-9а-я]/gi, '_');
-    link.download = `TENSEFLIX_Certificate_${safeName}.png`;
-    
-    try {
-        link.href = canvas.toDataURL('image/png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Показываем кнопки "Поделиться"
-        const shareSection = document.getElementById('cert-share-section');
-        if (shareSection) shareSection.style.display = 'flex';
-    } catch (e) {
-        console.error('Ошибка при генерации PNG:', e);
-        alert('Не удалось скачать сертификат. Если вы открыли файл напрямую через браузер, попробуйте использовать локальный сервер (например, Live Server в VS Code) или просто сделайте скриншот экрана.');
-    }
-}
-
-function shareCertificate(platform) {
-    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆");
-    const url = platform === 'telegram' 
-        ? `https://t.me/share/url?url=https://tenseflix.com&text=${text}`
-        : `https://api.whatsapp.com/send?text=${text}`;
-    window.open(url, '_blank');
-}
-
-function closeOscarSpeech() {
-    const modal = document.getElementById('oscar-modal');
-    const textContainer = document.getElementById('oscar-speech-p');
-    const credits = document.getElementById('cinematic-credits');
-    
-    if (modal) {
-        modal.classList.remove('show');
-        setTimeout(() => { 
-            modal.style.display = 'none'; 
-            if (textContainer) textContainer.textContent = ''; // Reset for next open
-            if (credits) credits.style.display = 'none'; // Stop credits if user closes modal
-        }, 300);
-        document.body.style.overflow = 'auto';
-    }
 }
 
 // Autocomplete logic for quick testing
@@ -1086,74 +621,23 @@ function createCompletionStats(tenseData) {
     return container;
 }
 
-let backgroundIntervals = []; // Для очистки таймеров при обновлении
-
-function initStarryBackground(completedLevels = 0) {
+function initStarryBackground() {
     const container = document.getElementById('stars-container');
     if (!container) return;
 
-    // Очищаем старые элементы и интервалы
-    container.innerHTML = '';
-    backgroundIntervals.forEach(id => clearInterval(id));
-    backgroundIntervals = [];
-
-    // 1. Меняем цвет фона в зависимости от уровня (от черного к фиолетовому)
-    const intensity = Math.min(completedLevels * 5, 60);
-    container.style.background = `radial-gradient(circle at center, rgb(${10 + intensity/2}, 10, ${30 + intensity}) 0%, rgb(5, 5, 15) 100%)`;
-
-    // 2. Генерация звезд разных типов
-    const starCount = 200 + (completedLevels * 40); // Больше звезд с каждым уровнем
-    for (let i = 0; i < starCount; i++) {
+    for (let i = 0; i < 150; i++) {
         const star = document.createElement('div');
-        
-        const typeRand = Math.random();
-        if (typeRand > 0.85) star.className = 'star star-pulse';
-        else if (typeRand > 0.7) star.className = 'star star-flicker';
-        else star.className = 'star';
-
-        const size = Math.random() * 2 + 1;
+        star.className = 'star';
+        const size = Math.random() * 3 + 1; // Slightly larger stars
         star.style.width = size + 'px';
         star.style.height = size + 'px';
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
-        
-        // Уменьшаем длительность (ускоряем мерцание) с уровнем
-        const duration = Math.max(1, (Math.random() * 3 + 2) - (completedLevels * 0.1));
-        star.style.setProperty('--duration', duration + 's');
+        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
         container.appendChild(star);
     }
 
-    // 3. Планеты (их количество и скорость тоже растут)
-    const planetCount = 3 + Math.floor(completedLevels / 3);
-    const planetColors = ['#a8dadc', '#f4a261', '#e76f51', '#2a9d8f', '#bbd0ff']; // Различные цвета
-    const planetSizes = [15, 25, 35, 40, 50]; // Различные размеры
-
-    for (let i = 0; i < planetCount; i++) {
-        const planet = document.createElement('div');
-        planet.className = 'planet';
-        const size = planetSizes[Math.floor(Math.random() * planetSizes.length)];
-        const color = planetColors[Math.floor(Math.random() * planetColors.length)];
-
-        planet.style.width = size + 'px';
-        planet.style.height = size + 'px';
-        planet.style.borderRadius = '50%';
-        planet.style.backgroundColor = color;
-        planet.style.boxShadow = `0 0 ${size / 4}px ${size / 8}px ${color}, inset 0 0 ${size / 8}px rgba(0,0,0,0.3)`; // Нежное свечение
-        planet.style.position = 'absolute';
-        planet.style.left = Math.random() * 100 + '%';
-        planet.style.top = Math.random() * 100 + '%';
-        planet.style.zIndex = '1'; // Ниже звезд и падающих звезд
-        
-        // Ускоряем движение планет с уровнем
-        const speed = Math.max(15, (Math.random() * 30 + 60) - (completedLevels * 3));
-        planet.style.animation = `planet-drift ${speed}s linear infinite alternate`;
-        planet.style.animationDelay = `-${Math.random() * 60}s`; // Начинать в случайной точке цикла анимации
-        container.appendChild(planet);
-    }
-
-    // 4. Падающие звезды (частота увеличивается)
-    const ssFreq = Math.max(250, 1200 - (completedLevels * 100));
-    const ssId = setInterval(() => {
+    setInterval(() => {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = (Math.random() * 80 + 20) + '%';
@@ -1161,24 +645,5 @@ function initStarryBackground(completedLevels = 0) {
         shootingStar.style.setProperty('--duration', (Math.random() * 1 + 0.8) + 's');
         container.appendChild(shootingStar);
         setTimeout(() => shootingStar.remove(), 2000); // Remove after animation
-    }, ssFreq);
-    backgroundIntervals.push(ssId);
-
-    // 5. Кометы (Редкие, появляются раз в 15-30 секунд)
-    const cometId = setInterval(() => {
-        const comet = document.createElement('div');
-        comet.className = 'comet';
-        comet.style.top = (Math.random() * 70) + '%';
-        comet.style.animation = `comet-move ${Math.random() * 2 + 3}s linear forwards`;
-        container.appendChild(comet);
-        setTimeout(() => comet.remove(), 5000);
-    }, 15000 + Math.random() * 15000);
-    backgroundIntervals.push(cometId);
-}
-
-function isBirthdayToday(dobString) {
-    if (!dobString) return false;
-    const today = new Date();
-    const birthDate = new Date(dobString);
-    return today.getMonth() === birthDate.getMonth() && today.getDate() === birthDate.getDate();
+    }, 1500); // Make shooting stars appear more frequently (every 1.5 seconds)
 }

@@ -7450,35 +7450,6 @@ window.lessonsData = { // Make lessonsData explicitly global
             ]
         },
         videoQuiz2b: [
-            {
-                type: 'intro',
-                text: `
-<div class="pronunciation-box" style="display:block; margin: 10px 0 20px 0;">
-    <div class="pronunciation-header">
-        <span class="pronunciation-icon">🔊</span>
-        <div>
-            <h3 class="pronunciation-title">Pronunciation</h3>
-            <p class="pronunciation-subtitle">Present Perfect Continuous Rhythm</p>
-        </div>
-    </div>
-
-    <div class="pron-section">
-        <p class="pronunciation-listen-label">Listen and repeat the sentences. Copy the rhythm.</p>
-        <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
-            <source src="present perfect audio 1.mp3" type="audio/mpeg">
-        </audio>
-        <div class="sound-sentences" style="line-height: 1.6; font-size: 1.05rem;">
-            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> What <strong>have you been doing</strong>?</p>
-            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> I’ve been <strong>studying</strong> for my exam.</p>
-            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Have you been studying <strong>all day</strong>?</p>
-            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> Yes, I have. I’ve been <strong>working</strong> really hard.</p>
-            <p style="margin-bottom: 8px; border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>A:</strong> Has your sister been studying too?</p>
-            <p style="border-left: 3px solid #667eea; padding-left: 12px; background: #f0f4ff; border-radius: 4px; padding-top: 6px; padding-bottom: 6px;"><strong>B:</strong> No, she hasn’t. She’s been <strong>watching</strong> TV.</p>
-        </div>
-    </div>
-</div>
-`
-            },
             { type: 'intro', text: '<strong>Practice Negative &mdash; Choose the correct option:</strong>' },
             {
                 noNum: true,
@@ -8157,7 +8128,7 @@ window.lessonsData = { // Make lessonsData explicitly global
     <div class="pron-section" style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(0,0,0,0.05);">
         <p class="pronunciation-listen-label">Listen and repeat. Copy the rhythm.</p>
         <audio class="pronunciation-audio" controls style="margin-bottom: 15px;">
-            <source src="future perfect cont 2 new.wav" type="audio/wav">
+                    <source src="future perfect cont 2.wav" type="audio/wav">
         </audio>
         <div class="pron-dialogue">
             <div class="dialogue-line">
