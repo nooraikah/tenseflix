@@ -779,35 +779,35 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', 1200 / 2, 240); // Опустили на 30 пикселей (было 210)
+    ctx.fillText('TENSEFLIX', 1200 / 2, 270); // Lowered by 30px as requested
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 270); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 310); // Lowered by 30px + 10px extra
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', 1200 / 2, 330); 
+    ctx.fillText('This is to certify that', 1200 / 2, 360); // Lowered by 30px
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, 1200 / 2, 420); 
+    ctx.fillText(userName, 1200 / 2, 450); // Lowered by 30px
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 500); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 530); // Lowered by 30px
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 550); 
+    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 580); // Lowered by 30px
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 590); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 620); // Lowered by 30px
 
     // 5. Подписи
-    const sigY = 680; // Signatures moved up to stay inside golden border
+    const sigY = 710; // Lowered by 30px
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -833,7 +833,7 @@ function downloadCertificate() {
         ctx.save();
         const pinguoSize = 110;
         const centerX = 1200 / 2; 
-        const centerY = 115; // Moved down "just a little" as requested
+        const centerY = 145; // Lowered by 30px as requested
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -886,9 +886,9 @@ function downloadCertificate() {
             if (tgBtn && waBtn && dlBtn) {
                 // Re-arrange elements inside the container to ensure correct sequence
                 shareSection.innerHTML = ''; // Clear to reset order
-                shareSection.appendChild(tgBtn); // Left
+                shareSection.appendChild(waBtn); // Left corner
                 shareSection.appendChild(dlBtn); // Middle
-                shareSection.appendChild(waBtn); // Right
+                shareSection.appendChild(tgBtn); // Right corner
 
                 [tgBtn, dlBtn, waBtn].forEach(b => {
                     // Убираем все стили, которые заставляли кнопку скачивания перекрывать другие
