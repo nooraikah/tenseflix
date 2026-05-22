@@ -761,29 +761,28 @@ function downloadCertificate() {
         ctx.fillText('Your TENSEFLIX Journey:', canvas.width / 2, 595); 
 
         ctx.font = '18px "Georgia", serif';
-        ctx.textAlign = 'left';
-        const statsX = canvas.width / 2 - 200; // Adjust X position for left alignment
+        ctx.textAlign = 'center';
         let statsY = 625; 
 
-        ctx.fillText(`Tenses Mastered: ${userStats.tensesCompleted}/12`, statsX, statsY);
+        ctx.fillText(`Tenses Mastered: ${userStats.tensesCompleted}/12`, canvas.width / 2, statsY);
         statsY += 25;
-        ctx.fillText(`Exercises Completed: ${userStats.exercisesCompleted}`, statsX, statsY);
+        ctx.fillText(`Exercises Completed: ${userStats.exercisesCompleted}`, canvas.width / 2, statsY);
         statsY += 25;
-        ctx.fillText(`Average Accuracy: ${userStats.averageAccuracy}%`, statsX, statsY);
+        ctx.fillText(`Average Accuracy: ${userStats.averageAccuracy}%`, canvas.width / 2, statsY);
         // Removed Time Spent as per request to simplify and make space
         
         ctx.textAlign = 'center'; // Reset text alignment
     }
 
     // 6. Подписи
-    ctx.font = 'italic 18px "Brush Script MT", cursive';
-    ctx.fillStyle = '#555';
     const sigY = 720; // Base Y for signatures
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
     tutorNames.forEach((tutor, i) => {
         const x = 180 + (i * 210); // Spacing for 5 signatures
+        ctx.font = 'italic 18px "Brush Script MT", cursive';
+        ctx.fillStyle = '#555';
         ctx.fillText(tutor.short, x, sigY);
         ctx.beginPath();
         ctx.moveTo(x - 50, lineY);
@@ -797,7 +796,7 @@ function downloadCertificate() {
     // 7. Дата
     ctx.fillStyle = '#888';
     ctx.font = 'italic 18px "Georgia", serif';
-    ctx.fillText(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, canvas.width / 2, canvas.height - 40); // Moved up
+    ctx.fillText(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, canvas.width / 2, canvas.height - 70); 
 
     // 8. Отрисовка Pinguo (берем из DOM) - Центрируем вверху и делаем круглым
     const pinguoImg = document.querySelector('.cert-pinguo');
@@ -805,7 +804,7 @@ function downloadCertificate() {
         ctx.save();
         const pinguoSize = 110;
         const centerX = canvas.width / 2;
-        const centerY = 90;
+        const centerY = 110; // Moved down to fit inside gold border
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
