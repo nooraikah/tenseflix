@@ -748,35 +748,35 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 205); // Adjusted for photo space
+    ctx.fillText('TENSEFLIX', canvas.width / 2, 250); // Lowered for better balance
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 255); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 310); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', canvas.width / 2, 325); 
+    ctx.fillText('This is to certify that', canvas.width / 2, 380); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, canvas.width / 2, 405); 
+    ctx.fillText(userName, canvas.width / 2, 470); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 475); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 550); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 515); 
+    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 600); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 555); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 640); 
 
     // 5. Подписи
-    const sigY = 700; // Adjusted base Y for signatures to move them up
+    const sigY = 760; // Lowered signatures to use available space
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -789,7 +789,7 @@ function downloadCertificate() {
         ctx.moveTo(x - 50, lineY);
         ctx.lineTo(x + 50, lineY);
         ctx.stroke();
-        ctx.font = 'bold 12px "Brush Script MT", cursive, serif'; // Changed to Brush Script MT for full name
+        ctx.font = 'bold 12px "Georgia", serif'; // Restored simple font for full names
         ctx.fillStyle = '#333';
         ctx.fillText(tutor.full, x, fullNameY);
     });
@@ -829,12 +829,31 @@ function downloadCertificate() {
         link.click();
         document.body.removeChild(link);
 
-        // Показываем кнопки "Поделиться"
+        // Remove internal close button and setup share buttons around download button
+        const internalCloseBtn = document.getElementById('cert-close-btn');
+        if (internalCloseBtn) internalCloseBtn.style.display = 'none';
+
         const shareSection = document.getElementById('cert-share-section');
         if (shareSection) {
             shareSection.style.display = 'flex';
-            shareSection.style.marginTop = '60px'; // Increased margin to prevent overlapping with the download button
+            shareSection.style.flexDirection = 'row';
+            shareSection.style.justifyContent = 'center';
+            shareSection.style.alignItems = 'center';
+            shareSection.style.gap = '20px';
+            shareSection.style.marginTop = '30px'; 
             shareSection.style.width = '100%'; // Ensure it takes full width for centering
+
+            // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
+            const tgBtn = shareSection.querySelector('[onclick*="telegram"]');
+            const waBtn = shareSection.querySelector('[onclick*="whatsapp"]');
+            const dlBtn = document.querySelector('.certificate-display .get-result-btn');
+            
+            if (tgBtn && waBtn && dlBtn) {
+                // Reorder via CSS to avoid DOM manipulation risks
+                tgBtn.style.order = "1";
+                dlBtn.style.order = "2";
+                waBtn.style.order = "3";
+            }
         }
     } catch (e) {
         console.error('Ошибка при генерации PNG:', e);
