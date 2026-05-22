@@ -727,56 +727,57 @@ function downloadCertificate() {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
 
-    // Устанавливаем размер (альбомный формат)
-    canvas.width = 1200;
-    canvas.height = 840;
+    // Устанавливаем размер (альбомный формат) - Повышаем разрешение в 2 раза для четкости
+    canvas.width = 2400;
+    canvas.height = 1680;
+    ctx.scale(2, 2); // Рисуем в масштабе 1200x840, но с плотностью пикселей x2
 
     // 1. Фон
     ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, 1200, 840);
     
     // 2. Рамка (темно-синяя и золотая) - Улучшенный стиль
     ctx.strokeStyle = '#0d1b3e'; // Темно-синий
     ctx.lineWidth = 30;
-    ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+    ctx.strokeRect(15, 15, 1200 - 30, 840 - 30);
     
     ctx.strokeStyle = '#e2b714'; // Золотой
     ctx.lineWidth = 5;
-    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
+    ctx.strokeRect(40, 40, 1200 - 80, 840 - 80);
 
     // 3. Текст: Заголовок и подзаголовок
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 290); // Lowered for better balance
+    ctx.fillText('TENSEFLIX', 1200 / 2, 320); // Lowered for better balance
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 350); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 380); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', canvas.width / 2, 420); 
+    ctx.fillText('This is to certify that', 1200 / 2, 450); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, canvas.width / 2, 510); 
+    ctx.fillText(userName, 1200 / 2, 540); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 590); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 620); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 650); 
+    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 680); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 695); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 725); 
 
     // 5. Подписи
-    const sigY = 760; // Balanced signatures position
+    const sigY = 785; // Lowered signatures position
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -796,13 +797,13 @@ function downloadCertificate() {
 
     // Date removed as per request
 
-    // 6. Отрисовка Pinguo (берем из DOM) - Центрируем вверху and lowered for better framing
+    // 6. Отрисовка Pinguo (берем из DOM) - Центрируем вверху и опускаем ниже
     const pinguoImg = document.querySelector('.cert-pinguo');
     if (pinguoImg) {
         ctx.save();
         const pinguoSize = 110;
-        const centerX = canvas.width / 2; // Center horizontally
-        const centerY = 145; // Moved circle lower as requested
+        const centerX = 1200 / 2; 
+        const centerY = 175; // Lowered circle
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -840,7 +841,7 @@ function downloadCertificate() {
             shareSection.style.justifyContent = 'center';
             shareSection.style.alignItems = 'center';
             shareSection.style.gap = '20px';
-            shareSection.style.marginTop = '40px'; 
+            shareSection.style.marginTop = '30px'; 
             shareSection.style.width = '100%'; // Ensure it takes full width for centering
 
             // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
@@ -849,12 +850,17 @@ function downloadCertificate() {
             const dlBtn = document.querySelector('.certificate-display .get-result-btn');
             
             if (tgBtn && waBtn && dlBtn) {
-                // Move download button into the share section to control order correctly
-                shareSection.appendChild(dlBtn); 
-                
-                tgBtn.style.order = "1";
-                dlBtn.style.order = "2";
-                waBtn.style.order = "3";
+                // Re-arrange elements inside the container to ensure correct sequence
+                shareSection.innerHTML = ''; // Clear to reset order
+                shareSection.appendChild(tgBtn);
+                shareSection.appendChild(dlBtn);
+                shareSection.appendChild(waBtn);
+
+                [tgBtn, dlBtn, waBtn].forEach(b => {
+                    b.style.position = 'static';
+                    b.style.margin = '0';
+                    b.style.display = 'flex';
+                });
             }
         }
     } catch (e) {
