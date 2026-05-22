@@ -125,6 +125,13 @@ function openTeacherGuideModal() {
         modal.style.display = 'flex';
         setTimeout(() => modal.classList.add('show'), 10); // Add 'show' class for fade-in
         document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+        // Close when clicking the backdrop (the area outside the content box)
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                closeTeacherGuideModal();
+            }
+        };
     }
 }
 
@@ -218,21 +225,14 @@ function closeTeacherGuidePopup() {
     }, 300);
 }
 
-// Close popup when clicking outside the widget area
-// Removed the generic click listener that closes popups when clicking outside.
-// This was specifically for the teacher-guide-popup, but the user requested to remove
-// the function that closes "whole popup when clicking random place" in the context
-// of the Oscar speech modal. Since there was no such listener for the Oscar modal,
-// and this was the only generic one, it's being removed.
-// If the Oscar modal is still closing on outside clicks, it's due to other CSS/HTML
-// or a different script not provided in the context.
-// window.addEventListener('click', (event) => {
-//     const widget = document.getElementById('teacher-guide-widget');
-//     const popup = document.getElementById('teacher-guide-popup');
-//     if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
-//         closeTeacherGuidePopup();
-//     }
-// });
+// Close Teacher Guide popup widget when clicking outside of it
+window.addEventListener('click', (event) => {
+    const popup = document.getElementById('teacher-guide-popup');
+    const trigger = document.getElementById('teacher-guide-trigger');
+    if (popup && popup.style.display === 'block' && !popup.contains(event.target) && event.target !== trigger) {
+        closeTeacherGuidePopup();
+    }
+});
 
 // Initialize levels based on user progress
 function initializeLevels() {
@@ -631,6 +631,14 @@ function openOscarSpeech() {
         modal.classList.add('show');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+
+        // Prevent the acceptance speech modal from closing when clicking anywhere inside or on the background
+        // This ensures clicking the text, the credits ("titles"), or random spots won't trigger a close.
+        modal.onclick = null;
+        const content = modal.querySelector('.oscar-modal-content') || modal.querySelector('.modal-content');
+        if (content) {
+            content.onclick = (e) => e.stopPropagation();
+        }
         
         // Typewriter effect logic
         if (textContainer) {
@@ -675,6 +683,9 @@ function showCinematicCredits() {
         
         credits.style.display = 'flex';
 
+        // Prevent clicking on the credits themselves from closing the modal
+        credits.onclick = (e) => e.stopPropagation();
+
         // Wait for credits animation to finish (25s) then show certificate
         setTimeout(() => {
             showFinalCertificate();
@@ -694,6 +705,9 @@ function showFinalCertificate() {
         if (nameEl && currentUser) {
             nameEl.textContent = currentUser.fullName;
         }
+
+        // Prevent clicking on the certificate from closing the modal
+        cert.onclick = (e) => e.stopPropagation();
         cert.classList.add('show');
     }
 }
@@ -819,7 +833,8 @@ function downloadCertificate() {
         const shareSection = document.getElementById('cert-share-section');
         if (shareSection) {
             shareSection.style.display = 'flex';
-            shareSection.style.marginTop = '20px'; // Add margin to separate from download button
+            shareSection.style.marginTop = '60px'; // Increased margin to prevent overlapping with the download button
+            shareSection.style.width = '100%'; // Ensure it takes full width for centering
         }
     } catch (e) {
         console.error('Ошибка при генерации PNG:', e);
