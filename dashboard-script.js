@@ -706,6 +706,36 @@ function showFinalCertificate() {
             nameEl.textContent = currentUser.fullName;
         }
 
+        // Добавляем кнопку "X" (крестик) в правый верхний угол контейнера сертификата
+        if (!document.getElementById('cert-x-close')) {
+            const xBtn = document.createElement('button');
+            xBtn.id = 'cert-x-close';
+            xBtn.innerHTML = '&times;';
+            xBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: rgba(255,255,255,0.1);
+                border: 2px solid #e2b714;
+                color: #e2b714;
+                font-size: 32px;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 1000;
+                line-height: 1;
+            `;
+            xBtn.onclick = (e) => { e.stopPropagation(); closeOscarSpeech(); };
+            xBtn.onmouseover = () => { xBtn.style.background = '#e2b714'; xBtn.style.color = '#1a1a2e'; };
+            xBtn.onmouseout = () => { xBtn.style.background = 'rgba(255,255,255,0.1)'; xBtn.style.color = '#e2b714'; };
+            cert.appendChild(xBtn);
+        }
+
         // Prevent clicking on the certificate from closing the modal
         cert.onclick = (e) => e.stopPropagation();
         cert.classList.add('show');
@@ -749,7 +779,7 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', 1200 / 2, 210); // Balanced for fit
+    ctx.fillText('TENSEFLIX', 1200 / 2, 240); // Опустили на 30 пикселей (было 210)
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
@@ -830,7 +860,7 @@ function downloadCertificate() {
         link.click();
         document.body.removeChild(link);
 
-        // Remove internal close button and setup share buttons around download button
+        // Удаляем (скрываем) текстовую кнопку Close, оставляем только крестик
         const internalCloseBtn = document.getElementById('cert-close-btn');
         if (internalCloseBtn) internalCloseBtn.style.display = 'none';
 
@@ -861,10 +891,14 @@ function downloadCertificate() {
                 shareSection.appendChild(waBtn); // Right
 
                 [tgBtn, dlBtn, waBtn].forEach(b => {
-                    // Reset any absolute positioning that might cover other buttons
+                    // Убираем все стили, которые заставляли кнопку скачивания перекрывать другие
                     b.style.position = 'relative'; 
                     b.style.margin = '0';
-                    b.style.display = 'flex';
+                    b.style.display = 'inline-flex';
+                    b.style.width = 'auto'; 
+                    b.style.minWidth = '160px'; 
+                    b.style.transform = 'none'; // Сбрасываем центрирующие трансформации
+                    b.style.zIndex = '5';
                 });
             }
         }
