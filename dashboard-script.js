@@ -748,35 +748,35 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 250); // Lowered for better balance
+    ctx.fillText('TENSEFLIX', canvas.width / 2, 290); // Lowered for better balance
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 310); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 350); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', canvas.width / 2, 380); 
+    ctx.fillText('This is to certify that', canvas.width / 2, 420); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, canvas.width / 2, 470); 
+    ctx.fillText(userName, canvas.width / 2, 510); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 550); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 590); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 600); 
+    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 650); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 640); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 695); 
 
     // 5. Подписи
-    const sigY = 760; // Lowered signatures to use available space
+    const sigY = 760; // Balanced signatures position
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -789,20 +789,20 @@ function downloadCertificate() {
         ctx.moveTo(x - 50, lineY);
         ctx.lineTo(x + 50, lineY);
         ctx.stroke();
-        ctx.font = 'bold 12px "Georgia", serif'; // Restored simple font for full names
+        ctx.font = '12px "Georgia", serif'; // Simple, clean font for full names
         ctx.fillStyle = '#333';
         ctx.fillText(tutor.full, x, fullNameY);
     });
 
     // Date removed as per request
 
-    // 6. Отрисовка Pinguo (берем из DOM) - Центрируем вверху и делаем круглым (centerY adjusted)
+    // 6. Отрисовка Pinguo (берем из DOM) - Центрируем вверху and lowered for better framing
     const pinguoImg = document.querySelector('.cert-pinguo');
     if (pinguoImg) {
         ctx.save();
         const pinguoSize = 110;
         const centerX = canvas.width / 2; // Center horizontally
-        const centerY = 105; // Adjusted to be higher but still within the gold border
+        const centerY = 145; // Moved circle lower as requested
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -840,7 +840,7 @@ function downloadCertificate() {
             shareSection.style.justifyContent = 'center';
             shareSection.style.alignItems = 'center';
             shareSection.style.gap = '20px';
-            shareSection.style.marginTop = '30px'; 
+            shareSection.style.marginTop = '40px'; 
             shareSection.style.width = '100%'; // Ensure it takes full width for centering
 
             // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
@@ -849,7 +849,9 @@ function downloadCertificate() {
             const dlBtn = document.querySelector('.certificate-display .get-result-btn');
             
             if (tgBtn && waBtn && dlBtn) {
-                // Reorder via CSS to avoid DOM manipulation risks
+                // Move download button into the share section to control order correctly
+                shareSection.appendChild(dlBtn); 
+                
                 tgBtn.style.order = "1";
                 dlBtn.style.order = "2";
                 waBtn.style.order = "3";
