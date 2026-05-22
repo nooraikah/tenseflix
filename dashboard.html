@@ -573,10 +573,8 @@
         .sig-font { font-family: 'Brush Script MT', cursive; font-size: 1.4rem; color: #555; border-bottom: 1px solid #333; width: 120px; margin-bottom: 5px; }
         .sig-name { font-size: 0.7rem; font-weight: bold; text-transform: uppercase; color: #888; }
         
+        /* Moved inside share-section, so position:absolute and bottom are removed */
         .download-cert-btn {
-            position: absolute;
-            /* Adjusted bottom position to account for removed margin-bottom from signatures */
-            bottom: -80px;
             background: #e2b714;
             color: #000;
             border: none;
@@ -596,6 +594,8 @@
             margin-top: 20px;
             gap: 15px;
             justify-content: center;
+            align-items: center; /* Ensure vertical alignment */
+            flex-wrap: nowrap; /* Prevent wrapping */
         }
         .share-btn {
             padding: 10px 20px;
@@ -605,6 +605,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: opacity 0.2s;
+            min-width: 120px; /* Ensure buttons have enough space */
         }
 
         @media print {
@@ -1165,13 +1166,11 @@
                 </div>
             </div>
 
-            <button class="download-cert-btn" onclick="downloadCertificate()">⬇ DOWNLOAD CERTIFICATE</button>
-
             <!-- Share Section -->
             <div id="cert-share-section" class="share-section">
                 <button class="share-btn" style="background: #0088cc;" onclick="shareCertificate('telegram')">✈ Telegram</button>
                 <button class="share-btn" style="background: #25d366;" onclick="shareCertificate('whatsapp')">💬 WhatsApp</button>
-                <button class="share-btn" style="background: #555;" onclick="closeOscarSpeech()">❌ Finish</button>
+                <button class="download-cert-btn" onclick="downloadCertificate()">⬇ DOWNLOAD CERTIFICATE</button>
             </div>
         </div>
     </div>

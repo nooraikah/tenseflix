@@ -706,36 +706,6 @@ function showFinalCertificate() {
             nameEl.textContent = currentUser.fullName;
         }
 
-        // Добавляем кнопку "X" (крестик) в правый верхний угол контейнера сертификата
-        if (!document.getElementById('cert-x-close')) {
-            const xBtn = document.createElement('button');
-            xBtn.id = 'cert-x-close';
-            xBtn.innerHTML = '&times;';
-            xBtn.style.cssText = `
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                background: rgba(255,255,255,0.1);
-                border: 2px solid #e2b714;
-                color: #e2b714;
-                font-size: 32px;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 1000;
-                line-height: 1;
-            `;
-            xBtn.onclick = (e) => { e.stopPropagation(); closeOscarSpeech(); };
-            xBtn.onmouseover = () => { xBtn.style.background = '#e2b714'; xBtn.style.color = '#1a1a2e'; };
-            xBtn.onmouseout = () => { xBtn.style.background = 'rgba(255,255,255,0.1)'; xBtn.style.color = '#e2b714'; };
-            cert.appendChild(xBtn);
-        }
-
         // Prevent clicking on the certificate from closing the modal
         cert.onclick = (e) => e.stopPropagation();
         cert.classList.add('show');
@@ -860,7 +830,36 @@ function downloadCertificate() {
         link.click();
         document.body.removeChild(link);
 
-        // Удаляем (скрываем) текстовую кнопку Close, оставляем только крестик
+        // Show the "X" close button after download
+        const cert = document.getElementById('certificate-display');
+        if (cert && !document.getElementById('cert-x-close')) {
+            const xBtn = document.createElement('button');
+            xBtn.id = 'cert-x-close';
+            xBtn.innerHTML = '&times;';
+            xBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: rgba(255,255,255,0.1);
+                border: 2px solid #e2b714;
+                color: #e2b714;
+                font-size: 32px;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 1000;
+                line-height: 1;
+            `;
+            xBtn.onclick = (e) => { e.stopPropagation(); closeOscarSpeech(); };
+            cert.appendChild(xBtn);
+        }
+
+        // Remove/hide the original textual Close button
         const internalCloseBtn = document.getElementById('cert-close-btn');
         if (internalCloseBtn) internalCloseBtn.style.display = 'none';
 
@@ -881,25 +880,14 @@ function downloadCertificate() {
             // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
             const tgBtn = shareSection.querySelector('[onclick*="telegram"]');
             const waBtn = shareSection.querySelector('[onclick*="whatsapp"]');
-            const dlBtn = document.querySelector('.certificate-display .get-result-btn');
+            const dlBtn = document.querySelector('#certificate-display .download-cert-btn');
             
             if (tgBtn && waBtn && dlBtn) {
                 // Re-arrange elements inside the container to ensure correct sequence
                 shareSection.innerHTML = ''; // Clear to reset order
-                shareSection.appendChild(waBtn); // Left corner
-                shareSection.appendChild(dlBtn); // Middle
-                shareSection.appendChild(tgBtn); // Right corner
-
-                [tgBtn, dlBtn, waBtn].forEach(b => {
-                    // Убираем все стили, которые заставляли кнопку скачивания перекрывать другие
-                    b.style.position = 'relative'; 
-                    b.style.margin = '0';
-                    b.style.display = 'inline-flex';
-                    b.style.width = 'auto'; 
-                    b.style.minWidth = '160px'; 
-                    b.style.transform = 'none'; // Сбрасываем центрирующие трансформации
-                    b.style.zIndex = '5';
-                });
+                shareSection.appendChild(waBtn);
+                shareSection.appendChild(dlBtn);
+                shareSection.appendChild(tgBtn);
             }
         }
     } catch (e) {
@@ -913,6 +901,10 @@ function closeOscarSpeech() {
     const textContainer = document.getElementById('oscar-speech-p');
     const credits = document.getElementById('cinematic-credits');
     
+    // Remove the "X" button if it exists
+    const xBtn = document.getElementById('cert-x-close');
+    if (xBtn) xBtn.remove();
+
     if (modal) {
         modal.classList.remove('show');
         setTimeout(() => { 
