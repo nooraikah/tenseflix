@@ -749,35 +749,35 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', 1200 / 2, 230); // Compacted for better fit
+    ctx.fillText('TENSEFLIX', 1200 / 2, 210); // Balanced for fit
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 290); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 270); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', 1200 / 2, 350); 
+    ctx.fillText('This is to certify that', 1200 / 2, 330); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, 1200 / 2, 440); 
+    ctx.fillText(userName, 1200 / 2, 420); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 520); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 500); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 570); 
+    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 550); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 615); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 590); 
 
     // 5. Подписи
-    const sigY = 700; // Signatures now fit safely within the 760 border
+    const sigY = 680; // Signatures moved up to stay inside golden border
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -803,7 +803,7 @@ function downloadCertificate() {
         ctx.save();
         const pinguoSize = 110;
         const centerX = 1200 / 2; 
-        const centerY = 135; // Moved down just a little as requested
+        const centerY = 115; // Moved down "just a little" as requested
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -844,7 +844,8 @@ function downloadCertificate() {
                 gap: '15px',
                 marginTop: '30px',
                 width: '100%',
-                flexWrap: 'nowrap'
+                flexWrap: 'nowrap',
+                position: 'relative'
             });
 
             // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
@@ -860,9 +861,10 @@ function downloadCertificate() {
                 shareSection.appendChild(waBtn); // Right
 
                 [tgBtn, dlBtn, waBtn].forEach(b => {
-                    b.style.position = 'static';
+                    // Reset any absolute positioning that might cover other buttons
+                    b.style.position = 'relative'; 
                     b.style.margin = '0';
-                    b.style.display = 'inline-flex';
+                    b.style.display = 'flex';
                 });
             }
         }
