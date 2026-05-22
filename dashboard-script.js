@@ -727,43 +727,43 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 120); // Moved up
+    ctx.fillText('TENSEFLIX', canvas.width / 2, 185); // Adjusted for photo space
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 170); // Moved up
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 235); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', canvas.width / 2, 240); // Moved up
+    ctx.fillText('This is to certify that', canvas.width / 2, 305); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, canvas.width / 2, 320); // Moved up
+    ctx.fillText(userName, canvas.width / 2, 385); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 390); // Moved up
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 455); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 430); // Moved up
+    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 495); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 470); // Moved up
+    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 535); 
 
     // 5. Статистика пользователя
     if (userStats) {
         ctx.fillStyle = '#1a1a2e';
         ctx.font = 'bold 20px "Georgia", serif';
-        ctx.fillText('Your TENSEFLIX Journey:', canvas.width / 2, 530); // Moved up
+        ctx.fillText('Your TENSEFLIX Journey:', canvas.width / 2, 595); 
 
         ctx.font = '18px "Georgia", serif';
         ctx.textAlign = 'left';
         const statsX = canvas.width / 2 - 200; // Adjust X position for left alignment
-        let statsY = 560; // Moved up
+        let statsY = 625; 
 
         ctx.fillText(`Tenses Mastered: ${userStats.tensesCompleted}/12`, statsX, statsY);
         statsY += 25;
@@ -799,13 +799,25 @@ function downloadCertificate() {
     ctx.font = 'italic 18px "Georgia", serif';
     ctx.fillText(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, canvas.width / 2, canvas.height - 40); // Moved up
 
-    // 8. Отрисовка Pinguo (берем из DOM) - Центрируем внизу
+    // 8. Отрисовка Pinguo (берем из DOM) - Центрируем вверху и делаем круглым
     const pinguoImg = document.querySelector('.cert-pinguo');
     if (pinguoImg) {
         ctx.save();
-        const pinguoSize = 80; // Even smaller for better fit
-        const pinguoY = canvas.height - 150; // Position above the date
-        ctx.drawImage(pinguoImg, canvas.width / 2 - pinguoSize / 2, pinguoY, pinguoSize, pinguoSize);
+        const pinguoSize = 110;
+        const centerX = canvas.width / 2;
+        const centerY = 90;
+        
+        // Создаем круглую маску (Circle clipping)
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, pinguoSize / 2, 0, Math.PI * 2);
+        ctx.clip();
+        
+        ctx.drawImage(pinguoImg, centerX - pinguoSize / 2, centerY - pinguoSize / 2, pinguoSize, pinguoSize);
+        
+        // Опционально: добавляем золотую рамку вокруг круга
+        ctx.strokeStyle = '#e2b714';
+        ctx.lineWidth = 4;
+        ctx.stroke();
         ctx.restore();
     }
 
