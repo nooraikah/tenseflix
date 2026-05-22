@@ -706,9 +706,12 @@ function showFinalCertificate() {
             nameEl.textContent = currentUser.fullName;
         }
 
-        // Ensure the share section is reset if reopening the modal
+        // Сбрасываем состояние кнопок шаринга при открытии сертификата
         const shareSection = document.getElementById('cert-share-section');
-        if (shareSection) shareSection.style.display = 'none';
+        if (shareSection) {
+            shareSection.style.display = 'none';
+            shareSection.classList.remove('show-animated');
+        }
 
         // Показываем сертификат
         cert.style.display = 'flex';
@@ -877,9 +880,11 @@ function downloadCertificate() {
         const internalCloseBtn = document.getElementById('cert-close-btn');
         if (internalCloseBtn) internalCloseBtn.style.display = 'none';
 
-        const shareSection = document.getElementById('cert-share-section');
-        if (shareSection) {
-            shareSection.style.display = 'flex';
+       const shareSection = document.getElementById('cert-share-section');
+        if (shareSection && !shareSection.classList.contains('show-animated')) {
+            // Активируем плавную анимацию появления
+            shareSection.classList.add('show-animated');
+            
             Object.assign(shareSection.style, {
                 flexDirection: 'row',
                 justifyContent: 'center',
@@ -890,6 +895,7 @@ function downloadCertificate() {
                 flexWrap: 'nowrap',
                 position: 'relative'
             });
+
 
             // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
             const tgBtn = shareSection.querySelector('[onclick*="telegram"]');
@@ -938,8 +944,8 @@ function closeOscarSpeech() {
 }
 
 function shareCertificate(platform) {
-    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆 ");
-    const url = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]); // Чистая ссылка на сайт
+    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆");
+    const url = encodeURIComponent("https://tenseflix.live/");
     let shareUrl = "";
     
     if (platform === 'telegram') {

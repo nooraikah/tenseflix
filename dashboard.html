@@ -595,10 +595,22 @@
             gap: 15px;
             justify-content: center;
             align-items: center; /* Ensure vertical alignment */
-            flex-wrap: nowrap; 
+            flex-wrap: nowrap;
             height: 60px; /* Фиксированная высота контейнера */
             width: 100%;
             position: relative;
+            opacity: 0;
+        }
+        
+        /* Плавная анимация появления кнопок шаринга */
+        @keyframes shareFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .share-section.show-animated {
+            display: flex !important;
+            animation: shareFadeIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         .share-btn {
             padding: 10px 20px;
