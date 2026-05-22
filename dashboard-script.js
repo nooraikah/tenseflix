@@ -709,6 +709,9 @@ function showFinalCertificate() {
         // Prevent clicking on the certificate from closing the modal
         cert.onclick = (e) => e.stopPropagation();
         cert.classList.add('show');
+        // Ensure the share section is reset if reopening the modal
+        const shareSection = document.getElementById('cert-share-section');
+        if (shareSection) shareSection.style.display = 'none';
     }
 }
 
@@ -856,6 +859,8 @@ function downloadCertificate() {
                 line-height: 1;
             `;
             xBtn.onclick = (e) => { e.stopPropagation(); closeOscarSpeech(); };
+            xBtn.onmouseover = () => { xBtn.style.background = '#e2b714'; xBtn.style.color = '#1a1a2e'; };
+            xBtn.onmouseout = () => { xBtn.style.background = 'rgba(255,255,255,0.1)'; xBtn.style.color = '#e2b714'; };
             cert.appendChild(xBtn);
         }
 
@@ -883,11 +888,7 @@ function downloadCertificate() {
             const dlBtn = document.querySelector('#certificate-display .download-cert-btn');
             
             if (tgBtn && waBtn && dlBtn) {
-                // Re-arrange elements inside the container to ensure correct sequence
-                shareSection.innerHTML = ''; // Clear to reset order
-                shareSection.appendChild(waBtn);
-                shareSection.appendChild(dlBtn);
-                shareSection.appendChild(tgBtn);
+                shareSection.replaceChildren(waBtn, dlBtn, tgBtn);
             }
         }
     } catch (e) {
