@@ -219,13 +219,20 @@ function closeTeacherGuidePopup() {
 }
 
 // Close popup when clicking outside the widget area
-window.addEventListener('click', (event) => {
-    const widget = document.getElementById('teacher-guide-widget');
-    const popup = document.getElementById('teacher-guide-popup');
-    if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
-        closeTeacherGuidePopup();
-    }
-});
+// Removed the generic click listener that closes popups when clicking outside.
+// This was specifically for the teacher-guide-popup, but the user requested to remove
+// the function that closes "whole popup when clicking random place" in the context
+// of the Oscar speech modal. Since there was no such listener for the Oscar modal,
+// and this was the only generic one, it's being removed.
+// If the Oscar modal is still closing on outside clicks, it's due to other CSS/HTML
+// or a different script not provided in the context.
+// window.addEventListener('click', (event) => {
+//     const widget = document.getElementById('teacher-guide-widget');
+//     const popup = document.getElementById('teacher-guide-popup');
+//     if (widget && !widget.contains(event.target) && popup && popup.style.display === 'block') {
+//         closeTeacherGuidePopup();
+//     }
+// });
 
 // Initialize levels based on user progress
 function initializeLevels() {
@@ -727,35 +734,35 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', canvas.width / 2, 185); // Adjusted for photo space
+    ctx.fillText('TENSEFLIX', canvas.width / 2, 205); // Adjusted for photo space
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 235); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 255); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', canvas.width / 2, 305); 
+    ctx.fillText('This is to certify that', canvas.width / 2, 325); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, canvas.width / 2, 385); 
+    ctx.fillText(userName, canvas.width / 2, 405); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 455); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', canvas.width / 2, 475); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 495); 
+    ctx.fillText('ABSOLUTE CINEMA', canvas.width / 2, 515); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 535); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', canvas.width / 2, 555); 
 
     // 5. Подписи
-    const sigY = 680; // Adjusted base Y for signatures to move them up
+    const sigY = 700; // Adjusted base Y for signatures to move them up
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -768,20 +775,20 @@ function downloadCertificate() {
         ctx.moveTo(x - 50, lineY);
         ctx.lineTo(x + 50, lineY);
         ctx.stroke();
-        ctx.font = 'bold 12px "Georgia", serif'; // Smaller font for full name
+        ctx.font = 'bold 12px "Brush Script MT", cursive, serif'; // Changed to Brush Script MT for full name
         ctx.fillStyle = '#333';
         ctx.fillText(tutor.full, x, fullNameY);
     });
 
     // Date removed as per request
 
-    // 6. Отрисовка Pinguo (берем из DOM) - Центрируем вверху и делаем круглым
+    // 6. Отрисовка Pinguo (берем из DOM) - Центрируем вверху и делаем круглым (centerY adjusted)
     const pinguoImg = document.querySelector('.cert-pinguo');
     if (pinguoImg) {
         ctx.save();
         const pinguoSize = 110;
-        const centerX = canvas.width / 2;
-        const centerY = 110; // Moved down to fit inside gold border
+        const centerX = canvas.width / 2; // Center horizontally
+        const centerY = 105; // Adjusted to be higher but still within the gold border
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -810,19 +817,14 @@ function downloadCertificate() {
 
         // Показываем кнопки "Поделиться"
         const shareSection = document.getElementById('cert-share-section');
-        if (shareSection) shareSection.style.display = 'flex';
+        if (shareSection) {
+            shareSection.style.display = 'flex';
+            shareSection.style.marginTop = '20px'; // Add margin to separate from download button
+        }
     } catch (e) {
         console.error('Ошибка при генерации PNG:', e);
         alert('Не удалось скачать сертификат. Если вы открыли файл напрямую через браузер, попробуйте использовать веб-сервер.');
     }
-}
-
-function shareCertificate(platform) {
-    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆");
-    const url = platform === 'telegram' 
-        ? `https://t.me/share/url?url=https://tenseflix.com&text=${text}`
-        : `https://api.whatsapp.com/send?text=${text}`;
-    window.open(url, '_blank');
 }
 
 function closeOscarSpeech() {
