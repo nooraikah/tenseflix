@@ -706,19 +706,9 @@ function showFinalCertificate() {
             nameEl.textContent = currentUser.fullName;
         }
 
+        // Ensure the share section is reset if reopening the modal
         const shareSection = document.getElementById('cert-share-section');
-        const dlBtn = document.querySelector('#certificate-display .download-cert-btn');
-
-        if (shareSection) {
-            // Если кнопка скачивания была перемещена внутрь секции шаринга, возвращаем её обратно
-            if (dlBtn && shareSection.contains(dlBtn)) {
-                cert.insertBefore(dlBtn, shareSection);
-                dlBtn.style.cssText = ''; // Сбрасываем инлайновые стили, чтобы вернуть вид из CSS
-            }
-            // Сбрасываем состояние кнопок шаринга при открытии сертификата
-            shareSection.style.display = 'none';
-            shareSection.classList.remove('show-animated');
-        }
+        if (shareSection) shareSection.style.display = 'none';
 
         // Показываем сертификат
         cert.style.display = 'flex';
@@ -726,18 +716,13 @@ function showFinalCertificate() {
     }
 }
 
-function downloadCertificate() {
+/**
+ * Генерирует Canvas сертификата с высоким разрешением
+ */
+function generateCertificateCanvas() {
     const currentUser = profileManager.getCurrentUser();
     const userName = currentUser?.fullName || 'Valued Learner';
-    
-    const tutorNames = [
-        { short: 'M. Nuray', full: 'Matay Nuray' },
-        { short: 'M. Anelya', full: 'Mailybay Anelya' },
-        { short: 'D. Elnura', full: 'Dusenova Elnura' },
-        { short: 'B. Aida', full: 'Berkinbaeva Aida' },
-        { short: 'T. Aruzhan', full: 'Tuleshova Aruzhan' }
-    ];
-    const userStats = profileManager.getUserStats(currentUser.username);
+
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -763,37 +748,45 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', 1200 / 2, 280); // Adjusted to fit within golden border
+    ctx.fillText('TENSEFLIX', 1200 / 2, 270); // Lowered by 30px as requested
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 330); 
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 310); // Lowered by 30px + 10px extra
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', 1200 / 2, 375); 
+    ctx.fillText('This is to certify that', 1200 / 2, 360); // Lowered by 30px
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, 1200 / 2, 455); 
+    ctx.fillText(userName, 1200 / 2, 450); // Lowered by 30px
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 525); 
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 530); // Lowered by 30px
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 575); 
+    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 580); // Lowered by 30px
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 615); 
+    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 620); // Lowered by 30px
 
     // 5. Подписи
-    const sigY = 690; // Signatures and names now fit safely within the 760 border
+    const sigY = 710; // Lowered by 30px
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
+
+    const tutorNames = [
+        { short: 'M. Nuray', full: 'Matay Nuray' },
+        { short: 'M. Anelya', full: 'Mailybay Anelya' },
+        { short: 'D. Elnura', full: 'Dusenova Elnura' },
+        { short: 'B. Aida', full: 'Berkinbaeva Aida' },
+        { short: 'T. Aruzhan', full: 'Tuleshova Aruzhan' }
+    ];
 
     tutorNames.forEach((tutor, i) => {
         const x = 180 + (i * 210); // Spacing for 5 signatures
@@ -817,7 +810,7 @@ function downloadCertificate() {
         ctx.save();
         const pinguoSize = 110;
         const centerX = 1200 / 2; 
-        const centerY = 160; // Repositioned to balance with the title
+        const centerY = 145; // Lowered by 30px as requested
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -832,6 +825,14 @@ function downloadCertificate() {
         ctx.stroke();
         ctx.restore();
     }
+
+    return canvas;
+}
+
+function downloadCertificate() {
+    const canvas = generateCertificateCanvas();
+    const currentUser = profileManager.getCurrentUser();
+    const userName = currentUser?.fullName || 'Valued Learner';
 
     // Скачивание PNG
     const link = document.createElement('a');
@@ -887,11 +888,9 @@ function downloadCertificate() {
         const internalCloseBtn = document.getElementById('cert-close-btn');
         if (internalCloseBtn) internalCloseBtn.style.display = 'none';
 
-       const shareSection = document.getElementById('cert-share-section');
-        if (shareSection && !shareSection.classList.contains('show-animated')) {
-            // Активируем плавную анимацию появления
-            shareSection.classList.add('show-animated');
-            
+        const shareSection = document.getElementById('cert-share-section');
+        if (shareSection) {
+            shareSection.style.display = 'flex';
             Object.assign(shareSection.style, {
                 flexDirection: 'row',
                 justifyContent: 'center',
@@ -902,7 +901,6 @@ function downloadCertificate() {
                 flexWrap: 'nowrap',
                 position: 'relative'
             });
-
 
             // Ensure Telegram is on the left and WhatsApp on the right of the download button flow
             const tgBtn = shareSection.querySelector('[onclick*="telegram"]');
@@ -950,18 +948,40 @@ function closeOscarSpeech() {
     }
 }
 
-function shareCertificate(platform) {
-    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆 ");
-    const url = encodeURIComponent("https://tenseflix.live/"); // Corrected share link
-    let shareUrl = "";
+async function shareCertificate(platform) {
+    const canvas = generateCertificateCanvas();
+    const shareText = "I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆";
+    const shareUrl = "https://tenseflix.live/";
+
+    // Пытаемся использовать Web Share API для отправки файла изображения
+    if (navigator.share && navigator.canShare) {
+        try {
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            const file = new File([blob], 'TENSEFLIX_Certificate.png', { type: 'image/png' });
+
+            if (navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: 'TENSEFLIX Certificate',
+                    text: shareText + " " + shareUrl
+                });
+                return; // Если успешно поделились файлом, выходим
+            }
+        } catch (e) {
+            console.error("Ошибка при попытке поделиться файлом:", e);
+        }
+    }
+
+    // Резервный вариант: если отправка файла не поддерживается, открываем обычную ссылку
+    let link = "";
     
     if (platform === 'telegram') {
-        shareUrl = `https://t.me/share/url?url=${url}&text=${text}`; // Fixed Telegram URL formatting
+        link = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
     } else if (platform === 'whatsapp') {
-        shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+        link = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
     }
     
-    if (shareUrl) window.open(shareUrl, '_blank');
+    if (link) window.open(link, '_blank');
 }
 
 // Autocomplete logic for quick testing
