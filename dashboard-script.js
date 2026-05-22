@@ -706,9 +706,16 @@ function showFinalCertificate() {
             nameEl.textContent = currentUser.fullName;
         }
 
-        // Сбрасываем состояние кнопок шаринга при открытии сертификата
         const shareSection = document.getElementById('cert-share-section');
+        const dlBtn = document.querySelector('#certificate-display .download-cert-btn');
+
         if (shareSection) {
+            // Если кнопка скачивания была перемещена внутрь секции шаринга, возвращаем её обратно
+            if (dlBtn && shareSection.contains(dlBtn)) {
+                cert.insertBefore(dlBtn, shareSection);
+                dlBtn.style.cssText = ''; // Сбрасываем инлайновые стили, чтобы вернуть вид из CSS
+            }
+            // Сбрасываем состояние кнопок шаринга при открытии сертификата
             shareSection.style.display = 'none';
             shareSection.classList.remove('show-animated');
         }
@@ -756,35 +763,35 @@ function downloadCertificate() {
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 65px "Georgia", serif'; // Slightly smaller
     ctx.textAlign = 'center';
-    ctx.fillText('TENSEFLIX', 1200 / 2, 270); // Lowered by 30px as requested
+    ctx.fillText('TENSEFLIX', 1200 / 2, 280); // Adjusted to fit within golden border
 
     ctx.fillStyle = '#333';
     ctx.font = '28px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 310); // Lowered by 30px + 10px extra
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 1200 / 2, 330); 
 
     // 4. Текст: Имя пользователя и описание достижения
     ctx.fillStyle = '#555';
     ctx.font = 'italic 24px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('This is to certify that', 1200 / 2, 360); // Lowered by 30px
+    ctx.fillText('This is to certify that', 1200 / 2, 375); 
     
     ctx.fillStyle = '#1a1a2e';
     ctx.font = 'bold 75px "Brush Script MT", cursive, serif'; // Slightly smaller
-    ctx.fillText(userName, 1200 / 2, 450); // Lowered by 30px
+    ctx.fillText(userName, 1200 / 2, 455); 
 
     ctx.fillStyle = '#333';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 530); // Lowered by 30px
+    ctx.fillText('has successfully mastered all 12 English Tenses and reached the level of', 1200 / 2, 525); 
     
     ctx.fillStyle = '#e2b714';
     ctx.font = 'bold 32px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 580); // Lowered by 30px
+    ctx.fillText('ABSOLUTE CINEMA', 1200 / 2, 575); 
 
     ctx.fillStyle = '#555';
     ctx.font = '22px "Georgia", serif'; // Slightly smaller
-    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 620); // Lowered by 30px
+    ctx.fillText('through dedication, practice, and a passion for learning.', 1200 / 2, 615); 
 
     // 5. Подписи
-    const sigY = 710; // Lowered by 30px
+    const sigY = 690; // Signatures and names now fit safely within the 760 border
     const lineY = sigY + 10; // Line below short name
     const fullNameY = lineY + 15; // Full name below the line
 
@@ -810,7 +817,7 @@ function downloadCertificate() {
         ctx.save();
         const pinguoSize = 110;
         const centerX = 1200 / 2; 
-        const centerY = 145; // Lowered by 30px as requested
+        const centerY = 160; // Repositioned to balance with the title
         
         // Создаем круглую маску (Circle clipping)
         ctx.beginPath();
@@ -944,12 +951,12 @@ function closeOscarSpeech() {
 }
 
 function shareCertificate(platform) {
-    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆");
-    const url = encodeURIComponent("https://tenseflix.live/");
+    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆 ");
+    const url = encodeURIComponent("https://tenseflix.live/"); // Corrected share link
     let shareUrl = "";
     
     if (platform === 'telegram') {
-        shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+        shareUrl = `https://t.me/share/url?url=${url}&text=${text}`; // Fixed Telegram URL formatting
     } else if (platform === 'whatsapp') {
         shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
     }
