@@ -706,9 +706,6 @@ function showFinalCertificate() {
             nameEl.textContent = currentUser.fullName;
         }
 
-        // Prevent clicking on the certificate from closing the modal
-        cert.onclick = (e) => e.stopPropagation();
-        cert.classList.add('show');
         // Ensure the share section is reset if reopening the modal
         const shareSection = document.getElementById('cert-share-section');
         if (shareSection) shareSection.style.display = 'none';
@@ -854,13 +851,21 @@ function downloadCertificate() {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: all 0.3s ease;
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 z-index: 1000;
                 line-height: 1;
             `;
             xBtn.onclick = (e) => { e.stopPropagation(); closeOscarSpeech(); };
-            xBtn.onmouseover = () => { xBtn.style.background = '#e2b714'; xBtn.style.color = '#1a1a2e'; };
-            xBtn.onmouseout = () => { xBtn.style.background = 'rgba(255,255,255,0.1)'; xBtn.style.color = '#e2b714'; };
+            xBtn.onmouseover = () => { 
+                xBtn.style.background = '#e2b714'; 
+                xBtn.style.color = '#1a1a2e';
+                xBtn.style.transform = 'scale(1.1) rotate(90deg)';
+            };
+            xBtn.onmouseout = () => { 
+                xBtn.style.background = 'rgba(255,255,255,0.1)'; 
+                xBtn.style.color = '#e2b714';
+                xBtn.style.transform = 'scale(1) rotate(0deg)';
+            };
             cert.appendChild(xBtn);
         }
 
@@ -875,7 +880,7 @@ function downloadCertificate() {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: '15px',
+                gap: '12px',
                 marginTop: '30px',
                 width: '100%',
                 flexWrap: 'nowrap',
@@ -889,6 +894,16 @@ function downloadCertificate() {
             
             if (tgBtn && waBtn && dlBtn) {
                 shareSection.replaceChildren(waBtn, dlBtn, tgBtn);
+
+                // Выравниваем все кнопки по высоте и центру
+                [waBtn, dlBtn, tgBtn].forEach(btn => {
+                    btn.style.margin = '0';
+                    btn.style.height = '54px'; // Фиксированная высота для идеального выравнивания
+                    btn.style.display = 'inline-flex';
+                    btn.style.alignItems = 'center';
+                    btn.style.justifyContent = 'center';
+                    btn.style.padding = '0 25px';
+                });
             }
         }
     } catch (e) {
@@ -902,16 +917,16 @@ function closeOscarSpeech() {
     const textContainer = document.getElementById('oscar-speech-p');
     const credits = document.getElementById('cinematic-credits');
     
-    // Remove the "X" button if it exists
-    const xBtn = document.getElementById('cert-x-close');
-    if (xBtn) xBtn.remove();
-
     if (modal) {
         modal.classList.remove('show');
         setTimeout(() => { 
             modal.style.display = 'none'; 
             if (textContainer) textContainer.textContent = ''; // Reset for next open
             if (credits) credits.style.display = 'none'; // Stop credits if user closes modal
+            
+            // Удаляем кнопку "X" только после того, как окно полностью скрылось
+            const xBtn = document.getElementById('cert-x-close');
+            if (xBtn) xBtn.remove();
         }, 300);
         document.body.style.overflow = 'auto';
     }
