@@ -709,6 +709,10 @@ function showFinalCertificate() {
         // Ensure the share section is reset if reopening the modal
         const shareSection = document.getElementById('cert-share-section');
         if (shareSection) shareSection.style.display = 'none';
+
+        // Показываем сертификат
+        cert.style.display = 'flex';
+        setTimeout(() => cert.classList.add('show'), 10);
     }
 }
 
@@ -895,11 +899,12 @@ function downloadCertificate() {
             if (tgBtn && waBtn && dlBtn) {
                 shareSection.replaceChildren(waBtn, dlBtn, tgBtn);
 
-                // Выравниваем все кнопки по высоте и центру
+                // Идеальное вертикальное выравнивание и одинаковая высота
                 [waBtn, dlBtn, tgBtn].forEach(btn => {
                     btn.style.margin = '0';
                     btn.style.height = '54px'; // Фиксированная высота для идеального выравнивания
                     btn.style.display = 'inline-flex';
+                    btn.style.verticalAlign = 'middle';
                     btn.style.alignItems = 'center';
                     btn.style.justifyContent = 'center';
                     btn.style.padding = '0 25px';
@@ -930,6 +935,20 @@ function closeOscarSpeech() {
         }, 300);
         document.body.style.overflow = 'auto';
     }
+}
+
+function shareCertificate(platform) {
+    const text = encodeURIComponent("I just mastered all 12 English tenses on TENSEFLIX! Check out my Absolute Cinema certificate! 🎬🏆 ");
+    const url = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]); // Чистая ссылка на сайт
+    let shareUrl = "";
+    
+    if (platform === 'telegram') {
+        shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+    } else if (platform === 'whatsapp') {
+        shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+    }
+    
+    if (shareUrl) window.open(shareUrl, '_blank');
 }
 
 // Autocomplete logic for quick testing

@@ -595,8 +595,10 @@
             gap: 15px;
             justify-content: center;
             align-items: center; /* Ensure vertical alignment */
-            flex-wrap: nowrap; /* Prevent wrapping */
+            flex-wrap: nowrap; 
             height: 60px; /* Фиксированная высота контейнера */
+            width: 100%;
+            position: relative;
         }
         .share-btn {
             padding: 10px 20px;
@@ -772,10 +774,11 @@
         @media (max-width: 920px) {
             .certificate-wrapper {
                 width: 95vw;
-                height: auto;
-                aspect-ratio: 1.2;
-                padding: 15px;
+                height: auto; 
+                min-height: 450px;
+                padding: 20px 15px;
                 border-width: 10px;
+                transform: translate(-50%, -50%) scale(1);
             }
             .cert-header { font-size: 1.8rem; }
             .cert-user { font-size: 2rem; margin: 10px 0; text-align: center; }
