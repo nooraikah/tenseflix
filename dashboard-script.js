@@ -9,6 +9,16 @@ let isRedirecting = false;
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     if (!isRedirecting) {
+        // Handle reverse animation if returning from a lesson
+        const overlay = document.getElementById('oscar-flight-overlay');
+        const wasLesson = document.referrer.includes('lesson.html');
+        
+        if (overlay && wasLesson) {
+            triggerReverseOscar();
+        } else if (overlay) {
+            resetOscarOverlay();
+        }
+
         loadUserInfo();
         
         // Show skeletons initially
@@ -23,6 +33,40 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWelcomeMessage(); // Call the new function here
     }
 });
+
+// Handle browser back button (bfcache)
+window.addEventListener('pageshow', (event) => {
+    const overlay = document.getElementById('oscar-flight-overlay');
+    if (overlay && event.persisted) {
+        triggerReverseOscar();
+    }
+});
+
+/**
+ * Plays the Oscar animation in reverse and hides the overlay
+ */
+function triggerReverseOscar() {
+    const overlay = document.getElementById('oscar-flight-overlay');
+    if (!overlay) return;
+
+    overlay.style.display = 'flex';
+    overlay.classList.remove('active'); // Remove forward class
+    void overlay.offsetWidth; // Trigger reflow
+    overlay.classList.add('reverse');
+    
+    setTimeout(() => {
+        resetOscarOverlay();
+    }, 1200);
+}
+
+function resetOscarOverlay() {
+    const overlay = document.getElementById('oscar-flight-overlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+        overlay.classList.remove('active', 'reverse');
+        overlay.querySelectorAll('.flight-streak').forEach(s => s.remove());
+    }
+}
 
 // Authentication check
 function checkAuth() {
@@ -343,6 +387,8 @@ function initializeLevels() {
                 startBtn.disabled = false;
                 startBtn.style.pointerEvents = 'auto';
                 startBtn.style.opacity = '1';
+                startBtn.textContent = 'Start Lesson'; // Reset text when unmagicked
+                startBtn.classList.remove('replay-btn');
             }
 
             // If attempted but not passed (score exists but not marked completed)
@@ -418,6 +464,8 @@ function initializeLevels() {
                 startBtn.disabled = true;
                 startBtn.style.pointerEvents = 'none';
                 startBtn.style.opacity = '0.5';
+                startBtn.textContent = 'Start Lesson';
+                startBtn.classList.remove('replay-btn');
             }
             
             // For admin, replace locked message with button
