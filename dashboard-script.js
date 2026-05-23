@@ -10,7 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     if (!isRedirecting) {
         loadUserInfo();
-        initializeLevels();
+        
+        // Show skeletons initially
+        document.querySelectorAll('.tense-card').forEach(card => card.classList.add('loading-state'));
+        
+        // Small delay for smooth feel before rendering data
+        setTimeout(() => {
+            initializeLevels();
+        }, 300);
+
         initTeacherGuide();
         updateWelcomeMessage(); // Call the new function here
     }
@@ -258,6 +266,9 @@ function initializeLevels() {
         if (!levelElement) return;
 
         const card = levelElement.querySelector('.tense-card');
+        // Remove skeleton state
+        card.classList.remove('loading-state');
+
         const tenseData = userProgress[tenseId];
         const startBtn = card.querySelector('.start-btn');
 
@@ -1098,8 +1109,27 @@ function startLesson(tense, level) {
     const userProgress = profileManager.getUserProgress(currentUser.username);
     const tenses = Object.keys(userProgress);
     
-    // Redirect to lesson
-    window.location.href = `lesson.html?tense=${tense}&level=${level}`;
+    // Trigger "Flight to Oscar" animation
+    const overlay = document.getElementById('oscar-flight-overlay');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.classList.add('active');
+        
+        // Generate speed streaks dynamically
+        for(let i=0; i<20; i++) {
+            const streak = document.createElement('div');
+            streak.className = 'flight-streak';
+            streak.style.left = Math.random() * 100 + 'vw';
+            streak.style.animationDuration = (Math.random() * 0.4 + 0.3) + 's';
+            streak.style.animationDelay = (Math.random() * 0.5) + 's';
+            overlay.appendChild(streak);
+        }
+    }
+
+    // Delay redirect to allow animation to play
+    setTimeout(() => {
+        window.location.href = `lesson.html?tense=${tense}&level=${level}`;
+    }, 1100);
 }
 
 // Logout function

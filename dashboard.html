@@ -52,6 +52,68 @@
             100% { transform: translateX(-600px) translateY(600px) rotate(-45deg); opacity: 0; }
         }
 
+        /* Skeleton Loading Styles */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .tense-card.loading-state * {
+            visibility: hidden;
+        }
+
+        .tense-card.loading-state {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tense-card.loading-state::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, #0d1b3e 25%, #1a2a4e 50%, #0d1b3e 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            z-index: 5;
+        }
+
+        /* Oscar Flight Transition Overlay */
+        #oscar-flight-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #0d1b3e 0%, #050510 100%);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        #oscar-flight-overlay.active {
+            display: flex;
+        }
+        .oscar-flight-statuette {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 0 30px #e2b714);
+            opacity: 0;
+        }
+        #oscar-flight-overlay.active .oscar-flight-statuette {
+            animation: oscarZoom 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+        }
+        @keyframes oscarZoom {
+            0% { transform: scale(0) translateY(100px) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.2) translateY(0) rotate(0deg); opacity: 1; filter: brightness(1.5) drop-shadow(0 0 50px #e2b714); }
+            100% { transform: scale(5) translateY(-50px) rotate(10deg); opacity: 0; }
+        }
+        .flight-streak {
+            position: absolute;
+            background: linear-gradient(to top, transparent, #7ec8f7);
+            width: 2px; height: 150px; opacity: 0.4;
+            animation: streakFly 0.8s linear infinite;
+        }
+        @keyframes streakFly { from { top: 100vh; } to { top: -20vh; } }
+
         .tense-card {
             display: flex;
             flex-direction: column;
@@ -836,6 +898,11 @@
 </head>
 <body>
     <div class="stars-container" id="stars-container"></div>
+
+    <!-- Oscar Flight Transition Overlay -->
+    <div id="oscar-flight-overlay">
+        <img src="oscar.png" class="oscar-flight-statuette" alt="Oscar">
+    </div>
 
     <!-- Camera Flash Overlay -->
     <div id="camera-flash" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; opacity: 0; pointer-events: none; z-index: 10000; transition: opacity 0.05s ease-out;"></div>

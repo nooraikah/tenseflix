@@ -1,9 +1,11 @@
 User-agent: *
 Allow: /
-Disallow: /admin-setup.html
-Disallow: /init-admin.html
-Disallow: /test-edit-profile.html
-Disallow: /profiles.js
-Disallow: /auth-script.js
+Allow: /*-extra.html
 
+# Запрещаем индексацию личных данных и служебных страниц
+Disallow: /dashboard.html
+Disallow: /profile.html
+Disallow: /login.html
+
+# Указываем путь к карте сайта
 Sitemap: https://tenseflix.live/sitemap.xml

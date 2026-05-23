@@ -1,6 +1,13 @@
 // Internationalization (i18n) - Language Translations
 const translations = {
     ru: {
+        // SEO & Metadata
+        'meta-title': 'TENSEFLIX — Обучение English tenses и грамматике по фильмам',
+        'meta-description': 'Учите English tenses и грамматику английского языка на TENSEFLIX. Это бесплатный образовательный ресурс, использующий примеры из кино для обучения. Не является стриминговым сервисом.',
+
+        'breadcrumb-home': 'Главная',
+        'breadcrumb-course': 'Мой курс',
+
         // Language Selector
         'lang-select': 'Язык:',
         
@@ -46,14 +53,10 @@ const translations = {
             // Useful Websites Section
             'useful-websites-title': 'Полезные сайты',
             'useful-websites-desc': 'Рекомендуемые ресурсы для дополнительной практики английского языка:',
-            'useful-websites-1-title': 'BBC Learning English',
-            'useful-websites-1-desc': 'Классический ресурс с видеоуроками, объяснениями грамматики и советами по произношению на основе реальных новостей.',
-            'useful-websites-2-title': 'British Council',
-            'useful-websites-2-desc': 'Высокоструктурированные учебные курсы с интерактивными упражнениями по грамматике, лексике и подготовке к экзаменам.',
             'useful-websites-1-title': 'BBC English',
-            'useful-websites-1-desc': 'Разнообразные видеоуроки, грамматика и упражнения на основе актуальных мировых новостей.',
+            'useful-websites-1-desc': 'Классический ресурс с видеоуроками, грамматикой и упражнениями на основе актуальных мировых новостей.',
             'useful-websites-2-title': 'British Council LearnEnglish',
-            'useful-websites-2-desc': 'Учебные материалы мирового уровня: от грамматических игр до подготовки к международным экзаменам.',
+            'useful-websites-2-desc': 'Высокоструктурированные учебные курсы: от грамматических игр до подготовки к экзаменам.',
             'useful-websites-3-title': 'Oxford Online English',
             'useful-websites-3-desc': 'Отличные видеоуроки, охватывающие деловой английский, разговорную речь и основные грамматические темы.',
             'useful-websites-4-title': 'TED Talks',
@@ -203,6 +206,13 @@ const translations = {
 
     },
     kk: {
+        // SEO & Metadata
+        'meta-title': 'TENSEFLIX — English tenses оқыту платформасы',
+        'meta-description': 'TENSEFLIX-те ағылшын тілінің грамматикасы мен English tenses үйреніңіз. Бұл фильмдерді оқу құралы ретінде пайдаланатын тегін білім беру ресурсы.',
+
+        'breadcrumb-home': 'Басты бет',
+        'breadcrumb-course': 'Менің курсым',
+
         // Language Selector
         'lang-select': 'Тіл:',
         
@@ -248,12 +258,8 @@ const translations = {
             // Useful Websites Section
             'useful-websites-title': 'Пайдалы веб-сайттар',
             'useful-websites-desc': 'Ағылшын тілін қосымша тәжірибе жасауға арналған ұсынылған ресурстар:',
-            'useful-websites-1-title': 'BBC Learning English',
-            'useful-websites-1-desc': 'Нақты жаңалықтарға негізделген бейнелер, грамматикалық түсіндірмелер және айтылым бойынша классикалық ресурс.',
-            'useful-websites-2-title': 'British Council',
-            'useful-websites-2-desc': 'Грамматика, сөздік қор және емтиханға дайындыққа арналған интерактивті жаттығулары бар жоғары деңгейдегі оқыту жолдары.',
             'useful-websites-1-title': 'BBC English',
-            'useful-websites-1-desc': 'Әлемдік жаңалықтарға негізделген бейнесабақтар, грамматика және айтылым бойынша тапсырмалар.',
+            'useful-websites-1-desc': 'Нақты жаңалықтарға негізделген бейнесабақтар, грамматика және айтылым бойынша тапсырмалар.',
             'useful-websites-2-title': 'British Council LearnEnglish',
             'useful-websites-2-desc': 'Грамматикалық ойындардан бастап халықаралық емтихандарға дайындыққа дейінгі жоғары деңгейлі материалдар.',
             'useful-websites-3-title': 'Oxford Online English',
@@ -408,6 +414,13 @@ const translations = {
         'oscar-speech-text': 'О, Тәңірім! Мен бұған сене алар емеспін! Біз мұны жасадық! Бұл Оскар тек менікі емес — бұл біздікі. Әрбір жобада, әрбір сәтсіздікте және әрбір шақта менімен бірге болғаныңыз үшін сізге үлкен рахмет. Сіздің ағылшын тілін үйренуге деген құлшынысыңыз менің оқиғама жан бітірді. Сіздің еңбегіңізсіз мен "Absolute Cinema" деңгейіне жете алмас едім. Бұл біздің ортақ жеңісіміз, досым! Біз — чемпионбыз!'
     },
     en: {
+        // SEO & Metadata
+        'meta-title': 'TENSEFLIX — Educational Platform for English Tenses',
+        'meta-description': 'Learn English grammar and English tenses on TENSEFLIX. A free educational resource using cinema for academic purposes. Master grammar through authentic examples.',
+
+        'breadcrumb-home': 'Home',
+        'breadcrumb-course': 'My Course',
+
         // Language Selector
         'lang-select': 'Language:',
         
@@ -643,6 +656,110 @@ function updatePageLanguage() {
     
     // Update page lang attribute
     document.documentElement.lang = currentLanguage;
+
+    // Update Title from i18n
+    const metaTitle = getTranslation('meta-title');
+    if (metaTitle) {
+        document.title = metaTitle;
+    }
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.setAttribute('content', getTranslation('meta-description'));
+    }
+
+    // Update JSON-LD Structured Data
+    updateJsonLd();
+    
+    // Update Social Media Meta Tags (Open Graph & Twitter)
+    updateOpenGraph();
+}
+
+/**
+ * Updates Open Graph and Twitter meta tags dynamically
+ */
+function updateOpenGraph() {
+    const title = getTranslation('meta-title');
+    const desc = getTranslation('meta-description');
+
+    // Helper to update or create meta tags
+    const setMeta = (property, value, isProperty = true) => {
+        const selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
+        let element = document.querySelector(selector);
+        if (!element) {
+            element = document.createElement('meta');
+            if (isProperty) element.setAttribute('property', property);
+            else element.setAttribute('name', property);
+            document.head.appendChild(element);
+        }
+        element.setAttribute('content', value);
+    };
+
+    // OG Tags
+    setMeta('og:title', title);
+    setMeta('og:description', desc);
+    setMeta('og:locale', currentLanguage === 'ru' ? 'ru_RU' : (currentLanguage === 'kk' ? 'kk_KZ' : 'en_US'));
+
+    // Twitter Tags
+    setMeta('twitter:title', title, false);
+    setMeta('twitter:description', desc, false);
+}
+
+/**
+ * Updates or creates JSON-LD structured data for SEO
+ */
+function updateJsonLd() {
+    let scriptTag = document.getElementById('json-ld-schema');
+    if (!scriptTag) {
+        scriptTag = document.createElement('script');
+        scriptTag.id = 'json-ld-schema';
+        scriptTag.type = 'application/ld+json';
+        document.head.appendChild(scriptTag);
+    }
+
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": getTranslation('meta-title'),
+        "description": getTranslation('meta-description'),
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "TENSEFLIX",
+            "sameAs": "https://tenseflix.live"
+        },
+        "educationalLevel": "Intermediate",
+        "offers": {
+            "@type": "Offer",
+            "category": "Free",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    };
+
+    scriptTag.text = JSON.stringify(schemaData);
+
+    // Update Breadcrumb JSON-LD
+    let breadcrumbTag = document.getElementById('breadcrumb-json-ld');
+    if (breadcrumbTag) {
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": getTranslation('breadcrumb-home'),
+                    "item": "https://tenseflix.live/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": getTranslation('breadcrumb-course'),
+                    "item": "https://tenseflix.live/dashboard.html"
+                }
+            ]
+        };
+        breadcrumbTag.text = JSON.stringify(breadcrumbData);
+    }
 }
 
 function updateLanguageSwitcherUI() {
