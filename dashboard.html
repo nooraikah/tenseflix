@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenseflix - Dashboard</title>
+    <title>My Course - TENSEFLIX Live</title>
+    <meta name="description" content="Your personalized English tenses learning path. Track your progress with TENSEFLIX Live and unlock exclusive movie content.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Master English Tenses Through Movies",
+      "description": "A comprehensive course to master all 12 English tenses using real movie clips and interactive exercises.",
+      "provider": {
+        "@type": "Organization",
+        "name": "TENSEFLIX Live",
+        "sameAs": "https://tenseflix.live/"
+      }
+    }
+    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
     <link rel="stylesheet" href="dashboard-styles.css">
     <style>
         /* Fix for images "sticking" to the header bar */
@@ -869,7 +884,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-1" onclick="openMovieLightbox(1)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="1.png"></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-1" onclick="openMovieLightbox(1)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="1.png" alt="Movie Scene 1: The Spark"></div></div>
 
             <!-- LEVEL 2: PRESENT CONTINUOUS -->
             <div class="tense-level" data-level="2" data-tense="present-continuous">
@@ -885,7 +900,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-2" onclick="openMovieLightbox(2)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="2.png"></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-2" onclick="openMovieLightbox(2)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="2.png" alt="Movie Scene 2: Nights of Creation"></div></div>
 
             <!-- LEVEL 3: PAST SIMPLE -->
             <div class="tense-level" data-level="3" data-tense="past-simple">
@@ -901,7 +916,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-3" onclick="openMovieLightbox(3)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="3.png"></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-3" onclick="openMovieLightbox(3)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="3.png" alt="Movie Scene 3: The Pitch"></div></div>
 
             <!-- LEVEL 4: PRESENT PERFECT -->
             <div class="tense-level" data-level="4" data-tense="present-perfect">
@@ -917,7 +932,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-4" onclick="openMovieLightbox(4)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="4.png"></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-4" onclick="openMovieLightbox(4)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="4.png" alt="Movie Scene 4: The Reality Check"></div></div>
 
             <!-- LEVEL 5: FUTURE SIMPLE -->
             <div class="tense-level" data-level="5" data-tense="future-simple">
@@ -933,7 +948,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-5" onclick="openMovieLightbox(5)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="5.png"></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-5" onclick="openMovieLightbox(5)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="5.png" alt="Movie Scene 5: The Breakthrough"></div></div>
 
             <!-- LEVEL 6: PAST CONTINUOUS -->
             <div class="tense-level" data-level="6" data-tense="past-continuous">
@@ -949,7 +964,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-6" onclick="openMovieLightbox(6)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="6.png"></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-6" onclick="openMovieLightbox(6)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="6.png" alt="Movie Scene 6: Table Read"></div></div>
 
             <!-- LEVEL 7: PRESENT PERFECT CONTINUOUS -->
             <div class="tense-level" data-level="7" data-tense="present-perfect-continuous">
@@ -965,7 +980,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-7" onclick="openMovieLightbox(7)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="7.png"></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-7" onclick="openMovieLightbox(7)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="7.png" alt="Movie Scene 7: Action on Set"></div></div>
 
             <!-- LEVEL 8: PAST PERFECT -->
             <div class="tense-level" data-level="8" data-tense="past-perfect">
@@ -982,8 +997,8 @@
                 </div>
             </div>
             <div class="movie-frame-wrap right double">
-                <div class="movie-frame" id="frame-8" onclick="openMovieLightbox(8)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="8.png"></div>
-                <div class="movie-frame" id="frame-8_1" onclick="openMovieLightbox('8_1')"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="8_1.png"></div>
+                <div class="movie-frame" id="frame-8" onclick="openMovieLightbox(8)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="8.png" alt="Movie Scene 8: Directing the Chaos"></div>
+                <div class="movie-frame" id="frame-8_1" onclick="openMovieLightbox('8_1')"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="8_1.png" alt="Movie Scene 8.1: Movie Magic"></div>
             </div>
 
             <!-- LEVEL 9: FUTURE CONTINUOUS -->
@@ -1000,7 +1015,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-9" onclick="openMovieLightbox(9)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="9.png"></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-9" onclick="openMovieLightbox(9)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="9.png" alt="Movie Scene 9: The Final Cut"></div></div>
 
             <!-- LEVEL 10: FUTURE PERFECT -->
             <div class="tense-level" data-level="10" data-tense="future-perfect">
@@ -1016,7 +1031,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-10" onclick="openMovieLightbox(10)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="10.png"></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-10" onclick="openMovieLightbox(10)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="10.png" alt="Movie Scene 10: The Closed Screening"></div></div>
 
             <!-- LEVEL 11: PAST PERFECT CONTINUOUS -->
             <div class="tense-level" data-level="11" data-tense="past-perfect-continuous">
@@ -1032,7 +1047,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-11" onclick="openMovieLightbox(11)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="11.png"></div></div>
+            <div class="movie-frame-wrap left"><div class="movie-frame" id="frame-11" onclick="openMovieLightbox(11)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="11.png" alt="Movie Scene 11: Oscar Shortlist"></div></div>
 
             <!-- LEVEL 12: FUTURE PERFECT CONTINUOUS -->
             <div class="tense-level" data-level="12" data-tense="future-perfect-continuous">
@@ -1048,7 +1063,7 @@
                     </div>
                 </div>
             </div>
-            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-12" onclick="openMovieLightbox(12)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="12.png"></div></div>
+            <div class="movie-frame-wrap right"><div class="movie-frame" id="frame-12" onclick="openMovieLightbox(12)"><span>?</span><div class="unlock-hint">Pass 70%+</div><img src="12.png" alt="Movie Scene 12: In the Spotlight"></div></div>
         </div>
 
         <!-- Final Section -->
@@ -1153,7 +1168,7 @@
         <!-- Certificate Display -->
         <div id="certificate-display" class="certificate-wrapper" onclick="event.stopPropagation()">
             <div class="cert-border-inner"></div>
-            <img src="duopinguo.jpg" class="cert-pinguo" alt="Duopinguo">
+            <img src="duopinguo.jpg" class="cert-pinguo" alt="TENSEFLIX Completion Certificate Badge">
             <div class="cert-header">TENSEFLIX</div>
             <div class="cert-title">Certificate of Achievement</div>
             <p style="margin:0; font-size: 1.1rem;">This is to certify that</p>

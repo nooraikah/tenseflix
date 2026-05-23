@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin-setup.html
+Disallow: /init-admin.html
+Disallow: /test-edit-profile.html
+Disallow: /profiles.js
+Disallow: /auth-script.js
+
+Sitemap: https://tenseflix.live/sitemap.xml
