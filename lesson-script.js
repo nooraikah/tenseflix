@@ -18,8 +18,6 @@ const TENSE_ORDER = [
 let currentDifficulty = 'light';
 let currentSentenceForm = 'all';
 
-let currentTenseData = null; // Global reference for lazy loading
-
 // Time tracking
 window.lastTimeUpdate = Date.now(); // Make lastTimeUpdate explicitly global
 
@@ -2467,7 +2465,7 @@ window.lessonsData = { // Make lessonsData explicitly global
         russian: 'Настоящее совершенное',
         structure: 'have/has + V3 (Past Participle)',
         videoFile: 'present perfect 1.1.mp4',
-        videoFile2: 'present perfect 2 new.mp4',
+        videoFile2: 'present perfect 2video.mp4',
         videoFile3: 'present perfect 3.1.mp4',
         videoQuiz1: [
             {
@@ -5455,7 +5453,7 @@ window.lessonsData = { // Make lessonsData explicitly global
         title: 'Past Perfect Continuous',
         russian: 'Прошедшее совершенное длительное',
         videoFile: 'past perfect cont 1.mp4', 
-        videoFile2: 'past perfect cont 2 new.mp4',
+        videoFile2: 'past perfect cont 2 video.mp4',
         videoFile3: 'past perfect cont 3.mp4',
         structure: 'had + been + V+ing',
         usage: [
@@ -8450,7 +8448,6 @@ window.lessonsData = { // Make lessonsData explicitly global
 function loadLesson() {
     const tense = getTenseFromURL();
     const lesson = lessonsData[tense];
-    currentTenseData = lesson;
 
     if (!lesson || !checkLessonAccess(tense)) {
         window.location.href = 'dashboard.html';
@@ -8550,6 +8547,30 @@ function loadAllVideos(lesson) {
             player1.load();
         }
         setupVideoProgressTracking(player1);
+    }
+
+    // Video 2
+    const player2 = document.getElementById('lesson-video-player-2');
+    if (player2 && lesson.videoFile2) {
+        const s = player2.querySelector('source');
+        if (s) s.src = lesson.videoFile2;
+        player2.load();
+    }
+
+    // Video 3
+    const player3 = document.getElementById('lesson-video-player-3');
+    if (player3 && lesson.videoFile3) {
+        const s = player3.querySelector('source');
+        if (s) s.src = lesson.videoFile3;
+        player3.load();
+    }
+
+    // Video 4
+    const player4 = document.getElementById('lesson-video-player-4');
+    if (player4 && lesson.videoFile4) {
+        const s = player4.querySelector('source');
+        if (s) s.src = lesson.videoFile4;
+        player4.load();
     }
 }
 
@@ -14371,24 +14392,6 @@ function switchLessonTab(tabName) {
     const panel = document.getElementById(`lesson-tab-${tabName}`);
     if (panel) {
         panel.classList.add('active');
-
-        // Lazy Load Logic: Load video only when tab is opened
-        if (['video2', 'video3', 'video4'].includes(tabName)) {
-            const video = panel.querySelector('video');
-            const source = video?.querySelector('source');
-            // If source is not set yet (contains current URL or is empty)
-            if (video && source && (!source.getAttribute('src') || source.getAttribute('src') === '')) {
-                const fileKey = tabName === 'video2' ? 'videoFile2' : 
-                              tabName === 'video3' ? 'videoFile3' : 'videoFile4';
-                
-                if (currentTenseData && currentTenseData[fileKey]) {
-                    source.src = currentTenseData[fileKey];
-                    video.load();
-                    console.log(`Lazy loaded: ${tabName}`);
-                }
-            }
-        }
-
         // Reset video to start when tab is opened
         const video = panel.querySelector('video');
         if (video) {
