@@ -865,6 +865,36 @@
             position: relative;
             overflow: hidden;
         }
+
+        /* Styles for the action buttons at the bottom of the guide */
+        .guide-actions {
+            padding: 10px 20px 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .guide-action-btn {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #copy-guide-btn {
+            background: rgba(226, 183, 20, 0.2);
+            color: #e2b714;
+            border: 1px solid rgba(226, 183, 20, 0.4);
+        }
+        #copy-guide-btn:hover {
+            background: #e2b714;
+            color: #0d1b3e;
+            transform: translateY(-2px);
+        }
        #pron-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 28px rgba(40, 100, 200, 0.6), 0 0 0 4px #4aa3e0;
@@ -1247,6 +1277,10 @@
                 <div class="guide-step"><span class="step-label">Step 12</span> Repeat Steps 1–11 for each movie fragment.</div>
                 <div class="guide-step"><span class="step-label">Step 13</span> After all movie fragments, ask students to complete the final controlled exercises.</div>
                 <div class="guide-step"><span class="step-label">Step 14</span> Review answers and provide feedback.</div>
+            </div>
+            <div class="guide-actions">
+                <button id="copy-guide-btn" class="guide-action-btn" onclick="copyTeacherGuide()">📋 Copy Steps</button>
+                <button id="print-guide-btn-ui" class="guide-action-btn" style="background: rgba(126, 200, 247, 0.2); color: #7ec8f7; border: 1px solid rgba(126, 200, 247, 0.4);" onclick="printTeacherGuide()">🖨️ Print</button>
             </div>
         </div>
         <button id="teacher-guide-trigger" class="pulsing" onclick="openTeacherGuidePopup(event)" title="Teacher's Guide">

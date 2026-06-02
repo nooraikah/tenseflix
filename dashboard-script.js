@@ -170,6 +170,55 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Function to copy all steps from the Teacher's Guide to clipboard
+function copyTeacherGuide() {
+    const steps = document.querySelectorAll('#guide-content .guide-step');
+    let textToCopy = "👩‍🏫 TENSEFLIX - Teacher's Guide\n\n";
+    
+    steps.forEach((step, index) => {
+        const label = step.querySelector('.step-label')?.textContent || `Step ${index + 1}`;
+        // Clean up the text by removing the label part to avoid duplication
+        const content = step.textContent.replace(label, '').trim();
+        textToCopy += `${label}: ${content}\n`;
+    });
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtn = document.getElementById('copy-guide-btn');
+        const originalText = copyBtn.innerHTML;
+        
+        // Visual feedback
+        copyBtn.innerHTML = '✅ Copied!';
+        copyBtn.style.background = '#22c55e';
+        copyBtn.style.color = '#fff';
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.style.background = '';
+            copyBtn.style.color = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
+
+// Function to print the Teacher's Guide content
+function printTeacherGuide() {
+    const guideContent = document.getElementById('teacher-guide-popup');
+    if (!guideContent) return;
+
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write('<html><head><title>Teacher\'s Guide</title>');
+    // Copy relevant styles for printing
+    printWindow.document.write('<link rel="stylesheet" href="dashboard-styles.css">');
+    printWindow.document.write('<style>@media print { body * { visibility: hidden; } #teacher-guide-popup, #teacher-guide-popup * { visibility: visible; } #teacher-guide-popup { position: absolute; left: 0; top: 0; width: 100% !important; max-height: none !important; box-shadow: none; border: none; background: white; color: black; display: block !important; } #teacher-guide-popup .guide-popup-close, #teacher-guide-popup #print-guide-btn, #teacher-guide-popup #guide-display { display: none !important; } #teacher-guide-popup #guide-content { overflow-y: visible !important; max-height: none !important; padding: 20px; } #teacher-guide-popup .guide-step { border-bottom: 1px solid #eee; color: black; background: none; border-color: #ccc; transform: none; } #teacher-guide-popup .guide-step:hover { background: none; border-color: #ccc; transform: none; } #teacher-guide-popup .step-label { background: #f0f0f0; color: #333; box-shadow: none; } }</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(guideContent.outerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+
 // Initialize levels based on user progress
 function initializeLevels() {
     const currentUser = profileManager.getCurrentUser();
