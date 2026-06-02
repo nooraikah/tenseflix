@@ -101,15 +101,6 @@
         #oscar-flight-overlay.active .oscar-flight-statuette {
             animation: oscarZoom 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
         }
-        /* Reverse Animation for returning */
-        @keyframes oscarReturn {
-            0% { transform: scale(5) translateY(-50px) rotate(10deg); opacity: 0; }
-            30% { transform: scale(1.2) translateY(0) rotate(0deg); opacity: 1; filter: brightness(1.5) drop-shadow(0 0 50px #e2b714); }
-            100% { transform: scale(0) translateY(100px) rotate(-10deg); opacity: 0; }
-        }
-        #oscar-flight-overlay.reverse .oscar-flight-statuette {
-            animation: oscarReturn 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
-        }
         @keyframes oscarZoom {
             0% { transform: scale(0) translateY(100px) rotate(-10deg); opacity: 0; }
             50% { transform: scale(1.2) translateY(0) rotate(0deg); opacity: 1; filter: brightness(1.5) drop-shadow(0 0 50px #e2b714); }
@@ -756,6 +747,85 @@
         }
         #teacher-guide-trigger:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(40, 100, 200, 0.6), 0 0 0 4px #4aa3e0; }
         
+        #teacher-guide-popup {
+            position: absolute;
+            bottom: calc(100% + 14px);
+            right: 0;
+            width: 600px; 
+            max-height: 85vh; 
+            background: linear-gradient(160deg, #0d1b3e 0%, #132a5e 100%);
+            border: 2px solid #2a6db5;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+            display: none;
+            flex-direction: column;
+            z-index: 3000; /* Поднял выше всех элементов, включая header */
+        }
+        #teacher-guide-popup.closing {
+            animation: fadeOut 0.3s ease forwards;
+        }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        #guide-display {
+            padding: 16px;
+            border-bottom: 1px solid rgba(74, 163, 224, 0.3);
+            color: #7ec8f7;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-align: center;
+            text-transform: uppercase;
+            background: rgba(0,0,0,0.2);
+        }
+        #guide-content {
+            overflow-y: auto;
+            flex: 1;
+            padding: 12px 18px;
+            text-align: left;
+        }
+        #guide-content::-webkit-scrollbar { width: 5px; }
+        #guide-content::-webkit-scrollbar-track { background: transparent; }
+        #guide-content::-webkit-scrollbar-thumb { background: #2a6db5; border-radius: 10px; }
+
+        .guide-step {
+            margin-bottom: 4px;
+            padding: 3px 10px;
+            border-bottom: 1px solid rgba(126, 200, 247, 0.1);
+            color: #c9e8ff;
+            line-height: 1.3;
+            font-size: 0.84rem;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+            cursor: default;
+        }
+        .guide-step:last-child { border-bottom: none; margin-bottom: 0; }
+        .guide-step:hover { /* Золотая подсветка при наведении */
+            background: rgba(226, 183, 20, 0.15); /* Прозрачный золотой фон */
+            color: #fff;
+            transform: translateX(4px);
+        }
+        .step-label {
+            color: #e2b714;
+            font-weight: 900;
+            font-size: 0.65rem;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .teacher-image-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: url('teacher.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+        }
+        
         .pron-label-outside, .teacher-guide-label-outside  { 
             font-size: 10px; 
             color: #7ec8f7; 
@@ -1163,13 +1233,20 @@
             <button class="guide-popup-close" onclick="closeTeacherGuidePopup()">×</button>
             <div id="guide-display">👩‍🏫 Teacher's Guide</div>
             <div id="guide-content">
-                <p>Welcome! Here is how to use Tenseflix to teach your kids:</p>
-                <ul>
-                    <li>Watch <b>movie clips</b> to see grammar in action.</li>
-                    <li>Review <b>Grammar Banks</b> for rules and formulas.</li>
-                    <li>Complete <b>Practice Tasks</b> (70% score needed for progress).</li>
-                    <li>Track individual growth in the <b>Profile</b> section.</li>
-                </ul>
+                <div class="guide-step"><span class="step-label">Step 1</span> Watch the movie fragment together with the students.</div>
+                <div class="guide-step"><span class="step-label">Step 2</span> Direct students' attention to the highlighted (elicited) sentences from the clip.</div>
+                <div class="guide-step"><span class="step-label">Step 3</span> Ask students to answer the guided discovery questions about the meaning individually.</div>
+                <div class="guide-step"><span class="step-label">Step 4</span> Ask students to compare their answers with a partner.</div>
+                <div class="guide-step"><span class="step-label">Step 5</span> Check the answers as a class and confirm the meaning.</div>
+                <div class="guide-step"><span class="step-label">Step 6</span> Ask students to answer the guided discovery questions about the form individually.</div>
+                <div class="guide-step"><span class="step-label">Step 7</span> Ask students to compare their answers with a partner.</div>
+                <div class="guide-step"><span class="step-label">Step 8</span> Check the answers as a class and elicit the grammatical structure.</div>
+                <div class="guide-step"><span class="step-label">Step 9</span> Ask students to read the Grammar Bank and compare it with their discoveries.</div>
+                <div class="guide-step"><span class="step-label">Step 10</span> Clarify any questions about the target tense.</div>
+                <div class="guide-step"><span class="step-label">Step 11</span> Ask students to complete the practice tasks.</div>
+                <div class="guide-step"><span class="step-label">Step 12</span> Repeat Steps 1–11 for each movie fragment.</div>
+                <div class="guide-step"><span class="step-label">Step 13</span> After all movie fragments, ask students to complete the final controlled exercises.</div>
+                <div class="guide-step"><span class="step-label">Step 14</span> Review answers and provide feedback.</div>
             </div>
         </div>
         <button id="teacher-guide-trigger" class="pulsing" onclick="openTeacherGuidePopup(event)" title="Teacher's Guide">

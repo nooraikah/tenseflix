@@ -9,16 +9,6 @@ let isRedirecting = false;
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     if (!isRedirecting) {
-        // Handle reverse animation if returning from a lesson
-        const overlay = document.getElementById('oscar-flight-overlay');
-        const wasLesson = document.referrer.includes('lesson.html');
-        
-        if (overlay && wasLesson) {
-            triggerReverseOscar();
-        } else if (overlay) {
-            resetOscarOverlay();
-        }
-
         loadUserInfo();
         
         // Show skeletons initially
@@ -33,40 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWelcomeMessage(); // Call the new function here
     }
 });
-
-// Handle browser back button (bfcache)
-window.addEventListener('pageshow', (event) => {
-    const overlay = document.getElementById('oscar-flight-overlay');
-    if (overlay && event.persisted) {
-        triggerReverseOscar();
-    }
-});
-
-/**
- * Plays the Oscar animation in reverse and hides the overlay
- */
-function triggerReverseOscar() {
-    const overlay = document.getElementById('oscar-flight-overlay');
-    if (!overlay) return;
-
-    overlay.style.display = 'flex';
-    overlay.classList.remove('active'); // Remove forward class
-    void overlay.offsetWidth; // Trigger reflow
-    overlay.classList.add('reverse');
-    
-    setTimeout(() => {
-        resetOscarOverlay();
-    }, 1200);
-}
-
-function resetOscarOverlay() {
-    const overlay = document.getElementById('oscar-flight-overlay');
-    if (overlay) {
-        overlay.style.display = 'none';
-        overlay.classList.remove('active', 'reverse');
-        overlay.querySelectorAll('.flight-streak').forEach(s => s.remove());
-    }
-}
 
 // Authentication check
 function checkAuth() {
@@ -96,11 +52,6 @@ function loadUserInfo() {
             } else {
                 userElement.classList.remove('birthday-shine');
             }
-            
-            // Add admin badge if user is admin
-            if (profileManager.isCurrentUserAdmin()) {
-                addTeacherGuideButton(); // Add teacher guide button for admins
-            }
         }
 
         // Replace human icon with profile picture if available
@@ -126,73 +77,6 @@ function loadUserInfo() {
         }
         const dashboardContent = document.querySelector('.dashboard-container') || document.querySelector('.profile-container');
         if (dashboardContent) dashboardContent.style.paddingBottom = '0';
-    }
-}
-
-// Function to add the teacher guide button
-function addTeacherGuideButton() {
-    const userInfoDiv = document.querySelector('.user-info'); // Or another suitable parent
-    if (!userInfoDiv) return;
-
-    let guideButton = document.getElementById('teacher-guide-btn');
-    if (!guideButton) {
-        guideButton = document.createElement('button');
-        guideButton.id = 'teacher-guide-btn';
-        guideButton.innerHTML = '👩‍🏫 Teacher\'s Guide';
-        guideButton.style.cssText = `
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            margin-left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap; /* Prevent text wrapping */
-        `;
-        guideButton.onmouseover = () => {
-            guideButton.style.transform = 'translateY(-2px)';
-            guideButton.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-        };
-        guideButton.onmouseout = () => {
-            guideButton.style.transform = 'translateY(0)';
-            guideButton.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-        };
-        guideButton.onclick = openTeacherGuideModal;
-
-        userInfoDiv.appendChild(guideButton);
-    }
-}
-
-// New functions for modal
-function openTeacherGuideModal() {
-    const modal = document.getElementById('teacher-guide-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-        setTimeout(() => modal.classList.add('show'), 10); // Add 'show' class for fade-in
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-
-        // Close when clicking the backdrop (the area outside the content box)
-        modal.onclick = (e) => {
-            if (e.target === modal) {
-                closeTeacherGuideModal();
-            }
-        };
-    }
-}
-
-function closeTeacherGuideModal() {
-    const modal = document.getElementById('teacher-guide-modal');
-    if (modal) {
-        modal.classList.remove('show'); // Remove 'show' class for fade-out
-        setTimeout(() => modal.style.display = 'none', 300); // Hide after transition
-        document.body.style.overflow = 'auto'; // Restore scrolling
     }
 }
 
@@ -387,8 +271,6 @@ function initializeLevels() {
                 startBtn.disabled = false;
                 startBtn.style.pointerEvents = 'auto';
                 startBtn.style.opacity = '1';
-                startBtn.textContent = 'Start Lesson'; // Reset text when unmagicked
-                startBtn.classList.remove('replay-btn');
             }
 
             // If attempted but not passed (score exists but not marked completed)
@@ -464,8 +346,6 @@ function initializeLevels() {
                 startBtn.disabled = true;
                 startBtn.style.pointerEvents = 'none';
                 startBtn.style.opacity = '0.5';
-                startBtn.textContent = 'Start Lesson';
-                startBtn.classList.remove('replay-btn');
             }
             
             // For admin, replace locked message with button
